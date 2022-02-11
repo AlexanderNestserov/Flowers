@@ -1,0 +1,103 @@
+.wrapper {
+    max-width: 1920px;
+    margin: 30px auto;
+}
+.header {
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+}
+.header__logo {
+}
+.first-image {
+    height: 3rem;
+}
+.second-image {
+    vertical-align: center;
+    margin-top: 0.7rem;
+    height: 2rem;
+}
+.header__menu {
+    width: 70%;
+}
+.header__list {
+}
+.header__list li a {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 1.4rem;
+    line-height: 150%;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: black;
+}
+.header__list li a:hover {
+    color: red;
+}
+.header__list li a:active {
+}
+.active {
+    color: red;
+    background: url("../assets/img-home/Rectangle\ 2.png") center bottom no-repeat;
+    padding-bottom: 1rem;
+}
+.container {
+}
+.container__head {
+}
+.container__title {
+}
+.container__logo {
+}
+.container__banner {
+}
+.container__delivery {
+}
+.title {
+}
+.container__garden {
+}
+.container__slider {
+}
+.container__list {
+}
+.container__beauties {
+}
+.container__items {
+}
+.container__item {
+}
+.opacity {
+}
+.activity {
+}
+.container__button {
+}
+.container__information {
+}
+.color {
+}
+.footer {
+}
+.footer__flex {
+}
+.footer__logo {
+}
+.footer__catalog {
+}
+.footer__title {
+}
+.footer__store {
+}
+.footer__media {
+}
+.footer__line {
+}
+.footer__copyright {
+}
+.footer__copy {
+}
+.footer__mail {
+}
