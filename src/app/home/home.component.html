@@ -2,14 +2,16 @@
 
     <div class="container">
         <div class="container__head flex justify-content-between ">
+
             <div class="container__title">
                 <h1>Bouquets for your holidays!</h1>
                 <p>Just like in the picture!</p>
             </div>
             <div class="container__logo">
-                <img src="../../assets/img-home/flowers.jpg" alt="flowers">
+                <img class="event" src="../../assets/img-home/flowers.jpg" alt="flowers">
             </div>
         </div>
+
         <div class="container__banner flex justify-content-between ">
             <div class="container__delivery flex justify-content-between ">
                 <div>
@@ -34,64 +36,66 @@
                 </div>
             </div>
         </div>
-        <app-slider></app-slider>
-
         <div class="container__slider">
             <ul class="container__list flex justify-content-between">
-                <li>
-                    <div class="container__block flex justify-content-center">
-                        <a href="">
-                            <img src="../../assets/img-home/logo.jpg" alt="logo1">
-                            <h6>Fresh flowers</h6>
-                            <p>from 17,35 eur.</p>
-                        </a>
-                    </div>
-                </li>
-                <li>
-                    <div class="container__block flex justify-content-center">
-                        <a href="">
-                            <img src="../../assets/img-home/plant 1.png" alt="plant">
-                            <h6>Indoor plants</h6>
-                            <p>from 9,45 eur.</p>
-                        </a>
-                    </div>
-                </li>
-                <li>
-                    <div class="container__block flex justify-content-center">
-                        <a href="">
-                            <img src="../../assets/img-home/sprout 1.png" alt="sprout">
-                            <h6>Planting material</h6>
-                            <p>more than 500 species</p>
-                        </a>
-                    </div>
-                </li>
-                <li>
-                    <div class="container__block flex justify-content-center">
-                        <a href="">
-                            <img src="../../assets/img-home/vase 1.png" alt="vase">
-                            <h6>Floral accessories</h6>
-                            <p>more than 500 species</p>
-                        </a>
-                    </div>
-                </li>
-                <li>
-                    <div class="container__block flex justify-content-center">
-                        <a href="">
-                            <img src="../../assets/img-home/bonsai 1.png" alt="bonsai">
-                            <h6>Compositions made of artificial materials...</h6>
-                            <p>for home comfort</p>
-                        </a>
-                    </div>
-                </li>
-                <li>
-                    <div class="container__block flex justify-content-center">
-                        <a href="">
-                            <img src="../../assets/img-home/fountain 1.png" alt="fontain">
-                            <h6>Landscape design</h6>
-                            <p>for your garden</p>
-                        </a>
-                    </div>
-                </li>
+                <swiper [slidesPerView]="4" [spaceBetween]="30" [loop]="true" [pagination]="{
+          clickable: true
+        }" [navigation]="true" class="myswiper">
+                    <ng-template swiperSlide>
+                        <div class="container__block flex justify-content-center">
+                            <a href="">
+                                <img src="../../assets/img-home/logo.jpg" alt="logo1">
+                                <h6>Fresh flowers</h6>
+                                <p>from 17,35 eur.</p>
+                            </a>
+                        </div>
+                    </ng-template>
+                    <ng-template swiperSlide>
+                        <div class="container__block flex justify-content-center">
+                            <a href="">
+                                <img src="../../assets/img-home/plant 1.png" alt="plant">
+                                <h6>Indoor plants</h6>
+                                <p>from 9,45 eur.</p>
+                            </a>
+                        </div>
+                    </ng-template>
+                    <ng-template swiperSlide>
+                        <div class="container__block flex justify-content-center">
+                            <a href="">
+                                <img src="../../assets/img-home/sprout 1.png" alt="sprout">
+                                <h6>Planting material</h6>
+                                <p>more than 500 species</p>
+                            </a>
+                        </div>
+                    </ng-template>
+                    <ng-template swiperSlide>
+                        <div class="container__block flex justify-content-center">
+                            <a href="">
+                                <img src="../../assets/img-home/vase 1.png" alt="vase">
+                                <h6>Floral accessories</h6>
+                                <p>more than 500 species</p>
+                            </a>
+                        </div>
+                    </ng-template>
+                    <ng-template swiperSlide>
+                        <div class="container__block flex justify-content-center">
+                            <a href="">
+                                <img src="../../assets/img-home/bonsai 1.png" alt="bonsai">
+                                <h6>Compositions made of artificial materials...</h6>
+                                <p>for home comfort</p>
+                            </a>
+                        </div>
+                    </ng-template>
+                    <ng-template swiperSlide>
+                        <div class="container__block flex justify-content-center">
+                            <a href="">
+                                <img src="../../assets/img-home/fountain 1.png" alt="fontain">
+                                <h6>Landscape design</h6>
+                                <p>for your garden</p>
+                            </a>
+                        </div>
+                    </ng-template>
+                </swiper>
             </ul>
         </div>
         <div class="container__beauties">

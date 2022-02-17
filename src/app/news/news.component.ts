@@ -6,11 +6,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./news.component.css']
 })
 export class NewsComponent implements OnInit {
+  p: number = 1;
+  collection: any[] = [];
+  constructor() {
 
-
-  constructor() { }
-
-  ngOnInit(): void {
   }
+  ngOnInit(): void {
+    for (let i = 1; i <= 60; i++) {
+      this.collection.push(`item ${i}`);
+    }
 
+
+  }
 }

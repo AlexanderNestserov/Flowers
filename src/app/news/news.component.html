@@ -43,15 +43,17 @@
             <div class="container__date">
                 June 25, 2021
             </div>
-            <div class="container__titles">
-                Flower delivery in Minsk
-            </div>
-            <p class="container__text">For several years now, our company has been delighting customers with the
-                delivery of flowers and congratulations. We are really proud of the clear and well-coordinated work
-                of
-                our employees and are always confident that your order will be delivered at the right time to the
-                right
-                place.</p>
+            <a routerLink="newsarticle">
+                <div class="container__titles">
+                    Flower delivery in Minsk
+                </div>
+                <p class="container__text">For several years now, our company has been delighting customers with the
+                    delivery of flowers and congratulations. We are really proud of the clear and well-coordinated work
+                    of
+                    our employees and are always confident that your order will be delivered at the right time to the
+                    right
+                    place.</p>
+            </a>
         </div>
         <div class="container__info">
             <div class="container__date">
@@ -103,6 +105,14 @@
             <button class="fifteen"><span>15</span></button>
         </div>
 
+        <div class="list">
+            <ul>
+                <li *ngFor="let item of collection | paginate: { itemsPerPage: 4, currentPage: p }">{{ item }}</li>
+            </ul>
 
+            <pagination-controls class="my-pag" (pageChange)="p=($event)" [directionLinks]="false" [maxSize]="5">
+                <pagination-template></pagination-template>
+            </pagination-controls>
+        </div>
     </div>
 </div>

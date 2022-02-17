@@ -1,3 +1,37 @@
+@import "../../../node_modules/swiper/swiper-bundle.css";
+@import "../../../node_modules/swiper/swiper-bundle.min.css";
+
+.swiper {
+    width: 100%;
+    height: 14rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.swiper-slide {
+    text-align: top;
+    background: #fff;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: top;
+}
+
+.swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
 .wrapper {
     max-width: 100%;
     margin: 30px auto;
@@ -29,6 +63,7 @@
 .container__logo {
     padding-right: 15rem;
 }
+
 .container__banner {
     margin: 4rem auto;
     max-width: 90%;
@@ -80,16 +115,13 @@
 .container__list {
     width: 90%;
     margin: 0 auto;
-    & li {
-        width: 17rem;
-    }
 }
 .container__block {
     height: 10rem;
     width: 15rem;
     margin-right: 0;
     & a {
-        max-height: 110%;
+        max-height: 100%;
         width: 15rem;
         display: block;
 
@@ -118,7 +150,7 @@ h6 {
 }
 .container__beauties {
     width: 90%;
-    margin: 10rem auto 3rem;
+    margin: 5rem auto 3rem;
     font-weight: bold;
     font-size: 2rem;
     line-height: 120%;
