@@ -1,0 +1,69 @@
+<div class="wrapper">
+    <div class="container">
+        <div class="container__line"></div>
+        <div class="container__path flex justify-content-start">
+            <div class="container__home">
+                <a routerLink="/">Home</a>
+            </div>
+            <div class="container__angle">
+                <img src="../../../assets/img-aboutus/Angle.png" alt="angle">
+            </div>
+            <div class="container__news">News</div>
+        </div>
+        <div class="container__titl">News</div>
+        <p class="container__text1">For several years now, our company has been delighting customers with the delivery
+            of flowers and congratulations. We are really proud of the clear and well-coordinated work of our employees
+            and are always confident that your order will be delivered at the right time to the right place.</p>
+        <div class="container__banner flex justify-content-between ">
+            <div class="container__delivery flex justify-content-between ">
+                <div>
+                    <div class="container__deliverys title">
+                        Flower delivery in Minsk
+                    </div>
+                    <a class="container__linking" href="">More details</a>
+                </div>
+                <div class="delivery__logo">
+                    <img src="../../../assets/img-home/car.jpg" alt="car">
+                </div>
+            </div>
+            <div class="container__garden flex justify-content-between">
+                <div>
+                    <div class="container__gardens title">
+                        Everything for your garden
+                    </div>
+                    <a class="container__linking" href="">Discounts up to 50%</a>
+                </div>
+                <div class="garden__logo">
+                    <img src="../../../assets/img-home/Frame 11.png" alt="garden">
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+        <div class="list">
+            <ul>
+                <li *ngFor="let item of collection | paginate: { itemsPerPage: 4, currentPage: p }">
+                    <div class="container__info">
+                        {{item.id}}
+                        <div class="container__date">
+                            {{item.date}}
+                        </div>
+                        <a routerLink="newsarticle">
+                            <div class="container__titles">
+                                {{item.title}}
+                            </div>
+                        </a>
+                        <p class="container__text">{{item.text}}</p>
+                    </div>
+                </li>
+            </ul>
+
+            <pagination-controls class="my-pag" (pageChange)="p=($event)" [directionLinks]="false" [maxSize]="5">
+                <pagination-template></pagination-template>
+            </pagination-controls>
+        </div>
+    </div>
+</div>

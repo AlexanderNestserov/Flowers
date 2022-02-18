@@ -1,0 +1,123 @@
+.wrapper {
+    width: 100%;
+    margin: 0 auto;
+}
+.container {
+    width: 90%;
+    margin: 0 auto;
+}
+.container__line {
+    background: #404040;
+    opacity: 0.2;
+    height: 1px;
+}
+.container__path {
+    margin: 2rem auto;
+}
+
+.container__home {
+    margin-right: 2rem;
+    a {
+        font-weight: normal;
+        font-size: 1rem;
+        line-height: 150%;
+        color: #404040;
+    }
+}
+.container__angle {
+    margin-right: 2rem;
+    margin-top: 0.35rem;
+}
+.container__news {
+    font-weight: normal;
+    font-size: 1rem;
+    line-height: 150%;
+    color: #bdbdbd;
+}
+.container__titl {
+    background: linear-gradient(90deg, #ff5d7d 0%, #7b61ff 100%);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 800;
+    font-size: 3rem;
+    line-height: 120%;
+    margin-top: 3rem;
+    margin-bottom: 2.5rem;
+}
+.container__text {
+    margin-top: 3rem;
+    margin-bottom: 4rem;
+    width: 75%;
+    font-weight: normal;
+    font-size: 1.6rem;
+    line-height: 150%;
+    color: #000;
+}
+.container__text1 {
+    margin-bottom: 2rem;
+    width: 75%;
+    font-weight: normal;
+    font-size: 1.5rem;
+    line-height: 170%;
+    color: #404040;
+}
+.container__img1 {
+    margin-bottom: 4rem;
+    img {
+        width: 100%;
+    }
+}
+.container__img3 {
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+    img {
+        width: 75%;
+    }
+}
+.container__banner {
+    margin: 4rem auto;
+    max-width: 100%;
+}
+.container__delivery {
+    background: url("../../../../assets/img-home/Rectangle\ 3.png") 0 0 no-repeat;
+    background-size: 100% 100%;
+    width: 100%;
+    margin-right: 1rem;
+}
+
+.delivery__logo {
+    display: flex;
+    align-items: center;
+}
+.delivery__logo img {
+    height: 90%;
+}
+.title {
+    font-weight: bold;
+    font-size: 2rem;
+    line-height: 120%;
+    color: #404040;
+    margin: 4rem 0 2rem 4rem;
+}
+.container__linking {
+    font-weight: normal;
+    font-size: 1.2rem;
+    line-height: 150%;
+    color: #404040;
+    margin-left: 4rem;
+    &:hover {
+        color: #ff5d7d;
+    }
+}
+
+.container__garden {
+    background: url("../../../../assets/img-home/Rectangle\ 4.png") 0 0 no-repeat;
+    background-size: 100% 100%;
+    width: 100%;
+    margin-left: 1rem;
+}
+
+.garden__logo {
+    display: flex;
+    align-items: center;
+}

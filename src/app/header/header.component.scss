@@ -1,13 +1,13 @@
 .header {
     position: sticky;
-    top: 0rem;
+    top: 0;
     z-index: 99;
     background-color: #fff;
     width: 100%;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
-    padding: 3rem 7rem;
+    padding: 2rem 7rem;
     height: 8rem;
 }
 .header__popup {
@@ -22,19 +22,21 @@
 }
 .header__logo {
     cursor: pointer;
+    height: 4rem;
 }
 .first-image {
-    height: 3rem;
+    height: 3.5rem;
     padding-right: 0.8rem;
+    margin-bottom: 2rem;
 }
 .second-image {
-    vertical-align: center;
-    margin-top: 0.9rem;
-    height: 2rem;
+    height: 3rem;
     transform: scale(1.2);
+    padding-top: 1rem;
 }
 .header__menu {
     width: 80%;
+    padding-top: 1rem;
 }
 .header__icon {
     width: 25%;
@@ -60,60 +62,67 @@
         background-size: 3.2rem 0.4rem;
         padding-bottom: 1rem;
     }
-
-    &.header__search {
-        background: url("../../assets/img-home/search.png") 0 0.4rem no-repeat;
-        width: 2rem;
-        height: 3rem;
-        display: inline-block;
-        transform: scale(1.5);
-    }
-
-    &.header__search:hover {
+}
+.header__icon li a {
+    &.active {
         background: url("../../assets/img-home/search-red.png") 0 0.4rem no-repeat,
             url("../../assets/img-home/Rectangle2.png") 0 2.3rem no-repeat;
         padding-bottom: 1rem;
     }
-    &.header__bag {
-        background: url("../../assets/img-home/shopping-bag.png") 0 0.4rem no-repeat;
-        width: 2rem;
-        height: 3rem;
-        display: inline-block;
-        transform: scale(1.5);
-    }
-    &.header__bag:hover {
-        background: url("../../assets/img-home/shopping-bag-red.png") 0 0.4rem no-repeat,
-            url("../../assets/img-home/Rectangle2.png") 0 2.3rem no-repeat;
-        padding-bottom: 1rem;
-    }
-    .header__quantity {
-        display: inline-block;
-        color: #fff;
-        position: relative;
-        top: -0.2rem;
-        left: 1rem;
-        width: 1.7rem;
-        height: 1.3rem;
-        border-radius: 8px;
-        padding: 6px 5px;
-        line-height: 50%;
-        vertical-align: top;
-        font-size: 1rem;
-        background-color: rgba(255, 93, 125, 1);
-    }
-    &.header__user {
-        background: url("../../assets/img-home/user.png") 0 0.4rem no-repeat;
-        width: 2rem;
-        height: 3rem;
-        display: inline-block;
-        transform: scale(1.5);
-    }
-    &.header__user:hover {
-        background: url("../../assets/img-home/user-red.png") 0 0.4rem no-repeat,
-            url("../../assets/img-home/Rectangle2.png") 0 2.3rem no-repeat;
-        padding-bottom: 1rem;
-    }
 }
+.header__icon li a.header__search:hover {
+    background: url("../../assets/img-home/search-red.png") 0 0.4rem no-repeat,
+        url("../../assets/img-home/Rectangle2.png") 0 2.3rem no-repeat;
+    padding-bottom: 1rem;
+}
+.header__search {
+    background: url("../../assets/img-home/search.png") 0 0.4rem no-repeat;
+    width: 2rem;
+    height: 3rem;
+    display: inline-block;
+    transform: scale(1.5);
+}
+
+.header__bag {
+    background: url("../../assets/img-home/shopping-bag.png") 0 0.4rem no-repeat;
+    width: 2rem;
+    height: 3rem;
+    display: inline-block;
+    transform: scale(1.5);
+}
+.header__icon li a.header__bag:hover {
+    background: url("../../assets/img-home/shopping-bag-red.png") 0 0.4rem no-repeat,
+        url("../../assets/img-home/Rectangle2.png") 0 2.3rem no-repeat;
+    padding-bottom: 1rem;
+}
+.header__quantity {
+    display: inline-block;
+    color: #fff;
+    position: relative;
+    top: -0.2rem;
+    left: 1rem;
+    width: 1.7rem;
+    height: 1.3rem;
+    border-radius: 8px;
+    padding: 6px 5px;
+    line-height: 50%;
+    vertical-align: top;
+    font-size: 1rem;
+    background-color: rgba(255, 93, 125, 1);
+}
+.header__user {
+    background: url("../../assets/img-home/user.png") 0 0.4rem no-repeat;
+    width: 2rem;
+    height: 3rem;
+    display: inline-block;
+    transform: scale(1.5);
+}
+.header__icon li a.header__user:hover {
+    background: url("../../assets/img-home/user-red.png") 0 0.4rem no-repeat,
+        url("../../assets/img-home/Rectangle2.png") 0 2.3rem no-repeat;
+    padding-bottom: 1rem;
+}
+
 @media (max-width: 1400px) {
     .header {
         justify-content: start;
