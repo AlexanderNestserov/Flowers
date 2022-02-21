@@ -13,7 +13,6 @@
 .header__popup {
     display: none;
     button {
-        background-color: #fff;
         img {
             width: 3rem;
             height: 3rem;
@@ -152,9 +151,24 @@
     }
     .header__popup {
         display: block;
-        margin-right: 2rem;
+        position: fixed;
+        top: 2.5rem;
+        left: 2.5rem;
+        button {
+            background-color: #fff;
+        }
+        button:hover {
+            box-shadow: 2px 2px 3px grey;
+        }
+        button:active {
+            position: fixed;
+            top: 2.6rem;
+            left: 2.6rem;
+            box-shadow: 1px 1px 2px grey;
+        }
     }
 }
+
 @media (max-width: 886px) {
     .header__icon {
         width: 10rem;

@@ -1,5 +1,8 @@
-import { Component, ViewEncapsulation, ViewChild } from "@angular/core";
+import { Component, ViewEncapsulation, ViewChild, OnInit } from "@angular/core";
 import { SwiperComponent } from "swiper/angular";
+
+
+
 
 // import Swiper core and required modules
 import SwiperCore, { Autoplay, Pagination, Navigation } from "swiper";
@@ -13,14 +16,16 @@ SwiperCore.use([Autoplay, Pagination, Navigation]);
   styleUrls: ['./home.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
 
 
 
   constructor() {
 
   }
+  ngOnInit(): void {
 
 
 
+  }
 }
