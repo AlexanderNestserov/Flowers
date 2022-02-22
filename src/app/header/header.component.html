@@ -2,11 +2,14 @@
 
     <div class="header__popup">
 
-        <button><img src="../../assets/img-home/mobile_menu.png" alt="menu"></button>
+        <button class="burger" (click)='toggleDisplay()' [hidden]="isShown"><img
+                src="../../assets/img-home/mobile_menu.png" alt="menu"></button>
+        <button class="close" [hidden]="isShow" (click)='toggleDisplay()'><img src="../../assets/img-home/x.png"
+                alt="close"></button>
 
     </div>
     <div class="header__logo ">
-        <a class="flex justify-content-center " href="../../index.html">
+        <a class="flex justify-content-center " href="/">
             <img src="../../assets/img-home/logo.jpg" alt="logo" class="first-image">
             <img src="../../assets/img-home/FlowerShop.jpg" alt="shop" class="align-items-center second-image">
         </a>
@@ -24,7 +27,7 @@
             <li class="menu"><a routerLink="contacts" routerLinkActive="active"
                     [routerLinkActiveOptions]="{exact:true}">CONTACTS</a></li>
             <div class=" header__icon flex justify-content-between">
-                <li><a class="header__search " routerLink="search" routerLinkActive="active"
+                <li><a class="header__search " (click)='toggleDisplays()' routerLink="/search" routerLinkActive="active"
                         [routerLinkActiveOptions]="{exact:true}"></a> </li>
                 <li>
                     <a class="header__bag " href="#" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
@@ -34,6 +37,18 @@
                 <li><a class="header__user " href="#" routerLinkActive="active"
                         [routerLinkActiveOptions]="{exact:true}"></a></li>
             </div>
+        </ul>
+    </div>
+    <div>
+        <ul class="mobile__menu" [hidden]="isShow">
+            <li><a routerLink="/" (click)='toggleDisplay()'>HOME</a></li>
+            <li><a routerLink="/catalog" (click)='toggleDisplay()'>CATALOG</a>
+            </li>
+            <li><a routerLink="/aboutus" (click)='toggleDisplay()'>ABOUT US</a>
+            </li>
+            <li><a routerLink="/news" (click)='toggleDisplay()'>NEWS</a></li>
+            <li><a routerLink="/contacts" (click)='toggleDisplay()'>CONTACTS</a>
+            </li>
         </ul>
     </div>
 

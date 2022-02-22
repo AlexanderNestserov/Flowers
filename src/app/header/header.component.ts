@@ -5,9 +5,6 @@ import { Input } from '@angular/core';
 
 
 
-
-
-
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -16,13 +13,26 @@ import { Input } from '@angular/core';
 export class HeaderComponent implements OnInit {
 
 
-  checked2: boolean = true;
-
+  isShow = true;
+  isShown = false;
+  scroll: any;
   constructor() { }
 
   ngOnInit(): void {
 
   }
 
+  toggleDisplay() {
+    this.isShow = !this.isShow;
+    this.isShown = !this.isShown;
+    if (!this.isShow) {
+      document.body.style.overflow = 'hidden';
+    }
+  }
+  toggleDisplays() {
+    if (!this.isShow) {
+      this.toggleDisplay()
+    }
+  }
 
 }

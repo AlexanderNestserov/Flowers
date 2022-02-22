@@ -154,22 +154,64 @@
         position: fixed;
         top: 2.5rem;
         left: 2.5rem;
-        button {
+        .burger {
             background-color: #fff;
         }
-        button:hover {
+        .burger:hover {
             box-shadow: 2px 2px 3px grey;
         }
-        button:active {
+        .burger:active {
+            position: fixed;
+            top: 2.6rem;
+            left: 2.6rem;
+            box-shadow: 1px 1px 2px grey;
+        }
+        .close {
+            background-color: #fff;
+        }
+        .close:hover {
+            box-shadow: 2px 2px 3px grey;
+        }
+        .close:active {
             position: fixed;
             top: 2.6rem;
             left: 2.6rem;
             box-shadow: 1px 1px 2px grey;
         }
     }
+    .mobile__menu {
+        position: fixed;
+        top: 8rem;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        text-align: center;
+        background: url("../../assets/img-home/Rectangle\ 13.png") 0 0 no-repeat;
+        background-size: 100% 100%;
+        padding-top: 5rem;
+        & li {
+            margin-bottom: 4rem;
+        }
+        & li a {
+            font-family: Montserrat;
+            font-style: normal;
+            font-weight: 600;
+            font-size: 1.4rem;
+            line-height: 150%;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: #404040;
+        }
+        & li a:hover {
+            color: #ff5d7d;
+        }
+    }
 }
 
 @media (max-width: 886px) {
+    .header__list {
+        display: flex;
+    }
     .header__icon {
         width: 10rem;
         margin-left: 2rem;
@@ -177,20 +219,109 @@
     .header {
         width: 100%;
         justify-content: space-between;
-        padding: 1rem 2rem;
+        padding: 2rem 2rem;
+    }
+    .header__menu {
+        display: flex;
+        justify-content: flex-end;
+    }
+    .header__logo {
+        margin-left: 5rem;
     }
 }
 @media (max-width: 564px) {
-    .wrapper {
-        margin: 0;
-    }
     .header__icon {
         margin: 0;
     }
     .header {
-        width: 80%;
+        width: 100%;
         justify-content: space-between;
-        padding: 0;
+        padding-top: 2rem;
         margin: 0 auto;
+    }
+    .header__logo {
+        margin-left: 4rem;
+    }
+}
+@media (max-width: 500px) {
+    .header__popup {
+        top: 2.5rem;
+        left: 0.5rem;
+    }
+    .header__logo {
+        margin-left: 2rem;
+        margin-right: 0;
+    }
+    .header {
+        padding-right: 5rem;
+    }
+    .header__menu {
+        padding-right: 5rem;
+    }
+    .header__icon {
+        display: flex;
+        justify-content: flex-start;
+        margin: 0;
+        padding: 0;
+        width: 5rem;
+        li {
+            margin-right: 1.5rem;
+
+            width: 1.5rem;
+            a {
+                margin: 0;
+                padding: 0;
+            }
+        }
+    }
+    .header__search {
+        width: 1.5rem;
+        transform: scale(1);
+        margin-right: 1rem;
+    }
+    .header__bag {
+        width: 1.5rem;
+        transform: scale(1);
+        margin-right: 1rem;
+    }
+    .header__user {
+        width: 1.5rem;
+        transform: scale(1);
+    }
+}
+@media (max-width: 450px) {
+    .header__search {
+        width: 1.5rem;
+        transform: scale(1);
+        margin-right: 1rem;
+    }
+    .header__bag {
+        width: 1.5rem;
+        transform: scale(1);
+        margin-right: 1rem;
+    }
+    .header__user {
+        width: 1.5rem;
+        transform: scale(1);
+    }
+    .header__icon {
+        display: flex;
+        justify-content: flex-start;
+        margin: 0;
+        padding: 0;
+        width: 5rem;
+        li {
+            margin-right: 1rem;
+            width: 1.5rem;
+            a {
+                margin: 0;
+                padding: 0;
+            }
+        }
+    }
+    .header__logo {
+        margin-right: 1rem;
+        width: 11rem;
+        padding-right: 0;
     }
 }

@@ -3,15 +3,14 @@
     <div class="container">
 
         <div class="container__h">
-            <swiper [slidesPerView]="1" [spaceBetween]="10" [loop]="true" [autoplay]="{
+            <swiper [slidesPerView]="1" [spaceBetween]="5" [loop]="true" [autoplay]="{
                 delay: 3000,
                 disableOnInteraction: true
               }" [pagination]="{
             clickable: true
           }" [navigation]="true" class="myswiper">
                 <ng-template swiperSlide>
-                    <div class="container__head flex justify-content-between ">
-
+                    <div class="container__head  ">
                         <div class="container__title">
                             <h1>Bouquets for your holidays!</h1>
                             <p>Just like in the picture!</p>
@@ -22,7 +21,7 @@
                     </div>
                 </ng-template>
                 <ng-template swiperSlide>
-                    <div class="container__head flex justify-content-between ">
+                    <div class="container__head ">
 
                         <div class="container__title">
                             <h1>Bouquets for your holidays!</h1>
@@ -38,7 +37,7 @@
 
         <div class="container__banner flex justify-content-between ">
 
-            <div class="container__delivery flex  ">
+            <div class="container__delivery flex ">
                 <a href="https://www.elinext.com" target="_blank" class="flex justify-content-between">
                     <div>
                         <div class="container__deliverys title">
@@ -53,7 +52,7 @@
             </div>
 
             <a href="https://www.elinext.com" target="_blank">
-                <div class="container__garden flex justify-content-between">
+                <div class="container__garden ">
                     <div>
                         <div class="container__gardens title">
                             Everything for your garden
