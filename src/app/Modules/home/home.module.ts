@@ -14,7 +14,7 @@ import { TabViewModule } from 'primeng/tabview'
 
 @NgModule({
   declarations: [
-    HomeComponent,
+    HomeComponent
 
   ],
   imports: [

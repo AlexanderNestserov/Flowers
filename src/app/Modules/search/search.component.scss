@@ -41,6 +41,9 @@
             border: 2px solid #e7e7e7;
         }
     }
+    input::placeholder {
+        color: rgb(223, 217, 217);
+    }
     button {
         position: absolute;
         top: 1.6rem;
@@ -67,4 +70,13 @@ p {
     font-size: 1.5rem;
     line-height: 150%;
     color: #404040;
+}
+@media (max-width: 500px) {
+    .p-input-icon-right {
+        input {
+            font-size: 0.8rem;
+            line-height: 150%;
+            color: #000;
+        }
+    }
 }

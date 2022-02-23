@@ -69,7 +69,24 @@
             <ul class="container__list flex justify-content-between">
                 <swiper [slidesPerView]="6" [spaceBetween]="20" [loop]="true" [pagination]="{
           clickable: true
-        }" [navigation]="true" class="myswiper">
+        }" [navigation]="true" [breakpoints]="{
+            '300': {
+                slidesPerView: 2,
+                spaceBetween: 20
+              },
+            '640': {
+              slidesPerView: 2,
+              spaceBetween: 20
+            },
+            '880': {
+              slidesPerView: 4,
+              spaceBetween: 20
+            },
+            '1400': {
+              slidesPerView: 6,
+              spaceBetween: 20
+            }
+          }" class="myswiper">
                     <ng-template swiperSlide>
                         <div class="container__block flex justify-content-center">
                             <a href="">

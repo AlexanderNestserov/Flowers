@@ -12,7 +12,7 @@ import { Input } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-
+  isMenu = true;
   isShow = true;
   isShown = false;
   scroll: any;
@@ -25,14 +25,21 @@ export class HeaderComponent implements OnInit {
   toggleDisplay() {
     this.isShow = !this.isShow;
     this.isShown = !this.isShown;
-    if (!this.isShow) {
+    if (this.isShow === false) {
       document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'scroll';
     }
+
   }
   toggleDisplays() {
     if (!this.isShow) {
       this.toggleDisplay()
     }
+  }
+
+  toggleUser() {
+    this.isMenu = !this.isMenu;
   }
 
 }

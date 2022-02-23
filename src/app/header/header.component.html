@@ -16,15 +16,15 @@
     </div>
     <div class="header__menu">
         <ul class="header__list flex justify-content-between">
-            <li class="menu"><a routerLink="/" routerLinkActive="active"
+            <li class="menu"><a routerLink="/home" routerLinkActive="active"
                     [routerLinkActiveOptions]="{exact:true}">HOME</a></li>
             <li class="menu"><a routerLink="/catalog" routerLinkActive="active"
                     [routerLinkActiveOptions]="{exact:true}">CATALOG</a></li>
             <li class="menu"><a routerLink="/aboutus" routerLinkActive="active"
                     [routerLinkActiveOptions]="{exact:true}">ABOUT US</a></li>
-            <li class="menu"><a routerLink="news" routerLinkActive="active"
+            <li class="menu"><a routerLink="/news" routerLinkActive="active"
                     [routerLinkActiveOptions]="{exact:true}">NEWS</a></li>
-            <li class="menu"><a routerLink="contacts" routerLinkActive="active"
+            <li class="menu"><a routerLink="/contacts" routerLinkActive="active"
                     [routerLinkActiveOptions]="{exact:true}">CONTACTS</a></li>
             <div class=" header__icon flex justify-content-between">
                 <li><a class="header__search " (click)='toggleDisplays()' routerLink="/search" routerLinkActive="active"
@@ -34,14 +34,14 @@
                         <span class="header__quantity">10</span>
                     </a>
                 </li>
-                <li><a class="header__user " href="#" routerLinkActive="active"
+                <li><a class="header__user " (click)='toggleUser()' routerLink="/" routerLinkActive="active"
                         [routerLinkActiveOptions]="{exact:true}"></a></li>
             </div>
         </ul>
     </div>
     <div>
         <ul class="mobile__menu" [hidden]="isShow">
-            <li><a routerLink="/" (click)='toggleDisplay()'>HOME</a></li>
+            <li><a routerLink="/home" (click)='toggleDisplay()'>HOME</a></li>
             <li><a routerLink="/catalog" (click)='toggleDisplay()'>CATALOG</a>
             </li>
             <li><a routerLink="/aboutus" (click)='toggleDisplay()'>ABOUT US</a>
@@ -49,6 +49,19 @@
             <li><a routerLink="/news" (click)='toggleDisplay()'>NEWS</a></li>
             <li><a routerLink="/contacts" (click)='toggleDisplay()'>CONTACTS</a>
             </li>
+        </ul>
+    </div>
+    <div>
+        <ul class="user" [hidden]="isMenu">
+            <li>
+                <a href="">
+                    <span>MY ORDERS</span>
+                    <span>10</span>
+                </a>
+            </li>
+            <li><a href="">MANAGE MY ACCOUNT</a></li>
+            <div class="line"></div>
+            <li><a href="">LOG OUT</a></li>
         </ul>
     </div>
 

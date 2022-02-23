@@ -169,3 +169,10 @@
         text-align: left;
     }
 }
+@media (max-width: 1200px) {
+    .container__text1,
+    .container__text,
+    .list {
+        width: 100%;
+    }
+}

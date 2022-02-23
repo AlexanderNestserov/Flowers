@@ -7,15 +7,19 @@ import { NewsComponent } from './news.component';
 import { NewsarticleComponent } from './newsarticle/newsarticle.component';
 
 
+
 @NgModule({
   declarations: [
     NewsComponent,
-    NewsarticleComponent
+    NewsarticleComponent,
+
+
   ],
   imports: [
     CommonModule,
     NewsRoutingModule,
     NgxPaginationModule
-  ]
+  ],
+  providers: []
 })
 export class NewsModule { }

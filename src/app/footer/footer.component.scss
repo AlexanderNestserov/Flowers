@@ -1,3 +1,6 @@
+@import "../styles/_variables.scss";
+@import "../styles/_mixins.scss";
+
 .wrapper {
     max-width: 100%;
     margin: 30px auto;
@@ -5,33 +8,28 @@
 .footer {
     margin-top: 5rem;
     background: #404040;
-    color: #fff;
+    color: $color_white;
 }
 .footer__flex {
     width: 90%;
     margin: 0 auto;
     padding: 4rem 0;
     a {
-        color: #fff;
+        color: $color_white;
     }
 }
 .footer__logo {
     img {
-        width: 9rem;
-        height: 2.5rem;
+        @include wihi(9rem, 2.5rem);
     }
 }
 .footer__catalog {
     width: 45%;
 }
 .footer__title {
-    font-weight: 600;
-    font-size: 1.2rem;
-    line-height: 110%;
-    letter-spacing: 0.05em;
+    @include font(Montserrat, normal, 600, 1.2rem, 110%, 0.05em, #b4b4b4);
     text-transform: uppercase;
-    color: #b4b4b4;
-    margin-bottom: 2rem;
+    margin-bottom: $pt;
 }
 .footer__list {
     width: 90%;
@@ -40,29 +38,26 @@
     }
 }
 .footer__list li {
-    margin-bottom: 2rem;
+    margin-bottom: $pt;
 }
 .footer__list li a {
-    font-weight: 500;
-    font-size: 1.1rem;
-    line-height: 150%;
+    @include font(Montserrat, normal, 500, 1.1rem, 150%, 0.05em, $color_white);
 }
 .footer__store {
-    width: 8%;
+    width: 20%;
+    margin-right: 15rem;
 }
 .footer__media {
     width: 12rem;
 }
 .footer__line {
-    height: 1px;
-    background: #ffffff;
+    @include wihi(90%, 1px);
+    background: $color_white;
     opacity: 0.2;
-    width: 90%;
     margin: 0 auto;
 }
 .footer__social {
-    width: 2rem;
-    height: 2rem;
+    @include wihi($pt, $pt);
 }
 .footer__copyright {
     width: 90%;
@@ -70,13 +65,59 @@
     padding-bottom: 2.5rem;
 }
 .footer__copy {
-    font-weight: 500;
-    font-size: 1rem;
-    line-height: 150%;
-    color: #b4b4b4;
+    @include font(Montserrat, normal, 500, $pb, 150%, 0em, #b4b4b4);
 }
 .footer__mail {
-    font-weight: 500;
-    font-size: 1rem;
-    line-height: 150%;
+    @include font(Montserrat, normal, 500, $pb, 150%, 0em, $color_white);
+}
+@media (max-width: 1328px) {
+    .footer__store {
+        width: 20%;
+        margin-right: 5rem;
+    }
+}
+@media (max-width: 968px) {
+    .footer__list {
+        display: block !important;
+        width: 90%;
+        text-align: left;
+        & > div {
+            width: 90%;
+        }
+    }
+    .footer__block {
+        display: block !important;
+    }
+}
+@media (max-width: 792px) {
+    .footer__catalog {
+        margin-left: $pt;
+    }
+}
+@media (max-width: 600px) {
+    .footer__logo {
+        @include wihi(9rem, 2.5rem);
+        position: relative;
+        z-index: 2;
+        bottom: 3rem;
+        left: 5rem;
+        img {
+            position: absolute;
+        }
+    }
+    .footer__catalog {
+        margin-right: 5rem;
+        width: 6rem;
+    }
+    .footer__list div {
+        width: 6rem;
+    }
+    .footer__store {
+        width: 8rem;
+    }
+}
+@media (max-width: 500px) {
+    .footer__catalog {
+        margin-right: $pt;
+    }
 }

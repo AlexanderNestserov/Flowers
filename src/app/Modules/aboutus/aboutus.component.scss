@@ -1,3 +1,5 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
 .wrapper {
     width: 100%;
     margin: 0 auto;
@@ -18,10 +20,7 @@
 .container__home {
     margin-right: 2rem;
     a {
-        font-weight: normal;
-        font-size: 1rem;
-        line-height: 150%;
-        color: #404040;
+        @include font(Montserrat, normal, normal, 1rem, 150%, 0em, #404040);
     }
 }
 .container__angle {
@@ -29,10 +28,7 @@
     margin-top: 0.35rem;
 }
 .container__aboutus {
-    font-weight: normal;
-    font-size: 1rem;
-    line-height: 150%;
-    color: #bdbdbd;
+    @include font(Montserrat, normal, normal, 1rem, 150%, 0em, #bdbdbd);
 }
 .container__titl {
     background: linear-gradient(90deg, #ff5d7d 0%, #7b61ff 100%);
@@ -51,47 +47,36 @@
     }
 }
 .container__text1 {
+    @include font(Montserrat, normal, normal, 1.6rem, 150%, 0em, #404040);
     margin-top: 1rem;
     margin-bottom: 3rem;
     width: 75%;
-    font-weight: normal;
-    font-size: 1.6rem;
-    line-height: 150%;
-    color: #404040;
 }
 .container__flowers {
     margin-bottom: 1.5rem;
     background-color: #fafafa;
     border-radius: 10px;
-    width: 100%;
-    height: 35rem;
+    @include wihi(100%, 35rem);
     align-items: center;
     div {
         margin: 0 5rem;
         img {
-            height: 100%;
-            width: 100%;
+            @include wihi(100%, 100%);
         }
     }
 }
 .container__figcapture {
-    font-size: 1.5rem;
-    line-height: 150%;
-    color: #b4b4b4;
+    @include font(Montserrat, normal, normal, 1.5rem, 150%, 0em, #b4b4b4);
 }
 .container__text2 {
+    @include font(Montserrat, normal, normal, 1.5rem, 170%, 0em, #404040);
     margin-top: 3rem;
     margin-bottom: 1rem;
-    font-size: 1.5rem;
-    line-height: 170%;
-    color: #404040;
     width: 75%;
 }
 .container__text3 {
+    @include font(Montserrat, normal, normal, 1.5rem, 170%, 0em, #404040);
     margin-bottom: 5rem;
-    font-size: 1.5rem;
-    line-height: 170%;
-    color: #404040;
     width: 75%;
 }
 .container__advantages {
@@ -110,12 +95,60 @@
 }
 .container__list {
     li {
+        @include font(Montserrat, normal, normal, 1.6rem, 170%, 0em, #404040);
         padding-left: 8rem;
         margin-bottom: 2.5rem;
-        font-size: 1.6rem;
-        line-height: 170%;
-        color: #404040;
         background: url("../../../assets/img-aboutus/sabi\ 1.png") left 0.8rem no-repeat;
         background-size: 4rem 4rem;
+    }
+}
+@media (max-width: 1558px) {
+    .container__flowers {
+        margin-bottom: 1.5rem;
+        background-color: #fafafa;
+        border-radius: 10px;
+        @include wihi(100%, 35rem);
+        align-items: center;
+        div {
+            margin: 0 3rem;
+            img {
+                @include wihi(17rem, 17rem);
+            }
+        }
+    }
+}
+@media (max-width: 1190px) {
+    .container__flowers {
+        margin-bottom: 1.5rem;
+        background-color: #fafafa;
+        border-radius: 10px;
+        @include wihi(100%, 25rem);
+        align-items: center;
+        div {
+            margin: 0 2rem;
+            img {
+                @include wihi(15rem, 15rem);
+            }
+        }
+    }
+}
+@media (max-width: 1000px) {
+    .container__text1,
+    .container__text2,
+    .container__text3 {
+        width: 100%;
+    }
+    .container__advantages {
+        width: 100%;
+    }
+    .container__flowers {
+        display: block !important;
+        @include wihi(23rem, 45rem);
+        text-align: center;
+    }
+    .container__list {
+        li {
+            padding-left: 5rem;
+        }
     }
 }
