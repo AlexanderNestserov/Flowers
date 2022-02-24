@@ -21,10 +21,7 @@
 .container__home {
     margin-right: 2rem;
     a {
-        font-weight: normal;
-        font-size: 1rem;
-        line-height: 150%;
-        color: #404040;
+        @include font(Montserrat, normal, normal, 1rem, 150%, 0em, #404040);
     }
 }
 .container__angle {
@@ -32,10 +29,7 @@
     margin-top: 0.35rem;
 }
 .container__news {
-    font-weight: normal;
-    font-size: 1rem;
-    line-height: 150%;
-    color: #bdbdbd;
+    @include font(Montserrat, normal, normal, 1rem, 150%, 0em, #bdbdbd);
 }
 .container__titl {
     background: linear-gradient(90deg, #ff5d7d 0%, #7b61ff 100%);
@@ -51,19 +45,13 @@
     margin-top: 1rem;
     margin-bottom: 3rem;
     width: 75%;
-    font-weight: normal;
-    font-size: 1.6rem;
-    line-height: 150%;
-    color: #000;
+    @include font(Montserrat, normal, normal, 1.6rem, 150%, 0em, #000);
 }
 .container__text {
     margin-top: 1rem;
     margin-bottom: 3rem;
     width: 75%;
-    font-weight: normal;
-    font-size: 1.6rem;
-    line-height: 150%;
-    color: #404040;
+    @include font(Montserrat, normal, normal, 1.6rem, 150%, 0em, #404040);
 }
 .container__banner {
     margin: 4rem auto;
@@ -84,17 +72,11 @@
     padding-left: 6.2rem;
 }
 .title {
-    font-weight: bold;
-    font-size: 2rem;
-    line-height: 120%;
-    color: #404040;
+    @include font(Montserrat, normal, bold, 2rem, 120%, 0em, #404040);
     margin: 4rem 0 2rem 4rem;
 }
 .container__linking {
-    font-weight: normal;
-    font-size: 1.2rem;
-    line-height: 150%;
-    color: #404040;
+    @include font(Montserrat, normal, normal, 1.2rem, 150%, 0em, #404040);
     margin-left: 4rem;
     &:hover {
         color: #ff5d7d;
@@ -115,18 +97,12 @@
 
 .container__titles {
     margin: 0.5rem auto 0.5rem;
-    font-weight: bold;
-    font-size: 2rem;
-    line-height: 120%;
-    color: #404040;
+    @include font(Montserrat, normal, bold, 2rem, 120%, 0em, #404040);
 }
 .container__date {
     margin-bottom: 1rem;
     width: 75%;
-    font-weight: normal;
-    font-size: 1.6rem;
-    line-height: 150%;
-    color: #404040;
+    @include font(Montserrat, normal, normal, 1.6rem, 150%, 0em, #404040);
 }
 .my-pag::ng-deep .ngx-pagination .current {
     color: #404040;
@@ -136,7 +112,6 @@
 .my-pag::ng-deep .ngx-pagination li {
     width: 3rem;
     height: 3rem;
-
     text-align: center;
     margin-left: 1rem;
 }

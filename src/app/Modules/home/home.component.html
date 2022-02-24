@@ -5,10 +5,10 @@
         <div class="container__h">
             <swiper [slidesPerView]="1" [spaceBetween]="5" [loop]="true" [autoplay]="{
                 delay: 3000,
-                disableOnInteraction: true
+                disableOnInteraction: false
               }" [pagination]="{
             clickable: true
-          }" [navigation]="true" class="myswiper">
+          }" [navigation]="false" class="myswiper">
                 <ng-template swiperSlide>
                     <div class="container__head  ">
                         <div class="container__title">
