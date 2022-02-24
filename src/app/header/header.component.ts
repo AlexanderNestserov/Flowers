@@ -16,6 +16,7 @@ export class HeaderComponent implements OnInit {
   isShow = true;
   isShown = false;
   scroll: any;
+
   constructor() { }
 
   ngOnInit(): void {
@@ -41,5 +42,6 @@ export class HeaderComponent implements OnInit {
   toggleUser() {
     this.isMenu = !this.isMenu;
   }
+
 
 }

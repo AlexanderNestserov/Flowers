@@ -444,7 +444,7 @@ h6 {
         position: static !important;
         opacity: 1 !important;
         width: 22rem !important;
-        height: 30rem !important;
+        height: 32rem !important;
         background-color: $color_white;
         box-sizing: border-box;
 
@@ -456,7 +456,7 @@ h6 {
             @include wihi(15rem, 4rem);
             background: #5e9e5e;
             border-radius: 10px;
-            margin: 0 auto;
+            margin: 0 1rem;
             img {
                 width: 1.4rem;
             }
@@ -471,7 +471,6 @@ h6 {
         @include wihi(18rem, 30rem);
         background-color: $color_white;
         box-sizing: border-box;
-
         button {
             display: flex;
             flex-direction: row;
@@ -480,7 +479,7 @@ h6 {
             @include wihi(15rem, 4rem);
             background: #5e9e5e;
             border-radius: 10px;
-            margin: 0 auto !important;
+            margin: 0 1rem !important;
             img {
                 width: 1.4rem;
             }

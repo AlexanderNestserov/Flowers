@@ -108,6 +108,43 @@
         url("../../assets/img-home/Rectangle2.png") 0 2.3rem no-repeat;
     padding-bottom: $pb;
 }
+.user {
+    position: fixed;
+    top: 5rem;
+    right: 11rem;
+    background-color: $color_white;
+    width: 25rem;
+    margin: 2rem;
+    box-shadow: 4px 4px 6px 2px grey;
+    li {
+        margin: 2rem 2rem;
+    }
+    .user__text {
+        @include font(Montserrat, normal, 600, 1.5rem, 120%, 0.05em, black);
+    }
+    .line {
+        width: 100%;
+        height: 1px;
+        background-color: rgb(221, 218, 218);
+        box-shadow: 1px 1px 1px 1px grey;
+    }
+    .user__number {
+        display: inline-block;
+        margin-left: 2rem;
+        background-color: rgba(255, 93, 125, 1);
+        width: 2.5rem;
+        height: 2.5rem;
+        border-radius: 30%;
+        text-align: center;
+        position: relative;
+        bottom: 0.1rem;
+        span {
+            @include font(Montserrat, normal, 600, 1.5rem, 120%, 0.05em, $color_white);
+            display: block;
+            padding-top: 0.4rem;
+        }
+    }
+}
 
 @media (max-width: 1400px) {
     .header {
@@ -190,6 +227,9 @@
 }
 
 @media (max-width: 886px) {
+    .user {
+        right: 1rem;
+    }
     .header__list {
         display: flex;
     }
@@ -228,6 +268,18 @@
     .header__popup {
         top: 2.5rem;
         left: 0.5rem;
+    }
+    .burger:active {
+        position: fixed;
+        top: 2.6rem;
+        left: 0.5rem !important;
+        box-shadow: 1px 1px 2px grey;
+    }
+    .close:active {
+        position: fixed;
+        top: 2.6rem;
+        left: 0.5rem !important;
+        box-shadow: 1px 1px 2px grey;
     }
     .header__logo {
         margin-left: $pt;
