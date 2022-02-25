@@ -1,6 +1,6 @@
 @import "../../../../node_modules/swiper/swiper.scss";
-@import "../../styles/variables";
-@import "../../styles/mixins";
+@import "../../styles/_variables.scss";
+@import "../../styles/_mixins.scss";
 
 .swiper {
     @include wihi(100%, 14rem);
@@ -23,7 +23,7 @@
 }
 
 .wrapper {
-    max-width: 100%;
+    max-width: 1440px;
     margin: 0 auto;
 }
 .container__h {
@@ -76,21 +76,26 @@
 .container__delivery {
     background: url("../../../assets/img-home/Rectangle\ 3.png") 0 0 no-repeat;
     background-size: 100% 100%;
-    width: 50%;
+    width: 100%;
+    margin-right: 0.5rem;
 }
 
-.delivery__logo {
+.delivery__logo,
+.garden__logo {
     display: flex;
     align-items: center;
+}
+.garden__logo img {
+    height: 90%;
 }
 
 .title {
     @include font(Montserrat, normal, 700, $pt, 120%, 0em, #404040);
-    margin: 4rem 0 $pt 4rem;
+    margin: 3rem 0 $pt 3rem;
 }
 .container__linking {
     @include font(Montserrat, normal, normal, 1.2rem, 150%, 0em, #404040);
-    margin-left: 4rem;
+    margin-left: 3rem;
     &:hover {
         color: #ff5d7d;
     }
@@ -100,8 +105,7 @@
     background: url("../../../assets/img-home/Rectangle\ 4.png") 0 0 no-repeat;
     background-size: 100% 100%;
     width: 100%;
-    margin-left: $pb;
-    @extend %flex;
+    margin-left: 0.5rem;
 }
 
 .container__list {
@@ -150,8 +154,6 @@ h6 {
     margin-bottom: 3rem;
 }
 .container__item {
-    opacity: 0.7;
-    transition: opacity 1s linear;
     @include wihi(18rem, 28rem);
     border: 1px solid #e7e7e7;
     box-sizing: border-box;
@@ -175,7 +177,6 @@ h6 {
     }
     button {
         display: none;
-        transition: opacity 1s linear;
     }
 }
 .opacity {
@@ -185,7 +186,6 @@ h6 {
 }
 .container__item:hover {
     transition: 1s;
-    opacity: 1;
     @include wihi(18rem, 35rem);
     position: absolute;
     z-index: 2;
@@ -231,7 +231,6 @@ h6 {
     margin: 0 auto;
     p {
         @include font(Montserrat, normal, normal, 1.2rem, 170%, 0em, #404040);
-        margin: $pb auto;
     }
 }
 .color {
@@ -254,91 +253,28 @@ h6 {
         margin-left: 5rem;
         width: 25rem;
     }
-    .title {
-        width: 20rem;
-    }
-    .delivery__logo img {
-        padding-left: $pb !important;
-    }
-}
-
-@media (max-width: 1606px) {
-    .delivery__logo img {
-        height: 90%;
-        padding-left: 5rem;
-    }
-    .title {
-        width: 20rem;
-    }
-    .container__delivery a div {
-        width: 15rem;
-    }
 }
 @media (max-width: 1415px) {
-    .container__garden {
-        width: 35rem !important;
-        margin-left: 10rem;
-    }
-    .garden__logo {
-        img {
-            position: relative;
-            right: 6.5rem;
-        }
-    }
-
-    .delivery__logo {
-        width: 10rem;
-        img {
-            @include wihi(100%, 80%);
-            position: relative;
-            padding-left: 5rem;
-        }
-    }
     .title {
+        margin-left: $pb !important;
+        margin-top: $pw;
+    }
+    .container__linking {
         margin-left: $pb !important;
     }
 }
 @media (max-width: 1296px) {
     .container__items {
-        width: 100%;
-        margin: 0 8rem;
+        width: 90%;
+        margin-left: 4rem;
         flex-wrap: wrap;
     }
     .container__wrap {
         flex: 1 1 50% !important;
         margin-bottom: 3rem;
     }
-    .container__garden {
-        width: 35rem !important;
-        margin-left: $pt;
-    }
-    .garden__logo {
-        img {
-            position: relative;
-            right: 6.5rem;
-        }
-    }
-
-    .delivery__logo {
-        width: 10rem;
-        img {
-            @include wihi(100%, 80%);
-            position: relative;
-            padding-left: 5rem;
-        }
-    }
 }
-
 @media (max-width: 1150px) {
-    .container__garden {
-        max-width: 25rem;
-    }
-    .garden__logo {
-        @include wihi(15rem, 15rem);
-        img {
-            @include wihi(10rem, 100%);
-        }
-    }
     .container__logo {
         @include wihi(80%, 100%);
         img {
@@ -349,28 +285,8 @@ h6 {
         margin-left: 5rem;
         width: 20rem;
     }
-    .container__delivery {
-        max-width: 25rem;
-    }
-    .delivery__logo {
-        width: 10rem;
-        img {
-            @include wihi(90%, 80%);
-            position: relative;
-            right: 3.5rem;
-        }
-    }
-    .title {
-        margin-top: $pb !important;
-    }
-    .container__linking {
-        margin-left: $pb !important;
-    }
 }
-@media (max-width: 920px) {
-    .container__logo {
-        @include wihi(60%, 80%);
-    }
+@media (max-width: 970px) {
     .container__banner {
         display: block !important;
     }
@@ -381,7 +297,15 @@ h6 {
         min-width: 25rem;
     }
     .container__garden {
+        margin-bottom: $pt;
+        height: 15rem;
         margin-left: $pb;
+        min-width: 25rem;
+    }
+}
+@media (max-width: 920px) {
+    .container__logo {
+        @include wihi(60%, 80%);
     }
 }
 @media (max-width: 820px) {

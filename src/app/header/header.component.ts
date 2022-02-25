@@ -15,7 +15,6 @@ export class HeaderComponent implements OnInit {
   isMenu = true;
   isShow = true;
   isShown = false;
-  scroll: any;
 
   constructor() { }
 

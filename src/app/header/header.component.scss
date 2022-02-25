@@ -7,9 +7,9 @@
     top: 0;
     z-index: 99;
     background-color: $color_white;
-    width: 100%;
+    padding: $pt 5rem;
+    max-width: 1440px;
     margin: 0 auto;
-    padding: $pt 7rem;
     height: 8rem;
 }
 .header__popup {
@@ -24,6 +24,7 @@
 .header__logo {
     cursor: pointer;
     height: 4rem;
+    margin-right: 10rem;
 }
 .first-image {
     height: 3.5rem;
@@ -36,7 +37,7 @@
     padding-top: $pb;
 }
 .header__menu {
-    width: 80%;
+    width: 100%;
     padding-top: $pb;
 }
 .header__icon {
@@ -59,6 +60,7 @@
     }
 }
 .header__icon li a {
+    margin-left: 3rem;
     &.active {
         background: url("../../assets/img-home/search-red.png") 0 0.4rem no-repeat,
             url("../../assets/img-home/Rectangle2.png") 0 2.3rem no-repeat;
@@ -148,27 +150,38 @@
 
 @media (max-width: 1400px) {
     .header {
-        justify-content: start;
+        padding-right: $pt !important;
+        justify-content: flex-start;
         .header__logo {
             margin-right: 3rem;
         }
         .header__menu {
-            width: 75%;
+            width: 100%;
         }
     }
 }
 @media (max-width: 1284px) {
+    .header {
+        padding-right: 2rem;
+    }
     .header__icon {
         width: 20%;
     }
+    .header__list li a {
+        margin-left: 1.3rem;
+    }
 }
 @media (max-width: 1200px) {
+    .header__list li a {
+        margin-left: 3rem;
+    }
     .header__icon {
         width: 50%;
-        margin-left: 10rem;
+        margin-left: 20rem;
     }
     .header__logo {
         width: 400px;
+        margin-left: 1rem;
     }
     .menu {
         display: none;
@@ -225,7 +238,11 @@
         }
     }
 }
-
+@media (max-width: 930px) {
+    .header__icon {
+        margin-left: 16rem;
+    }
+}
 @media (max-width: 886px) {
     .user {
         right: 1rem;
@@ -251,6 +268,9 @@
     }
 }
 @media (max-width: 564px) {
+    .header__list li a {
+        margin-left: 1.3rem;
+    }
     .header__icon {
         margin: 0;
     }
@@ -293,25 +313,20 @@
     }
     .header__icon {
         display: flex;
-        justify-content: flex-start;
-        margin: 0;
+        justify-content: center !important;
+        margin-left: 0;
         padding: 0;
         width: 5rem;
         li {
             margin-right: $pw;
-
             width: $pw;
             a {
-                margin: 0;
+                margin-left: 5rem;
                 padding: 0;
             }
         }
     }
-    .header__search {
-        width: $pw;
-        transform: scale(1);
-        margin-right: $pb;
-    }
+    .header__search,
     .header__bag {
         width: $pw;
         transform: scale(1);
@@ -335,7 +350,7 @@
     }
     .header__icon {
         display: flex;
-        justify-content: flex-start;
+        justify-content: center !important;
         margin: 0;
         padding: 0;
         width: 5rem;
@@ -349,7 +364,7 @@
         }
     }
     .header__logo {
-        margin-right: $pb;
+        margin-right: $pt;
         width: 11rem;
         padding-right: 0;
     }

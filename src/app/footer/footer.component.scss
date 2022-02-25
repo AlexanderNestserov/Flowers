@@ -2,11 +2,10 @@
 @import "../styles/_mixins.scss";
 
 .wrapper {
-    max-width: 100%;
-    margin: 30px auto;
+    max-width: 1440px;
+    margin: 30px auto 0;
 }
 .footer {
-    margin-top: 5rem;
     background: #404040;
     color: $color_white;
 }
@@ -61,7 +60,7 @@
 }
 .footer__copyright {
     width: 90%;
-    margin: 3rem auto;
+    margin: 3rem auto 0;
     padding-bottom: 2.5rem;
 }
 .footer__copy {
