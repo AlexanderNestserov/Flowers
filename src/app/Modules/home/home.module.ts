@@ -7,8 +7,11 @@ import { SwiperModule } from 'swiper/angular';
 import { ButtonModule } from 'primeng/button';
 import { ToastModule } from 'primeng/toast';
 import { TabViewModule } from 'primeng/tabview';
+import { BannersModule } from '../banners/banners.module';
+
 import { SliderLogoComponent } from './slider-logo/slider-logo.component';
-import { SwiperLogoComponent } from './swiper-logo/swiper-logo.component'
+import { SwiperLogoComponent } from './swiper-logo/swiper-logo.component';
+import { BannersComponent } from '../banners/banners.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +26,8 @@ import { SwiperLogoComponent } from './swiper-logo/swiper-logo.component'
     CarouselModule,
     ButtonModule,
     ToastModule,
-    TabViewModule
+    TabViewModule,
+    BannersModule
   ]
 })
 export class HomeModule { }

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NewsarticleRoutingModule } from './newsarticle-routing.module';
+import { BannersModule } from '../../banners/banners.module';
 
 import { NewsarticleComponent } from './newsarticle.component';
 
@@ -10,7 +11,8 @@ import { NewsarticleComponent } from './newsarticle.component';
   ],
   imports: [
     CommonModule,
-    NewsarticleRoutingModule
+    NewsarticleRoutingModule,
+    BannersModule
   ]
 })
 export class NewsarticleModule { }

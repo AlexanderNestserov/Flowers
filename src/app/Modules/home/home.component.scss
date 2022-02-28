@@ -27,47 +27,6 @@
     margin: 0 auto;
 }
 
-
-
-.container__banner {
-    margin: 4rem auto;
-    max-width: 90%;
-}
-.container__delivery {
-    background: url("../../../assets/img-home/Rectangle\ 3.png") 0 0 no-repeat;
-    background-size: 100% 100%;
-    width: 100%;
-    margin-right: 0.5rem;
-}
-
-.delivery__logo,
-.garden__logo {
-    display: flex;
-    align-items: center;
-}
-.garden__logo img {
-    height: 90%;
-}
-
-.title {
-    @include font(Montserrat, normal, 700, $pt, 120%, 0em, $color_4);
-    margin: 3rem 0 $pt 3rem;
-}
-.container__linking {
-    @include font(Montserrat, normal, normal, 1.2rem, 150%, 0em, $color_4);
-    margin-left: 3rem;
-    &:hover {
-        color: $color_3;
-    }
-}
-
-.container__garden {
-    background: url("../../../assets/img-home/Rectangle\ 4.png") 0 0 no-repeat;
-    background-size: 100% 100%;
-    width: 100%;
-    margin-left: 0.5rem;
-}
-
 .container__list {
     width: 90%;
     margin: 0 auto;
@@ -203,15 +162,6 @@ h6 {
     margin-bottom: 2rem;
 }
 
-@media (max-width: 1415px) {
-    .title {
-        margin-left: $pb !important;
-        margin-top: $pw;
-    }
-    .container__linking {
-        margin-left: $pb !important;
-    }
-}
 @media (max-width: 1296px) {
     .container__items {
         width: 90%;
@@ -224,24 +174,6 @@ h6 {
     }
 }
 
-@media (max-width: 970px) {
-    .container__banner {
-        display: block !important;
-    }
-    .container__delivery {
-        margin-bottom: $pt;
-        height: 15rem;
-        margin-left: $pb;
-        min-width: 25rem;
-    }
-    .container__garden {
-        margin-bottom: $pt;
-        height: 15rem;
-        margin-left: $pb;
-        min-width: 25rem;
-    }
-}
-
 @media (max-width: 820px) {
     .container__items {
         margin: 0 2rem !important;
@@ -251,7 +183,6 @@ h6 {
         flex: 1 0 17rem !important;
         margin-bottom: 3rem;
     }
-    
 }
 @media (max-width: 710px) {
     .container__items {
@@ -261,7 +192,7 @@ h6 {
     .container__wrap {
         margin-bottom: 3rem !important;
     }
-   
+
     .container__item > p {
         @include font(Montserrat, normal, bold, $pw, 120%, 0em, $color_4);
         margin: 0 $pw;
@@ -319,35 +250,3 @@ h6 {
         }
     }
 }
-
-@media (max-width: 500px) {
-    .container__banner {
-        margin-left: 0;
-    }
-    
-    .container__delivery,
-    .container__garden {
-        min-width: 22rem;
-    }
-    .container__gardens,
-    .container__deliverys {
-        padding-left: 1rem;
-    }
-    .container__linking {
-        margin-left: 0 !important;
-    }
-    .delivery__logo,
-    .garden__logo {
-        width: 25rem !important;
-    }
-    #delivery-image,
-    #garden-image {
-        width: 100%;
-    }
-    .title {
-        margin-left: 0 !important;
-    }
-
-    
-}
-

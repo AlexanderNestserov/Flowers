@@ -5,19 +5,17 @@
     width: 100%;
     margin: 0 auto;
 }
-.container {
+.container__line {
     width: 90%;
     margin: 0 auto;
-}
-.container__line {
     background: $color_4;
     opacity: 0.2;
     height: 1px;
 }
 .container__path {
     margin: 2rem auto;
+    width: 90%;
 }
-
 .container__home {
     margin-right: 2rem;
     a {
@@ -32,6 +30,8 @@
     @include font(Montserrat, normal, normal, 1rem, 150%, 0em, $color_14);
 }
 .container__titl {
+    width: 90%;
+    margin: 0 auto;
     background: $color_13;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -44,52 +44,17 @@
 .container__text1 {
     margin-top: 1rem;
     margin-bottom: 3rem;
+    margin-left: 5%;
     width: 75%;
     @include font(Montserrat, normal, normal, 1.6rem, 150%, 0em, $color_black);
 }
 .container__text {
     margin-top: 1rem;
     margin-bottom: 3rem;
-    width: 75%;
+    width: 100%;
     @include font(Montserrat, normal, normal, 1.6rem, 150%, 0em, $color_4);
 }
-.container__banner {
-    margin: 4rem auto;
-    max-width: 90%;
-}
-.container__delivery {
-    background: url("../../../assets/img-home/Rectangle\ 3.png") 0 0 no-repeat;
-    background-size: 100% 100%;
-    width: 100%;
-    margin-right: 0.5rem;
-}
 
-.delivery__logo,
-.garden__logo {
-    display: flex;
-    align-items: center;
-}
-.garden__logo img {
-    height: 90%;
-}
-
-.title {
-    @include font(Montserrat, normal, 700, $pt, 120%, 0em, $color_4);
-    margin: 3rem 0 $pt 3rem;
-}
-.container__linking {
-    @include font(Montserrat, normal, normal, 1.2rem, 150%, 0em, $color_4);
-    margin-left: 3rem;
-    &:hover {
-        color: $color_3;
-    }
-}
-.container__garden {
-    background: url("../../../assets/img-home/Rectangle\ 4.png") 0 0 no-repeat;
-    background-size: 100% 100%;
-    width: 100%;
-    margin-left: 0.5rem;
-}
 .container__titles {
     margin: 0.5rem auto 0.5rem;
     @include font(Montserrat, normal, bold, 2rem, 120%, 0em, $color_4);
@@ -138,6 +103,7 @@
 .list {
     width: 75%;
     text-align: center;
+    margin-left: 5%;
     ul {
         text-align: left;
     }
@@ -146,7 +112,11 @@
     .container__text1,
     .container__text,
     .list {
-        width: 100%;
+        width: 90%;
     }
 }
-
+@media (max-width: 450px) {
+    .wrapper {
+        margin-top: 8rem;
+    }
+}

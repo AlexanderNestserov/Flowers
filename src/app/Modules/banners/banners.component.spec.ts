@@ -2,15 +2,15 @@ import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SliderLogoComponent } from './slider-logo.component';
+import { BannersComponent } from './banners.component';
 
-describe('SliderLogoComponent', () => {
-  let component: SliderLogoComponent;
-  let fixture: ComponentFixture<SliderLogoComponent>;
+describe('BannersComponent', () => {
+  let component: BannersComponent;
+  let fixture: ComponentFixture<BannersComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [SliderLogoComponent],
+      declarations: [BannersComponent],
       imports: [RouterTestingModule.withRoutes([])],
       schemas: [NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA]
     })
@@ -18,7 +18,7 @@ describe('SliderLogoComponent', () => {
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SliderLogoComponent);
+    fixture = TestBed.createComponent(BannersComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

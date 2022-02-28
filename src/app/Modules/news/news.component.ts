@@ -1,4 +1,4 @@
-import { ArrayType } from '@angular/compiler';
+
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 @Component({
   selector: 'app-news',
