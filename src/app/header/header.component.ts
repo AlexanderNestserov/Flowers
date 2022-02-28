@@ -1,26 +1,16 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { MenuItem, PrimeIcons } from 'primeng/api';
 
-
-
-
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class HeaderComponent implements OnInit {
-
+export class HeaderComponent {
   isMenu = true;
   isShow = true;
   isShown = false;
-
-  constructor() { }
-
-  ngOnInit(): void {
-
-  }
 
   toggleDisplay() {
     this.isShow = !this.isShow;
@@ -30,8 +20,8 @@ export class HeaderComponent implements OnInit {
     } else {
       document.body.style.overflow = 'scroll';
     }
-
   }
+
   toggleDisplays() {
     if (!this.isShow) {
       this.toggleDisplay()
@@ -41,6 +31,4 @@ export class HeaderComponent implements OnInit {
   toggleUser() {
     this.isMenu = !this.isMenu;
   }
-
-
 }

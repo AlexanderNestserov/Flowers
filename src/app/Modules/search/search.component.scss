@@ -1,3 +1,5 @@
+@import "../../styles/_variables.scss";
+@import "../../styles/_mixins.scss";
 .wrapper {
     width: 100%;
     margin: 0 auto;
@@ -7,7 +9,7 @@
     margin: 0 auto;
 }
 .container__line {
-    background: #404040;
+    background: $color_4;
     opacity: 0.2;
     height: 1px;
 }
@@ -16,7 +18,7 @@
     font-weight: bold;
     font-size: 2rem;
     line-height: 120%;
-    color: #404040;
+    color: $color_4;
 }
 .container__search {
     margin-bottom: 5rem;
@@ -28,28 +30,28 @@
         display: inline-block;
         text-align: left;
         width: 100%;
-        border: 1px solid #e7e7e7;
-        background: #ffffff;
+        border: 1px solid $color_6;
+        background: $color_white;
         border-radius: 4px;
         height: 5rem;
         font-size: 1.5rem;
         line-height: 150%;
-        color: #000;
+        color: $color_black;
         padding-left: 2rem;
         &:focus {
-            box-shadow: 2px 5px 1px grey;
-            border: 2px solid #e7e7e7;
+            box-shadow: 2px 5px 1px $color_5;
+            border: 2px solid $color_6;
         }
     }
     input::placeholder {
-        color: rgb(223, 217, 217);
+        color: $color_6;
     }
     button {
         position: absolute;
         top: 1.6rem;
         right: 2rem;
         z-index: 2;
-        background: #ffffff;
+        background: $color_white;
         &:hover {
             top: 1.2rem;
             right: 2rem;
@@ -69,14 +71,14 @@
 p {
     font-size: 1.5rem;
     line-height: 150%;
-    color: #404040;
+    color: $color_4;
 }
 @media (max-width: 500px) {
     .p-input-icon-right {
         input {
             font-size: 0.8rem;
             line-height: 150%;
-            color: #000;
+            color: $color_black;
         }
     }
 }

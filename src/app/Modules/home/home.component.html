@@ -1,39 +1,6 @@
 <div class="wrapper">
-
     <div class="container">
-
-        <div class="container__h">
-            <swiper [slidesPerView]="1" [spaceBetween]="5" [loop]="true" [autoplay]="{
-                delay: 3000,
-                disableOnInteraction: false
-              }" [pagination]="{
-            clickable: true
-          }" [navigation]="false" class="myswiper">
-                <ng-template swiperSlide>
-                    <div class="container__head  ">
-                        <div class="container__title">
-                            <h1>Bouquets for your holidays!</h1>
-                            <p>Just like in the picture!</p>
-                        </div>
-                        <div class="container__logo">
-                            <img class="event" src="../../../assets/img-home/flowers.jpg" alt="flowers">
-                        </div>
-                    </div>
-                </ng-template>
-                <ng-template swiperSlide>
-                    <div class="container__head ">
-
-                        <div class="container__title">
-                            <h1>Bouquets for your holidays!</h1>
-                            <p>Just like in the picture!</p>
-                        </div>
-                        <div class="container__logo">
-                            <img class="event" src="../../../assets/img-home/flowers.jpg" alt="flowers">
-                        </div>
-                    </div>
-                </ng-template>
-            </swiper>
-        </div>
+        <app-swiper-logo></app-swiper-logo>
         <div class="container__banner flex justify-content-between ">
             <a href="https://www.elinext.com" target="_blank" class="container__delivery flex justify-content-between">
                 <div class="container__deliverys">
@@ -41,7 +8,7 @@
                     <p><a class="container__linking" href="">More details</a></p>
                 </div>
                 <div class="delivery__logo">
-                    <img src="../../../assets/img-home/car.jpg" alt="car">
+                    <img id="delivery-image" src="../../../assets/img-home/car.jpg" alt="car">
                 </div>
             </a>
             <a href="https://www.elinext.com" target="_blank" class="container__garden flex justify-content-between">
@@ -59,7 +26,11 @@
                 <swiper [slidesPerView]="6" [spaceBetween]="20" [loop]="true" [pagination]="{
           clickable: true
         }" [navigation]="true" [breakpoints]="{
-            '300': {
+            '200': {
+                slidesPerView: 1,
+                spaceBetween: 20
+              },
+            '450': {
                 slidesPerView: 2,
                 spaceBetween: 20
               },

@@ -8,12 +8,6 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 
-export class SearchComponent implements OnInit {
-  value3: any;
-  constructor() { }
-
-  ngOnInit(): void {
-
-  }
+export class SearchComponent {
 
 }

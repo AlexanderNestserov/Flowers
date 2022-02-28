@@ -1,5 +1,5 @@
-@import "../../styles/variables";
-@import "../../styles/mixins";
+@import "../../styles/_variables.scss";
+@import "../../styles/_mixins.scss";
 .wrapper {
     width: 100%;
     margin: 0 auto;
@@ -9,7 +9,7 @@
     margin: 0 auto;
 }
 .container__line {
-    background: #404040;
+    background: $color_4;
     opacity: 0.2;
     height: 1px;
 }
@@ -20,7 +20,7 @@
 .container__home {
     margin-right: 2rem;
     a {
-        @include font(Montserrat, normal, normal, 1rem, 150%, 0em, #404040);
+        @include font(Montserrat, normal, normal, 1rem, 150%, 0em, $color_4);
     }
 }
 .container__angle {
@@ -28,10 +28,10 @@
     margin-top: 0.35rem;
 }
 .container__aboutus {
-    @include font(Montserrat, normal, normal, 1rem, 150%, 0em, #bdbdbd);
+    @include font(Montserrat, normal, normal, 1rem, 150%, 0em, $color_14);
 }
 .container__titl {
-    background: linear-gradient(90deg, #ff5d7d 0%, #7b61ff 100%);
+    background: $color_13;
     background-clip: text;
     -webkit-text-fill-color: transparent;
     font-weight: 800;
@@ -47,14 +47,14 @@
     }
 }
 .container__text1 {
-    @include font(Montserrat, normal, normal, 1.6rem, 150%, 0em, #404040);
+    @include font(Montserrat, normal, normal, 1.6rem, 150%, 0em, $color_4);
     margin-top: 1rem;
     margin-bottom: 3rem;
     width: 75%;
 }
 .container__flowers {
     margin-bottom: 1.5rem;
-    background-color: #fafafa;
+    background-color: $color_8;
     border-radius: 10px;
     @include wihi(100%, 35rem);
     align-items: center;
@@ -66,16 +66,16 @@
     }
 }
 .container__figcapture {
-    @include font(Montserrat, normal, normal, 1.5rem, 150%, 0em, #b4b4b4);
+    @include font(Montserrat, normal, normal, 1.5rem, 150%, 0em, $color_5);
 }
 .container__text2 {
-    @include font(Montserrat, normal, normal, 1.5rem, 170%, 0em, #404040);
+    @include font(Montserrat, normal, normal, 1.5rem, 170%, 0em, $color_4);
     margin-top: 3rem;
     margin-bottom: 1rem;
     width: 75%;
 }
 .container__text3 {
-    @include font(Montserrat, normal, normal, 1.5rem, 170%, 0em, #404040);
+    @include font(Montserrat, normal, normal, 1.5rem, 170%, 0em, $color_4);
     margin-bottom: 5rem;
     width: 75%;
 }
@@ -85,7 +85,7 @@
     width: 75%;
 }
 .container__title2 {
-    background: linear-gradient(90deg, #ff5d7d 0%, #7b61ff 100%);
+    background: $color_13;
     background-clip: text;
     -webkit-text-fill-color: transparent;
     font-weight: 700;
@@ -95,17 +95,17 @@
 }
 .container__list {
     li {
-        @include font(Montserrat, normal, normal, 1.6rem, 170%, 0em, #404040);
+        @include font(Montserrat, normal, normal, 1.6rem, 170%, 0em, $color_4);
         padding-left: 8rem;
         margin-bottom: 2.5rem;
-        background: url("../../../assets/img-aboutus/sabi\ 1.png") left 0.8rem no-repeat;
+        background: url("../../../assets/img-aboutus/sabi\ 1.png") 0 0.8rem no-repeat;
         background-size: 4rem 4rem;
     }
 }
 @media (max-width: 1558px) {
     .container__flowers {
         margin-bottom: 1.5rem;
-        background-color: #fafafa;
+        background-color: $color_8;
         border-radius: 10px;
         @include wihi(100%, 35rem);
         align-items: center;
@@ -120,7 +120,7 @@
 @media (max-width: 1190px) {
     .container__flowers {
         margin-bottom: 1.5rem;
-        background-color: #fafafa;
+        background-color: $color_8;
         border-radius: 10px;
         @include wihi(100%, 25rem);
         align-items: center;

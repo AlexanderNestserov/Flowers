@@ -1,3 +1,6 @@
+@import "../../../styles/_variables.scss";
+@import "../../../styles/_mixins.scss";
+
 .wrapper {
     width: 100%;
     margin: 0 auto;
@@ -7,7 +10,7 @@
     margin: 0 auto;
 }
 .container__line {
-    background: #404040;
+    background: $color_4;
     opacity: 0.2;
     height: 1px;
 }
@@ -21,7 +24,7 @@
         font-weight: normal;
         font-size: 1rem;
         line-height: 150%;
-        color: #404040;
+        color: $color_4;
     }
 }
 .container__angle {
@@ -32,10 +35,10 @@
     font-weight: normal;
     font-size: 1rem;
     line-height: 150%;
-    color: #bdbdbd;
+    color: $color_14;
 }
 .container__titl {
-    background: linear-gradient(90deg, #ff5d7d 0%, #7b61ff 100%);
+    background: $color_13;
     background-clip: text;
     -webkit-text-fill-color: transparent;
     font-weight: 800;
@@ -51,7 +54,7 @@
     font-weight: normal;
     font-size: 1.6rem;
     line-height: 150%;
-    color: #000;
+    color: $color_black;
 }
 .container__text1 {
     margin-bottom: 2rem;
@@ -59,7 +62,7 @@
     font-weight: normal;
     font-size: 1.5rem;
     line-height: 170%;
-    color: #404040;
+    color: $color_4;
 }
 .container__img1 {
     margin-bottom: 4rem;
@@ -96,17 +99,17 @@
     font-weight: bold;
     font-size: 2rem;
     line-height: 120%;
-    color: #404040;
+    color: $color_4;
     margin: 4rem 0 2rem 4rem;
 }
 .container__linking {
     font-weight: normal;
     font-size: 1.2rem;
     line-height: 150%;
-    color: #404040;
+    color: $color_4;
     margin-left: 4rem;
     &:hover {
-        color: #ff5d7d;
+        color: $color_3;
     }
 }
 

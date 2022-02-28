@@ -1,12 +1,9 @@
 <header class="header">
-
     <div class="header__popup">
-
         <button class="burger" (click)='toggleDisplay()' [hidden]="isShown"><img
                 src="../../assets/img-home/mobile_menu.png" alt="menu"></button>
         <button class="close" [hidden]="isShow" (click)='toggleDisplay()'><img src="../../assets/img-home/x.png"
                 alt="close"></button>
-
     </div>
     <div class="header__logo ">
         <a class="flex justify-content-center " href="/">
@@ -20,7 +17,7 @@
                     [routerLinkActiveOptions]="{exact:true}">HOME</a></li>
             <li class="menu"><a routerLink="/catalog" routerLinkActive="active"
                     [routerLinkActiveOptions]="{exact:true}">CATALOG</a></li>
-            <li class="menu"><a routerLink="/aboutus" routerLinkActive="active"
+            <li class="menu"><a routerLink="/about-us" routerLinkActive="active"
                     [routerLinkActiveOptions]="{exact:true}">ABOUT US</a></li>
             <li class="menu"><a routerLink="/news" routerLinkActive="active"
                     [routerLinkActiveOptions]="{exact:true}">NEWS</a></li>
@@ -44,7 +41,7 @@
             <li><a routerLink="/home" (click)='toggleDisplay()'>HOME</a></li>
             <li><a routerLink="/catalog" (click)='toggleDisplay()'>CATALOG</a>
             </li>
-            <li><a routerLink="/aboutus" (click)='toggleDisplay()'>ABOUT US</a>
+            <li><a routerLink="/about-us" (click)='toggleDisplay()'>ABOUT US</a>
             </li>
             <li><a routerLink="/news" (click)='toggleDisplay()'>NEWS</a></li>
             <li><a routerLink="/contacts" (click)='toggleDisplay()'>CONTACTS</a>

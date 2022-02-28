@@ -1,24 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HeaderComponent } from './header.component';
 import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { ToggleButtonModule } from 'primeng/togglebutton';
 
-
+import { HeaderComponent } from './header.component';
 
 @NgModule({
     declarations: [
-        HeaderComponent,
-
-
+        HeaderComponent
     ],
     imports: [
         CommonModule,
         ButtonModule,
         FormsModule,
         ToggleButtonModule
-    ],
-    providers: [],
+    ]
 })
 export class HeaderModule { }

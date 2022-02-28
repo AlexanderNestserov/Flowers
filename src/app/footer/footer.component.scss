@@ -6,7 +6,7 @@
     margin: 30px auto 0;
 }
 .footer {
-    background: #404040;
+    background: $color_4;
     color: $color_white;
 }
 .footer__flex {
@@ -18,15 +18,18 @@
     }
 }
 .footer__logo {
+    margin-right: 2rem;
     img {
         @include wihi(9rem, 2.5rem);
+        position: relative;
+        bottom: 0.6rem;
     }
 }
 .footer__catalog {
     width: 45%;
 }
 .footer__title {
-    @include font(Montserrat, normal, 600, 1.2rem, 110%, 0.05em, #b4b4b4);
+    @include font(Montserrat, normal, 600, 1.2rem, 110%, 0.05em, $color_5);
     text-transform: uppercase;
     margin-bottom: $pt;
 }
@@ -64,7 +67,7 @@
     padding-bottom: 2.5rem;
 }
 .footer__copy {
-    @include font(Montserrat, normal, 500, $pb, 150%, 0em, #b4b4b4);
+    @include font(Montserrat, normal, 500, $pb, 150%, 0em, $color_5);
 }
 .footer__mail {
     @include font(Montserrat, normal, 500, $pb, 150%, 0em, $color_white);
