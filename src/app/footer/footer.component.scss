@@ -114,12 +114,12 @@
     .footer__list div {
         width: 6rem;
     }
-    .footer__store {
-        width: 8rem;
-    }
 }
 @media (max-width: 500px) {
     .footer__catalog {
         margin-right: $pt;
+    }
+    .footer__media {
+        width: 10rem;
     }
 }

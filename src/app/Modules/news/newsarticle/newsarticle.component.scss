@@ -22,7 +22,7 @@
 }
 .container__home {
     margin-right: 2rem;
-    a {
+    .container__link {
         font-weight: normal;
         font-size: 1rem;
         line-height: 150%;
@@ -71,13 +71,13 @@
 .container__img1 {
     width: 90%;
     margin: 0 auto 4rem;
-    img {
+    #imgDelivery {
         width: 100%;
     }
 }
 .container__img3 {
     margin: 4rem 0 4rem 5%;
-    img {
+    #imgWoman {
         width: 75%;
     }
 }
@@ -87,7 +87,7 @@
         width: 90%;
     }
     .container__img3 {
-        img {
+        #imgWoman {
             width: 90%;
         }
     }

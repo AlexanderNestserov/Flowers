@@ -1,0 +1,157 @@
+@import "../../../styles/_variables.scss";
+@import "../../../styles/_mixins.scss";
+
+.container__items {
+    width: 90%;
+    margin: 0 4.5rem;
+    flex-wrap: wrap;
+}
+.container__wrap {
+    flex: 1 0 21%;
+    margin-bottom: 3rem;
+}
+.container__item {
+    @include wihi(18rem, 28rem);
+    border: 1px solid $color_6;
+    box-sizing: border-box;
+    border-radius: 10px;
+    padding-bottom: $pb;
+    position: relative;
+
+    .image-item {
+        width: 80%;
+        margin: $pw;
+    }
+    .container__title {
+        @include font(Montserrat, normal, 700, $pw, 120%, 0em, $color_4);
+        margin: 0 $pw;
+    }
+    .container__paragraph {
+        @include font(Montserrat, normal, 700, $pw, 120%, 0em, $color_4);
+        margin: 0 $pw;
+        position: absolute;
+        top: 25rem;
+    }
+    .button {
+        display: none;
+    }
+}
+.opacity {
+    @include font(Montserrat, normal, 500, $pb, 150%, 0em, $color_5);
+    margin: 0 $pw;
+    text-align: left;
+}
+.container__item:hover {
+    transition: 1s;
+    @include wihi(18rem, 35rem);
+    position: absolute;
+    z-index: 2;
+    background-color: $color_white;
+    box-sizing: border-box;
+    box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.1);
+    .button {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        @include wihi(15rem, 4rem);
+        background: $color_10;
+        border-radius: 10px;
+        margin: 8rem auto 0;
+        #imageBaggy {
+            width: 1.4rem;
+        }
+        .button__paragraph {
+            @include font(Montserrat, normal, 600, 1.2rem, 100%, 0.05em, $color_white);
+            text-align: left;
+            margin-right: 1.2rem;
+        }
+    }
+}
+@media (max-width: 1296px) {
+    .container__items {
+        width: 90%;
+        margin-left: 4rem;
+        flex-wrap: wrap;
+    }
+    .container__wrap {
+        flex: 1 1 50%;
+        margin-bottom: 3rem;
+    }
+}
+@media (max-width: 820px) {
+    .container__items {
+        margin: 0 2rem !important;
+        flex-wrap: wrap;
+    }
+    .container__wrap {
+        flex: 1 0 17rem;
+        margin-bottom: 3rem;
+    }
+}
+@media (max-width: 710px) {
+    .container__items {
+        margin: 0 $pb !important;
+        display: block !important;
+    }
+    .container__wrap {
+        margin-bottom: 3rem !important;
+    }
+
+    .container__paragraph {
+        @include font(Montserrat, normal, bold, $pw, 120%, 0em, $color_4);
+        margin: 0 $pw;
+        position: static !important;
+        top: 0 !important;
+    }
+    .container__item {
+        position: static !important;
+        opacity: 1 !important;
+        width: 22rem !important;
+        height: 32rem !important;
+        background-color: $color_white;
+        box-sizing: border-box;
+
+        .button {
+            display: flex !important;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            @include wihi(15rem, 4rem);
+            background: $color_10;
+            border-radius: 10px;
+            margin: 0 1rem;
+            #imageBaggy {
+                width: 1.4rem;
+            }
+            .button__paragraph {
+                @include font(Montserrat, normal, 600, 1.2rem, 100%, 0.05em, $color_white);
+                text-align: left;
+                margin-right: 1.2rem;
+            }
+        }
+    }
+    .container__item:hover {
+        @include wihi(18rem, 30rem);
+        background-color: $color_white;
+        box-sizing: border-box;
+        .button {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            @include wihi(15rem, 4rem);
+            background: $color_10;
+            border-radius: 10px;
+            margin: 0 1rem !important;
+            #imageBaggy {
+                width: 1.4rem;
+            }
+            .button__paragraph {
+                @include font(Montserrat, normal, 600, 1.2rem, 100%, 0.05em, $color_white);
+                text-align: left;
+                margin-right: 1.2rem;
+            }
+        }
+    }
+}

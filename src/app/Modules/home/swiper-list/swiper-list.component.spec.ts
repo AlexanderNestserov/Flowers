@@ -1,19 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ContactsComponent } from './contacts.component';
 
-describe('ContactsComponent', () => {
-  let component: ContactsComponent;
-  let fixture: ComponentFixture<ContactsComponent>;
+import { SwiperListComponent } from './swiper-list.component';
+
+describe('SwiperListComponent', () => {
+  let component: SwiperListComponent;
+  let fixture: ComponentFixture<SwiperListComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ContactsComponent]
+      declarations: [ SwiperListComponent ]
     })
-      .compileComponents();
+    .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ContactsComponent);
+    fixture = TestBed.createComponent(SwiperListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,4 +1,3 @@
-
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 @Component({
   selector: 'app-news',

@@ -6,8 +6,6 @@ import { BannersModule } from '../banners/banners.module';
 
 import { NewsComponent } from './news.component';
 import { NewsarticleComponent } from './newsarticle/newsarticle.component';
-import { BannersComponent } from '../banners/banners.component';
-
 
 @NgModule({
   declarations: [

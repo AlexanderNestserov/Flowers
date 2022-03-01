@@ -14,11 +14,9 @@
 }
 .header__popup {
     display: none;
-    button {
-        img {
-            width: 3rem;
-            height: 3rem;
-        }
+    .header__burger {
+        width: 3rem;
+        height: 3rem;
     }
 }
 .header__logo {
@@ -113,12 +111,12 @@
 .user {
     position: fixed;
     top: 5rem;
-    right: 11rem;
+    right: 3rem;
     background-color: $color_white;
     width: 25rem;
     margin: 2rem;
     box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.1);
-    li {
+    .user__li {
         margin: 2rem 2rem;
     }
     .user__text {
@@ -139,14 +137,13 @@
         text-align: center;
         position: relative;
         bottom: 0.1rem;
-        span {
+        .user__numb {
             @include font(Montserrat, normal, 600, 1.5rem, 110%, 0.05em, $color_white);
             display: block;
             padding-top: 0.4rem;
         }
     }
 }
-
 @media (max-width: 1400px) {
     .header {
         padding-right: $pt !important;
@@ -225,14 +222,14 @@
         background: url("../../assets/img-home/Rectangle\ 13.png") 0 0 no-repeat;
         background-size: 100% 100%;
         padding-top: 5rem;
-        & li {
+        .mobile__li {
             margin-bottom: 4rem;
         }
-        & li a {
+        .mobile__link {
             @include font(Montserrat, normal, 600, 1.4rem, 150%, 0.05em, $color_4);
             text-transform: uppercase;
         }
-        & li a:hover {
+        .mobile__link:hover {
             color: $color_3;
         }
     }
@@ -284,6 +281,10 @@
     }
 }
 @media (max-width: 500px) {
+    .user {
+        right: 1rem !important;
+        margin: 2rem 0;
+    }
     .header__popup {
         top: 2.5rem;
         left: 0.5rem;
@@ -307,18 +308,17 @@
     .header {
         padding-right: 5rem;
     }
-
     .header__icon {
         display: flex;
         justify-content: center !important;
         margin-left: 0;
         padding: 0;
         width: 5rem;
-        li {
+        .menu-icon {
             margin-right: $pw;
             width: $pw;
-            a {
-                margin-left: 5rem;
+            .icon {
+                margin-left: 0;
                 padding: 0;
             }
         }
@@ -351,10 +351,10 @@
         margin: 0;
         padding: 0;
         width: 5rem;
-        li {
+        .menu-icon {
             margin-right: $pb;
             width: $pw;
-            a {
+            .icon {
                 margin: 0;
                 padding: 0;
             }
@@ -368,5 +368,10 @@
     .header {
         position: fixed;
         z-index: 99;
+    }
+    .user {
+        right: 2rem;
+        width: 20rem;
+        margin: 2rem 0;
     }
 }

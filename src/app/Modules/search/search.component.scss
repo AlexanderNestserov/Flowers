@@ -26,7 +26,7 @@
 .p-input-icon-right {
     width: 100%;
     position: relative;
-    input {
+    .p-inputtext-lg {
         display: inline-block;
         text-align: left;
         width: 100%;
@@ -46,7 +46,7 @@
     input::placeholder {
         color: $color_6;
     }
-    button {
+    .button {
         position: absolute;
         top: 1.6rem;
         right: 2rem;
@@ -62,20 +62,20 @@
             right: 2rem;
             z-index: 3;
         }
-        img {
+        #imgSearch {
             width: 2rem;
             height: 2rem;
         }
     }
 }
-p {
+.container__paragraph {
     font-size: 1.5rem;
     line-height: 150%;
     color: $color_4;
 }
 @media (max-width: 500px) {
     .p-input-icon-right {
-        input {
+        .p-inputtext-lg {
             font-size: 0.8rem;
             line-height: 150%;
             color: $color_black;

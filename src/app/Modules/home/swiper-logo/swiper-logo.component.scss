@@ -10,7 +10,6 @@ app-home-slider-logo {
     .swiper {
         @include wihi(100%, 30rem);
     }
-
     .swiper-slide {
         text-align: top;
         background: $color_white;
@@ -18,7 +17,6 @@ app-home-slider-logo {
         justify-content: flex-start;
         align-items: top;
     }
-
     .swiper-slide img {
         display: block;
         @include wihi(100%, 100%);

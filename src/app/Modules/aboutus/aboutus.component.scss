@@ -1,5 +1,6 @@
 @import "../../styles/_variables.scss";
 @import "../../styles/_mixins.scss";
+
 .wrapper {
     width: 100%;
     margin: 0 auto;
@@ -16,10 +17,9 @@
 .container__path {
     margin: 2rem auto;
 }
-
 .container__home {
     margin-right: 2rem;
-    a {
+    .container__link {
         @include font(Montserrat, normal, normal, 1rem, 150%, 0em, $color_4);
     }
 }
@@ -42,7 +42,7 @@
 }
 .container__img1,
 .container__img2 {
-    img {
+    .image-flowers {
         width: 100%;
     }
 }
@@ -58,9 +58,9 @@
     border-radius: 10px;
     @include wihi(100%, 35rem);
     align-items: center;
-    div {
+    .container__picture {
         margin: 0 5rem;
-        img {
+        .image-flower {
             @include wihi(100%, 100%);
         }
     }
@@ -95,7 +95,7 @@
 }
 .container__list {
     margin-left: 0;
-    li {
+    .container__li {
         @include font(Montserrat, normal, normal, 1.6rem, 170%, 0em, $color_4);
         padding-left: 8rem;
         margin-bottom: 2.5rem;
@@ -110,9 +110,9 @@
         border-radius: 10px;
         @include wihi(100%, 35rem);
         align-items: center;
-        div {
+        .container__picture {
             margin: 0 3rem;
-            img {
+            .image-flower {
                 @include wihi(17rem, 17rem);
             }
         }
@@ -125,9 +125,9 @@
         border-radius: 10px;
         @include wihi(100%, 25rem);
         align-items: center;
-        div {
+        .container__picture {
             margin: 0 2rem;
-            img {
+            .image-flower {
                 @include wihi(15rem, 15rem);
             }
         }
@@ -148,7 +148,7 @@
         text-align: center;
     }
     .container__list {
-        li {
+        .container__li {
             padding-left: 5rem;
         }
     }

@@ -1,5 +1,4 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { MenuItem, PrimeIcons } from 'primeng/api';
 
 @Component({
   selector: 'app-header',

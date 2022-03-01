@@ -11,16 +11,14 @@
     width: 100%;
     margin-right: 0.5rem;
 }
-
 .delivery__logo,
 .garden__logo {
     display: flex;
     align-items: center;
 }
-.garden__logo img {
+#garden-img {
     height: 90%;
 }
-
 .title {
     @include font(Montserrat, normal, 700, $pt, 120%, 0em, $color_4);
     margin: 3rem 0 $pt 3rem;
@@ -32,7 +30,6 @@
         color: $color_3;
     }
 }
-
 .container__garden {
     background: url("../../../assets/img-home/Rectangle\ 4.png") 0 0 no-repeat;
     background-size: 100% 100%;
@@ -69,7 +66,6 @@
     .container__banner {
         margin-left: 0;
     }
-
     .container__delivery,
     .container__garden {
         min-width: 22rem;

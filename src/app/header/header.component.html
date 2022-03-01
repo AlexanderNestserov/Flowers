@@ -1,9 +1,9 @@
 <header class="header">
     <div class="header__popup">
-        <button class="burger" (click)='toggleDisplay()' [hidden]="isShown"><img
+        <button class="burger" (click)='toggleDisplay()' [hidden]="isShown"><img class="header__burger"
                 src="../../assets/img-home/mobile_menu.png" alt="menu"></button>
-        <button class="close" [hidden]="isShow" (click)='toggleDisplay()'><img src="../../assets/img-home/x.png"
-                alt="close"></button>
+        <button class="close" [hidden]="isShow" (click)='toggleDisplay()'><img class="header__burger"
+                src="../../assets/img-home/x.png" alt="close"></button>
     </div>
     <div class="header__logo ">
         <a class="flex justify-content-center " href="/">
@@ -24,41 +24,42 @@
             <li class="menu"><a routerLink="/contacts" routerLinkActive="active"
                     [routerLinkActiveOptions]="{exact:true}">CONTACTS</a></li>
             <div class=" header__icon flex justify-content-end">
-                <li><a class="header__search " (click)='toggleDisplays()' routerLink="/search" routerLinkActive="active"
-                        [routerLinkActiveOptions]="{exact:true}"></a> </li>
-                <li>
-                    <a class="header__bag " href="#" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+                <li class="menu-icon"><a class="header__search icon " (click)='toggleDisplays()' routerLink="/search"
+                        routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"></a> </li>
+                <li class="menu-icon">
+                    <a class="header__bag icon " href="#" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{exact:true}">
                         <span class="header__quantity">10</span>
                     </a>
                 </li>
-                <li><a class="header__user " (click)='toggleUser()' routerLink="" routerLinkActive="active"
-                        [routerLinkActiveOptions]="{exact:true}"></a></li>
+                <li class="menu-icon"><a class="header__user icon " (click)='toggleUser()' routerLink=""
+                        routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"></a></li>
             </div>
         </ul>
     </div>
     <div>
         <ul class="mobile__menu" [hidden]="isShow">
-            <li><a routerLink="/home" (click)='toggleDisplay()'>HOME</a></li>
-            <li><a routerLink="/catalog" (click)='toggleDisplay()'>CATALOG</a>
+            <li class="mobile__li"><a class="mobile__link" routerLink="/home" (click)='toggleDisplay()'>HOME</a></li>
+            <li class="mobile__li"><a class="mobile__link" routerLink="/catalog" (click)='toggleDisplay()'>CATALOG</a>
             </li>
-            <li><a routerLink="/about-us" (click)='toggleDisplay()'>ABOUT US</a>
+            <li class="mobile__li"><a class="mobile__link" routerLink="/about-us" (click)='toggleDisplay()'>ABOUT US</a>
             </li>
-            <li><a routerLink="/news" (click)='toggleDisplay()'>NEWS</a></li>
-            <li><a routerLink="/contacts" (click)='toggleDisplay()'>CONTACTS</a>
+            <li class="mobile__li"><a class="mobile__link" routerLink="/news" (click)='toggleDisplay()'>NEWS</a></li>
+            <li class="mobile__li"><a class="mobile__link" routerLink="/contacts" (click)='toggleDisplay()'>CONTACTS</a>
             </li>
         </ul>
     </div>
     <div class="users">
         <ul class="user" [hidden]="isMenu">
-            <li>
+            <li class="user__li">
                 <a href="">
                     <span class="user__text">MY ORDERS</span>
-                    <p class="user__number"> <span>10</span></p>
+                    <p class="user__number"> <span class="user__numb">10</span></p>
                 </a>
             </li>
-            <li><a href="" class="user__text">MANAGE MY ACCOUNT</a></li>
+            <li class="user__li"><a href="" class="user__text">MANAGE MY ACCOUNT</a></li>
             <div class="line"></div>
-            <li><a href="" class="user__text">LOG OUT</a></li>
+            <li class="user__li"><a href="" class="user__text">LOG OUT</a></li>
         </ul>
     </div>
 </header>

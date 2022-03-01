@@ -11,13 +11,16 @@ import { BannersModule } from '../banners/banners.module';
 
 import { SliderLogoComponent } from './slider-logo/slider-logo.component';
 import { SwiperLogoComponent } from './swiper-logo/swiper-logo.component';
-import { BannersComponent } from '../banners/banners.component';
+import { SwiperListComponent } from './swiper-list/swiper-list.component';
+import { ItemsComponent } from './items/items.component';
 
 @NgModule({
   declarations: [
     HomeComponent,
     SliderLogoComponent,
-    SwiperLogoComponent
+    SwiperLogoComponent,
+    SwiperListComponent,
+    ItemsComponent
   ],
   imports: [
     CommonModule,

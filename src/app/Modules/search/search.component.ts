@@ -1,6 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 
-
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',

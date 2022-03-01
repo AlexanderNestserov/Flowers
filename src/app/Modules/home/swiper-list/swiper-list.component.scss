@@ -1,0 +1,57 @@
+@import "../../../../../node_modules/swiper/swiper.scss";
+@import "../../../styles/_variables.scss";
+@import "../../../styles/_mixins.scss";
+
+.swiper {
+    @include wihi(100%, 14rem);
+    margin-left: auto;
+    margin-right: auto;
+}
+.swiper-slide {
+    text-align: top;
+    background: $color_white;
+    display: flex;
+    justify-content: center;
+    align-items: top;
+}
+.swiper-slide img {
+    display: block;
+    @include wihi(100%, 100%);
+    object-fit: cover;
+}
+.container__list {
+    width: 90%;
+    margin: 0 auto;
+}
+.container__block {
+    @include wihi(15rem, 10rem);
+    margin-right: 0;
+    .container__link {
+        max-height: 100%;
+        width: 15rem;
+        display: block;
+
+        .item-image {
+            @include wihi(5rem, 5rem);
+            display: block;
+            margin: $pw auto;
+        }
+        .container__paragraph {
+            text-align: center;
+            margin-top: $pb;
+            font-size: $pb;
+            line-height: 150%;
+            color: $color_5;
+        }
+    }
+}
+.h6 {
+    @include font(Montserrat, normal, 500, 1.2rem, 150%, 0em, $color_4);
+    width: 15rem;
+    text-align: center;
+}
+@media (max-width: 450px) {
+    .container__block {
+        margin: 0 auto;
+    }
+}

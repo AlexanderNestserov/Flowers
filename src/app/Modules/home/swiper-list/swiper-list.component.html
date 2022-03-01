@@ -1,0 +1,17 @@
+<div class="container__slider">
+    <ul class="container__list flex justify-content-between">
+        <swiper [slidesPerView]="6" [spaceBetween]="20" [loop]="true" [pagination]="{
+          clickable: true
+        }" [navigation]="true" [breakpoints]="adaptiveSwiper" class="myswiper">
+            <ng-template swiperSlide *ngFor="let item of items">
+                <div class="container__block flex justify-content-center">
+                    <a [href]="item.link" class="container__link">
+                        <img class="item-image" [src]="item.imageUrl" alt="logo1">
+                        <h6 class="h6">{{item.title}}</h6>
+                        <p class="container__paragraph">{{item.text}}</p>
+                    </a>
+                </div>
+            </ng-template>
+        </swiper>
+    </ul>
+</div>

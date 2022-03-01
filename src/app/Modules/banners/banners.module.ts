@@ -11,6 +11,5 @@ import { BannersComponent } from '../banners/banners.component';
         CommonModule
     ],
     exports: [BannersComponent]
-
 })
 export class BannersModule { }
