@@ -64,7 +64,18 @@
         .button__paragraph {
             @include font(Montserrat, normal, 600, 1.2rem, 100%, 0.05em, $color_white);
             text-align: left;
-            margin-right: 1.2rem;
+            padding-left: 1rem;
+        }
+    }
+    .button:hover {
+        background: $color_15;
+    }
+    .button:active {
+        #imageBaggy {
+            padding-top: 0.2rem;
+        }
+        .button__paragraph {
+            padding-top: 0.2rem;
         }
     }
 }

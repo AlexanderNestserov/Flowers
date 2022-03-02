@@ -24,6 +24,17 @@
         margin: 0 auto;
     }
 }
+.container__button:hover {
+    border: 1px solid $color_16;
+    .container__parag {
+        color: $color_16;
+    }
+}
+.container__button:active {
+    .container__parag {
+        padding-top: 0.2rem;
+    }
+}
 .container__information {
     width: 90%;
     margin: 0 auto;

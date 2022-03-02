@@ -7,15 +7,14 @@
     border: 0;
     font-family: "Montserrat", sans-serif;
     font-size: 10px;
+    cursor: url("./assets/img-home/cursor.png"), default;
 }
-
 *,
 *:before,
 *:after {
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
 }
-
 :focus,
 :active {
     outline: none;
@@ -53,37 +52,39 @@ input::-ms-clear {
 }
 
 button {
-    cursor: pointer;
+    cursor: url("./assets/img-home/cursor-button.png"), default;
+    img {
+        cursor: url("./assets/img-home/cursor-button.png"), default;
+    }
+    p {
+        cursor: url("./assets/img-home/cursor-button.png"), default;
+    }
 }
-
 button::-moz-focus-inner {
     padding: 0;
     border: 0;
 }
-
 a,
 a:visited {
     text-decoration: none;
 }
-
 a:hover {
     text-decoration: none;
 }
-
 ul li {
     list-style: none;
 }
-
 img {
     vertical-align: top;
 }
-
 h1,
 h2,
 h3,
 h4,
 h5,
-h6 {
+h6,
+p {
     font-size: inherit;
     font-weight: 400;
+    cursor: url("./assets/img-home/cursor-text.png"), default;
 }
