@@ -7,27 +7,26 @@
     margin: 0 auto;
 }
 .container__beauties {
-    @include font(Montserrat, normal, 700, $pt, 120%, 0em, $color_4);
-    width: 90%;
-    margin: 5rem auto 3rem;
+    @include font(Montserrat, normal, 700, 2.8rem, 120%, 0em, $color_darkgrey);
+    margin: 7rem 0 4rem 12%;
 }
 .container__button {
     display: block;
-    @include wihi(18rem, 4rem);
-    margin: 0 auto 6rem;
-    border: 1px solid $color_10;
+    @include wihi(24.4rem, 5.7rem);
+    margin: 1rem auto 10rem;
+    border: 1px solid $color_green;
     border-radius: 10px;
     background-color: $color_white;
     .container__parag {
-        @include font(Montserrat, normal, 600, 1.2rem, 110%, 0.05em, $color_10);
+        @include font(Montserrat, normal, 600, 1.5rem, 110%, 0.05em, $color_green);
         text-transform: uppercase;
         margin: 0 auto;
     }
 }
 .container__button:hover {
-    border: 1px solid $color_16;
+    border: 1px solid $color_darklightgreen;
     .container__parag {
-        color: $color_16;
+        color: $color_darklightgreen;
     }
 }
 .container__button:active {
@@ -36,19 +35,30 @@
     }
 }
 .container__information {
-    width: 90%;
-    margin: 0 auto;
+    margin: 0 0 0 12%;
     .container__paragraph {
-        @include font(Montserrat, normal, normal, 1.2rem, 170%, 0em, $color_4);
-        margin: 2rem auto;
+        @include font(Montserrat, normal, normal, 1.6rem, 170%, 0em, $color_darkgrey);
+        margin: 1.5rem 12% 1.5rem 0;
     }
 }
 .color {
     font-weight: bold;
-    font-size: 2.5rem;
+    font-size: 3.6rem;
     line-height: 110%;
-    background: $color_13;
+    background: $color_gradient;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    margin-bottom: 2rem;
+    margin-bottom: 3.6rem;
+}
+@media (max-width: 500px) {
+    .container__beauties {
+        @include font(Montserrat, normal, 700, 2.2rem, 120%, 0em, $color_darkgrey);
+        margin: 7rem 0 4rem 5%;
+    }
+    .container__information {
+        margin-left: 5%;
+    }
+    .container__paragraph {
+        margin-right: 5% !important;
+    }
 }

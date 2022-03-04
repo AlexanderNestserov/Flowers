@@ -3,74 +3,77 @@
 
 .wrapper {
     max-width: 1440px;
-    margin: 30px auto 0;
+    margin: 7rem auto 0;
 }
 .footer {
-    background: $color_4;
+    background: $color_darkgrey;
     color: $color_white;
 }
 .footer__flex {
     width: 90%;
     margin: 0 auto;
-    padding: 4rem 0;
+    padding-top: 8.5rem;
+    padding-bottom: 3.5rem;
     a {
         color: $color_white;
     }
 }
 .footer__logo {
-    margin-right: 2rem;
+    margin-right: 17rem;
     img {
-        @include wihi(9rem, 2.5rem);
+        @include wihi(11.5rem, 3.1rem);
         position: relative;
-        bottom: 0.6rem;
+        top: -1rem;
+        left: 10rem;
     }
 }
 .footer__catalog {
-    width: 45%;
+    width: 50%;
 }
 .footer__title {
-    @include font(Montserrat, normal, 600, 1.2rem, 110%, 0.05em, $color_5);
+    @include font(Montserrat, normal, 600, 1.5rem, 110%, 0.05em, $color_grey);
     text-transform: uppercase;
-    margin-bottom: $pt;
+    margin-bottom: 2.5rem;
 }
 .footer__list {
     width: 90%;
     & > div {
-        width: 45%;
+        width: 50%;
+        margin-right: 5rem;
     }
 }
 .footer__list li {
-    margin-bottom: $pt;
+    margin-bottom: 2.5rem;
 }
 .footer__list li a {
-    @include font(Montserrat, normal, 500, 1.1rem, 150%, 0.05em, $color_white);
+    @include font(Montserrat, normal, 500, 1.4rem, 150%, 0, $color_white);
 }
 .footer__store {
-    width: 20%;
-    margin-right: 15rem;
+    width: 30%;
+    margin-right: 10rem;
 }
 .footer__media {
-    width: 12rem;
+    width: 17rem;
+    margin-right: 10rem;
 }
 .footer__line {
-    @include wihi(90%, 1px);
+    @include wihi(76%, 1px);
     background: $color_white;
     opacity: 0.2;
     margin: 0 auto;
 }
 .footer__social {
-    @include wihi($pt, $pt);
+    @include wihi(2.5rem, 2.5rem);
 }
 .footer__copyright {
-    width: 90%;
-    margin: 3rem auto 0;
+    margin: 3rem 12%;
     padding-bottom: 2.5rem;
 }
 .footer__copy {
-    @include font(Montserrat, normal, 500, $pb, 150%, 0em, $color_5);
+    @include font(Montserrat, normal, 500, 1.4rem, 150%, 0em, $color_grey);
 }
 .footer__mail {
-    @include font(Montserrat, normal, 500, $pb, 150%, 0em, $color_white);
+    @include font(Montserrat, normal, 500, 1.4rem, 150%, 0em, $color_white);
 }
 @media (max-width: 1328px) {
     .footer__store {
@@ -95,24 +98,46 @@
     .footer__catalog {
         margin-left: $pt;
     }
+    .footer__block {
+        width: 20rem;
+    }
+    .footer__logo {
+        margin-right: 3rem;
+        img {
+            @include wihi(11.5rem, 3.1rem);
+            position: relative;
+            top: -1rem;
+            left: 0;
+        }
+    }
 }
+
 @media (max-width: 600px) {
     .footer__logo {
-        @include wihi(9rem, 2.5rem);
+        @include wihi(11.5rem, 3.1rem);
         position: relative;
         z-index: 2;
         bottom: 3rem;
-        left: 5rem;
+        left: 12rem;
         img {
             position: absolute;
         }
     }
     .footer__catalog {
         margin-right: 5rem;
-        width: 6rem;
+        width: 15rem;
+        margin-left: 0;
+        margin-top: 2rem;
     }
     .footer__list div {
-        width: 6rem;
+        width: 15rem;
+    }
+    .footer__flex {
+        justify-content: flex-start !important;
+    }
+    .footer__store {
+        margin-right: 0;
+        margin-top: 2rem;
     }
 }
 @media (max-width: 500px) {
@@ -120,6 +145,15 @@
         margin-right: $pt;
     }
     .footer__media {
-        width: 10rem;
+        width: 13rem;
+    }
+    .footer__block {
+        width: 13rem;
+    }
+    .footer__line {
+        width: 90%;
+    }
+    .footer__copyright {
+        margin: 3rem 5%;
     }
 }

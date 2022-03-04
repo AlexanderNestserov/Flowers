@@ -2,90 +2,110 @@
 @import "../../styles/_mixins.scss";
 
 .container__banner {
-    margin: 4rem auto;
-    width: 90%;
+    margin: 2.5rem 12%;
 }
 .container__delivery {
-    background: url("../../../assets/img-home/Rectangle\ 3.png") 0 0 no-repeat;
+    background: $color_lightlightgrey;
+    border: 1px solid $color_lightgrey;
+    border-radius: 10px;
     background-size: 100% 100%;
-    width: 100%;
-    margin-right: 0.5rem;
+    width: 54rem;
+    height: 24rem;
+    margin-right: 3rem;
 }
-.delivery__logo,
-.garden__logo {
-    display: flex;
-    align-items: center;
+.garden__logo,
+.delivery__logo {
+    position: relative;
+    top: 0;
+    left: 0;
 }
-#garden-img {
+#garden-image {
     height: 90%;
+    position: absolute;
+    left: -22rem;
+    top: 0.5rem;
+    z-index: 0;
+    text-align: right;
 }
+#delivery-image {
+    position: absolute;
+    right: 0rem;
+    top: 0;
+    z-index: 0;
+    text-align: right;
+}
+
 .title {
-    @include font(Montserrat, normal, 700, $pt, 120%, 0em, $color_4);
-    margin: 3rem 0 $pt 3rem;
+    @include font(Montserrat, normal, 700, 2.8rem, 120%, 0em, $color_darkgrey);
+    margin: 4.5rem 0 $pt 5rem;
+    width: 29.2rem;
+    position: relative;
+    z-index: 1;
 }
 .container__linking {
-    @include font(Montserrat, normal, normal, 1.2rem, 150%, 0em, $color_4);
-    margin-left: 3rem;
+    @include font(Montserrat, normal, normal, 1.8rem, 150%, 0em, $color_darkgrey);
+    margin-left: 5rem;
     &:hover {
-        color: $color_3;
+        color: $color_pink;
     }
 }
 .container__garden {
-    background: url("../../../assets/img-home/Rectangle\ 4.png") 0 0 no-repeat;
+    background: $color_gradientblue;
+    border: 1px solid $color_lightgrey;
+    border-radius: 10px;
     background-size: 100% 100%;
-    width: 100%;
+    width: 54rem;
+    height: 24rem;
     margin-left: 0.5rem;
 }
-@media (max-width: 1415px) {
+@media (max-width: 1315px) {
     .title {
-        margin-left: $pb !important;
-        margin-top: $pw;
+        @include font(Montserrat, normal, 700, 2.2rem, 120%, 0em, $color_darkgrey);
+        margin: 3.1rem 0 0 2.9rem;
+        width: 29.2rem;
+        position: relative;
+        z-index: 1;
     }
     .container__linking {
-        margin-left: $pb !important;
+        margin: 0.5rem 0 $pt 2.9rem !important;
+        position: relative;
+        z-index: 1;
+    }
+    .little {
+        top: 1.3rem;
+    }
+    .container__delivery,
+    .container__garden {
+        width: 40rem;
+        height: 24rem;
+    }
+    #garden-image {
+        left: -14.3rem;
+        top: 8rem;
+        z-index: 0;
+        height: 13.9rem;
+    }
+    #delivery-image {
+        right: 0rem;
+        top: 5rem;
+        z-index: 0;
+        height: 16.9rem;
     }
 }
 @media (max-width: 970px) {
     .container__banner {
         display: block !important;
+        width: 35rem;
     }
-    .container__delivery {
-        margin-bottom: $pt;
-        height: 15rem;
-        margin-left: $pb;
-        min-width: 25rem;
-    }
+    .container__delivery,
     .container__garden {
-        margin-bottom: $pt;
-        height: 15rem;
-        margin-left: $pb;
-        min-width: 25rem;
+        width: 33.5rem;
+        height: 24rem;
+        margin-bottom: 2rem;
     }
 }
 @media (max-width: 500px) {
     .container__banner {
-        margin-left: 0;
-    }
-    .container__delivery,
-    .container__garden {
-        min-width: 22rem;
-    }
-    .container__gardens,
-    .container__deliverys {
-        padding-left: 1rem;
-    }
-    .container__linking {
-        margin-left: 0 !important;
-    }
-    .delivery__logo,
-    .garden__logo {
-        width: 25rem !important;
-    }
-    #delivery-image,
-    #garden-image {
-        width: 100%;
-    }
-    .title {
-        margin-left: 0 !important;
+        margin-left: 2rem;
     }
 }

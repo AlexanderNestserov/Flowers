@@ -12,20 +12,21 @@
         </a>
     </div>
     <div class="header__menu">
-        <ul class="header__list flex justify-content-between">
-            <li class="menu"><a routerLink="/home" routerLinkActive="active"
+        <ul class="header__list flex justify-content-start">
+            <li class="menu menu1"><a class="menu-link" routerLink="/home" routerLinkActive="active"
                     [routerLinkActiveOptions]="{exact:true}">HOME</a></li>
-            <li class="menu"><a routerLink="/catalog" routerLinkActive="active"
+            <li class="menu menu2"><a class="menu-link" routerLink="/catalog" routerLinkActive="active"
                     [routerLinkActiveOptions]="{exact:true}">CATALOG</a></li>
-            <li class="menu"><a routerLink="/about-us" routerLinkActive="active"
+            <li class="menu menu3"><a class="menu-link" routerLink="/about-us" routerLinkActive="active"
                     [routerLinkActiveOptions]="{exact:true}">ABOUT US</a></li>
-            <li class="menu"><a routerLink="/news" routerLinkActive="active"
+            <li class="menu menu4"><a class="menu-link" routerLink="/news" routerLinkActive="active"
                     [routerLinkActiveOptions]="{exact:true}">NEWS</a></li>
-            <li class="menu"><a routerLink="/contacts" routerLinkActive="active"
+            <li class="menu menu5"><a class="menu-link" routerLink="/contacts" routerLinkActive="active"
                     [routerLinkActiveOptions]="{exact:true}">CONTACTS</a></li>
-            <div class=" header__icon flex justify-content-end">
+            <div class=" header__icon flex justify-content-start">
                 <li class="menu-icon"><a class="header__search icon " (click)='toggleDisplays()' routerLink="/search"
-                        routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"></a> </li>
+                        routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"></a>
+                </li>
                 <li class="menu-icon">
                     <a class="header__bag icon " href="#" routerLinkActive="active"
                         [routerLinkActiveOptions]="{exact:true}">
@@ -39,12 +40,15 @@
     </div>
     <div>
         <ul class="mobile__menu" [hidden]="isShow">
-            <li class="mobile__li"><a class="mobile__link" routerLink="/home" (click)='toggleDisplay()'>HOME</a></li>
+            <li class="mobile__li"><a class="mobile__link" routerLink="/home" (click)='toggleDisplay()'>HOME</a>
+            </li>
             <li class="mobile__li"><a class="mobile__link" routerLink="/catalog" (click)='toggleDisplay()'>CATALOG</a>
             </li>
-            <li class="mobile__li"><a class="mobile__link" routerLink="/about-us" (click)='toggleDisplay()'>ABOUT US</a>
+            <li class="mobile__li"><a class="mobile__link" routerLink="/about-us" (click)='toggleDisplay()'>ABOUT
+                    US</a>
             </li>
-            <li class="mobile__li"><a class="mobile__link" routerLink="/news" (click)='toggleDisplay()'>NEWS</a></li>
+            <li class="mobile__li"><a class="mobile__link" routerLink="/news" (click)='toggleDisplay()'>NEWS</a>
+            </li>
             <li class="mobile__li"><a class="mobile__link" routerLink="/contacts" (click)='toggleDisplay()'>CONTACTS</a>
             </li>
         </ul>

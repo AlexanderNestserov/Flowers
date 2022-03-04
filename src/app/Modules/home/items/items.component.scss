@@ -2,48 +2,51 @@
 @import "../../../styles/_mixins.scss";
 
 .container__items {
-    width: 90%;
-    margin: 0 4.5rem;
+    margin: 0 0 0 12%;
     flex-wrap: wrap;
 }
 .container__wrap {
-    flex: 1 0 21%;
+    flex: 0 0 21%;
+    margin-right: 2rem;
     margin-bottom: 3rem;
 }
 .container__item {
-    @include wihi(18rem, 28rem);
-    border: 1px solid $color_6;
+    @include wihi(25.5rem, 34.4rem);
+    border: 1px solid $color_lightgrey;
     box-sizing: border-box;
     border-radius: 10px;
     padding-bottom: $pb;
     position: relative;
-
+    margin-right: 0 !important;
     .image-item {
-        width: 80%;
-        margin: $pw;
+        display: inline-block;
+        width: 17rem;
+        height: 17rem;
+        margin: 2.4rem 0 2.4rem 3.4rem;
     }
     .container__title {
-        @include font(Montserrat, normal, 700, $pw, 120%, 0em, $color_4);
-        margin: 0 $pw;
+        @include font(Montserrat, normal, 700, 1.6rem, 120%, 0em, $color_darkgrey);
+        margin: 0 2.4rem;
+        width: 20rem;
     }
     .container__paragraph {
-        @include font(Montserrat, normal, 700, $pw, 120%, 0em, $color_4);
-        margin: 0 $pw;
+        @include font(Montserrat, normal, 700, 1.6rem, 120%, 0em, $color_darkgrey);
+        margin: 0 2.4rem;
         position: absolute;
-        top: 25rem;
+        top: 30.5rem;
     }
     .button {
         display: none;
     }
 }
 .opacity {
-    @include font(Montserrat, normal, 500, $pb, 150%, 0em, $color_5);
-    margin: 0 $pw;
+    @include font(Montserrat, normal, 500, 1.4rem, 150%, 0em, $color_grey);
+    margin: 0.5rem 2.4rem;
     text-align: left;
 }
 .container__item:hover {
     transition: 1s;
-    @include wihi(18rem, 35rem);
+    @include wihi(25.5rem, 42.5rem);
     position: absolute;
     z-index: 2;
     background-color: $color_white;
@@ -54,21 +57,21 @@
         flex-direction: row;
         justify-content: center;
         align-items: center;
-        @include wihi(15rem, 4rem);
-        background: $color_10;
+        @include wihi(20.7rem, 5.7rem);
+        background: $color_green;
         border-radius: 10px;
-        margin: 8rem auto 0;
+        margin: 7.5rem auto;
         #imageBaggy {
-            width: 1.4rem;
+            width: 1.5rem;
         }
         .button__paragraph {
-            @include font(Montserrat, normal, 600, 1.2rem, 100%, 0.05em, $color_white);
+            @include font(Montserrat, normal, 600, 1.5rem, 110%, 0.05em, $color_white);
             text-align: left;
             padding-left: 1rem;
         }
     }
     .button:hover {
-        background: $color_15;
+        background: $color_darkgreen;
     }
     .button:active {
         #imageBaggy {
@@ -81,12 +84,11 @@
 }
 @media (max-width: 1296px) {
     .container__items {
-        width: 90%;
-        margin-left: 4rem;
+        margin-left: 12%;
         flex-wrap: wrap;
     }
     .container__wrap {
-        flex: 1 1 50%;
+        flex: 0 0 40%;
         margin-bottom: 3rem;
     }
 }
@@ -110,58 +112,81 @@
     }
 
     .container__paragraph {
-        @include font(Montserrat, normal, bold, $pw, 120%, 0em, $color_4);
-        margin: 0 $pw;
+        @include font(Montserrat, normal, bold, 1.6rem, 120%, 0em, $color_darkgrey);
+        margin: 2.4rem $pw !important;
         position: static !important;
-        top: 0 !important;
     }
     .container__item {
+        display: inline-block;
         position: static !important;
         opacity: 1 !important;
-        width: 22rem !important;
-        height: 32rem !important;
+        width: 33.5rem !important;
+        height: 23.4rem !important;
         background-color: $color_white;
         box-sizing: border-box;
-
+        .image-item {
+            float: left;
+            width: 10.7rem;
+            height: 10.7rem;
+            margin: 2rem !important;
+        }
+        .container__title {
+            width: 90%;
+            margin-top: 2rem;
+        }
         .button {
             display: flex !important;
             flex-direction: row;
             justify-content: center;
             align-items: center;
-            @include wihi(15rem, 4rem);
-            background: $color_10;
+            @include wihi(29.5rem, 5.7rem);
+            background: $color_green;
             border-radius: 10px;
             margin: 0 1rem;
             #imageBaggy {
                 width: 1.4rem;
             }
             .button__paragraph {
-                @include font(Montserrat, normal, 600, 1.2rem, 100%, 0.05em, $color_white);
+                @include font(Montserrat, normal, 600, 1.5rem, 110%, 0.05em, $color_white);
                 text-align: left;
-                margin-right: 1.2rem;
+                padding-left: 1.2rem;
             }
         }
     }
     .container__item:hover {
-        @include wihi(18rem, 30rem);
+        display: inline-block;
+        position: static !important;
+        opacity: 1 !important;
+        width: 33.5rem !important;
+        height: 23.4rem !important;
         background-color: $color_white;
         box-sizing: border-box;
+        .image-item {
+            float: left;
+            width: 10.7rem;
+            height: 10.7rem;
+            margin: 2rem !important;
+        }
+        .container__title {
+            width: 90%;
+            margin-top: 2rem;
+        }
         .button {
-            display: flex;
+            display: flex !important;
             flex-direction: row;
             justify-content: center;
             align-items: center;
-            @include wihi(15rem, 4rem);
-            background: $color_10;
+            @include wihi(29.5rem, 5.7rem);
+            background: $color_green;
             border-radius: 10px;
-            margin: 0 1rem !important;
+            margin: 0 1rem;
             #imageBaggy {
                 width: 1.4rem;
             }
             .button__paragraph {
-                @include font(Montserrat, normal, 600, 1.2rem, 100%, 0.05em, $color_white);
+                @include font(Montserrat, normal, 600, 1.5rem, 110%, 0.05em, $color_white);
                 text-align: left;
-                margin-right: 1.2rem;
+                padding-left: 1.2rem;
             }
         }
     }

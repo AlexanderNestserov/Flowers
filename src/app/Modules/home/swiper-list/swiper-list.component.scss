@@ -19,16 +19,15 @@
     @include wihi(100%, 100%);
     object-fit: cover;
 }
-.container__list {
-    width: 90%;
-    margin: 0 auto;
+.container__slider {
+    margin: 4rem 10% 0 12%;
 }
 .container__block {
-    @include wihi(15rem, 10rem);
+    @include wihi(16rem, 10rem);
     margin-right: 0;
     .container__link {
         max-height: 100%;
-        width: 15rem;
+        width: 16rem;
         display: block;
 
         .item-image {
@@ -37,17 +36,15 @@
             margin: $pw auto;
         }
         .container__paragraph {
+            @include font(Montserrat, normal, 500, 1.2rem, 150%, 0em, $color_grey);
             text-align: center;
-            margin-top: $pb;
-            font-size: $pb;
-            line-height: 150%;
-            color: $color_5;
+            margin-top: 0.5rem;
         }
     }
 }
 .h6 {
-    @include font(Montserrat, normal, 500, 1.2rem, 150%, 0em, $color_4);
-    width: 15rem;
+    @include font(Montserrat, normal, 500, 1.4rem, 150%, 0em, $color_darkgrey);
+    width: 16rem;
     text-align: center;
 }
 @media (max-width: 450px) {

@@ -4,11 +4,11 @@
 
 app-home-slider-logo {
     width: 100%;
-    height: 30rem;
+    height: 44rem;
 }
 .container__h {
     .swiper {
-        @include wihi(100%, 30rem);
+        @include wihi(100%, 44rem);
     }
     .swiper-slide {
         text-align: top;

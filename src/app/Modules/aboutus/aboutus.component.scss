@@ -2,7 +2,7 @@
 @import "../../styles/_mixins.scss";
 
 .wrapper {
-    width: 100%;
+    width: 86%;
     margin: 0 auto;
 }
 .container {
@@ -10,35 +10,36 @@
     margin: 0 auto;
 }
 .container__line {
-    background: $color_4;
+    background: $color_darkgrey;
     opacity: 0.2;
     height: 1px;
+    margin-top: 1.5rem;
 }
 .container__path {
-    margin: 2rem auto;
+    margin: 3rem auto;
 }
 .container__home {
-    margin-right: 2rem;
+    margin-right: 2.6rem;
     .container__link {
-        @include font(Montserrat, normal, normal, 1rem, 150%, 0em, $color_4);
+        @include font(Montserrat, normal, normal, 1.4rem, 150%, 0em, $color_darkgrey);
     }
 }
 .container__angle {
-    margin-right: 2rem;
+    margin-right: 2.6rem;
     margin-top: 0.35rem;
 }
 .container__aboutus {
-    @include font(Montserrat, normal, normal, 1rem, 150%, 0em, $color_14);
+    @include font(Montserrat, normal, normal, 1.4rem, 150%, 0em, $color_lightdarkgrey);
 }
 .container__titl {
-    background: $color_13;
+    background: $color_gradient;
     background-clip: text;
     -webkit-text-fill-color: transparent;
     font-weight: 800;
-    font-size: 3rem;
+    font-size: 4.8rem;
     line-height: 120%;
-    margin-top: 3rem;
-    margin-bottom: 2.5rem;
+    margin-top: 4rem;
+    margin-bottom: 4rem;
 }
 .container__img1,
 .container__img2 {
@@ -47,73 +48,77 @@
     }
 }
 .container__text1 {
-    @include font(Montserrat, normal, normal, 1.6rem, 150%, 0em, $color_4);
-    margin-top: 1rem;
-    margin-bottom: 3rem;
+    @include font(Montserrat, normal, normal, 1.8rem, 150%, 0em, $color_darkgrey);
+    margin-top: 2.5rem;
+    margin-bottom: 5rem;
     width: 75%;
 }
 .container__flowers {
     margin-bottom: 1.5rem;
-    background-color: $color_8;
+    background-color: $color_lightwhite;
     border-radius: 10px;
-    @include wihi(100%, 35rem);
+    @include wihi(100%, 38rem);
     align-items: center;
     .container__picture {
-        margin: 0 5rem;
+        margin-left: 5rem;
+        padding-right: 1rem;
         .image-flower {
-            @include wihi(100%, 100%);
+            @include wihi(30rem, 30rem);
         }
     }
 }
 .container__figcapture {
-    @include font(Montserrat, normal, normal, 1.5rem, 150%, 0em, $color_5);
+    @include font(Montserrat, normal, normal, 1.4rem, 150%, 0em, $color_grey);
+    margin: 3rem 0 3.5rem 0;
 }
 .container__text2 {
-    @include font(Montserrat, normal, normal, 1.5rem, 170%, 0em, $color_4);
+    @include font(Montserrat, normal, normal, 1.6rem, 170%, 0em, $color_darkgrey);
     margin-top: 3rem;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
     width: 75%;
 }
 .container__text3 {
-    @include font(Montserrat, normal, normal, 1.5rem, 170%, 0em, $color_4);
-    margin-bottom: 5rem;
+    @include font(Montserrat, normal, normal, 1.6rem, 170%, 0em, $color_darkgrey);
+    margin-bottom: 6.5rem;
     width: 75%;
 }
 .container__advantages {
-    margin-top: 5rem;
-    margin-bottom: 10rem;
+    margin-top: 8rem;
+    margin-bottom: 12rem;
     width: 75%;
 }
 .container__title2 {
-    background: $color_13;
+    background: $color_gradient;
     background-clip: text;
     -webkit-text-fill-color: transparent;
     font-weight: 700;
-    font-size: 2.5rem;
+    font-size: 2.8rem;
     line-height: 120%;
     margin-bottom: 2.5rem;
 }
 .container__list {
+    margin-top: 5rem;
     margin-left: 0;
     .container__li {
-        @include font(Montserrat, normal, normal, 1.6rem, 170%, 0em, $color_4);
-        padding-left: 8rem;
-        margin-bottom: 2.5rem;
+        @include font(Montserrat, normal, normal, 1.6rem, 170%, 0em, $color_darkgrey);
+        padding-left: 9.5rem;
+        margin-bottom: 3.8rem;
         background: url("../../../assets/img-aboutus/sabi\ 1.png") 0 0.8rem no-repeat;
-        background-size: 4rem 4rem;
+        background-size: 4.5rem 4.5rem;
     }
 }
-@media (max-width: 1558px) {
+@media (max-width: 1410px) {
     .container__flowers {
         margin-bottom: 1.5rem;
-        background-color: $color_8;
+        background-color: $color_lightwhite;
         border-radius: 10px;
-        @include wihi(100%, 35rem);
+        @include wihi(100%, 38rem);
         align-items: center;
         .container__picture {
-            margin: 0 3rem;
+            margin-left: 5rem;
+            padding-right: 1rem;
             .image-flower {
-                @include wihi(17rem, 17rem);
+                @include wihi(24rem, 24rem);
             }
         }
     }
@@ -121,14 +126,14 @@
 @media (max-width: 1190px) {
     .container__flowers {
         margin-bottom: 1.5rem;
-        background-color: $color_8;
+        background-color: $color_lightwhite;
         border-radius: 10px;
         @include wihi(100%, 25rem);
         align-items: center;
         .container__picture {
             margin: 0 2rem;
             .image-flower {
-                @include wihi(15rem, 15rem);
+                @include wihi(19.2rem, 19.2rem);
             }
         }
     }
@@ -144,17 +149,56 @@
     }
     .container__flowers {
         display: block !important;
-        @include wihi(23rem, 45rem);
+        @include wihi(33.2rem, 76.6rem);
         text-align: center;
+    }
+    .container__picture {
+        margin-bottom: 2rem !important;
+    }
+    .image-flower {
+        margin-top: 4rem;
     }
     .container__list {
         .container__li {
-            padding-left: 5rem;
+            padding-left: 6.9rem;
         }
+    }
+}
+@media (max-width: 886px) {
+    .wrapper {
+        width: 90%;
     }
 }
 @media (max-width: 450px) {
     .wrapper {
         margin-top: 8rem;
+        margin-left: 2% !important;
+    }
+    .container {
+        width: 100%;
+    }
+    .container__titl {
+        font-size: 3.6rem;
+        margin-top: 0.5rem !important;
+        margin-bottom: 2.8rem;
+    }
+    .container__path {
+        margin: 1.5rem auto;
+    }
+    .container__text1 {
+        margin-bottom: 3.4rem;
+    }
+    .container__flowers {
+        width: 33.2rem;
+        height: 76.6rem;
+    }
+    .container__picture {
+        margin-bottom: 2rem !important;
+    }
+    .image-flower {
+        margin-top: 4rem;
+    }
+    .container__advantages {
+        margin-top: 4rem !important;
     }
 }
