@@ -1,8 +1,7 @@
 @import "../../styles/_variables.scss";
 @import "../../styles/_mixins.scss";
 .wrapper {
-    width: 100%;
-    margin: 0 auto;
+    margin: 0 6% 0 7%;
 }
 .container {
     width: 90%;
@@ -14,11 +13,8 @@
     height: 1px;
 }
 .container__titles {
-    margin: 3rem auto 3rem;
-    font-weight: bold;
-    font-size: 2rem;
-    line-height: 120%;
-    color: $color_darkgrey;
+    @include font(Montserrat, normal, bold, 2.8rem, 120%, 0em, $color_darkgrey);
+    margin: 6rem auto 2.6rem;
 }
 .container__search {
     margin-bottom: 5rem;
@@ -33,11 +29,9 @@
         border: 1px solid $color_lightgrey;
         background: $color_white;
         border-radius: 4px;
-        height: 5rem;
-        font-size: 1.5rem;
-        line-height: 150%;
-        color: $color_black;
-        padding-left: 2rem;
+        height: 7.6rem;
+        @include font(Montserrat, normal, normal, 1.8rem, 150%, 0em, $color_grey);
+        padding-left: 2.9rem;
         &:focus {
             box-shadow: 2px 5px 1px $color_grey;
             border: 2px solid $color_lightgrey;
@@ -48,37 +42,52 @@
     }
     .button {
         position: absolute;
-        top: 1.6rem;
-        right: 2rem;
+        top: 2.4rem;
+        right: 3.6rem;
         z-index: 2;
         background: $color_white;
         &:hover {
-            top: 1.2rem;
-            right: 2rem;
+            top: 2.5rem;
+            right: 3.7rem;
             z-index: 3;
         }
         &:active {
-            top: 1.6rem;
-            right: 2rem;
+            top: 2.6rem;
+            right: 3.8rem;
             z-index: 3;
         }
         #imgSearch {
-            width: 2rem;
-            height: 2rem;
+            @include wihi(2.5rem, 2.5rem);
         }
     }
 }
 .container__paragraph {
-    font-size: 1.5rem;
-    line-height: 150%;
-    color: $color_darkgrey;
+    @include font(Montserrat, normal, normal, 1.8rem, 150%, 0em, $color_darkgrey);
+}
+@media (max-width: 886px) {
+    .wrapper {
+        margin: 0 6% 0 4%;
+    }
 }
 @media (max-width: 500px) {
-    .p-input-icon-right {
-        .p-inputtext-lg {
-            font-size: 0.8rem;
-            line-height: 150%;
-            color: $color_black;
-        }
+    .wrapper {
+        margin: 0 2rem 0 2rem;
+    }
+    .container {
+        width: 100%;
+    }
+}
+@media (max-width: 450px) {
+    .wrapper {
+        margin: 8rem 2rem 0 2rem;
+    }
+    .container__titles {
+        margin: 5rem 0 2.6rem 0;
+    }
+    .title {
+        display: none;
+    }
+    .container__search {
+        margin-top: 1.9rem;
     }
 }

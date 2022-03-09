@@ -56,7 +56,6 @@
     background-size: 100% 100%;
     width: 54rem;
     height: 24rem;
-    margin-left: 0.5rem;
 }
 @media (max-width: 1315px) {
     .title {
@@ -80,10 +79,11 @@
         height: 24rem;
     }
     #garden-image {
-        left: -14.3rem;
+        left: -17.7rem;
         top: 8rem;
         z-index: 0;
         height: 13.9rem;
+        width: 17.7rem;
     }
     #delivery-image {
         right: 0rem;

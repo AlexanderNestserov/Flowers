@@ -69,17 +69,18 @@
         padding-bottom: 2rem;
     }
 }
-.header__icon li a {
+.icon {
     margin-left: 2.3rem;
-    &.active {
-        background: url("../../assets/img-home/search-red.png") 0 0 no-repeat,
-            url("../../assets/img-home/Rectangle2.png") 0 4rem no-repeat;
-        padding-bottom: $pt;
-    }
 }
-.header__icon li a.header__search:hover {
+.header__search.active {
     background: url("../../assets/img-home/search-red.png") 0 0 no-repeat,
-        url("../../assets/img-home/Rectangle2.png") 0 4rem no-repeat;
+        url("../../assets/img-home/Rectangle2.png") 0 3.8rem no-repeat;
+    padding-bottom: $pt;
+}
+
+.header__search:hover {
+    background: url("../../assets/img-home/search-red.png") 0 0 no-repeat,
+        url("../../assets/img-home/Rectangle2.png") 0 3.8rem no-repeat;
     padding-bottom: $pt;
 }
 .header__search {
@@ -91,9 +92,9 @@
     background: url("../../assets/img-home/shopping-bag.png") 0 0 no-repeat;
     @extend %width;
 }
-.header__icon li a.header__bag:hover {
+.header__bag:hover {
     background: url("../../assets/img-home/shopping-bag-red.png") 0 0 no-repeat,
-        url("../../assets/img-home/Rectangle2.png") 0 4rem no-repeat;
+        url("../../assets/img-home/Rectangle2.png") 0 3.8rem no-repeat;
     padding-bottom: $pb;
 }
 .header__quantity {
@@ -114,14 +115,14 @@
     background: url("../../assets/img-home/user.png") 0 0 no-repeat;
     @extend %width;
 }
-.header__icon li a.header__user:hover {
+.header__user:hover {
     background: url("../../assets/img-home/user-red.png") 0 0 no-repeat,
-        url("../../assets/img-home/Rectangle2.png") 0 4rem no-repeat;
+        url("../../assets/img-home/Rectangle2.png") 0 3.8rem no-repeat;
     padding-bottom: $pb;
 }
-.header__icon li a.header__user:active {
+.header__user.active {
     background: url("../../assets/img-home/user-red.png") 0 0 no-repeat,
-        url("../../assets/img-home/Rectangle2.png") 0 4rem no-repeat;
+        url("../../assets/img-home/Rectangle2.png") 0 3.8rem no-repeat;
     padding-bottom: $pb;
 }
 .user {
@@ -169,7 +170,7 @@
         padding-right: $pt !important;
         justify-content: flex-start;
         .header__logo {
-            margin-right: 3rem;
+            margin-right: 5rem;
         }
         .header__menu {
             width: 100%;
@@ -187,12 +188,12 @@
     .header__icon {
         width: 20%;
     }
-    .header__list li a {
+    .menu-link {
         margin-left: 1.3rem;
     }
 }
 @media (max-width: 1200px) {
-    .header__list li a {
+    .menu-link {
         margin-left: 3rem;
     }
     .header__icon {
@@ -316,7 +317,7 @@
         top: 3.7rem;
         right: 11rem;
     }
-    .header__list li a {
+    .menu-link {
         margin-left: 1.3rem;
     }
     .header__icon {
@@ -343,6 +344,9 @@
             left: 3.1rem;
         }
     }
+    .first-image {
+        margin-left: 2.3rem;
+    }
 }
 @media (max-width: 500px) {
     .user {
@@ -351,17 +355,17 @@
     }
     .header__popup {
         top: 2.5rem;
-        left: 1rem;
+        left: 2rem;
     }
     .burger:active {
         position: fixed;
         top: 2.6rem;
-        left: 1.1rem !important;
+        left: 2.1rem !important;
     }
     .close:active {
         position: fixed;
         top: 2.6rem;
-        left: 1.1rem !important;
+        left: 2.1rem !important;
     }
     .header__logo {
         margin-left: $pt;
@@ -375,7 +379,7 @@
         justify-content: center !important;
         margin-left: 0;
         padding: 0;
-        width: 20rem;
+        width: 18rem;
         .menu-icon {
             margin-right: $pt;
             width: $pt;

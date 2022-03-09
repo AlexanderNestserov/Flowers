@@ -14,13 +14,12 @@
 }
 .container__path {
     margin: 1rem 0 3.5rem 12%;
-    width: 90%;
 }
 .container__home {
     margin-right: 2.8rem;
-    a {
-        @include font(Montserrat, normal, normal, 1.4rem, 150%, 0em, $color_darkgrey);
-    }
+}
+.container__link {
+    @include font(Montserrat, normal, normal, 1.4rem, 150%, 0em, $color_darkgrey);
 }
 .container__angle {
     margin-right: 2.4rem;
@@ -41,53 +40,51 @@
 }
 .container__text1 {
     margin: 1rem 0 7rem 12%;
-    width: 56%;
+    width: 80rem;
     @include font(Montserrat, normal, normal, 1.8rem, 150%, 0em, $color_black);
 }
 .container__text {
-    margin-top: 1rem;
-    margin-bottom: 3rem;
-    width: 100%;
-    @include font(Montserrat, normal, normal, 1.6rem, 150%, 0em, $color_darkgrey);
+    margin-top: 2rem;
+    margin-bottom: 6rem;
+    @include font(Montserrat, normal, normal, 1.8rem, 150%, 0em, $color_darkgrey);
 }
-
 .container__titles {
     margin: 0.5rem auto 0.5rem;
-    @include font(Montserrat, normal, bold, 2rem, 120%, 0em, $color_darkgrey);
+    @include font(Montserrat, normal, bold, 2.8rem, 120%, 0em, $color_darkgrey);
 }
 .container__date {
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
     width: 75%;
-    @include font(Montserrat, normal, normal, 1.6rem, 150%, 0em, $color_darkgrey);
+    @include font(Montserrat, normal, normal, 1.8rem, 150%, 0em, $color_darkgrey);
+}
+.my-pag::ng-deep .ngx-pagination {
+    margin-top: 8.5rem;
 }
 .my-pag::ng-deep .ngx-pagination .current {
     color: $color_darkgrey;
     border: 1px solid $color_pink;
     background: $color_white;
+    border-radius: 10px;
 }
 .my-pag::ng-deep .ngx-pagination li {
-    width: 3rem;
-    height: 3rem;
+    width: 5.7rem;
+    height: 5.7rem;
     text-align: center;
-    margin-left: 1rem;
+    margin-left: 0.5rem;
 }
 .my-pag::ng-deep .ngx-pagination li span {
     display: inline-block;
-    padding-top: 0.7rem;
-    font-weight: 600;
-    font-size: 1rem;
-    line-height: 110%;
+    padding-top: 2rem;
+    @include font(Montserrat, normal, 600, 1.5rem, 110%, 0.05em, $color_darkgrey);
     text-align: center;
-    letter-spacing: 0.05em;
     text-transform: uppercase;
-    color: $color_darkgrey;
 }
 .my-pag::ng-deep .ngx-pagination li {
     a {
         border-radius: 10px;
-        border: 1px solid $color_grey;
-        width: 3rem;
-        height: 3rem;
+        border: 1px solid $color_lightgrey;
+        width: 5.7rem;
+        height: 5.7rem;
         background-color: $color_white;
         box-sizing: border-box;
     }
@@ -96,19 +93,76 @@
         border-radius: 10px;
     }
 }
+.my-pag::ng-deep .ngx-pagination li.ellipsis {
+    margin-left: 0;
+    margin-right: 0;
+    a {
+        border: 0px solid $color_lightgrey;
+    }
+}
 .list {
-    width: 75%;
+    width: 800px;
     text-align: center;
-    margin-left: 5%;
-    ul {
+    margin: 6rem 0 3rem 12%;
+    .list__ul {
         text-align: left;
     }
 }
-@media (max-width: 1200px) {
+@media (max-width: 946px) {
     .container__text1,
     .container__text,
     .list {
-        width: 90%;
+        width: 40rem;
+    }
+}
+@media (max-width: 886px) {
+    .container__line {
+        margin: 0 20% 0 8%;
+    }
+    .container__path {
+        margin: 1rem 0 1.6rem 8%;
+    }
+    .container__titl {
+        margin: 1.6rem 0 2.2rem 8%;
+    }
+    .container__text1 {
+        margin: 2.2rem 0 4rem 8%;
+    }
+    .list {
+        margin: 4rem 0 4rem 8%;
+    }
+    .my-pag::ng-deep .ngx-pagination {
+        margin-top: 4.6rem;
+    }
+    .container__text {
+        margin: 2rem 0 4.6rem 0;
+    }
+}
+@media (max-width: 500px) {
+    .container__line {
+        width: 95%;
+        margin: 0 5% 0 $pt;
+    }
+    .container__path {
+        margin: 1rem 0 1.6rem $pt;
+    }
+    .container__titl {
+        margin: 1.6rem 0 2.2rem $pt;
+    }
+    .container__text1 {
+        margin: 2.2rem 0 4rem $pt;
+        width: 33.5rem;
+    }
+    .list {
+        margin: 4rem 0 4rem $pt;
+        width: 33.5rem;
+    }
+    .my-pag::ng-deep .ngx-pagination {
+        margin-top: 4.6rem;
+    }
+    .container__text {
+        margin: 2rem 0 4.6rem 0;
+        width: 33.5rem;
     }
 }
 @media (max-width: 450px) {

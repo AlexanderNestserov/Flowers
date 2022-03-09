@@ -13,14 +13,14 @@
     width: 90%;
     margin: 0 auto;
     padding-top: 8.5rem;
-    padding-bottom: 3.5rem;
-    a {
+    padding-bottom: 6.2rem;
+    .footer__li-link {
         color: $color_white;
     }
 }
 .footer__logo {
     margin-right: 17rem;
-    img {
+    #logo-image {
         @include wihi(11.5rem, 3.1rem);
         position: relative;
         top: -1rem;
@@ -37,15 +37,18 @@
 }
 .footer__list {
     width: 90%;
-    & > div {
+    .footer__first-list {
         width: 50%;
-        margin-right: 5rem;
+    }
+    .footer__second-list {
+        width: 22rem;
+        margin-right: 3.5rem;
     }
 }
-.footer__list li {
+.footer__li {
     margin-bottom: 2.5rem;
 }
-.footer__list li a {
+.footer__li-link {
     @include font(Montserrat, normal, 500, 1.4rem, 150%, 0, $color_white);
 }
 .footer__store {
@@ -66,7 +69,7 @@
     @include wihi(2.5rem, 2.5rem);
 }
 .footer__copyright {
-    margin: 3rem 12%;
+    margin: 3.2rem 12% 4.6rem 12%;
     padding-bottom: 2.5rem;
 }
 .footer__copy {
@@ -80,13 +83,16 @@
         width: 20%;
         margin-right: 5rem;
     }
+    .footer__second-list {
+        margin-right: 0 !important;
+    }
 }
 @media (max-width: 968px) {
     .footer__list {
         display: block !important;
         width: 90%;
         text-align: left;
-        & > div {
+        .footer__first-list {
             width: 90%;
         }
     }
@@ -103,7 +109,7 @@
     }
     .footer__logo {
         margin-right: 3rem;
-        img {
+        #logo-image {
             @include wihi(11.5rem, 3.1rem);
             position: relative;
             top: -1rem;
@@ -119,7 +125,7 @@
         z-index: 2;
         bottom: 3rem;
         left: 12rem;
-        img {
+        #logo-image {
             position: absolute;
         }
     }
@@ -129,8 +135,9 @@
         margin-left: 0;
         margin-top: 2rem;
     }
-    .footer__list div {
-        width: 15rem;
+    .footer__first-list,
+    .footer__second-list {
+        width: 15rem !important;
     }
     .footer__flex {
         justify-content: flex-start !important;
@@ -141,6 +148,9 @@
     }
 }
 @media (max-width: 500px) {
+    .link {
+        width: 8rem !important;
+    }
     .footer__catalog {
         margin-right: $pt;
     }
@@ -152,6 +162,9 @@
     }
     .footer__line {
         width: 90%;
+    }
+    .footer__flex {
+        padding-bottom: 13.3rem;
     }
     .footer__copyright {
         margin: 3rem 5%;

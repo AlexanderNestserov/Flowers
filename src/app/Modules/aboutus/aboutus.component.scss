@@ -2,8 +2,7 @@
 @import "../../styles/_mixins.scss";
 
 .wrapper {
-    width: 86%;
-    margin: 0 auto;
+    margin: 0 5% 0 7.5%;
 }
 .container {
     width: 90%;
@@ -13,10 +12,10 @@
     background: $color_darkgrey;
     opacity: 0.2;
     height: 1px;
-    margin-top: 1.5rem;
+    margin-top: 1.6rem;
 }
 .container__path {
-    margin: 3rem auto;
+    margin: 2.9rem auto;
 }
 .container__home {
     margin-right: 2.6rem;
@@ -38,25 +37,25 @@
     font-weight: 800;
     font-size: 4.8rem;
     line-height: 120%;
-    margin-top: 4rem;
+    margin-top: 4.2rem;
     margin-bottom: 4rem;
 }
 .container__img1,
 .container__img2 {
     .image-flowers {
         width: 100%;
+        border-radius: 10px;
     }
 }
 .container__text1 {
     @include font(Montserrat, normal, normal, 1.8rem, 150%, 0em, $color_darkgrey);
-    margin-top: 2.5rem;
+    margin-top: 2rem;
     margin-bottom: 5rem;
     width: 75%;
 }
 .container__flowers {
     margin-bottom: 1.5rem;
     background-color: $color_lightwhite;
-    border-radius: 10px;
     @include wihi(100%, 38rem);
     align-items: center;
     .container__picture {
@@ -172,7 +171,7 @@
 @media (max-width: 450px) {
     .wrapper {
         margin-top: 8rem;
-        margin-left: 2% !important;
+        margin-left: $pt !important;
     }
     .container {
         width: 100%;

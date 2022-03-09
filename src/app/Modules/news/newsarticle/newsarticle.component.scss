@@ -2,89 +2,71 @@
 @import "../../../styles/_mixins.scss";
 
 .wrapper {
-    width: 100%;
-    margin: 0 auto;
-}
-.container {
-    width: 100%;
-    margin: 0 auto;
+    margin: 1.7rem 0 3rem 0;
 }
 .container__line {
-    width: 90%;
-    margin: 0 auto;
+    margin: 0 10% 0 12%;
     background: $color_darkgrey;
     opacity: 0.2;
     height: 1px;
 }
 .container__path {
-    margin: 2rem auto;
-    width: 90%;
+    margin: 2.5rem 0 2.5rem 12%;
 }
 .container__home {
-    margin-right: 2rem;
+    margin-right: 2.5rem;
     .container__link {
-        font-weight: normal;
-        font-size: 1rem;
-        line-height: 150%;
-        color: $color_darkgrey;
+        @include font(Montserrat, normal, normal, 1.4rem, 150%, 0em, $color_darkgrey);
     }
 }
 .container__angle {
-    margin-right: 2rem;
+    margin-right: 2.5rem;
     margin-top: 0.35rem;
 }
 .container__news {
-    font-weight: normal;
-    font-size: 1rem;
-    line-height: 150%;
-    color: $color_lightdarkgrey;
+    @include font(Montserrat, normal, normal, 1.4rem, 150%, 0em, $color_lightdarkgrey);
+}
+.container__new {
+    @include font(Montserrat, normal, normal, 1.4rem, 150%, 0em, $color_lightdarkgrey);
+    display: none;
 }
 .container__titl {
-    width: 90%;
-    margin: 0 auto;
+    margin: 4.5rem 0 2rem 12%;
     background: $color_gradient;
     background-clip: text;
     -webkit-text-fill-color: transparent;
     font-weight: 800;
-    font-size: 3rem;
+    font-size: 4.8rem;
     line-height: 120%;
-    margin-top: 3rem;
-    margin-bottom: 2.5rem;
 }
 .container__text {
-    width: 90%;
-    margin: 3rem 5% 4rem;
-    width: 75%;
-    font-weight: normal;
-    font-size: 1.6rem;
-    line-height: 150%;
-    color: $color_black;
+    @include font(Montserrat, normal, normal, 1.8rem, 150%, 0em, $color_black);
+    margin: 2.2rem 0 6.5rem 12%;
+    width: 80rem;
 }
 .container__text1 {
-    margin: 0 5% 2rem;
-    width: 75%;
-    font-weight: normal;
-    font-size: 1.5rem;
-    line-height: 170%;
-    color: $color_darkgrey;
+    @include font(Montserrat, normal, normal, 1.6rem, 170%, 0em, $color_darkgrey);
+    margin: 1.7rem 0 1.7rem 12%;
+    width: 82.5rem;
 }
 .container__img1 {
-    width: 90%;
-    margin: 0 auto 4rem;
+    margin: 0 10% 6.5rem 12%;
     #imgDelivery {
         width: 100%;
+        border-radius: 10px;
     }
 }
 .container__img3 {
-    margin: 4rem 0 4rem 5%;
+    margin: 4.5rem 12.5% 7rem 12%;
     #imgWoman {
-        width: 75%;
+        width: 76%;
+        border-radius: 10px;
     }
 }
-@media (max-width: 1200px) {
+@media (max-width: 968px) {
     .container__text,
     .container__text1 {
-        width: 90%;
+        width: 60rem;
     }
     .container__img3 {
         #imgWoman {
@@ -92,8 +74,69 @@
         }
     }
 }
+@media (max-width: 886px) {
+    .container__line {
+        margin: 0 10% 0 8%;
+    }
+    .container__path {
+        margin: 1.5rem 0 1.6rem 8%;
+    }
+    .container__titl {
+        margin: 1.6rem 0 2rem 8%;
+        font-size: 3.6rem;
+    }
+    .container__text {
+        margin: 2.2rem 0 2.9rem 8%;
+        width: 40rem;
+    }
+    .container__img1 {
+        margin: 0 10% 2.9rem 8%;
+    }
+    .container__text1 {
+        margin: 2.9rem 0 2.9rem 8%;
+        width: 40rem;
+    }
+    .container__img3 {
+        margin: 13.7rem 0 2.9rem 8%;
+    }
+}
+@media (max-width: 500px) {
+    .container__line {
+        margin: 0 4% 0 $pt;
+    }
+    .container__path {
+        margin: 1.5rem 0 1.6rem $pt;
+    }
+    .container__titl {
+        margin: 1.6rem 0 2rem $pt;
+        font-size: 3.6rem;
+    }
+    .container__text {
+        margin: 2.2rem 0 2.9rem $pt;
+        width: 33.5rem;
+    }
+    .container__img1 {
+        margin: 0 5% 2.9rem $pt;
+    }
+    .container__text1 {
+        margin: 2.9rem 0 2.9rem $pt;
+        width: 33.5rem;
+    }
+    .container__img3 {
+        margin: 13.7rem 5% 2.9rem $pt;
+    }
+    #imgWoman {
+        width: 100% !important;
+    }
+}
 @media (max-width: 450px) {
     .wrapper {
         margin-top: 8rem;
+    }
+    .container__new {
+        display: block;
+    }
+    .container__news {
+        display: none;
     }
 }

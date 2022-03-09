@@ -35,10 +35,10 @@
     }
 }
 .container__information {
-    margin: 0 0 0 12%;
+    margin: 0 8% 0 12%;
     .container__paragraph {
         @include font(Montserrat, normal, normal, 1.6rem, 170%, 0em, $color_darkgrey);
-        margin: 1.5rem 12% 1.5rem 0;
+        margin: 1.5rem 2rem 1.5rem 0.5rem;
     }
 }
 .color {
@@ -54,6 +54,9 @@
     .container__beauties {
         @include font(Montserrat, normal, 700, 2.2rem, 120%, 0em, $color_darkgrey);
         margin: 7rem 0 4rem 5%;
+    }
+    .container__button {
+        margin: 1rem auto 5rem;
     }
     .container__information {
         margin-left: 5%;
