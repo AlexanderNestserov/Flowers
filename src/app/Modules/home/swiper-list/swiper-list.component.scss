@@ -33,7 +33,7 @@
         .item-image {
             @include wihi(5rem, 5rem);
             display: block;
-            margin: $pw auto;
+            margin: $pw_1-5rem auto;
         }
         .container__paragraph {
             @include font(Montserrat, normal, 500, 1.2rem, 150%, 0em, $color_grey);

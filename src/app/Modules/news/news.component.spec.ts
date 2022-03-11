@@ -1,8 +1,9 @@
-import { NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { PaginatePipe } from 'ngx-pagination';
 import { PaginationService } from 'ngx-pagination';
+import { BannersModule } from '../banners/banners.module';
 
 import { NewsComponent } from './news.component';
 
@@ -13,10 +14,9 @@ describe('NewsComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [NewsComponent, PaginatePipe],
-      imports: [RouterTestingModule.withRoutes([])],
+      imports: [RouterTestingModule.withRoutes([]), BannersModule],
       providers: [PaginationService],
-      schemas: [NO_ERRORS_SCHEMA]
-
+      schemas: [CUSTOM_ELEMENTS_SCHEMA]
     })
       .compileComponents();
   });

@@ -5,7 +5,7 @@
     background: url("../../../../assets/img-home/Rectangle\ 1.png") 0 0 no-repeat;
     background-size: 100% 100%;
     width: 90%;
-    margin: $pt auto;
+    margin: $pt_2rem auto;
     display: flex;
     justify-content: flex-start;
 }
@@ -79,18 +79,18 @@
         }
     }
     .container__title {
-        margin-top: 1.4rem !important;
+        margin-top: 1.4rem;
         margin-left: 0;
         z-index: 2;
         position: relative;
         .h1 {
-            margin-top: 1rem !important;
-            margin-left: $pt !important;
+            margin-top: 1rem;
+            margin-left: $pt_2rem;
             width: 35rem;
         }
         .container__paragraph {
-            margin-top: 1rem !important;
-            margin-left: $pt !important;
+            margin-top: 1rem;
+            margin-left: $pt_2rem;
             width: 25rem;
         }
     }
@@ -99,7 +99,7 @@
     .container__logo {
         width: 18rem;
         left: 10rem;
-        margin-right: 0 !important;
+        margin-right: 0;
 
         .event {
             @include wihi(20rem, 20rem);
@@ -143,16 +143,17 @@
             left: 18rem;
         }
     }
-
-    .h1 {
-        font-size: 3.6rem !important;
-        width: 26rem !important;
-        padding-top: 2.4rem !important;
-        padding-left: 0.9rem !important;
-    }
-    .container__paragraph {
-        font-size: 1.6rem !important;
-        width: 15rem !important;
-        padding-left: 0.9rem !important;
+    .container__title {
+        .h1 {
+            font-size: 3.6rem;
+            width: 26rem;
+            padding-top: 2.4rem;
+            padding-left: 0.9rem;
+        }
+        .container__paragraph {
+            font-size: 1.6rem;
+            width: 15rem;
+            padding-left: 0.9rem;
+        }
     }
 }

@@ -102,31 +102,31 @@
 }
 @media (max-width: 500px) {
     .container__line {
-        margin: 0 4% 0 $pt;
+        margin: 0 4% 0 $pt_2rem;
     }
     .container__path {
-        margin: 1.5rem 0 1.6rem $pt;
+        margin: 1.5rem 0 1.6rem $pt_2rem;
     }
     .container__titl {
-        margin: 1.6rem 0 2rem $pt;
+        margin: 1.6rem 0 2rem $pt_2rem;
         font-size: 3.6rem;
     }
     .container__text {
-        margin: 2.2rem 0 2.9rem $pt;
+        margin: 2.2rem 0 2.9rem $pt_2rem;
         width: 33.5rem;
     }
     .container__img1 {
-        margin: 0 5% 2.9rem $pt;
+        margin: 0 5% 2.9rem $pt_2rem;
     }
     .container__text1 {
-        margin: 2.9rem 0 2.9rem $pt;
+        margin: 2.9rem 0 2.9rem $pt_2rem;
         width: 33.5rem;
     }
     .container__img3 {
-        margin: 13.7rem 5% 2.9rem $pt;
-    }
-    #imgWoman {
-        width: 100% !important;
+        margin: 2.9rem 5% 2.9rem $pt_2rem;
+        #imgWoman {
+            width: 100%;
+        }
     }
 }
 @media (max-width: 450px) {

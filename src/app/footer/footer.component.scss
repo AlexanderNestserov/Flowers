@@ -10,6 +10,7 @@
     color: $color_white;
 }
 .footer__flex {
+    @extend %flex;
     width: 90%;
     margin: 0 auto;
     padding-top: 8.5rem;
@@ -37,6 +38,7 @@
 }
 .footer__list {
     width: 90%;
+    @extend %flex;
     .footer__first-list {
         width: 50%;
     }
@@ -50,6 +52,9 @@
 }
 .footer__li-link {
     @include font(Montserrat, normal, 500, 1.4rem, 150%, 0, $color_white);
+}
+.footer__block {
+    @extend %flex;
 }
 .footer__store {
     width: 30%;
@@ -83,13 +88,15 @@
         width: 20%;
         margin-right: 5rem;
     }
-    .footer__second-list {
-        margin-right: 0 !important;
+    .footer__list {
+        .footer__second-list {
+            margin-right: 0;
+        }
     }
 }
 @media (max-width: 968px) {
     .footer__list {
-        display: block !important;
+        display: block;
         width: 90%;
         text-align: left;
         .footer__first-list {
@@ -97,12 +104,12 @@
         }
     }
     .footer__block {
-        display: block !important;
+        display: block;
     }
 }
 @media (max-width: 792px) {
     .footer__catalog {
-        margin-left: $pt;
+        margin-left: $pt_2rem;
     }
     .footer__block {
         width: 20rem;
@@ -135,12 +142,14 @@
         margin-left: 0;
         margin-top: 2rem;
     }
-    .footer__first-list,
-    .footer__second-list {
-        width: 15rem !important;
+    .footer__list {
+        .footer__first-list,
+        .footer__second-list {
+            width: 15rem;
+        }
     }
     .footer__flex {
-        justify-content: flex-start !important;
+        justify-content: flex-start;
     }
     .footer__store {
         margin-right: 0;
@@ -149,10 +158,10 @@
 }
 @media (max-width: 500px) {
     .link {
-        width: 8rem !important;
+        width: 8rem;
     }
     .footer__catalog {
-        margin-right: $pt;
+        margin-right: $pt_2rem;
     }
     .footer__media {
         width: 13rem;

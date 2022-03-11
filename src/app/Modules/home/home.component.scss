@@ -59,9 +59,9 @@
         margin: 1rem auto 5rem;
     }
     .container__information {
-        margin-left: 5%;
-    }
-    .container__paragraph {
-        margin-right: 5% !important;
+        margin: 0 0 0 5%;
+        .container__paragraph {
+            margin-right: 5%;
+        }
     }
 }

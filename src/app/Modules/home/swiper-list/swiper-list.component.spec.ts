@@ -1,6 +1,10 @@
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SwiperListComponent } from './swiper-list.component';
+
+import { SwiperModule } from 'swiper/angular';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('SwiperListComponent', () => {
   let component: SwiperListComponent;
@@ -8,9 +12,11 @@ describe('SwiperListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SwiperListComponent ]
+      declarations: [SwiperListComponent],
+      imports: [RouterTestingModule.withRoutes([]), SwiperModule],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

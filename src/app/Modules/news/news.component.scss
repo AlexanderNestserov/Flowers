@@ -141,20 +141,20 @@
 @media (max-width: 500px) {
     .container__line {
         width: 95%;
-        margin: 0 5% 0 $pt;
+        margin: 0 5% 0 $pt_2rem;
     }
     .container__path {
-        margin: 1rem 0 1.6rem $pt;
+        margin: 1rem 0 1.6rem $pt_2rem;
     }
     .container__titl {
-        margin: 1.6rem 0 2.2rem $pt;
+        margin: 1.6rem 0 2.2rem $pt_2rem;
     }
     .container__text1 {
-        margin: 2.2rem 0 4rem $pt;
+        margin: 2.2rem 0 4rem $pt_2rem;
         width: 33.5rem;
     }
     .list {
-        margin: 4rem 0 4rem $pt;
+        margin: 4rem 0 4rem $pt_2rem;
         width: 33.5rem;
     }
     .my-pag::ng-deep .ngx-pagination {

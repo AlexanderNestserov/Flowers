@@ -3,6 +3,8 @@
 
 .container__banner {
     margin: 2.5rem 12%;
+    display: flex;
+    justify-content: flex-start;
 }
 .container__delivery {
     background: $color_lightlightgrey;
@@ -37,7 +39,7 @@
 
 .title {
     @include font(Montserrat, normal, 700, 2.8rem, 120%, 0em, $color_darkgrey);
-    margin: 4.5rem 0 $pt 5rem;
+    margin: 4.5rem 0 $pt_2rem 5rem;
     width: 29.2rem;
     position: relative;
     z-index: 1;
@@ -66,7 +68,7 @@
         z-index: 1;
     }
     .container__linking {
-        margin: 0.5rem 0 $pt 2.9rem !important;
+        margin: 0.5rem 0 $pt_2rem 2.9rem;
         position: relative;
         z-index: 1;
     }
@@ -94,7 +96,7 @@
 }
 @media (max-width: 970px) {
     .container__banner {
-        display: block !important;
+        display: block;
         width: 35rem;
     }
     .container__delivery,
@@ -107,5 +109,6 @@
 @media (max-width: 500px) {
     .container__banner {
         margin-left: 2rem;
+        margin-right: 2rem;
     }
 }

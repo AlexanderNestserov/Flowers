@@ -54,6 +54,8 @@
     width: 75%;
 }
 .container__flowers {
+    display: flex;
+    justify-content: flex-start;
     margin-bottom: 1.5rem;
     background-color: $color_lightwhite;
     @include wihi(100%, 38rem);
@@ -147,12 +149,12 @@
         width: 100%;
     }
     .container__flowers {
-        display: block !important;
+        display: block;
         @include wihi(33.2rem, 76.6rem);
         text-align: center;
-    }
-    .container__picture {
-        margin-bottom: 2rem !important;
+        .container__picture {
+            margin-bottom: 2rem;
+        }
     }
     .image-flower {
         margin-top: 4rem;
@@ -171,14 +173,14 @@
 @media (max-width: 450px) {
     .wrapper {
         margin-top: 8rem;
-        margin-left: $pt !important;
+        margin-left: $pt_2rem;
     }
     .container {
         width: 100%;
     }
     .container__titl {
         font-size: 3.6rem;
-        margin-top: 0.5rem !important;
+        margin-top: 0.5rem;
         margin-bottom: 2.8rem;
     }
     .container__path {
@@ -190,14 +192,14 @@
     .container__flowers {
         width: 33.2rem;
         height: 76.6rem;
-    }
-    .container__picture {
-        margin-bottom: 2rem !important;
+        .container__picture {
+            margin-bottom: 2rem;
+        }
     }
     .image-flower {
         margin-top: 4rem;
     }
     .container__advantages {
-        margin-top: 4rem !important;
+        margin-top: 4rem;
     }
 }

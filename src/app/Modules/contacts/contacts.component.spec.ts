@@ -1,5 +1,8 @@
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ContactsComponent } from './contacts.component';
+
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('ContactsComponent', () => {
   let component: ContactsComponent;
@@ -7,7 +10,9 @@ describe('ContactsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ContactsComponent]
+      declarations: [ContactsComponent],
+      imports: [RouterTestingModule.withRoutes([])],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA]
     })
       .compileComponents();
   });

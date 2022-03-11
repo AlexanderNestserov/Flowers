@@ -1,5 +1,8 @@
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AboutusComponent } from './aboutus.component';
+
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('AboutusComponent', () => {
   let component: AboutusComponent;
@@ -7,7 +10,9 @@ describe('AboutusComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [AboutusComponent]
+      declarations: [AboutusComponent],
+      imports: [RouterTestingModule.withRoutes([])],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA]
     })
       .compileComponents();
   });

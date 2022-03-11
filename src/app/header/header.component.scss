@@ -75,13 +75,13 @@
 .header__search.active {
     background: url("../../assets/img-home/search-red.png") 0 0 no-repeat,
         url("../../assets/img-home/Rectangle2.png") 0 3.8rem no-repeat;
-    padding-bottom: $pt;
+    padding-bottom: $pt_2rem;
 }
 
 .header__search:hover {
     background: url("../../assets/img-home/search-red.png") 0 0 no-repeat,
         url("../../assets/img-home/Rectangle2.png") 0 3.8rem no-repeat;
-    padding-bottom: $pt;
+    padding-bottom: $pt_2rem;
 }
 .header__search {
     background: url("../../assets/img-home/search.png") 0 0 no-repeat;
@@ -95,7 +95,7 @@
 .header__bag:hover {
     background: url("../../assets/img-home/shopping-bag-red.png") 0 0 no-repeat,
         url("../../assets/img-home/Rectangle2.png") 0 3.8rem no-repeat;
-    padding-bottom: $pb;
+    padding-bottom: $pb_1rem;
 }
 .header__quantity {
     display: inline-block;
@@ -118,17 +118,20 @@
 .header__user:hover {
     background: url("../../assets/img-home/user-red.png") 0 0 no-repeat,
         url("../../assets/img-home/Rectangle2.png") 0 3.8rem no-repeat;
-    padding-bottom: $pb;
+    padding-bottom: $pb_1rem;
 }
 .header__user.active {
     background: url("../../assets/img-home/user-red.png") 0 0 no-repeat,
         url("../../assets/img-home/Rectangle2.png") 0 3.8rem no-repeat;
-    padding-bottom: $pb;
+    padding-bottom: $pb_1rem;
+}
+.icon-user {
+    position: relative;
 }
 .user {
-    position: fixed;
-    top: 4.7rem;
-    right: 14rem;
+    position: absolute;
+    top: 1rem;
+    right: 0.5rem;
     background-color: $color_white;
     width: 27.3rem;
     height: 18.1rem;
@@ -167,7 +170,7 @@
 }
 @media (max-width: 1400px) {
     .header {
-        padding-right: $pt !important;
+        padding-right: $pt_2rem;
         justify-content: flex-start;
         .header__logo {
             margin-right: 5rem;
@@ -175,10 +178,6 @@
         .header__menu {
             width: 100%;
         }
-    }
-    .user {
-        top: 4.7rem;
-        right: 30rem;
     }
 }
 @media (max-width: 1284px) {
@@ -263,20 +262,17 @@
     }
 }
 @media (max-width: 886px) {
-    .user {
-        right: 25rem;
-    }
     .header__list {
         display: flex;
     }
     .header__icon {
         width: 10rem;
-        margin-left: $pt;
+        margin-left: $pt_2rem;
     }
     .header {
         width: 100%;
         justify-content: space-between;
-        padding: $pt $pt;
+        padding: $pt_2rem $pt_2rem;
     }
     .header__menu {
         display: flex;
@@ -313,10 +309,6 @@
     }
 }
 @media (max-width: 564px) {
-    .user {
-        top: 3.7rem;
-        right: 11rem;
-    }
     .menu-link {
         margin-left: 1.3rem;
     }
@@ -326,7 +318,7 @@
     .header {
         width: 100%;
         justify-content: space-between;
-        padding-top: $pt;
+        padding-top: $pt_2rem;
         margin: 0 auto;
     }
     .header__logo {
@@ -350,25 +342,25 @@
 }
 @media (max-width: 500px) {
     .user {
-        top: 3.7rem;
-        right: 7rem;
+        top: 1rem;
+        right: -1rem;
     }
     .header__popup {
         top: 2.5rem;
         left: 2rem;
-    }
-    .burger:active {
-        position: fixed;
-        top: 2.6rem;
-        left: 2.1rem !important;
-    }
-    .close:active {
-        position: fixed;
-        top: 2.6rem;
-        left: 2.1rem !important;
+        .burger:active {
+            position: fixed;
+            top: 2.6rem;
+            left: 2.1rem;
+        }
+        .close:active {
+            position: fixed;
+            top: 2.6rem;
+            left: 2.1rem;
+        }
     }
     .header__logo {
-        margin-left: $pt;
+        margin-left: $pt_2rem;
         margin-right: 0;
     }
     .header {
@@ -376,13 +368,13 @@
     }
     .header__icon {
         display: flex;
-        justify-content: center !important;
+        justify-content: center;
         margin-left: 0;
         padding: 0;
         width: 18rem;
         .menu-icon {
-            margin-right: $pt;
-            width: $pt;
+            margin-right: $pt_2rem;
+            width: $pt_2rem;
             .icon {
                 margin-left: 0;
                 padding: 0;
@@ -392,7 +384,7 @@
     .header__search,
     .header__bag {
         width: 3rem;
-        margin-right: $pt;
+        margin-right: $pt_2rem;
     }
     .header__user {
         width: 3rem;
@@ -401,18 +393,14 @@
 @media (max-width: 450px) {
     .header__search,
     .header__bag {
-        margin-right: $pb;
-    }
-    .header__logo {
-        margin-right: 0 !important;
+        margin-right: $pb_1rem;
     }
     .header {
         position: fixed;
         z-index: 99;
         height: 6.4rem;
-    }
-    .user {
-        top: 3.7rem;
-        right: 2rem;
+        .header__logo {
+            margin-right: 3.5rem;
+        }
     }
 }
