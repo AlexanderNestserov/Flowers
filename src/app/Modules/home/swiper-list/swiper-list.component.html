@@ -1,8 +1,8 @@
 <div class="container__slider">
     <ul class="container__list flex justify-content-between">
-        <swiper [slidesPerView]="6" [spaceBetween]="20" [loop]="true" [pagination]="{
-          clickable: true
-        }" [navigation]="true" [breakpoints]="adaptiveSwiper" class="myswiper">
+        <swiper [slidesPerView]="swiperConfig.slidesPerView" [spaceBetween]="swiperConfig.spaceBetween"
+            [loop]="swiperConfig.loop" [pagination]="swiperConfig.pagination" [navigation]="swiperConfig.navigation"
+            [breakpoints]="adaptiveSwiper" class="myswiper">
             <ng-template swiperSlide *ngFor="let item of items">
                 <div class="container__block flex justify-content-center">
                     <a [href]="item.link" class="container__link">

@@ -1,10 +1,7 @@
 <div class="container__h">
-    <swiper [slidesPerView]="1" [spaceBetween]="5" [loop]="true" [autoplay]="{
-        delay: 3000,
-        disableOnInteraction: false
-      }" [pagination]="{
-    clickable: true
-  }" [navigation]="false" class="myswiper">
+    <swiper [slidesPerView]="swiperConfig.slidesPerView" [spaceBetween]="swiperConfig.spaceBetween"
+        [loop]="swiperConfig.loop" [autoplay]="swiperConfig.autoplay" [pagination]="swiperConfig.pagination"
+        [navigation]="swiperConfig.navigation" class="myswiper">
         <ng-template swiperSlide>
             <app-home-slider-logo></app-home-slider-logo>
         </ng-template>

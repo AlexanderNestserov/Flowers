@@ -1,4 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { fromEvent } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -13,12 +14,11 @@ export class HeaderComponent implements OnInit {
   isMenu = true;
   isShow = true;
   isShown = false;
-  h = document.querySelector('.header');
 
   toggleDisplay() {
     this.isShow = !this.isShow;
     this.isShown = !this.isShown;
-    if (this.isShow === false) {
+    if (!this.isShow) {
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = 'scroll';
@@ -46,10 +46,10 @@ export class HeaderComponent implements OnInit {
     };
 
     function onScroll() {
-      window.addEventListener("scroll", callbackFunc);
+      fromEvent(window, 'scroll').subscribe(callbackFunc);
       function callbackFunc() {
         let y = window.pageYOffset;
-        if (y > 10) {
+        if (y > 0) {
           document.querySelector('.header')?.classList.add("scroll");
         } else {
           document.querySelector('.header')?.classList.remove("scroll");
