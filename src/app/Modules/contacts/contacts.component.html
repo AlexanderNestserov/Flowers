@@ -20,27 +20,28 @@
             order will
             be delivered at the right time to the right place.</p>
         <div class="container__contacts1">
-            <p class="container__street">Kalvariyskaya str., 19, room 45</p>
-            <p class="container__number">+375 29 123-45-67</p>
-            <p class="container__mail">info@flowershop.by</p>
+            <p class="container__street">{{contactsData.address}}</p>
+            <p class="container__number" *ngIf="contactsData">{{contactsData.phone}}</p>
+            <p class="container__mail" *ngIf="contactsData">{{contactsData.email}}</p>
         </div>
         <div class="container__form">
             <div class="container__title">Contact us</div>
-            <form action="" method="post">
+            <form [formGroup]='formValue'>
                 <div class="container__name">
-                    <input type="text" id="inputName" required>
+                    <input type="text" id="inputName" required formControlName="name">
                     <label class="container__input-name" for="inputName">Your name</label>
                 </div>
                 <div class="container__phone-number">
-                    <input type="number" id="inputNumber" required>
+                    <input type="number" id="inputNumber" required formControlName="phone">
                     <label class="container__input-number" for="inputNumber">Phone number</label>
                 </div>
                 <div class="container__message">
-                    <textarea type="text" id="inputMessage" required></textarea>
+                    <textarea type="text" id="inputMessage" required formControlName="textMessage"></textarea>
                     <label class="container__input-message" for="inputMessage">Text message</label>
                 </div>
             </form>
-            <button class="container__button">SEND</button>
+            <button type="submit" class="container__button" [ngClass]="{'disabled': formValue.invalid}"
+                [disabled]="formValue.invalid" (click)="postDataDetails()">SEND</button>
         </div>
     </div>
 </div>

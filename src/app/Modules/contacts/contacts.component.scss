@@ -54,7 +54,7 @@
 }
 .container__text {
     @include font(Montserrat, normal, normal, 1.8rem, 150%, 0em, $color_black);
-    margin-top: 2rem;
+    margin-top: $pt_2rem;
     margin-bottom: 4rem;
     width: 80rem;
 }
@@ -157,11 +157,127 @@ input[type="number"]:focus {
     background: $color_green;
     border-radius: 10px;
     margin-left: 9.5rem;
-    @include font(Montserrat, normal, 600, 1.5rem, 110%, 0.05em, $color_white);
+    @include font(Montserrat, normal, 600, $pw_1-5rem, 110%, 0.05em, $color_white);
 }
 .container__button:hover {
     background: $color_darkgreen;
 }
 .container__button:active {
     padding-top: 0.2rem;
+}
+.disabled {
+    background: $color_grey;
+}
+.disabled:hover {
+    background: $color_grey;
+}
+@media (max-width: 1200px) {
+    .container__img {
+        width: 80rem;
+    }
+    .container__name,
+    .container__phone-number,
+    .container__message {
+        width: 50rem;
+    }
+}
+@media (max-width: 1000px) {
+    .container__img {
+        background-position: center;
+        width: 60rem;
+        .image-map {
+            left: 28.5rem;
+        }
+    }
+    .container__text {
+        width: 60rem;
+    }
+}
+@media (max-width: 886px) {
+    .wrapper {
+        margin: 0 7.5% 3.5rem 3%;
+    }
+}
+@media (max-width: 820px) {
+    .container__name,
+    .container__phone-number,
+    .container__message {
+        width: 40rem;
+        margin-left: 4.5rem;
+    }
+    .container__button {
+        margin-left: 4.5rem;
+    }
+    .container__title {
+        padding-left: 4.5rem;
+    }
+}
+@media (max-width: 730px) {
+    .container__img {
+        width: 37.5rem;
+        .image-map {
+            left: 17.4rem;
+        }
+    }
+    .container__text {
+        width: 33.5rem;
+    }
+}
+@media (max-width: 600px) {
+    .wrapper {
+        margin: 0 7.5% 3.5rem 0;
+    }
+    .container {
+        width: 90%;
+    }
+    .container__name,
+    .container__phone-number,
+    .container__message {
+        width: 33.5rem;
+        margin-left: $pt_2rem;
+        margin-bottom: $pt_2rem;
+    }
+    .container__button {
+        margin-left: $pt_2rem;
+    }
+    .container__title {
+        padding-left: 3.5rem;
+        padding-top: 4.5rem;
+    }
+}
+@media (max-width: 450px) {
+    .wrapper {
+        margin: 7rem 0 0 0;
+    }
+    .container {
+        width: 100%;
+    }
+    .container__line {
+        margin: 0 $pt_2rem;
+    }
+    .container__path {
+        margin: $pw_1-5rem $pt_2rem $pt_2rem $pt_2rem;
+    }
+    .container__img {
+        margin-top: $pt_2rem;
+    }
+    .container__titl {
+        font-size: 3.6rem;
+        margin: 2.2rem 0 2.2rem $pt_2rem;
+    }
+    .container__text {
+        margin: 0 $pt_2rem 3.2rem $pt_2rem;
+    }
+    .container__contacts1 {
+        margin: 3.2rem $pt_2rem 5.4rem $pt_2rem;
+    }
+    .container__title {
+        font-size: 2.8rem;
+    }
+    .container__button {
+        width: 33.5rem;
+    }
+    .container__form {
+        height: 60.6rem;
+    }
 }
