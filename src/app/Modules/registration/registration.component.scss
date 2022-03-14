@@ -1,0 +1,157 @@
+@import "../../styles/_variables.scss";
+@import "../../styles/_mixins.scss";
+
+.wrapper {
+    margin: 0 5% 3.5rem 7.5%;
+}
+.container {
+    width: 56rem;
+    margin: 0 auto;
+}
+.container__lineb {
+    background: $color_darkgrey;
+    opacity: 0.2;
+    height: 1px;
+    margin: 1.6rem 6% 5.1rem 5%;
+}
+.container__logo {
+    display: flex;
+    justify-content: space-between;
+    padding-right: $pt_2rem;
+    margin-bottom: 5rem;
+}
+.container__title {
+    @include font(Montserrat, normal, 700, 3.6rem, 110%, 0em, $color_darkgrey);
+}
+.container__link {
+    padding-top: $pw_1-5rem;
+    @include font(Montserrat, normal, 400, 1.8rem, 150%, 0em, $color_pink);
+}
+.container__form {
+    width: 54rem;
+}
+.container__fullname,
+.container__email,
+.container__phone-number {
+    height: 7.6rem;
+    position: relative;
+    margin-bottom: 3rem;
+}
+.container__input-name,
+.container__input-email,
+.container__input-phone {
+    display: block;
+    position: absolute;
+    left: 2.9rem;
+    top: 2.4rem;
+    @include font(Montserrat, normal, 400, 1.8rem, 150%, 0em, $color_grey);
+    transition: 0.2s;
+}
+.container__star {
+    display: inline-block;
+    color: $color_pink;
+    padding-left: 0.5rem;
+    margin-bottom: 1rem;
+    transform: scale(2);
+}
+#inputName,
+#inputEmail,
+#inputPhone,
+#inputAddress,
+#inputInfo,
+#inputPassword,
+#inputConfirm {
+    @include font(Montserrat, normal, 400, 1.8rem, 150%, 0em, $color_darkgrey);
+    display: block;
+    width: 100%;
+    background: $color_white;
+    padding: 3.1rem 0 1.8rem 2.9rem;
+    border: 1px solid $color_lightgrey;
+    border-radius: 4px;
+}
+#inputName:focus + .container__input-name,
+#inputName:valid + .container__input-name,
+#inputEmail:focus + .container__input-email,
+#inputEmail:valid + .container__input-email,
+#inputPhone:focus + .container__input-phone,
+#inputPhone:valid + .container__input-phone {
+    font-size: 1.4rem;
+    top: 1.2rem;
+}
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+input[type="number"],
+input[type="number"]:hover,
+input[type="number"]:focus {
+    appearance: none;
+    -moz-appearance: textfield;
+}
+
+.container__map {
+    @include wihi(54rem, 39.6rem);
+    background: url("../../../assets/img-registration/Minsk.jpg") 0 0 no-repeat;
+    position: relative;
+    margin-bottom: 0.8rem;
+}
+#image-area {
+    position: absolute;
+    top: 5.3rem;
+    left: 9.45rem;
+}
+#image-arrow {
+    position: absolute;
+    top: 16.2rem;
+    left: 25.5rem;
+}
+.container__area {
+    position: absolute;
+    bottom: 2rem;
+    left: 2rem;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 8px;
+    @include wihi(18.2rem, 3.8rem);
+}
+.container__minsk {
+}
+.container__address {
+}
+.container__input-address {
+}
+.container__point {
+}
+.container__info {
+}
+.container__input-info {
+}
+.container__password {
+}
+.container__input-password {
+}
+.container__confirm {
+}
+.container__input-confirm {
+}
+.container__text {
+}
+.container__linking {
+}
+.container__button {
+}
+.container__line {
+}
+.container__lines {
+}
+.container__text1 {
+}
+.container__quick {
+}
+.container__facebook {
+}
+.container__signin {
+}
+.container__google {
+    @include font(Montserrat, normal, normal, 1.4rem, 150%, 0em, $color_darkgrey);
+    @include wihi(3rem, 3.5rem);
+}

@@ -19,14 +19,14 @@
             are really proud of the clear and well-coordinated work of our employees and are always confident that your
             order will
             be delivered at the right time to the right place.</p>
-        <div class="container__contacts1">
-            <p class="container__street">{{contactsData.address}}</p>
-            <p class="container__number" *ngIf="contactsData">{{contactsData.phone}}</p>
-            <p class="container__mail" *ngIf="contactsData">{{contactsData.email}}</p>
+        <div class="container__contacts1" *ngIf="contactsData|async as objectData">
+            <p class="container__street">{{objectData.address}}</p>
+            <p class="container__number">{{objectData.phone}}</p>
+            <p class="container__mail">{{objectData.email}}</p>
         </div>
         <div class="container__form">
             <div class="container__title">Contact us</div>
-            <form [formGroup]='formValue'>
+            <form [formGroup]='formValue' (ngSubmit)="postDataDetails()">
                 <div class="container__name">
                     <input type="text" id="inputName" required formControlName="name">
                     <label class="container__input-name" for="inputName">Your name</label>
@@ -39,9 +39,10 @@
                     <textarea type="text" id="inputMessage" required formControlName="textMessage"></textarea>
                     <label class="container__input-message" for="inputMessage">Text message</label>
                 </div>
+                <button type="submit" class="container__button" [ngClass]="{'disabled': formValue.invalid}"
+                    [disabled]="formValue.invalid">SEND</button>
             </form>
-            <button type="submit" class="container__button" [ngClass]="{'disabled': formValue.invalid}"
-                [disabled]="formValue.invalid" (click)="postDataDetails()">SEND</button>
+
         </div>
     </div>
 </div>

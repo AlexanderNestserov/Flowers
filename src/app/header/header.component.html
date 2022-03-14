@@ -33,11 +33,10 @@
                         <span class="header__quantity">10</span>
                     </a>
                 </li>
-                <li class="menu-icon icon-user"><a class="header__user icon " (click)='toggleUser($event)' routerLink=""
-                        routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"></a>
+                <li class="menu-icon icon-user"><a class="header__user icon " (click)='toggleUser($event)'></a>
                     <ul class="user" [hidden]="isMenu">
-                        <li class="user__li">
-                            <a href="">
+                        <li class="user__li" routerLink="/registration">
+                            <a routerLink="/registration" routerLinkActive="active">
                                 <span class="user__text">MY ORDERS</span>
                                 <p class="user__number"> <span class="user__numb">10</span></p>
                             </a>

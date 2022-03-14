@@ -1,5 +1,5 @@
-export class DataModel {
+export class UserContacts {
     name: string = '';
-    phone: number = 0;
-    textMessage: string = ''
+    phone: string = '';
+    text: string = ''
 }

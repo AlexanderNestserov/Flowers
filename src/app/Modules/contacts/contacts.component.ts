@@ -1,7 +1,10 @@
 import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
 import { ContactsService } from './contacts.service';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
-import { DataModel } from './contacts.model'
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { UserContacts } from './contacts.model';
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-contacts',
@@ -11,17 +14,16 @@ import { DataModel } from './contacts.model'
 })
 export class ContactsComponent implements OnInit {
 
-  contactsData: any;
+  contactsData: Observable<any> = this.api.getAdress();
   formValue: FormGroup = new FormGroup({});
-  listModelObj: DataModel = new DataModel();
+  listModelObj: UserContacts = new UserContacts();
   sendData: boolean = true;
 
 
-  constructor(private api: ContactsService, private formbuilder: FormBuilder) { }
+
+  constructor(private api: ContactsService, private formbuilder: FormBuilder, private http: HttpClient) { }
 
   ngOnInit(): void {
-    this.getFullAdress()
-
     this.formValue = this.formbuilder.group({
       name: ['', [Validators.required, Validators.maxLength(255),]],
       phone: ['', [Validators.required, Validators.pattern(/^[0-9]/)]],
@@ -40,30 +42,29 @@ export class ContactsComponent implements OnInit {
 
   }
 
+
   postDataDetails() {
     this.listModelObj.name = this.formValue.value.name;
-    this.listModelObj.phone = +this.formValue.value.phone;
-    this.listModelObj.textMessage = this.formValue.value.textMessage;
+    this.listModelObj.phone = this.formValue.value.phone;
+    this.listModelObj.text = this.formValue.value.textMessage;
+
+
 
     this.api.postData(this.listModelObj)
       .subscribe(res => {
+
         console.log(res);
+        alert(" Success");
         this.formValue.reset({
           name: '',
           phone: '',
           textMessage: ''
         });
-        if (res) {
-          alert(" Success");
-        }
-      }, error => {
-        alert("Not success");
-      })
+      }, (error) => {
+        console.log(error);
+        alert("Not Success");
+      });
+
   }
-  getFullAdress() {
-    this.api.getAdress()
-      .subscribe(res => {
-        this.contactsData = res;
-      })
-  }
+
 }

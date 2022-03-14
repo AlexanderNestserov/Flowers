@@ -1,5 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { fromEvent } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -14,6 +15,8 @@ export class HeaderComponent implements OnInit {
   isMenu = true;
   isShow = true;
   isShown = false;
+
+  constructor() { }
 
   toggleDisplay() {
     this.isShow = !this.isShow;
@@ -57,4 +60,5 @@ export class HeaderComponent implements OnInit {
       }
     }
   }
+
 }
