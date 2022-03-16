@@ -1,8 +1,10 @@
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RegistrationRoutingModule } from './registration-routing.module';
 import { RegistrationComponent } from './registration.component';
+import { HttpClientModule } from '@angular/common/http';
+import { RegistrationService } from './registration.service';
 
 @NgModule({
     declarations: [
@@ -11,7 +13,10 @@ import { RegistrationComponent } from './registration.component';
     imports: [
         CommonModule,
         FormsModule,
-        RegistrationRoutingModule
-    ]
+        RegistrationRoutingModule,
+        HttpClientModule,
+        ReactiveFormsModule
+    ],
+    providers: [RegistrationService]
 })
 export class RegistrationModule { }

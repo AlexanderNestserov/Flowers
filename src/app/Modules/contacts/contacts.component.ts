@@ -1,9 +1,8 @@
 import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
 import { ContactsService } from './contacts.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { UserContacts } from './contacts.model';
+import { ContactMeDto } from './contacts.model';
 import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
 
 
 @Component({
@@ -16,14 +15,16 @@ export class ContactsComponent implements OnInit {
 
   contactsData: Observable<any> = this.api.getAdress();
   formValue: FormGroup = new FormGroup({});
-  listModelObj: UserContacts = new UserContacts();
+  listModelObj: ContactMeDto = new ContactMeDto();
   sendData: boolean = true;
 
 
 
-  constructor(private api: ContactsService, private formbuilder: FormBuilder, private http: HttpClient) { }
+  constructor(private api: ContactsService, private formbuilder: FormBuilder) { }
 
   ngOnInit(): void {
+
+
     this.formValue = this.formbuilder.group({
       name: ['', [Validators.required, Validators.maxLength(255),]],
       phone: ['', [Validators.required, Validators.pattern(/^[0-9]/)]],
@@ -53,7 +54,7 @@ export class ContactsComponent implements OnInit {
     this.api.postData(this.listModelObj)
       .subscribe(res => {
 
-        console.log(res);
+        console.log(this.listModelObj);
         alert(" Success");
         this.formValue.reset({
           name: '',

@@ -1,6 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { fromEvent } from 'rxjs';
-import { Router } from '@angular/router';
+import { filter, fromEvent } from 'rxjs';
+import { ActivatedRoute, NavigationEnd, Router, RouterEvent } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -15,8 +15,10 @@ export class HeaderComponent implements OnInit {
   isMenu = true;
   isShow = true;
   isShown = false;
+  urlRegistration = false;
 
-  constructor() { }
+  constructor(private activatedRoute: ActivatedRoute, private router: Router) {
+  }
 
   toggleDisplay() {
     this.isShow = !this.isShow;
@@ -59,6 +61,15 @@ export class HeaderComponent implements OnInit {
         }
       }
     }
-  }
 
+    this.router.events.pipe(
+      filter((e: any) => e instanceof NavigationEnd)
+    ).subscribe((e: RouterEvent) => {
+      if (e.url === '/registration') {
+        this.urlRegistration = true
+      } else {
+        this.urlRegistration = false
+      }
+    });
+  }
 }

@@ -1,5 +1,5 @@
-export class UserContacts {
+export class ContactMeDto {
     name: string = '';
     phone: string = '';
-    text: string = ''
+    text: string = '';
 }

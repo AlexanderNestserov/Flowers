@@ -32,14 +32,37 @@
 }
 .container__fullname,
 .container__email,
-.container__phone-number {
+.container__phone-number,
+.container__password,
+.container__confirm {
     height: 7.6rem;
     position: relative;
     margin-bottom: 3rem;
 }
+.container__confirm {
+    margin-bottom: 2.5rem;
+}
+.container__address {
+    height: 7.6rem;
+    position: relative;
+    margin-bottom: 0.7rem;
+}
+.container__info {
+    height: 15.4rem;
+    position: relative;
+    margin-bottom: 0.7rem;
+}
+.container__point {
+    margin: 0.7rem 0 3rem 0;
+    @include font(Montserrat, normal, 400, 1.2rem, 150%, 0em, $color_black);
+}
 .container__input-name,
 .container__input-email,
-.container__input-phone {
+.container__input-phone,
+.container__input-address,
+.container__input-info,
+.container__input-password,
+.container__input-confirm {
     display: block;
     position: absolute;
     left: 2.9rem;
@@ -51,14 +74,13 @@
     display: inline-block;
     color: $color_pink;
     padding-left: 0.5rem;
-    margin-bottom: 1rem;
+    margin-bottom: $pb_1rem;
     transform: scale(2);
 }
 #inputName,
 #inputEmail,
 #inputPhone,
 #inputAddress,
-#inputInfo,
 #inputPassword,
 #inputConfirm {
     @include font(Montserrat, normal, 400, 1.8rem, 150%, 0em, $color_darkgrey);
@@ -69,12 +91,31 @@
     border: 1px solid $color_lightgrey;
     border-radius: 4px;
 }
+#inputInfo {
+    @include font(Montserrat, normal, 400, 1.8rem, 150%, 0em, $color_darkgrey);
+    display: block;
+    width: 100%;
+    background: $color_white;
+    padding: 3.1rem 0 1.8rem 2.9rem;
+    border: 1px solid $color_lightgrey;
+    border-radius: 4px;
+    height: 100%;
+    resize: none;
+}
 #inputName:focus + .container__input-name,
 #inputName:valid + .container__input-name,
 #inputEmail:focus + .container__input-email,
 #inputEmail:valid + .container__input-email,
 #inputPhone:focus + .container__input-phone,
-#inputPhone:valid + .container__input-phone {
+#inputPhone:valid + .container__input-phone,
+#inputAddress:focus + .container__input-address,
+#inputAddress:valid + .container__input-address,
+#inputInfo:focus + .container__input-info,
+#inputInfo:valid + .container__input-info,
+#inputPassword:focus + .container__input-password,
+#inputPassword:valid + .container__input-password,
+#inputConfirm:focus + .container__input-confirm,
+#inputConfirmvalid + .container__input-confirm {
     font-size: 1.4rem;
     top: 1.2rem;
 }
@@ -88,7 +129,6 @@ input[type="number"]:focus {
     appearance: none;
     -moz-appearance: textfield;
 }
-
 .container__map {
     @include wihi(54rem, 39.6rem);
     background: url("../../../assets/img-registration/Minsk.jpg") 0 0 no-repeat;
@@ -107,51 +147,249 @@ input[type="number"]:focus {
 }
 .container__area {
     position: absolute;
-    bottom: 2rem;
-    left: 2rem;
-    background: rgba(255, 255, 255, 0.95);
+    bottom: $pt_2rem;
+    left: $pt_2rem;
+    background: $color_white;
+    opacity: 0.95;
     border-radius: 8px;
     @include wihi(18.2rem, 3.8rem);
 }
+#image-square {
+    padding-left: 1.1rem;
+    padding-top: 0.7rem;
+}
 .container__minsk {
+    display: inline-block;
+    @include font(Montserrat, normal, 400, 1.2rem, 150%, 0em, $color_darkgrey);
+    padding-left: 0.9rem;
+    padding-top: $pb_1rem;
 }
-.container__address {
+#inputCheckbox {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
 }
-.container__input-address {
+#inputCheckbox + .container__input-checkbox {
+    display: inline-flex;
+    align-items: center;
+    user-select: none;
 }
-.container__point {
+#inputCheckbox + .container__input-checkbox:before {
+    content: "";
+    display: inline-block;
+    @include wihi($pt_2rem, $pt_2rem);
+    flex-shrink: 0;
+    flex-grow: 0;
+    border: 1px solid $color_grey;
+    border-radius: 4px;
+    margin-right: 2.6rem;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 50% 50%;
 }
-.container__info {
+#inputCheckbox:checked + .container__input-checkbox:before {
+    content: "";
+    background: url("../../../assets/img-registration/check.png") center center no-repeat;
+    @include wihi($pt_2rem, $pt_2rem);
+    display: inline-block;
+    flex-shrink: 0;
+    flex-grow: 0;
+    border: 1px solid $color_white;
+    border-radius: 4px;
+    margin-right: 2.6rem;
+    background-size: 100% 100%;
 }
-.container__input-info {
+#inputCheckbox:not(:disabled):not(:checked) + .container__input-checkbox:hover::before {
+    border-color: $color_green;
 }
-.container__password {
-}
-.container__input-password {
-}
-.container__confirm {
-}
-.container__input-confirm {
-}
-.container__text {
+.container__input-checkbox {
+    @include font(Montserrat, normal, 400, 1.8rem, 150%, 0em, $color_darkgrey);
+    position: relative;
+    top: 0.5rem;
+    margin-right: 0.4rem;
 }
 .container__linking {
+    @include font(Montserrat, normal, 400, 1.8rem, 150%, 0em, $color_pink);
+    text-decoration: underline;
+}
+.container__linking:hover {
+    @include font(Montserrat, normal, 400, 1.8rem, 150%, 0em, $color_pink);
+    text-decoration: none;
 }
 .container__button {
+    @include wihi(54rem, 5.7rem);
+    background-color: $color_green;
+    border-radius: $pb_1rem;
+    margin: 3rem 0 5.3rem 0;
+    @include font(Montserrat, normal, 600, $pw_1-5rem, 110%, 0.05em, $color_white);
+    text-transform: uppercase;
+}
+.container__button:hover {
+    background: $color_darkgreen;
+}
+.container__button:active {
+    padding-top: 0.2rem;
 }
 .container__line {
+    margin-bottom: 9rem;
 }
 .container__lines {
+    display: inline-block;
+    height: 1px;
+    width: 42%;
+    background-color: $color_darkgrey;
+    opacity: 0.2;
 }
 .container__text1 {
+    @include font(Montserrat, normal, 600, $pw_1-5rem, 110%, 0.05em, $color_darkgrey);
+    text-transform: uppercase;
+    position: relative;
+    top: 0.5rem;
+    margin: 0 1.9rem 0 1.9rem;
 }
 .container__quick {
+    margin-bottom: 4.1rem;
+    @include font(Montserrat, normal, 400, 1.8rem, 150%, 0em, $color_black);
+    padding-left: 6.4rem;
 }
 .container__facebook {
+    @include wihi(54rem, 5.7rem);
+    background-color: $color_blue;
+    border-radius: $pb_1rem;
+    margin-bottom: 2.3rem;
 }
 .container__signin {
+    display: inline-block;
+    @include font(Montserrat, normal, 600, $pw_1-5rem, 110%, 0.05em, $color_white);
+    text-transform: uppercase;
+    margin-left: 2.3rem;
+    padding-top: 0.8rem;
+}
+.container__signin-google {
+    display: inline-block;
+    @include font(Montserrat, normal, 600, $pw_1-5rem, 110%, 0.05em, $color_black);
+    text-transform: uppercase;
+    margin-left: 2.3rem;
+    padding-top: 0.8rem;
 }
 .container__google {
-    @include font(Montserrat, normal, normal, 1.4rem, 150%, 0em, $color_darkgrey);
-    @include wihi(3rem, 3.5rem);
+    @include wihi(54rem, 5.7rem);
+    background-color: $color_white;
+    border-radius: $pb_1rem;
+    border: 1px solid $color_darkwhite;
+}
+@media (max-width: 1286px) {
+    .container__lineb {
+        margin: 1.6rem 3% 5.1rem 5%;
+    }
+}
+@media (max-width: 886px) {
+    .wrapper {
+        margin: 0 0 3.5rem 2rem;
+    }
+    .container {
+        width: 40rem;
+        margin: 0 0 0 2rem;
+    }
+    .container__lineb {
+        margin: 0 12% 5.1rem 2rem;
+        width: 54rem;
+    }
+    .container__logo {
+        width: 54rem;
+    }
+    .container__line {
+        width: 54rem;
+    }
+    .container__lines {
+        width: 23rem;
+    }
+    .container__text1 {
+        margin: 0 1.9rem 0 1.9rem;
+    }
+}
+@media (max-width: 640px) {
+    .wrapper {
+        margin-bottom: 0;
+    }
+    .container {
+        width: 33.5rem;
+    }
+    .container__lineb {
+        margin: 0 0 4.3rem 2rem;
+        width: 47rem;
+    }
+    .container__logo {
+        width: 33.5rem;
+        display: block;
+        margin-bottom: 3.4rem;
+    }
+    .container__title {
+        margin-bottom: 1.9rem;
+        @include font(Montserrat, normal, 700, 2.8rem, 120%, 0em, $color_darkgrey);
+    }
+    .container__form {
+        width: 33.5rem;
+    }
+    .container__map {
+        @include wihi(33.5rem, 39.6rem);
+        background: url("../../../assets/img-registration/Minsk\ mini.jpg") 0 0 no-repeat;
+        background-position: center;
+        border-radius: $pb_1rem;
+        background-size: 100% 100%;
+    }
+    #image-area {
+        @include wihi(29rem, 21rem);
+        top: 9rem;
+        left: 3.8rem;
+    }
+    #image-arrow {
+        top: 17rem;
+        left: 15.5rem;
+    }
+    .container__button {
+        @include wihi(33.5rem, 5.7rem);
+        margin: 3rem 0 5rem 0;
+    }
+    .container__line {
+        width: 33.5rem;
+        margin-bottom: 5rem;
+    }
+    .container__lines {
+        width: 13rem;
+    }
+    .container__quick {
+        margin-bottom: 2.3rem;
+        padding-left: 0;
+    }
+    .container__facebook {
+        @include wihi(33.5rem, 5.7rem);
+    }
+    #facebook,
+    #google {
+        display: none;
+    }
+    .container__signin {
+        padding-top: 0;
+    }
+    .container__signin-google {
+        padding-top: 0;
+    }
+    .container__google {
+        @include wihi(33.5rem, 5.7rem);
+    }
+}
+@media (max-width: 530px) {
+    .container {
+        margin: 0;
+    }
+    .container__lineb {
+        margin: 0 0 4.3rem 0;
+        width: 35rem;
+    }
+}
+@media (max-width: 450px) {
+    .wrapper {
+        margin-top: 6.4rem;
+    }
 }
