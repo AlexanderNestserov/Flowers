@@ -56,6 +56,11 @@
     margin: 0.7rem 0 3rem 0;
     @include font(Montserrat, normal, 400, 1.2rem, 150%, 0em, $color_black);
 }
+.has-error {
+    border: 1px solid $color_pink;
+    border-radius: 4px;
+}
+
 .container__input-name,
 .container__input-email,
 .container__input-phone,
@@ -87,7 +92,7 @@
     display: block;
     width: 100%;
     background: $color_white;
-    padding: 3.1rem 0 1.8rem 2.9rem;
+    padding: 3.1rem 0 1.4rem 2.9rem;
     border: 1px solid $color_lightgrey;
     border-radius: 4px;
 }
@@ -109,13 +114,11 @@
 #inputPhone:focus + .container__input-phone,
 #inputPhone:valid + .container__input-phone,
 #inputAddress:focus + .container__input-address,
-#inputAddress:valid + .container__input-address,
 #inputInfo:focus + .container__input-info,
-#inputInfo:valid + .container__input-info,
 #inputPassword:focus + .container__input-password,
 #inputPassword:valid + .container__input-password,
 #inputConfirm:focus + .container__input-confirm,
-#inputConfirmvalid + .container__input-confirm {
+#inputConfirm:valid + .container__input-confirm {
     font-size: 1.4rem;
     top: 1.2rem;
 }
@@ -230,6 +233,12 @@ input[type="number"]:focus {
 .container__button:active {
     padding-top: 0.2rem;
 }
+.disabled {
+    background: $color_grey;
+}
+.disabled:hover {
+    background: $color_grey;
+}
 .container__line {
     margin-bottom: 9rem;
 }
@@ -277,6 +286,37 @@ input[type="number"]:focus {
     background-color: $color_white;
     border-radius: $pb_1rem;
     border: 1px solid $color_darkwhite;
+}
+.container__error {
+    display: inline-block;
+    @include font(Montserrat, normal, 400, 1.2rem, 150%, 0em, $color_black);
+    color: $color_red;
+    width: 20rem;
+}
+.alert-fullname {
+    position: relative;
+    left: 35rem;
+    bottom: 5rem;
+}
+.alert-email {
+    position: relative;
+    left: 37.5rem;
+    bottom: 5rem;
+}
+.alert-phone {
+    position: relative;
+    left: 31.8rem;
+    bottom: 5rem;
+}
+.alert-password {
+    position: relative;
+    left: 35rem;
+    bottom: 5rem;
+}
+.alert-confirmpassword {
+    position: relative;
+    left: 47.7rem;
+    bottom: 6.7rem;
 }
 @media (max-width: 1286px) {
     .container__lineb {

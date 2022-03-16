@@ -5,10 +5,12 @@ import { RegistrationRoutingModule } from './registration-routing.module';
 import { RegistrationComponent } from './registration.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RegistrationService } from './registration.service';
+import { ConfirmPasswordDirective } from './confirmPassword.directive';
 
 @NgModule({
     declarations: [
-        RegistrationComponent
+        RegistrationComponent,
+        ConfirmPasswordDirective
     ],
     imports: [
         CommonModule,

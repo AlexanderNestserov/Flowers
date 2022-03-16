@@ -9,12 +9,17 @@ export class RegistrationService {
 
     constructor(private http: HttpClient) { }
 
-    postData(listModelObj: RegisterUserDto): Observable<RegisterUserDto> {
-        //  const headerOptions = new HttpHeaders({
-        //    'Content-Type': '*/*'
-        //});
-
-        // let body: RegisterUserDto = { name: listModelObj.name, phone: listModelObj.phone, text: listModelObj.text };
-        return this.http.post<RegisterUserDto>(`http://172.16.16.41:15000/mail`, {})
+    postData(listModelObj: RegisterUserDto): Observable<any> {
+        let body: RegisterUserDto = {
+            firstName: listModelObj.firstName,
+            lastName: listModelObj.lastName,
+            email: listModelObj.email,
+            phone: listModelObj.phone,
+            homeAddress: listModelObj.homeAddress,
+            additionalInformation: listModelObj.additionalInformation,
+            password: listModelObj.password,
+            shippingAddress: listModelObj.shippingAddress
+        };
+        return this.http.post(`http://172.16.16.41:15000/users/registration`, body)
     }
 }

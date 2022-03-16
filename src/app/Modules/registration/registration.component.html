@@ -6,21 +6,30 @@
             <a class="container__link">Sign in</a>
         </div>
         <div class="container__form">
-            <form>
-                <div class="container__fullname">
-                    <input type="text" id="inputName" required>
+            <form [formGroup]='formValue' (ngSubmit)="postDataDetails()">
+                <div class="container__fullname" [class.has-error]="fullName.touched && fullName.invalid">
+                    <input type="text" id="inputName" required formControlName="fullName">
                     <label class="container__input-name" for="inputName">Full name<span class="container__star">*</span>
                     </label>
+                    <span class="container__error" *ngIf="fullName.touched && fullName.errors?.['required']">Full Name
+                        is required <img class="alert-fullname" src="../../../assets/img-registration/alert-circle.png"
+                            alt="alert"></span>
                 </div>
-                <div class="container__email">
-                    <input type="email" id="inputEmail" required>
+                <div class="container__email" [class.has-error]="email.touched && email.invalid">
+                    <input type="email" id="inputEmail" required formControlName="email">
                     <label class="container__input-email" for="inputEmail">Email<span
                             class="container__star">*</span></label>
+                    <span class="container__error" *ngIf="email.touched && email.errors?.['required']">Email is
+                        required <img class="alert-email"
+                            src="../../../assets/img-registration/alert-circle.png"></span>
                 </div>
-                <div class="container__phone-number">
-                    <input type="number" id="inputPhone" required>
+                <div class="container__phone-number" [class.has-error]="phone.touched && phone.invalid">
+                    <input type="number" id="inputPhone" required formControlName="phone">
                     <label class="container__input-phone" for="inputPhone">Phone number<span
                             class="container__star">*</span></label>
+                    <span class="container__error" *ngIf="phone.touched && phone.errors?.['required']">Phone number is
+                        required <img class="alert-phone"
+                            src="../../../assets/img-registration/alert-circle.png"></span>
                 </div>
                 <div class="container__map">
                     <img id="image-area" src="../../../assets/img-registration/Minsk-area.png" alt="area">
@@ -31,33 +40,51 @@
                     </div>
                 </div>
                 <div class="container__address">
-                    <input type="text" id="inputAddress" required>
-                    <label class="container__input-address" for="inputAddress">Address<span
-                            class="container__star">*</span></label>
+                    <input type="text" id="inputAddress" formControlName="homeAddress">
+                    <label class="container__input-address" for="inputAddress">Address</label>
                 </div>
                 <p class="container__point">You can enter the address manually or specify a point on the map</p>
                 <div class="container__info">
-                    <textarea type="text" id="inputInfo" required></textarea>
+                    <textarea type="text" id="inputInfo" formControlName="additionalInformation"></textarea>
                     <label class="container__input-info" for="inputInfo">Additional information</label>
                 </div>
                 <p class="container__point">Intercom, GPS coordinates or other additional information</p>
-                <div class="container__password">
-                    <input type="password" id="inputPassword" required>
+
+                <div class="container__password" [class.has-error]="password.touched && password.invalid">
+                    <input type="password" id="inputPassword" required formControlName="password">
                     <label class="container__input-password" for="inputPassword">Password<span
                             class="container__star">*</span></label>
+                    <span class="container__error" *ngIf="password.touched && password.errors?.['required']">Password is
+                        required <img class="alert-password"
+                            src="../../../assets/img-registration/alert-circle.png"></span>
                 </div>
-                <div class="container__confirm">
-                    <input type="password" id="inputConfirm" required>
-                    <label class="container__input-confirm" for="inputConfirm">Confirm password<span
-                            class="container__star">*</span></label>
+                <div class="container__confirm" [class.has-error]="confirmPassword.touched && confirmPassword.invalid">
+                    <input type="password" id="inputConfirm" required formControlName="confirmPassword">
+                    <label class="container__input-confirm" appConfirmPassword="password" for="inputConfirm">Confirm
+                        password
+                        <span class="container__star">*</span>
+                    </label>
+                    <span class="container__error"
+                        *ngIf="confirmPassword.touched && confirmPassword.errors?.['required']">Confirm Password is
+                        required
+                        <img class="alert-confirmpassword"
+                            src="../../../assets/img-registration/alert-circle.png"></span>
+                    <span class="container__error"
+                        *ngIf="formValue.errors?.['mismatch'] && (formValue.controls['confirmPassword'].dirty || formValue.controls['confirmPassword'].touched)">Password
+                        and Confirm
+                        Password does not match
+                        <img class="alert-confirmpassword"
+                            src="../../../assets/img-registration/alert-circle.png"></span>
                 </div>
+
                 <div class="container__checkbox">
-                    <input type="checkbox" id="inputCheckbox">
+                    <input type="checkbox" id="inputCheckbox" required formControlName="myCheckbox">
                     <label for="inputCheckbox" class="container__input-checkbox">I agree to the </label><a
                         class="container__linking">processing of
                         personal data</a>
                 </div>
-                <button type="submit" class="container__button">Register</button>
+                <button type="submit" class="container__button" [ngClass]="{'disabled': formValue.invalid}"
+                    [disabled]="formValue.invalid">Register</button>
             </form>
         </div>
         <div class="container__line">
