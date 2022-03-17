@@ -40,9 +40,21 @@
                     <label class="container__input-message" for="inputMessage">Text message</label>
                 </div>
                 <button type="submit" class="container__button" [ngClass]="{'disabled': formValue.invalid}"
-                    [disabled]="formValue.invalid">SEND</button>
+                    [disabled]="formValue.invalid">SEND<app-spinner></app-spinner>
+                </button>
             </form>
-
+        </div>
+        <div [@clickedDiv]="clickedDivState">
+            <div class="container__popup-exit" (click)="closeMenu()"><img src="../../../assets/img-registration/x.png"
+                    alt="close"></div>
+            <p class="container__popup-text1">Your message was sent successfully!</p>
+            <p class="container__popup-text2">We will contact you shortly!</p>
+        </div>
+        <div [@clickedErr]="clickedDivErr">
+            <div class="container__popup-exit" (click)="closeMenu()"><img src="../../../assets/img-registration/x.png"
+                    alt="close"></div>
+            <p class="container__popup-text11">An error occurred while sending the message.</p>
+            <p class="container__popup-text21">Please, try again.</p>
         </div>
     </div>
 </div>

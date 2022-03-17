@@ -1,7 +1,5 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormControl, AbstractControl } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { RegistrationService } from './registration.service';
 import { RegisterUserDto } from './registration.model';
 
@@ -20,10 +18,9 @@ export class RegistrationComponent implements OnInit {
 
   ngOnInit(): void {
 
-
     this.formValue = this.formbuilder.group({
       fullName: ['', [Validators.required, Validators.maxLength(255),]],
-      email: ['', [Validators.required, Validators.pattern(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,6}$/)]],
+      email: ['', [Validators.required, Validators.pattern(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/)]],
       phone: ['', [Validators.required, Validators.pattern(/^[0-9]/)]],
       homeAddress: ['', [Validators.maxLength(255),]],
       additionalInformation: ['', [Validators.maxLength(255),]],
@@ -34,8 +31,6 @@ export class RegistrationComponent implements OnInit {
     );
 
   }
-
-
   get fullName() {
     return this.formValue.get('fullName') as FormControl
   }
@@ -74,24 +69,27 @@ export class RegistrationComponent implements OnInit {
     this.listModelObj.additionalInformation = this.formValue.value.additionalInformation;
     this.listModelObj.password = this.formValue.value.password;
 
+    this.api.postData(this.listModelObj)
+      .subscribe({
+        next: (res) => {
+          console.log(res);
 
-    /* this.api.postData(this.listModelObj)
-       .subscribe(res => {
- 
-         console.log(this.listModelObj);
-         alert(" Success");
-         this.formValue.reset({
-           name: '',
-           phone: '',
-           textMessage: ''
-         });
-       }, (error) => {
-         console.log(error);
-         alert("Not Success");
-       });
- */
-    let a = this.listModelObj;
-    console.log(a);
+          this.formValue.reset({
+            fullName: '',
+            email: '',
+            phone: '',
+            homeAddress: '',
+            additionalInformation: '',
+            password: '',
+            confirmPassword: ''
+          });
+          alert(" Success");
+        },
+        error: (error) => {
+          console.log(error);
+          alert("Not Success");
+        }
+      });
   }
 
 }

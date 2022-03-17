@@ -114,7 +114,9 @@
 #inputPhone:focus + .container__input-phone,
 #inputPhone:valid + .container__input-phone,
 #inputAddress:focus + .container__input-address,
+#inputAddress:not(:placeholder-shown) + .container__input-address,
 #inputInfo:focus + .container__input-info,
+#inputInfo:not(:placeholder-shown) + .container__input-info,
 #inputPassword:focus + .container__input-password,
 #inputPassword:valid + .container__input-password,
 #inputConfirm:focus + .container__input-confirm,
@@ -291,7 +293,7 @@ input[type="number"]:focus {
     display: inline-block;
     @include font(Montserrat, normal, 400, 1.2rem, 150%, 0em, $color_black);
     color: $color_red;
-    width: 20rem;
+    width: 30rem;
 }
 .alert-fullname {
     position: relative;
@@ -315,8 +317,13 @@ input[type="number"]:focus {
 }
 .alert-confirmpassword {
     position: relative;
-    left: 47.7rem;
-    bottom: 6.7rem;
+    left: 29.9rem;
+    bottom: 5rem;
+}
+.alert-confirmpassword-notmatch {
+    position: relative;
+    left: 47.9rem;
+    bottom: 6.8rem;
 }
 @media (max-width: 1286px) {
     .container__lineb {

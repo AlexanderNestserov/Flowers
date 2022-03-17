@@ -40,16 +40,16 @@
                     </div>
                 </div>
                 <div class="container__address">
-                    <input type="text" id="inputAddress" formControlName="homeAddress">
+                    <input type="text" id="inputAddress" formControlName="homeAddress" placeholder=" ">
                     <label class="container__input-address" for="inputAddress">Address</label>
                 </div>
                 <p class="container__point">You can enter the address manually or specify a point on the map</p>
                 <div class="container__info">
-                    <textarea type="text" id="inputInfo" formControlName="additionalInformation"></textarea>
+                    <textarea type="text" id="inputInfo" formControlName="additionalInformation"
+                        placeholder=" "></textarea>
                     <label class="container__input-info" for="inputInfo">Additional information</label>
                 </div>
                 <p class="container__point">Intercom, GPS coordinates or other additional information</p>
-
                 <div class="container__password" [class.has-error]="password.touched && password.invalid">
                     <input type="password" id="inputPassword" required formControlName="password">
                     <label class="container__input-password" for="inputPassword">Password<span
@@ -70,13 +70,12 @@
                         <img class="alert-confirmpassword"
                             src="../../../assets/img-registration/alert-circle.png"></span>
                     <span class="container__error"
-                        *ngIf="formValue.errors?.['mismatch'] && (formValue.controls['confirmPassword'].dirty || formValue.controls['confirmPassword'].touched)">Password
+                        *ngIf="formValue.errors?.['mismatch'] && (formValue.controls['confirmPassword'].dirty || formValue.controls['confirmPassword'].touched) && !confirmPassword.errors?.['required']">Password
                         and Confirm
                         Password does not match
-                        <img class="alert-confirmpassword"
+                        <img class="alert-confirmpassword-notmatch"
                             src="../../../assets/img-registration/alert-circle.png"></span>
                 </div>
-
                 <div class="container__checkbox">
                     <input type="checkbox" id="inputCheckbox" required formControlName="myCheckbox">
                     <label for="inputCheckbox" class="container__input-checkbox">I agree to the </label><a
@@ -84,7 +83,7 @@
                         personal data</a>
                 </div>
                 <button type="submit" class="container__button" [ngClass]="{'disabled': formValue.invalid}"
-                    [disabled]="formValue.invalid">Register</button>
+                    [disabled]="formValue.invalid">Register <app-spinner></app-spinner></button>
             </form>
         </div>
         <div class="container__line">

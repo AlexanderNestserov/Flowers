@@ -171,6 +171,44 @@ input[type="number"]:focus {
 .disabled:hover {
     background: $color_grey;
 }
+.container__popup-exit {
+    position: relative;
+    top: 1.3rem;
+    left: 33.3rem;
+}
+.container__popup-exit:active {
+    top: 1.4rem;
+    left: 33.4rem;
+}
+.container__popup-text1 {
+    @include font(Montserrat, normal, 700, 2.2rem, 120%, 0em, $color_green);
+    width: 32.5rem;
+    text-align: center;
+    margin-top: 1.5rem;
+    margin-left: 2rem;
+}
+.container__popup-text2 {
+    @include font(Montserrat, normal, 700, 2.2rem, 120%, 0em, $color_green);
+    width: 32.5rem;
+    text-align: center;
+    margin-top: 2.5rem;
+    margin-left: 2rem;
+}
+.container__popup-text11 {
+    @include font(Montserrat, normal, 700, 2.2rem, 120%, 0em, $color_pink);
+    width: 32.5rem;
+    text-align: center;
+    margin-top: 1.5rem;
+    margin-left: 2rem;
+}
+.container__popup-text21 {
+    @include font(Montserrat, normal, 700, 2.2rem, 120%, 0em, $color_pink);
+    width: 32.5rem;
+    text-align: center;
+    margin-top: 2.5rem;
+    margin-left: 2rem;
+}
+
 @media (max-width: 1200px) {
     .container__img {
         width: 80rem;

@@ -13,6 +13,8 @@ export class ContactsService {
     }
     postData(listModelObj: ContactMeDto): Observable<any> {
         let body: ContactMeDto = { name: listModelObj.name, phone: listModelObj.phone, text: listModelObj.text };
-        return this.http.post(`http://172.16.16.41:15000/mail`, body)
+        return this.http.post(`http://172.16.16.41:15000/mail`, body, {
+            responseType: 'text'
+        })
     }
 }

@@ -6,6 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ContactsComponent } from './contacts.component';
 import { ContactsService } from './contacts.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SpinnerModule } from '../spinner/spinner.module';
 
 
 @NgModule({
@@ -17,8 +18,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ContactsRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SpinnerModule
   ],
-  providers: [ContactsService]
+  providers: [ContactsService
+  ]
 })
 export class ContactsModule { }
