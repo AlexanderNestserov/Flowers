@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { SpinnerComponent } from './spinner.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { SpinnerService } from './spinner.service';
-import { LoaderInterceptor } from './spinner.interceptor';
+import { LoaderInterceptor } from '../../../environments/environment';
 
 
 

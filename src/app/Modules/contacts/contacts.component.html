@@ -27,30 +27,43 @@
         <div class="container__form">
             <div class="container__title">Contact us</div>
             <form [formGroup]='formValue' (ngSubmit)="postDataDetails()">
-                <div class="container__name">
+                <div class="container__name" [class.has-error]="name.touched && name.invalid">
                     <input type="text" id="inputName" required formControlName="name">
                     <label class="container__input-name" for="inputName">Your name</label>
+                    <span class="container__error" *ngIf="name.touched && name.errors?.['required']">Your name
+                        is
+                        required
+                        <img class="alert-name" src="../../../assets/img-registration/alert-circle.png"></span>
                 </div>
-                <div class="container__phone-number">
+                <div class="container__phone-number" [class.has-error]="phone.touched && phone.invalid">
                     <input type="number" id="inputNumber" required formControlName="phone">
                     <label class="container__input-number" for="inputNumber">Phone number</label>
+                    <span class="container__error" *ngIf="phone.touched && phone.errors?.['required']">Phone number
+                        is
+                        required
+                        <img class="alert-phone-number" src="../../../assets/img-registration/alert-circle.png"></span>
                 </div>
-                <div class="container__message">
+                <div class="container__message" [class.has-error]="textMessage.touched && textMessage.invalid">
                     <textarea type="text" id="inputMessage" required formControlName="textMessage"></textarea>
                     <label class="container__input-message" for="inputMessage">Text message</label>
+                    <span class="container__error" *ngIf="textMessage.touched && textMessage.errors?.['required']">Text
+                        message
+                        is
+                        required
+                        <img class="alert-text-message" src="../../../assets/img-registration/alert-circle.png"></span>
                 </div>
                 <button type="submit" class="container__button" [ngClass]="{'disabled': formValue.invalid}"
                     [disabled]="formValue.invalid">SEND<app-spinner></app-spinner>
                 </button>
             </form>
         </div>
-        <div [@clickedDiv]="clickedDivState">
+        <div [@divTrigger]="clickedDivState">
             <div class="container__popup-exit" (click)="closeMenu()"><img src="../../../assets/img-registration/x.png"
                     alt="close"></div>
             <p class="container__popup-text1">Your message was sent successfully!</p>
             <p class="container__popup-text2">We will contact you shortly!</p>
         </div>
-        <div [@clickedErr]="clickedDivErr">
+        <div [@divTriggerError]="clickedDivErr">
             <div class="container__popup-exit" (click)="closeMenu()"><img src="../../../assets/img-registration/x.png"
                     alt="close"></div>
             <p class="container__popup-text11">An error occurred while sending the message.</p>

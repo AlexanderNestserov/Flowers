@@ -3,9 +3,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RegistrationRoutingModule } from './registration-routing.module';
 import { RegistrationComponent } from './registration.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RegistrationService } from './registration.service';
 import { SpinnerModule } from '../spinner/spinner.module';
+import { UrlInterceptor } from '../../../environments/environment';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { SpinnerModule } from '../spinner/spinner.module';
         ReactiveFormsModule,
         SpinnerModule
     ],
-    providers: [RegistrationService
+    providers: [RegistrationService,
+        { provide: HTTP_INTERCEPTORS, useClass: UrlInterceptor, multi: true },
     ]
 })
 export class RegistrationModule { }

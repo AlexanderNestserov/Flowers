@@ -2,14 +2,18 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { RegistrationService } from './registration.service';
 import { RegisterUserDto } from './registration.model';
+import { divTrigger, divTriggerError } from '../popup-success-error/popupSuccessError.animations';
 
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  animations: [divTrigger, divTriggerError]
 })
 export class RegistrationComponent implements OnInit {
+  clickedDivState = 'hide';
+  clickedDivErr = 'hide';
   formValue: FormGroup = new FormGroup({});
   listModelObj: RegisterUserDto = new RegisterUserDto();
   sendData: boolean = true;
@@ -69,27 +73,32 @@ export class RegistrationComponent implements OnInit {
     this.listModelObj.additionalInformation = this.formValue.value.additionalInformation;
     this.listModelObj.password = this.formValue.value.password;
 
+    const reset = this.formValue.reset({
+      fullName: '',
+      email: '',
+      phone: '',
+      homeAddress: '',
+      additionalInformation: '',
+      password: '',
+      confirmPassword: ''
+    });
+
     this.api.postData(this.listModelObj)
       .subscribe({
         next: (res) => {
           console.log(res);
-
-          this.formValue.reset({
-            fullName: '',
-            email: '',
-            phone: '',
-            homeAddress: '',
-            additionalInformation: '',
-            password: '',
-            confirmPassword: ''
-          });
-          alert(" Success");
+          reset;
+          this.clickedDivState = 'show';
         },
         error: (error) => {
           console.log(error);
-          alert("Not Success");
+          reset;
+          this.clickedDivErr = 'show';
         }
       });
   }
-
+  closeMenu() {
+    this.clickedDivState = 'hide';
+    this.clickedDivErr = 'hide';
+  }
 }

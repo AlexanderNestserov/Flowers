@@ -6,7 +6,7 @@ import { RegisterUserDto } from './registration.model';
 
 @Injectable()
 export class RegistrationService {
-
+    private postUrl: string = 'users/registration'
     constructor(private http: HttpClient) { }
 
     postData(listModelObj: RegisterUserDto): Observable<any> {
@@ -20,6 +20,6 @@ export class RegistrationService {
             password: listModelObj.password,
             shippingAddress: listModelObj.shippingAddress
         };
-        return this.http.post(`http://172.16.16.41:15000/users/registration`, body)
+        return this.http.post(this.postUrl, body)
     }
 }

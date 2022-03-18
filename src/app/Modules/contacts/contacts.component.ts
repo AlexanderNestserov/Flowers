@@ -3,7 +3,7 @@ import { ContactsService } from './contacts.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ContactMeDto } from './contacts.model';
 import { Observable } from 'rxjs';
-import { animate, state, style, transition, trigger } from '@angular/animations';
+import { divTrigger, divTriggerError } from '../popup-success-error/popupSuccessError.animations';
 
 
 @Component({
@@ -11,64 +11,15 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
   templateUrl: './contacts.component.html',
   styleUrls: ['./contacts.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  animations: [
-    trigger('clickedDiv', [
-      state('start', style({
-        position: 'fixed',
-        right: '1rem',
-        top: '-20rem',
-        width: '36.5rem',
-        height: '16.3rem',
-        background: 'white',
-        boxShadow: '0px 1rem 2.5rem rgba(0, 0, 0, 0.1)',
-        borderRadius: '1.6rem'
-      })),
-      state('end', style({
-        position: 'fixed',
-        right: '1rem',
-        top: '10rem',
-        width: '36.5rem',
-        height: '16.3rem',
-        background: 'white',
-        boxShadow: '0px 1rem 2.5rem rgba(0, 0, 0, 0.1)',
-        borderRadius: '1.6rem'
-      })),
-      transition('start<=>end', animate('0.5s'))
-    ]),
-    trigger('clickedErr', [
-      state('start', style({
-        position: 'fixed',
-        right: '1rem',
-        top: '-20rem',
-        width: '36.5rem',
-        height: '16.3rem',
-        background: 'white',
-        boxShadow: '0px 1rem 2.5rem rgba(0, 0, 0, 0.1)',
-        borderRadius: '1.6rem'
-      })),
-      state('end', style({
-        position: 'fixed',
-        right: '1rem',
-        top: '10rem',
-        width: '36.5rem',
-        height: '16.3rem',
-        background: 'white',
-        boxShadow: '0px 1rem 2.5rem rgba(0, 0, 0, 0.1)',
-        borderRadius: '1.6rem'
-      })),
-      transition('start<=>end', animate('0.5s'))
-    ])
-  ]
+  animations: [divTrigger, divTriggerError]
 })
 export class ContactsComponent implements OnInit {
 
-  clickedDivState = 'start';
-  clickedDivErr = 'start';
+  clickedDivState = 'hide';
+  clickedDivErr = 'hide';
   contactsData: Observable<any> = this.api.getAdress();
   formValue: FormGroup = new FormGroup({});
   listModelObj: ContactMeDto = new ContactMeDto();
-  isClose = true;
-
 
   constructor(private api: ContactsService, private formbuilder: FormBuilder) { }
 
@@ -105,18 +56,18 @@ export class ContactsComponent implements OnInit {
         next: (res) => {
           console.log(res);
           console.log(this.listModelObj);
-          this.clickedDivState = 'end';
+          this.clickedDivState = 'show';
           reset;
         },
         error: (error) => {
           console.log(error);
-          this.clickedDivErr = 'end';
+          this.clickedDivErr = 'show';
           reset;
         }
       });
   }
   closeMenu() {
-    this.clickedDivState = 'start';
-    this.clickedDivErr = 'start';
+    this.clickedDivState = 'hide';
+    this.clickedDivErr = 'hide';
   }
 }

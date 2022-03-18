@@ -60,7 +60,6 @@
     border: 1px solid $color_pink;
     border-radius: 4px;
 }
-
 .container__input-name,
 .container__input-email,
 .container__input-phone,
@@ -251,6 +250,43 @@ input[type="number"]:focus {
     background-color: $color_darkgrey;
     opacity: 0.2;
 }
+.container__popup-exit {
+    position: relative;
+    top: 1.3rem;
+    left: 33.3rem;
+}
+.container__popup-exit:active {
+    top: 1.4rem;
+    left: 33.4rem;
+}
+.container__popup-text1 {
+    @include font(Montserrat, normal, 700, 2.2rem, 120%, 0em, $color_green);
+    width: 32.5rem;
+    text-align: center;
+    margin-top: 1.5rem;
+    margin-left: 2rem;
+}
+.container__popup-text2 {
+    @include font(Montserrat, normal, 700, 2.2rem, 120%, 0em, $color_green);
+    width: 32.5rem;
+    text-align: center;
+    margin-top: 2.5rem;
+    margin-left: 2rem;
+}
+.container__popup-text11 {
+    @include font(Montserrat, normal, 700, 2.2rem, 120%, 0em, $color_pink);
+    width: 32.5rem;
+    text-align: center;
+    margin-top: 1.5rem;
+    margin-left: 2rem;
+}
+.container__popup-text21 {
+    @include font(Montserrat, normal, 700, 2.2rem, 120%, 0em, $color_pink);
+    width: 32.5rem;
+    text-align: center;
+    margin-top: 2.5rem;
+    margin-left: 2rem;
+}
 .container__text1 {
     @include font(Montserrat, normal, 600, $pw_1-5rem, 110%, 0.05em, $color_darkgrey);
     text-transform: uppercase;
@@ -424,6 +460,26 @@ input[type="number"]:focus {
     }
     .container__google {
         @include wihi(33.5rem, 5.7rem);
+    }
+    .alert-fullname {
+        left: 15rem;
+    }
+    .alert-email {
+        left: 17.5rem;
+    }
+    .alert-phone {
+        left: 11.8rem;
+    }
+    .alert-password {
+        left: 15rem;
+    }
+    .alert-confirmpassword {
+        left: 9.9rem;
+    }
+    .alert-confirmpassword-notmatch {
+        position: relative;
+        left: 27.9rem;
+        bottom: 6.8rem;
     }
 }
 @media (max-width: 530px) {
