@@ -1,11 +1,11 @@
-<div class="wrapper">
+<div class="wrapper-registration">
     <div class="container__lineb"></div>
-    <div class="container">
-        <div class="container__logo">
+    <div class="container-registration">
+        <div class="container-registration__logo">
             <p class="container__title">Registration</p>
             <a class="container__link">Sign in</a>
         </div>
-        <div class="container__form">
+        <div class="container-registration__form">
             <form [formGroup]='formValue' (ngSubmit)="postDataDetails()">
                 <div class="container__fullname" [class.has-error]="fullName.touched && fullName.invalid">
                     <input type="text" id="inputName" required formControlName="fullName">
@@ -86,7 +86,7 @@
                     [disabled]="formValue.invalid">Register <app-spinner></app-spinner></button>
             </form>
         </div>
-        <div class="container__line">
+        <div class="container-registration__line">
             <span class="container__lines">
             </span>
             <span class="container__text1">
@@ -95,12 +95,12 @@
             <span class="container__lines">
             </span>
         </div>
-        <p class="container__quick">Use accounts of other services for quick login</p>
-        <button class="container__facebook">
+        <p class="container-registration__quick">Use accounts of other services for quick login</p>
+        <button class="container-registration__facebook">
             <img id="facebook" src="../../../assets/img-registration/facebook-rect.png" alt="facebook-rect">
             <span class="container__signin">sign in with Facebook</span>
         </button>
-        <button class="container__google">
+        <button class="container-registration__google">
             <img id="google" src="../../../assets/img-registration/flat-color-icons_google.png" alt="google">
             <span class="container__signin-google">sign in with Google</span>
         </button>

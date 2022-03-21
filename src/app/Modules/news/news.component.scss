@@ -1,19 +1,44 @@
 @import "../../styles/_variables.scss";
 @import "../../styles/_mixins.scss";
 
-.wrapper {
+.wrapper-news {
     width: 100%;
     margin: 1.5rem auto 0 auto;
 }
-.container__line {
-    width: 78%;
-    margin: 0 20% 2.8rem 12%;
-    background: $color_darkgrey;
-    opacity: 0.2;
-    height: 1px;
-}
-.container__path {
-    margin: 1rem 0 3.5rem 12%;
+.container-news {
+    &__line {
+        width: 78%;
+        margin: 0 20% 2.8rem 12%;
+        background: $color_darkgrey;
+        opacity: 0.2;
+        height: 1px;
+    }
+    &__path {
+        margin: 1rem 0 3.5rem 12%;
+    }
+    &__title {
+        width: 78%;
+        margin: 4.5rem 0 2.3rem 12%;
+        background: $color_gradient;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-weight: 800;
+        font-size: 4.8rem;
+        line-height: 120%;
+    }
+    &__text {
+        margin: 1rem 0 7rem 12%;
+        width: 80rem;
+        @include font(Montserrat, normal, normal, 1.8rem, 150%, 0em, $color_black);
+    }
+    &__list {
+        width: 800px;
+        text-align: center;
+        margin: 6rem 0 3rem 12%;
+        .list__ul {
+            text-align: left;
+        }
+    }
 }
 .container__home {
     margin-right: 2.8rem;
@@ -27,21 +52,6 @@
 }
 .container__news {
     @include font(Montserrat, normal, normal, 1.4rem, 150%, 0em, $color_lightdarkgrey);
-}
-.container__titl {
-    width: 78%;
-    margin: 4.5rem 0 2.3rem 12%;
-    background: $color_gradient;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font-weight: 800;
-    font-size: 4.8rem;
-    line-height: 120%;
-}
-.container__text1 {
-    margin: 1rem 0 7rem 12%;
-    width: 80rem;
-    @include font(Montserrat, normal, normal, 1.8rem, 150%, 0em, $color_black);
 }
 .container__text {
     margin-top: 2rem;
@@ -100,36 +110,34 @@
         border: 0px solid $color_lightgrey;
     }
 }
-.list {
-    width: 800px;
-    text-align: center;
-    margin: 6rem 0 3rem 12%;
-    .list__ul {
-        text-align: left;
-    }
-}
 @media (max-width: 946px) {
-    .container__text1,
-    .container__text,
-    .list {
+    .container-news {
+        &__text,
+        &__list {
+            width: 40rem;
+        }
+    }
+    .container__text {
         width: 40rem;
     }
 }
 @media (max-width: 886px) {
-    .container__line {
-        margin: 0 20% 0 8%;
-    }
-    .container__path {
-        margin: 1rem 0 1.6rem 8%;
-    }
-    .container__titl {
-        margin: 1.6rem 0 2.2rem 8%;
-    }
-    .container__text1 {
-        margin: 2.2rem 0 4rem 8%;
-    }
-    .list {
-        margin: 4rem 0 4rem 8%;
+    .container-news {
+        &__line {
+            margin: 0 20% 0 8%;
+        }
+        &__path {
+            margin: 1rem 0 1.6rem 8%;
+        }
+        &__title {
+            margin: 1.6rem 0 2.2rem 8%;
+        }
+        &__text {
+            margin: 2.2rem 0 4rem 8%;
+        }
+        &__list {
+            margin: 4rem 0 4rem 8%;
+        }
     }
     .my-pag::ng-deep .ngx-pagination {
         margin-top: 4.6rem;
@@ -139,23 +147,25 @@
     }
 }
 @media (max-width: 500px) {
-    .container__line {
-        width: 95%;
-        margin: 0 5% 0 $pt_2rem;
-    }
-    .container__path {
-        margin: 1rem 0 1.6rem $pt_2rem;
-    }
-    .container__titl {
-        margin: 1.6rem 0 2.2rem $pt_2rem;
-    }
-    .container__text1 {
-        margin: 2.2rem 0 4rem $pt_2rem;
-        width: 33.5rem;
-    }
-    .list {
-        margin: 4rem 0 4rem $pt_2rem;
-        width: 33.5rem;
+    .container-news {
+        &__line {
+            width: 95%;
+            margin: 0 5% 0 $pt_2rem;
+        }
+        &__path {
+            margin: 1rem 0 1.6rem $pt_2rem;
+        }
+        &__title {
+            margin: 1.6rem 0 2.2rem $pt_2rem;
+        }
+        &__text {
+            margin: 2.2rem 0 4rem $pt_2rem;
+            width: 33.5rem;
+        }
+        &__list {
+            margin: 4rem 0 4rem $pt_2rem;
+            width: 33.5rem;
+        }
     }
     .my-pag::ng-deep .ngx-pagination {
         margin-top: 4.6rem;
@@ -166,7 +176,7 @@
     }
 }
 @media (max-width: 450px) {
-    .wrapper {
+    .wrapper-news {
         margin-top: 8rem;
     }
 }

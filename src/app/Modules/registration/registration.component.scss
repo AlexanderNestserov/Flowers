@@ -1,12 +1,41 @@
 @import "../../styles/_variables.scss";
 @import "../../styles/_mixins.scss";
 
-.wrapper {
+.wrapper-registration {
     margin: 0 5% 3.5rem 7.5%;
 }
-.container {
+.container-registration {
     width: 56rem;
     margin: 0 auto;
+    &__logo {
+        display: flex;
+        justify-content: space-between;
+        padding-right: $pt_2rem;
+        margin-bottom: 5rem;
+    }
+    &__form {
+        width: 54rem;
+    }
+    &__line {
+        margin-bottom: 9rem;
+    }
+    &__quick {
+        margin-bottom: 4.1rem;
+        @include font(Montserrat, normal, 400, 1.8rem, 150%, 0em, $color_black);
+        padding-left: 6.4rem;
+    }
+    &__facebook {
+        @include wihi(54rem, 5.7rem);
+        background-color: $color_blue;
+        border-radius: $pb_1rem;
+        margin-bottom: 2.3rem;
+    }
+    &__google {
+        @include wihi(54rem, 5.7rem);
+        background-color: $color_white;
+        border-radius: $pb_1rem;
+        border: 1px solid $color_darkwhite;
+    }
 }
 .container__lineb {
     background: $color_darkgrey;
@@ -14,21 +43,12 @@
     height: 1px;
     margin: 1.6rem 6% 5.1rem 5%;
 }
-.container__logo {
-    display: flex;
-    justify-content: space-between;
-    padding-right: $pt_2rem;
-    margin-bottom: 5rem;
-}
 .container__title {
     @include font(Montserrat, normal, 700, 3.6rem, 110%, 0em, $color_darkgrey);
 }
 .container__link {
     padding-top: $pw_1-5rem;
     @include font(Montserrat, normal, 400, 1.8rem, 150%, 0em, $color_pink);
-}
-.container__form {
-    width: 54rem;
 }
 .container__fullname,
 .container__email,
@@ -240,9 +260,6 @@ input[type="number"]:focus {
 .disabled:hover {
     background: $color_grey;
 }
-.container__line {
-    margin-bottom: 9rem;
-}
 .container__lines {
     display: inline-block;
     height: 1px;
@@ -294,17 +311,6 @@ input[type="number"]:focus {
     top: 0.5rem;
     margin: 0 1.9rem 0 1.9rem;
 }
-.container__quick {
-    margin-bottom: 4.1rem;
-    @include font(Montserrat, normal, 400, 1.8rem, 150%, 0em, $color_black);
-    padding-left: 6.4rem;
-}
-.container__facebook {
-    @include wihi(54rem, 5.7rem);
-    background-color: $color_blue;
-    border-radius: $pb_1rem;
-    margin-bottom: 2.3rem;
-}
 .container__signin {
     display: inline-block;
     @include font(Montserrat, normal, 600, $pw_1-5rem, 110%, 0.05em, $color_white);
@@ -318,12 +324,6 @@ input[type="number"]:focus {
     text-transform: uppercase;
     margin-left: 2.3rem;
     padding-top: 0.8rem;
-}
-.container__google {
-    @include wihi(54rem, 5.7rem);
-    background-color: $color_white;
-    border-radius: $pb_1rem;
-    border: 1px solid $color_darkwhite;
 }
 .container__error {
     display: inline-block;
@@ -367,21 +367,21 @@ input[type="number"]:focus {
     }
 }
 @media (max-width: 886px) {
-    .wrapper {
+    .wrapper-registration {
         margin: 0 0 3.5rem 2rem;
     }
-    .container {
+    .container-registration {
         width: 40rem;
         margin: 0 0 0 2rem;
+        &__logo {
+            width: 54rem;
+        }
+        &__line {
+            width: 54rem;
+        }
     }
     .container__lineb {
         margin: 0 12% 5.1rem 2rem;
-        width: 54rem;
-    }
-    .container__logo {
-        width: 54rem;
-    }
-    .container__line {
         width: 54rem;
     }
     .container__lines {
@@ -392,27 +392,41 @@ input[type="number"]:focus {
     }
 }
 @media (max-width: 640px) {
-    .wrapper {
+    .wrapper-registration {
         margin-bottom: 0;
     }
-    .container {
+    .container-registration {
         width: 33.5rem;
+        &__logo {
+            width: 33.5rem;
+            display: block;
+            margin-bottom: 3.4rem;
+        }
+        &__form {
+            width: 33.5rem;
+        }
+        &__line {
+            width: 33.5rem;
+            margin-bottom: 5rem;
+        }
+        &__quick {
+            margin-bottom: 2.3rem;
+            padding-left: 0;
+        }
+        &__facebook {
+            @include wihi(33.5rem, 5.7rem);
+        }
+        &__google {
+            @include wihi(33.5rem, 5.7rem);
+        }
     }
     .container__lineb {
         margin: 0 0 4.3rem 2rem;
         width: 47rem;
     }
-    .container__logo {
-        width: 33.5rem;
-        display: block;
-        margin-bottom: 3.4rem;
-    }
     .container__title {
         margin-bottom: 1.9rem;
         @include font(Montserrat, normal, 700, 2.8rem, 120%, 0em, $color_darkgrey);
-    }
-    .container__form {
-        width: 33.5rem;
     }
     .container__map {
         @include wihi(33.5rem, 39.6rem);
@@ -434,19 +448,8 @@ input[type="number"]:focus {
         @include wihi(33.5rem, 5.7rem);
         margin: 3rem 0 5rem 0;
     }
-    .container__line {
-        width: 33.5rem;
-        margin-bottom: 5rem;
-    }
     .container__lines {
         width: 13rem;
-    }
-    .container__quick {
-        margin-bottom: 2.3rem;
-        padding-left: 0;
-    }
-    .container__facebook {
-        @include wihi(33.5rem, 5.7rem);
     }
     #facebook,
     #google {
@@ -457,9 +460,6 @@ input[type="number"]:focus {
     }
     .container__signin-google {
         padding-top: 0;
-    }
-    .container__google {
-        @include wihi(33.5rem, 5.7rem);
     }
     .alert-fullname {
         left: 15rem;
@@ -483,7 +483,7 @@ input[type="number"]:focus {
     }
 }
 @media (max-width: 530px) {
-    .container {
+    .container-registration {
         margin: 0;
     }
     .container__lineb {
@@ -492,7 +492,7 @@ input[type="number"]:focus {
     }
 }
 @media (max-width: 450px) {
-    .wrapper {
+    .wrapper-registration {
         margin-top: 6.4rem;
     }
 }

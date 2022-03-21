@@ -1,21 +1,80 @@
 @import "../../styles/_variables.scss";
 @import "../../styles/_mixins.scss";
 
-.wrapper {
+.wrapper-aboutus {
     margin: 0 5% 0 7.5%;
 }
-.container {
+.container-aboutus {
     width: 90%;
     margin: 0 auto;
-}
-.container__line {
-    background: $color_darkgrey;
-    opacity: 0.2;
-    height: 1px;
-    margin-top: 1.6rem;
-}
-.container__path {
-    margin: 2.9rem auto;
+    &__line {
+        background: $color_darkgrey;
+        opacity: 0.2;
+        height: 1px;
+        margin-top: 1.6rem;
+    }
+    &__path {
+        margin: 2.9rem auto;
+    }
+    &__title {
+        background: $color_gradient;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-weight: 800;
+        font-size: 4.8rem;
+        line-height: 120%;
+        margin-top: 4.2rem;
+        margin-bottom: 4rem;
+    }
+    &__img1,
+    &__img2 {
+        .image-flowers {
+            width: 100%;
+            border-radius: 10px;
+        }
+    }
+    &__text-under-image {
+        @include font(Montserrat, normal, normal, 1.8rem, 150%, 0em, $color_darkgrey);
+        margin-top: 2rem;
+        margin-bottom: 5rem;
+        width: 75%;
+    }
+    &__text-description-first {
+        @include font(Montserrat, normal, normal, 1.6rem, 170%, 0em, $color_darkgrey);
+        margin-top: 3rem;
+        margin-bottom: 1.5rem;
+        width: 75%;
+    }
+
+    &__text-description-second {
+        @include font(Montserrat, normal, normal, 1.6rem, 170%, 0em, $color_darkgrey);
+        margin-bottom: 6.5rem;
+        width: 75%;
+    }
+    &__flowers {
+        display: flex;
+        justify-content: flex-start;
+        margin-bottom: 1.5rem;
+        background-color: $color_lightwhite;
+        @include wihi(100%, 38rem);
+        align-items: center;
+        .container__picture {
+            margin-left: 5rem;
+            padding-right: 1rem;
+            .image-flower {
+                @include wihi(30rem, 30rem);
+            }
+        }
+    }
+    &__figcapture {
+        @include font(Montserrat, normal, normal, 1.4rem, 150%, 0em, $color_grey);
+        margin: 3rem 0 3.5rem 0;
+    }
+    &__advantages {
+        margin-top: 8rem;
+        margin-bottom: 12rem;
+        width: 75%;
+    }
 }
 .container__home {
     margin-right: 2.6rem;
@@ -29,64 +88,6 @@
 }
 .container__aboutus {
     @include font(Montserrat, normal, normal, 1.4rem, 150%, 0em, $color_lightdarkgrey);
-}
-.container__titl {
-    background: $color_gradient;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font-weight: 800;
-    font-size: 4.8rem;
-    line-height: 120%;
-    margin-top: 4.2rem;
-    margin-bottom: 4rem;
-}
-.container__img1,
-.container__img2 {
-    .image-flowers {
-        width: 100%;
-        border-radius: 10px;
-    }
-}
-.container__text1 {
-    @include font(Montserrat, normal, normal, 1.8rem, 150%, 0em, $color_darkgrey);
-    margin-top: 2rem;
-    margin-bottom: 5rem;
-    width: 75%;
-}
-.container__flowers {
-    display: flex;
-    justify-content: flex-start;
-    margin-bottom: 1.5rem;
-    background-color: $color_lightwhite;
-    @include wihi(100%, 38rem);
-    align-items: center;
-    .container__picture {
-        margin-left: 5rem;
-        padding-right: 1rem;
-        .image-flower {
-            @include wihi(30rem, 30rem);
-        }
-    }
-}
-.container__figcapture {
-    @include font(Montserrat, normal, normal, 1.4rem, 150%, 0em, $color_grey);
-    margin: 3rem 0 3.5rem 0;
-}
-.container__text2 {
-    @include font(Montserrat, normal, normal, 1.6rem, 170%, 0em, $color_darkgrey);
-    margin-top: 3rem;
-    margin-bottom: 1.5rem;
-    width: 75%;
-}
-.container__text3 {
-    @include font(Montserrat, normal, normal, 1.6rem, 170%, 0em, $color_darkgrey);
-    margin-bottom: 6.5rem;
-    width: 75%;
-}
-.container__advantages {
-    margin-top: 8rem;
-    margin-bottom: 12rem;
-    width: 75%;
 }
 .container__title2 {
     background: $color_gradient;
@@ -109,51 +110,57 @@
     }
 }
 @media (max-width: 1410px) {
-    .container__flowers {
-        margin-bottom: 1.5rem;
-        background-color: $color_lightwhite;
-        border-radius: 10px;
-        @include wihi(100%, 38rem);
-        align-items: center;
-        .container__picture {
-            margin-left: 5rem;
-            padding-right: 1rem;
-            .image-flower {
-                @include wihi(24rem, 24rem);
+    .container-aboutus {
+        &__flowers {
+            margin-bottom: 1.5rem;
+            background-color: $color_lightwhite;
+            border-radius: 10px;
+            @include wihi(100%, 38rem);
+            align-items: center;
+            .container__picture {
+                margin-left: 5rem;
+                padding-right: 1rem;
+                .image-flower {
+                    @include wihi(24rem, 24rem);
+                }
             }
         }
     }
 }
 @media (max-width: 1190px) {
-    .container__flowers {
-        margin-bottom: 1.5rem;
-        background-color: $color_lightwhite;
-        border-radius: 10px;
-        @include wihi(100%, 25rem);
-        align-items: center;
-        .container__picture {
-            margin: 0 2rem;
-            .image-flower {
-                @include wihi(19.2rem, 19.2rem);
+    .container-aboutus {
+        &__flowers {
+            margin-bottom: 1.5rem;
+            background-color: $color_lightwhite;
+            border-radius: 10px;
+            @include wihi(100%, 25rem);
+            align-items: center;
+            .container__picture {
+                margin: 0 2rem;
+                .image-flower {
+                    @include wihi(19.2rem, 19.2rem);
+                }
             }
         }
     }
 }
 @media (max-width: 1000px) {
-    .container__text1,
-    .container__text2,
-    .container__text3 {
-        width: 100%;
-    }
-    .container__advantages {
-        width: 100%;
-    }
-    .container__flowers {
-        display: block;
-        @include wihi(33.2rem, 76.6rem);
-        text-align: center;
-        .container__picture {
-            margin-bottom: 2rem;
+    .container-aboutus {
+        &__text-under-image,
+        &__text-description-first,
+        &__text-description-second {
+            width: 100%;
+        }
+        &__flowers {
+            display: block;
+            @include wihi(33.2rem, 76.6rem);
+            text-align: center;
+            .container__picture {
+                margin-bottom: 2rem;
+            }
+        }
+        &__advantages {
+            width: 100%;
         }
     }
     .image-flower {
@@ -166,40 +173,40 @@
     }
 }
 @media (max-width: 886px) {
-    .wrapper {
+    .wrapper-aboutus {
         width: 90%;
     }
 }
 @media (max-width: 450px) {
-    .wrapper {
+    .wrapper-aboutus {
         margin-top: 8rem;
         margin-left: $pt_2rem;
     }
-    .container {
+    .container-aboutus {
         width: 100%;
-    }
-    .container__titl {
-        font-size: 3.6rem;
-        margin-top: 0.5rem;
-        margin-bottom: 2.8rem;
-    }
-    .container__path {
-        margin: 1.5rem auto;
-    }
-    .container__text1 {
-        margin-bottom: 3.4rem;
-    }
-    .container__flowers {
-        width: 33.2rem;
-        height: 76.6rem;
-        .container__picture {
-            margin-bottom: 2rem;
+        &__path {
+            margin: 1.5rem auto;
+        }
+        &__title {
+            font-size: 3.6rem;
+            margin-top: 0.5rem;
+            margin-bottom: 2.8rem;
+        }
+        &__text-under-image {
+            margin-bottom: 3.4rem;
+        }
+        &__flowers {
+            width: 33.2rem;
+            height: 76.6rem;
+            .container__picture {
+                margin-bottom: 2rem;
+            }
+        }
+        &__advantages {
+            margin-top: 4rem;
         }
     }
     .image-flower {
-        margin-top: 4rem;
-    }
-    .container__advantages {
         margin-top: 4rem;
     }
 }

@@ -1,21 +1,77 @@
 @import "../../styles/_variables.scss";
 @import "../../styles/_mixins.scss";
 
-.wrapper {
+.wrapper-contacts {
     margin: 0 5% 3.5rem 7.5%;
 }
-.container {
+.container-contacts {
     width: 90%;
     margin: 0 auto;
-}
-.container__line {
-    background: $color_darkgrey;
-    opacity: 0.2;
-    height: 1px;
-    margin-top: 1.6rem;
-}
-.container__path {
-    margin: 2.6rem auto;
+    &__line {
+        background: $color_darkgrey;
+        opacity: 0.2;
+        height: 1px;
+        margin-top: 1.6rem;
+    }
+    &__path {
+        margin: 2.6rem auto;
+    }
+    &__titl {
+        background: $color_gradient;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-weight: 800;
+        font-size: 4.8rem;
+        line-height: 120%;
+        margin-top: 6.8rem;
+        margin-bottom: 2.3rem;
+    }
+    &__img {
+        background: url("../../../assets/img-contacts/map.jpg") 0 0 no-repeat;
+        width: 100%;
+        height: 26.8rem;
+        margin-top: 4.4rem;
+        .image-map {
+            @include wihi(3rem, 3.5rem);
+            position: relative;
+            top: 11.7rem;
+            left: 54rem;
+        }
+    }
+    &__text {
+        @include font(Montserrat, normal, normal, 1.8rem, 150%, 0em, $color_black);
+        margin-top: $pt_2rem;
+        margin-bottom: 4rem;
+        width: 80rem;
+    }
+    &__contacts-data {
+        margin: 4rem 0 8.4rem 0;
+        .container__street {
+            height: 3.5rem;
+            @include font(Montserrat, normal, 700, 1.8rem, 150%, 0em, $color_black);
+            background: url("../../../assets/img-contacts/marker.png") 0 0 no-repeat;
+            background-size: 3rem 3.5rem;
+            padding-left: 4.6rem;
+            margin-bottom: 3.3rem;
+        }
+        .container__number {
+            @include font(Montserrat, normal, 400, 1.8rem, 150%, 0em, $color_black);
+            background: url("../../../assets/img-contacts/phone.png") 0 0rem no-repeat;
+            background-size: 2.4rem 2.4rem;
+            padding-left: 4.4rem;
+            margin-bottom: 1.8rem;
+        }
+        .container__mail {
+            @include font(Montserrat, normal, 400, 1.8rem, 150%, 0em, $color_black);
+            background: url("../../../assets/img-contacts/mail.png") 0 0 no-repeat;
+            background-size: 2.4rem 2.4rem;
+            padding-left: 4.4rem;
+        }
+    }
+    &__form {
+        @include wihi(100%, 70.1rem);
+        background-color: $color_lightwhite;
+    }
 }
 .container__home {
     margin-right: 2.6rem;
@@ -29,62 +85,6 @@
 }
 .container__contacts {
     @include font(Montserrat, normal, normal, 1.4rem, 150%, 0em, $color_lightdarkgrey);
-}
-.container__titl {
-    background: $color_gradient;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font-weight: 800;
-    font-size: 4.8rem;
-    line-height: 120%;
-    margin-top: 6.8rem;
-    margin-bottom: 2.3rem;
-}
-.container__img {
-    background: url("../../../assets/img-contacts/map.jpg") 0 0 no-repeat;
-    width: 100%;
-    height: 26.8rem;
-    margin-top: 4.4rem;
-    .image-map {
-        @include wihi(3rem, 3.5rem);
-        position: relative;
-        top: 11.7rem;
-        left: 54rem;
-    }
-}
-.container__text {
-    @include font(Montserrat, normal, normal, 1.8rem, 150%, 0em, $color_black);
-    margin-top: $pt_2rem;
-    margin-bottom: 4rem;
-    width: 80rem;
-}
-.container__contacts1 {
-    margin: 4rem 0 8.4rem 0;
-    .container__street {
-        height: 3.5rem;
-        @include font(Montserrat, normal, 700, 1.8rem, 150%, 0em, $color_black);
-        background: url("../../../assets/img-contacts/marker.png") 0 0 no-repeat;
-        background-size: 3rem 3.5rem;
-        padding-left: 4.6rem;
-        margin-bottom: 3.3rem;
-    }
-    .container__number {
-        @include font(Montserrat, normal, 400, 1.8rem, 150%, 0em, $color_black);
-        background: url("../../../assets/img-contacts/phone.png") 0 0rem no-repeat;
-        background-size: 2.4rem 2.4rem;
-        padding-left: 4.4rem;
-        margin-bottom: 1.8rem;
-    }
-    .container__mail {
-        @include font(Montserrat, normal, 400, 1.8rem, 150%, 0em, $color_black);
-        background: url("../../../assets/img-contacts/mail.png") 0 0 no-repeat;
-        background-size: 2.4rem 2.4rem;
-        padding-left: 4.4rem;
-    }
-}
-.container__form {
-    @include wihi(100%, 70.1rem);
-    background-color: $color_lightwhite;
 }
 .container__title {
     padding: 5.8rem 0 4rem 9.5rem;
@@ -220,43 +220,56 @@ input[type="number"]:focus {
 }
 .alert-name {
     position: relative;
-    left: 31rem;
+    left: 47rem;
     bottom: 5rem;
 }
 .alert-phone-number {
     position: relative;
-    left: 28.5rem;
+    left: 44.3rem;
     bottom: 5rem;
 }
 .alert-text-message {
     position: relative;
-    left: 29.5rem;
+    left: 45.5rem;
     bottom: 14.5rem;
 }
 @media (max-width: 1200px) {
-    .container__img {
-        width: 80rem;
+    .container-contacts {
+        &__img {
+            width: 80rem;
+        }
     }
     .container__name,
     .container__phone-number,
     .container__message {
         width: 50rem;
     }
+    .alert-name {
+        left: 31rem;
+    }
+    .alert-phone-number {
+        left: 28.3rem;
+    }
+    .alert-text-message {
+        left: 29.5rem;
+    }
 }
 @media (max-width: 1000px) {
-    .container__img {
-        background-position: center;
-        width: 60rem;
-        .image-map {
-            left: 28.5rem;
+    .container-contacts {
+        &__img {
+            background-position: center;
+            width: 60rem;
+            .image-map {
+                left: 28.5rem;
+            }
         }
-    }
-    .container__text {
-        width: 60rem;
+        &__text {
+            width: 60rem;
+        }
     }
 }
 @media (max-width: 886px) {
-    .wrapper {
+    .wrapper-contacts {
         margin: 0 7.5% 3.5rem 3%;
     }
 }
@@ -273,23 +286,34 @@ input[type="number"]:focus {
     .container__title {
         padding-left: 4.5rem;
     }
+    .alert-name {
+        left: 21rem;
+    }
+    .alert-phone-number {
+        left: 18.3rem;
+    }
+    .alert-text-message {
+        left: 19.5rem;
+    }
 }
 @media (max-width: 730px) {
-    .container__img {
-        width: 37.5rem;
-        .image-map {
-            left: 17.4rem;
+    .container-contacts {
+        &__img {
+            width: 37.5rem;
+            .image-map {
+                left: 17.4rem;
+            }
         }
-    }
-    .container__text {
-        width: 33.5rem;
+        &__text {
+            width: 33.5rem;
+        }
     }
 }
 @media (max-width: 600px) {
-    .wrapper {
+    .wrapper-contacts {
         margin: 0 7.5% 3.5rem 0;
     }
-    .container {
+    .container-contacts {
         width: 90%;
     }
     .container__name,
@@ -306,40 +330,49 @@ input[type="number"]:focus {
         padding-left: 3.5rem;
         padding-top: 4.5rem;
     }
+    .alert-name {
+        left: 15rem;
+    }
+    .alert-phone-number {
+        left: 12.3rem;
+    }
+    .alert-text-message {
+        left: 13.5rem;
+    }
 }
 @media (max-width: 450px) {
-    .wrapper {
+    .wrapper-contacts {
         margin: 7rem 0 0 0;
     }
-    .container {
+    .container-contacts {
         width: 100%;
-    }
-    .container__line {
-        margin: 0 $pt_2rem;
-    }
-    .container__path {
-        margin: $pw_1-5rem $pt_2rem $pt_2rem $pt_2rem;
-    }
-    .container__img {
-        margin-top: $pt_2rem;
-    }
-    .container__titl {
-        font-size: 3.6rem;
-        margin: 2.2rem 0 2.2rem $pt_2rem;
-    }
-    .container__text {
-        margin: 0 $pt_2rem 3.2rem $pt_2rem;
-    }
-    .container__contacts1 {
-        margin: 3.2rem $pt_2rem 5.4rem $pt_2rem;
+        &__line {
+            margin: 0 $pt_2rem;
+        }
+        &__path {
+            margin: $pw_1-5rem $pt_2rem $pt_2rem $pt_2rem;
+        }
+        &__img {
+            margin-top: $pt_2rem;
+        }
+        &__titl {
+            font-size: 3.6rem;
+            margin: 2.2rem 0 2.2rem $pt_2rem;
+        }
+        &__text {
+            margin: 0 $pt_2rem 3.2rem $pt_2rem;
+        }
+        &__contacts-data {
+            margin: 3.2rem $pt_2rem 5.4rem $pt_2rem;
+        }
+        &__form {
+            height: 60.6rem;
+        }
     }
     .container__title {
         font-size: 2.8rem;
     }
     .container__button {
         width: 33.5rem;
-    }
-    .container__form {
-        height: 60.6rem;
     }
 }

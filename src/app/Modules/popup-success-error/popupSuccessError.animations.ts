@@ -21,7 +21,8 @@ export const divTrigger = trigger('divTrigger', [
         boxShadow: '0px 1rem 2.5rem rgba(0, 0, 0, 0.1)',
         borderRadius: '1.6rem'
     })),
-    transition('hide<=>show', animate('0.5s'))
+    transition('hide=>show', animate('0.5s')),
+    transition('show=>hide', animate('0.5s'))
 ]);
 
 export const divTriggerError = trigger('divTriggerError', [

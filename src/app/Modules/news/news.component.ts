@@ -11,7 +11,7 @@ export class NewsComponent implements OnInit {
   item;
   constructor() {
     this.item = {
-      id: 1,
+      id: '',
       date: 'June 25, 2021',
       title: 'Flower delivery in Minsk',
       text: 'For several years now, our company has been delighting customers with the delivery of flowers and congratulations. We are really proud of the clear and well-coordinated work of our employees and are always confident that your order will be delivered at the right time to the right place.'

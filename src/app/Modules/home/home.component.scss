@@ -2,43 +2,45 @@
 @import "../../styles/_variables.scss";
 @import "../../styles/_mixins.scss";
 
-.wrapper {
+.wrapper-home {
     max-width: 1440px;
     margin: 0 auto;
 }
-.container__beauties {
-    @include font(Montserrat, normal, 700, 2.8rem, 120%, 0em, $color_darkgrey);
-    margin: 7rem 0 4rem 12%;
-}
-.container__button {
-    display: block;
-    @include wihi(24.4rem, 5.7rem);
-    margin: 1rem auto 10rem;
-    border: 1px solid $color_green;
-    border-radius: 10px;
-    background-color: $color_white;
-    .container__parag {
-        @include font(Montserrat, normal, 600, 1.5rem, 110%, 0.05em, $color_green);
-        text-transform: uppercase;
-        margin: 0 auto;
+.container-home {
+    &__beauties {
+        @include font(Montserrat, normal, 700, 2.8rem, 120%, 0em, $color_darkgrey);
+        margin: 7rem 0 4rem 12%;
     }
-}
-.container__button:hover {
-    border: 1px solid $color_darklightgreen;
-    .container__parag {
-        color: $color_darklightgreen;
+    &__button {
+        display: block;
+        @include wihi(24.4rem, 5.7rem);
+        margin: 1rem auto 10rem;
+        border: 1px solid $color_green;
+        border-radius: 10px;
+        background-color: $color_white;
+        .container__parag {
+            @include font(Montserrat, normal, 600, 1.5rem, 110%, 0.05em, $color_green);
+            text-transform: uppercase;
+            margin: 0 auto;
+        }
     }
-}
-.container__button:active {
-    .container__parag {
-        padding-top: 0.2rem;
+    &__button:hover {
+        border: 1px solid $color_darklightgreen;
+        .container__parag {
+            color: $color_darklightgreen;
+        }
     }
-}
-.container__information {
-    margin: 0 8% 0 12%;
-    .container__paragraph {
-        @include font(Montserrat, normal, normal, 1.6rem, 170%, 0em, $color_darkgrey);
-        margin: 1.5rem 2rem 1.5rem 0.5rem;
+    &__button:active {
+        .container__parag {
+            padding-top: 0.2rem;
+        }
+    }
+    &__information {
+        margin: 0 8% 0 12%;
+        .container__paragraph {
+            @include font(Montserrat, normal, normal, 1.6rem, 170%, 0em, $color_darkgrey);
+            margin: 1.5rem 2rem 1.5rem 0.5rem;
+        }
     }
 }
 .color {
@@ -51,17 +53,19 @@
     margin-bottom: 3.6rem;
 }
 @media (max-width: 500px) {
-    .container__beauties {
-        @include font(Montserrat, normal, 700, 2.2rem, 120%, 0em, $color_darkgrey);
-        margin: 7rem 0 4rem 5%;
-    }
-    .container__button {
-        margin: 1rem auto 5rem;
-    }
-    .container__information {
-        margin: 0 0 0 5%;
-        .container__paragraph {
-            margin-right: 5%;
+    .container-home {
+        &__beauties {
+            @include font(Montserrat, normal, 700, 2.2rem, 120%, 0em, $color_darkgrey);
+            margin: 7rem 0 4rem 5%;
+        }
+        &__button {
+            margin: 1rem auto 5rem;
+        }
+        &__information {
+            margin: 0 0 0 5%;
+            .container__paragraph {
+                margin-right: 5%;
+            }
         }
     }
 }

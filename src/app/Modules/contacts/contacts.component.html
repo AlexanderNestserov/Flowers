@@ -1,7 +1,7 @@
-<div class="wrapper">
-    <div class="container">
-        <div class="container__line"></div>
-        <div class="container__path flex justify-content-start">
+<div class="wrapper-contacts">
+    <div class="container-contacts">
+        <div class="container-contacts__line"></div>
+        <div class="container-contacts__path flex justify-content-start">
             <div class="container__home">
                 <a class="container__link" routerLink="/">Home</a>
             </div>
@@ -10,21 +10,22 @@
             </div>
             <div class="container__contacts">Contacts</div>
         </div>
-        <div class="container__img">
+        <div class="container-contacts__img">
             <img class="image-map" src="../../../assets/img-contacts/marker.png" alt="map">
         </div>
-        <div class="container__titl">Contacts</div>
-        <p class="container__text">For several years now, our company has been delighting customers with the delivery of
+        <div class="container-contacts__titl">Contacts</div>
+        <p class="container-contacts__text">For several years now, our company has been delighting customers with the
+            delivery of
             flowers and congratulations. We
             are really proud of the clear and well-coordinated work of our employees and are always confident that your
             order will
             be delivered at the right time to the right place.</p>
-        <div class="container__contacts1" *ngIf="contactsData|async as objectData">
+        <div class="container-contacts__contacts-data" *ngIf="contactsData|async as objectData">
             <p class="container__street">{{objectData.address}}</p>
             <p class="container__number">{{objectData.phone}}</p>
             <p class="container__mail">{{objectData.email}}</p>
         </div>
-        <div class="container__form">
+        <div class="container-contacts__form">
             <div class="container__title">Contact us</div>
             <form [formGroup]='formValue' (ngSubmit)="postDataDetails()">
                 <div class="container__name" [class.has-error]="name.touched && name.invalid">
@@ -43,10 +44,10 @@
                         required
                         <img class="alert-phone-number" src="../../../assets/img-registration/alert-circle.png"></span>
                 </div>
-                <div class="container__message" [class.has-error]="textMessage.touched && textMessage.invalid">
-                    <textarea type="text" id="inputMessage" required formControlName="textMessage"></textarea>
+                <div class="container__message" [class.has-error]="text.touched && text.invalid">
+                    <textarea type="text" id="inputMessage" required formControlName="text"></textarea>
                     <label class="container__input-message" for="inputMessage">Text message</label>
-                    <span class="container__error" *ngIf="textMessage.touched && textMessage.errors?.['required']">Text
+                    <span class="container__error" *ngIf="text.touched && text.errors?.['required']">Text
                         message
                         is
                         required
@@ -57,13 +58,13 @@
                 </button>
             </form>
         </div>
-        <div [@divTrigger]="clickedDivState">
+        <div [@divTrigger]="isVisible ? 'show' : 'hide'">
             <div class="container__popup-exit" (click)="closeMenu()"><img src="../../../assets/img-registration/x.png"
                     alt="close"></div>
             <p class="container__popup-text1">Your message was sent successfully!</p>
             <p class="container__popup-text2">We will contact you shortly!</p>
         </div>
-        <div [@divTriggerError]="clickedDivErr">
+        <div [@divTriggerError]="isVisibleError ? 'show' : 'hide'">
             <div class="container__popup-exit" (click)="closeMenu()"><img src="../../../assets/img-registration/x.png"
                     alt="close"></div>
             <p class="container__popup-text11">An error occurred while sending the message.</p>

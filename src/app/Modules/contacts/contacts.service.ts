@@ -16,8 +16,8 @@ export class ContactsService {
     getAdress(): Observable<any> {
         return this.http.get<any>(this.getUrl)
     }
-    postData(listModelObj: ContactMeDto): Observable<any> {
-        let body: ContactMeDto = { name: listModelObj.name, phone: listModelObj.phone, text: listModelObj.text };
+    postData(formValue: ContactMeDto): Observable<any> {
+        let body: ContactMeDto = { name: formValue.name, phone: formValue.phone, text: formValue.text };
         return this.http.post(this.postUrl, body, {
             responseType: 'text'
         })

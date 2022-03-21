@@ -25,7 +25,7 @@ export class RegistrationComponent implements OnInit {
     this.formValue = this.formbuilder.group({
       fullName: ['', [Validators.required, Validators.maxLength(255),]],
       email: ['', [Validators.required, Validators.pattern(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/)]],
-      phone: ['', [Validators.required, Validators.pattern(/^[0-9]/)]],
+      phone: ['', [Validators.required, Validators.pattern(/^[\+\][0-9]{12}$/)]],
       homeAddress: ['', [Validators.maxLength(255),]],
       additionalInformation: ['', [Validators.maxLength(255),]],
       myCheckbox: [''],
