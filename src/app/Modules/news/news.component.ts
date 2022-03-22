@@ -7,7 +7,12 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 })
 export class NewsComponent implements OnInit {
   p: number = 1;
-  collection: any[] = [];
+  collection: {
+    id: string,
+    date: string,
+    title: string,
+    text: string
+  }[] = [];
   item;
   constructor() {
     this.item = {

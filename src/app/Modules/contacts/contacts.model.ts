@@ -1,5 +1,5 @@
-export class ContactMeDto {
-    name: string = '';
-    phone: string = '';
-    text: string = '';
+export interface ContactMeDto {
+    name: string;
+    phone: string;
+    text: string;
 }

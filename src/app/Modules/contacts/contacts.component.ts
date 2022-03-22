@@ -7,6 +7,11 @@ import { mergeMap } from 'rxjs/operators';
 import { divTrigger, divTriggerError } from '../popup-success-error/popupSuccessError.animations';
 
 
+enum ClickedDivState {
+  hide = 'hide',
+  show = 'show'
+}
+
 @Component({
   selector: 'app-contacts',
   templateUrl: './contacts.component.html',
@@ -14,10 +19,12 @@ import { divTrigger, divTriggerError } from '../popup-success-error/popupSuccess
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [divTrigger, divTriggerError]
 })
-export class ContactsComponent implements OnInit {
 
-  isVisible = false;
-  isVisibleError = false;
+export class ContactsComponent implements OnInit {
+  clickedDivState: ClickedDivState = ClickedDivState.hide;
+  clickedDivStateError: ClickedDivState = ClickedDivState.hide;
+  isDisabled = false;
+
   contactsData: Observable<any> = this.api.getAdress();
   formValue: FormGroup = this.formbuilder.group({
     name: ['', [Validators.required, Validators.maxLength(255),]],
@@ -28,9 +35,7 @@ export class ContactsComponent implements OnInit {
 
   constructor(private api: ContactsService, private formbuilder: FormBuilder) { }
 
-  ngOnInit(): void {
-
-  }
+  ngOnInit(): void { }
 
   get name() {
     return this.formValue.get('name') as FormControl
@@ -44,33 +49,43 @@ export class ContactsComponent implements OnInit {
     return this.formValue.get('text') as FormControl
   }
 
+  hide() {
+    //this.clickedDivStateError = ClickedDivState.hide;
+    this.clickedDivState = ClickedDivState.hide;
+  }
+
   postDataDetails() {
+    this.isDisabled = true;
+
     this.api.postData({ ...this.formValue.value })
       .subscribe({
         next: (res) => {
+          this.clickedDivState = ClickedDivState.show;
+          setTimeout(() => {
+            this.clickedDivState = ClickedDivState.hide;
+          }
+            , 2000);
 
-          this.isVisible = true;
           this.formValue.reset();
-
-          return timer(2000).pipe(
-            mergeMap(async () => {
-
-              () => this.hide()
-            }))
-
         },
         error: (error) => {
-          this.isVisibleError = true;
+
+          this.clickedDivStateError = ClickedDivState.show;
+
+          setTimeout(() => {
+            this.hide()
+            console.log(this.hide())
+
+          }
+            , 5000);
           this.formValue.reset();
         }
       });
+    this.isDisabled = false;
   }
 
-  hide() {
-    this.isVisible = false
-  }
   closeMenu() {
-    this.isVisible = false;
-    this.isVisibleError = false;
+    this.clickedDivState = ClickedDivState.hide;
+    this.clickedDivStateError = ClickedDivState.hide;
   }
 }

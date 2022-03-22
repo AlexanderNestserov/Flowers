@@ -1,26 +1,14 @@
 import { Injectable } from "@angular/core";
 import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from "@angular/common/http";
 import { Observable } from "rxjs";
-import { finalize } from "rxjs/operators";
 
-import { SpinnerService } from '../app/Modules/spinner/spinner.service';
-
-@Injectable()
-export class LoaderInterceptor implements HttpInterceptor {
-
-  constructor(public loaderService: SpinnerService) { }
-
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    this.loaderService.show();
-    return next.handle(req).pipe(
-      finalize(() => this.loaderService.hide())
-    );
-  }
-}
 @Injectable()
 export class UrlInterceptor implements HttpInterceptor {
+
   constructor() { }
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+
+    console.log(environment.serverUrl);
     const url = req.clone({
       url: environment.serverUrl + req.url
     })
@@ -28,11 +16,15 @@ export class UrlInterceptor implements HttpInterceptor {
   }
 }
 
-export const environment = {
+export const environment: Env = {
   production: false,
   serverUrl: 'http://172.16.16.41:15000/'
-};
+}
 
+export interface Env {
+  production?: boolean,
+  serverUrl: string
+}
 
 /*
  * For easier debugging in development mode, you can import the following file

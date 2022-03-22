@@ -53,18 +53,19 @@
                         required
                         <img class="alert-text-message" src="../../../assets/img-registration/alert-circle.png"></span>
                 </div>
-                <button type="submit" class="container__button" [ngClass]="{'disabled': formValue.invalid}"
-                    [disabled]="formValue.invalid">SEND<app-spinner></app-spinner>
+                <button type="submit" class="container__button"
+                    [ngClass]="{'disabled': formValue.invalid || isDisabled}"
+                    [disabled]="formValue.invalid || isDisabled">SEND<app-spinner></app-spinner>
                 </button>
             </form>
         </div>
-        <div [@divTrigger]="isVisible ? 'show' : 'hide'">
+        <div [@divTrigger]="clickedDivState">
             <div class="container__popup-exit" (click)="closeMenu()"><img src="../../../assets/img-registration/x.png"
                     alt="close"></div>
             <p class="container__popup-text1">Your message was sent successfully!</p>
             <p class="container__popup-text2">We will contact you shortly!</p>
         </div>
-        <div [@divTriggerError]="isVisibleError ? 'show' : 'hide'">
+        <div [@divTriggerError]="clickedDivStateError">
             <div class="container__popup-exit" (click)="closeMenu()"><img src="../../../assets/img-registration/x.png"
                     alt="close"></div>
             <p class="container__popup-text11">An error occurred while sending the message.</p>

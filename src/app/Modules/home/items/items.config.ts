@@ -1,3 +1,11 @@
+export interface Item {
+    id: number,
+    imageUrl: string,
+    title: string,
+    subTitle: string,
+    price: string
+}
+
 export const ITEMS = [
     {
         id: 1,

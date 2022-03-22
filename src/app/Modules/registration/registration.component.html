@@ -7,12 +7,23 @@
         </div>
         <div class="container-registration__form">
             <form [formGroup]='formValue' (ngSubmit)="postDataDetails()">
-                <div class="container__fullname" [class.has-error]="fullName.touched && fullName.invalid">
-                    <input type="text" id="inputName" required formControlName="fullName">
-                    <label class="container__input-name" for="inputName">Full name<span class="container__star">*</span>
+                <div class="container__firstname" [class.has-error]="firstName.touched && firstName.invalid">
+                    <input type="text" id="inputFirstName" required formControlName="firstName">
+                    <label class="container__input-firstname" for="inputFirstName">First name<span
+                            class="container__star">*</span>
                     </label>
-                    <span class="container__error" *ngIf="fullName.touched && fullName.errors?.['required']">Full Name
-                        is required <img class="alert-fullname" src="../../../assets/img-registration/alert-circle.png"
+                    <span class="container__error" *ngIf="firstName.touched && firstName.errors?.['required']">First
+                        Name
+                        is required <img class="alert-firstname" src="../../../assets/img-registration/alert-circle.png"
+                            alt="alert"></span>
+                </div>
+                <div class="container__lastname" [class.has-error]="lastName.touched && lastName.invalid">
+                    <input type="text" id="inputLastName" required formControlName="lastName">
+                    <label class="container__input-lastname" for="inputLastName">Last name<span
+                            class="container__star">*</span>
+                    </label>
+                    <span class="container__error" *ngIf="lastName.touched && lastName.errors?.['required']">Last Name
+                        is required <img class="alert-lastname" src="../../../assets/img-registration/alert-circle.png"
                             alt="alert"></span>
                 </div>
                 <div class="container__email" [class.has-error]="email.touched && email.invalid">
@@ -82,8 +93,9 @@
                         class="container__linking">processing of
                         personal data</a>
                 </div>
-                <button type="submit" class="container__button" [ngClass]="{'disabled': formValue.invalid}"
-                    [disabled]="formValue.invalid">Register <app-spinner></app-spinner></button>
+                <button type="submit" class="container__button"
+                    [ngClass]="{'disabled': formValue.invalid || isDisabled}"
+                    [disabled]="formValue.invalid || isDisabled">Register <app-spinner></app-spinner></button>
             </form>
         </div>
         <div class="container-registration__line">

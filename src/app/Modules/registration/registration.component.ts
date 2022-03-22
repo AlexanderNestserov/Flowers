@@ -1,8 +1,9 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { RegistrationService } from './registration.service';
 import { RegisterUserDto } from './registration.model';
 import { divTrigger, divTriggerError } from '../popup-success-error/popupSuccessError.animations';
+import { ConfirmPassword } from './confirmPassword.component';
 
 @Component({
   selector: 'app-registration',
@@ -11,32 +12,38 @@ import { divTrigger, divTriggerError } from '../popup-success-error/popupSuccess
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [divTrigger, divTriggerError]
 })
+
+
 export class RegistrationComponent implements OnInit {
+  static passwordConfirming: ConfirmPassword;
   clickedDivState = 'hide';
   clickedDivErr = 'hide';
-  formValue: FormGroup = new FormGroup({});
-  listModelObj: RegisterUserDto = new RegisterUserDto();
-  sendData: boolean = true;
+  formValue: FormGroup = this.formbuilder.group({
+    firstName: ['', [Validators.required, Validators.maxLength(255),]],
+    lastName: ['', [Validators.required, Validators.maxLength(255),]],
+    email: ['', [Validators.required, Validators.email]],
+    phone: ['', [Validators.required, Validators.pattern(/^[\+\][0-9]{12}$/)]],
+    homeAddress: ['', [Validators.maxLength(255),]],
+    additionalInformation: ['', [Validators.maxLength(255),]],
+    myCheckbox: ['boolean'],
+    password: ['', [Validators.required, Validators.minLength(8), Validators.pattern(/^[0-9a-zA-Z]/)]],
+    confirmPassword: ['', [Validators.required, Validators.minLength(8)]],
+  }, { validator: RegistrationComponent.passwordConfirming }
+  );
+  isDisabled = false
 
-  constructor(private api: RegistrationService, private formbuilder: FormBuilder) { }
+  constructor(private api: RegistrationService, private formbuilder: FormBuilder) {
+  }
 
   ngOnInit(): void {
-
-    this.formValue = this.formbuilder.group({
-      fullName: ['', [Validators.required, Validators.maxLength(255),]],
-      email: ['', [Validators.required, Validators.pattern(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/)]],
-      phone: ['', [Validators.required, Validators.pattern(/^[\+\][0-9]{12}$/)]],
-      homeAddress: ['', [Validators.maxLength(255),]],
-      additionalInformation: ['', [Validators.maxLength(255),]],
-      myCheckbox: [''],
-      password: ['', [Validators.required, Validators.minLength(8), Validators.pattern(/^[0-9a-zA-Z]/)]],
-      confirmPassword: ['', [Validators.required, Validators.minLength(8)]],
-    }, { validator: this.passwordConfirming }
-    );
-
+    this.formValue.reset();
   }
-  get fullName() {
-    return this.formValue.get('fullName') as FormControl
+
+  get firstName() {
+    return this.formValue.get('firstName') as FormControl
+  }
+  get lastName() {
+    return this.formValue.get('lastName') as FormControl
   }
   get email() {
     return this.formValue.get('email') as FormControl
@@ -60,42 +67,20 @@ export class RegistrationComponent implements OnInit {
     return this.formValue.get('myCheckbox') as FormControl
   }
 
-  passwordConfirming(frm: FormGroup) {
-    return frm.controls['password'].value === frm.controls['confirmPassword'].value ? null : { 'mismatch': true };
-  }
-
   postDataDetails() {
-    this.listModelObj.firstName = this.formValue.value.fullName.split(' ')[0];
-    this.listModelObj.lastName = this.formValue.value.fullName.split(' ')[1];
-    this.listModelObj.email = this.formValue.value.email;
-    this.listModelObj.phone = this.formValue.value.phone;
-    this.listModelObj.homeAddress = this.formValue.value.homeAddress;
-    this.listModelObj.additionalInformation = this.formValue.value.additionalInformation;
-    this.listModelObj.password = this.formValue.value.password;
-
-    const reset = this.formValue.reset({
-      fullName: '',
-      email: '',
-      phone: '',
-      homeAddress: '',
-      additionalInformation: '',
-      password: '',
-      confirmPassword: ''
-    });
-
-    this.api.postData(this.listModelObj)
+    this.isDisabled = true
+    this.api.postData({ ...this.formValue.value })
       .subscribe({
         next: (res) => {
-          console.log(res);
-          reset;
+          this.formValue.reset();
           this.clickedDivState = 'show';
         },
         error: (error) => {
-          console.log(error);
-          reset;
+          this.formValue.reset();
           this.clickedDivErr = 'show';
         }
       });
+    this.isDisabled = false
   }
   closeMenu() {
     this.clickedDivState = 'hide';

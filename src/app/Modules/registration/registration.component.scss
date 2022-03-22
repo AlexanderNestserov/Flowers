@@ -50,7 +50,8 @@
     padding-top: $pw_1-5rem;
     @include font(Montserrat, normal, 400, 1.8rem, 150%, 0em, $color_pink);
 }
-.container__fullname,
+.container__firstname,
+.container__lastname,
 .container__email,
 .container__phone-number,
 .container__password,
@@ -80,7 +81,8 @@
     border: 1px solid $color_pink;
     border-radius: 4px;
 }
-.container__input-name,
+.container__input-firstname,
+.container__input-lastname,
 .container__input-email,
 .container__input-phone,
 .container__input-address,
@@ -101,7 +103,8 @@
     margin-bottom: $pb_1rem;
     transform: scale(2);
 }
-#inputName,
+#inputFirstName,
+#inputLastName,
 #inputEmail,
 #inputPhone,
 #inputAddress,
@@ -126,8 +129,10 @@
     height: 100%;
     resize: none;
 }
-#inputName:focus + .container__input-name,
-#inputName:valid + .container__input-name,
+#inputFirstName:focus + .container__input-firstname,
+#inputFirstName:valid + .container__input-firstname,
+#inputLastName:focus + .container__input-lastname,
+#inputLastName:valid + .container__input-lastname,
 #inputEmail:focus + .container__input-email,
 #inputEmail:valid + .container__input-email,
 #inputPhone:focus + .container__input-phone,
@@ -331,9 +336,14 @@ input[type="number"]:focus {
     color: $color_red;
     width: 30rem;
 }
-.alert-fullname {
+.alert-firstname {
     position: relative;
-    left: 35rem;
+    left: 34.5rem;
+    bottom: 5rem;
+}
+.alert-lastname {
+    position: relative;
+    left: 34.5rem;
     bottom: 5rem;
 }
 .alert-email {
@@ -461,7 +471,10 @@ input[type="number"]:focus {
     .container__signin-google {
         padding-top: 0;
     }
-    .alert-fullname {
+    .alert-firstname {
+        left: 15rem;
+    }
+    .alert-lastname {
         left: 15rem;
     }
     .alert-email {

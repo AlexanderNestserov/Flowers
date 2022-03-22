@@ -9,6 +9,8 @@ import { SpinnerModule } from '../spinner/spinner.module';
 import { UrlInterceptor } from '../../../environments/environment';
 
 
+
+
 @NgModule({
     declarations: [
         RegistrationComponent

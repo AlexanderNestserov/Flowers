@@ -13,11 +13,11 @@ export class ContactsService {
     private postUrl: string = 'mail'
     constructor(private http: HttpClient) { }
 
-    getAdress(): Observable<any> {
-        return this.http.get<any>(this.getUrl)
+    getAdress(): Observable<string | number> {
+        return this.http.get<string | number>(this.getUrl)
     }
     postData(formValue: ContactMeDto): Observable<any> {
-        let body: ContactMeDto = { name: formValue.name, phone: formValue.phone, text: formValue.text };
+        let body: ContactMeDto = { ...formValue };
         return this.http.post(this.postUrl, body, {
             responseType: 'text'
         })
