@@ -2,11 +2,12 @@
 @import "../../styles/_mixins.scss";
 
 .wrapper-contacts {
-    margin: 0 5% 3.5rem 7.5%;
+    margin: 0 auto;
+    width: 144rem;
 }
 .container-contacts {
-    width: 90%;
-    margin: 0 auto;
+    max-width: 100%;
+    margin: 0 10.5% 3.5rem 11.5%;
     &__line {
         background: $color_darkgrey;
         opacity: 0.2;
@@ -23,6 +24,7 @@
         font-weight: 800;
         font-size: 4.8rem;
         line-height: 120%;
+        margin-right: 12%;
         margin-top: 6.8rem;
         margin-bottom: 2.3rem;
     }
@@ -69,7 +71,7 @@
         }
     }
     &__form {
-        @include wihi(100%, 70.1rem);
+        @include wihi(111rem, 70.1rem);
         background-color: $color_lightwhite;
     }
 }
@@ -171,43 +173,6 @@ input[type="number"]:focus {
 .disabled:hover {
     background: $color_grey;
 }
-.container__popup-exit {
-    position: relative;
-    top: 1.3rem;
-    left: 33.3rem;
-}
-.container__popup-exit:active {
-    top: 1.4rem;
-    left: 33.4rem;
-}
-.container__popup-text1 {
-    @include font(Montserrat, normal, 700, 2.2rem, 120%, 0em, $color_green);
-    width: 32.5rem;
-    text-align: center;
-    margin-top: 1.5rem;
-    margin-left: 2rem;
-}
-.container__popup-text2 {
-    @include font(Montserrat, normal, 700, 2.2rem, 120%, 0em, $color_green);
-    width: 32.5rem;
-    text-align: center;
-    margin-top: 2.5rem;
-    margin-left: 2rem;
-}
-.container__popup-text11 {
-    @include font(Montserrat, normal, 700, 2.2rem, 120%, 0em, $color_pink);
-    width: 32.5rem;
-    text-align: center;
-    margin-top: 1.5rem;
-    margin-left: 2rem;
-}
-.container__popup-text21 {
-    @include font(Montserrat, normal, 700, 2.2rem, 120%, 0em, $color_pink);
-    width: 32.5rem;
-    text-align: center;
-    margin-top: 2.5rem;
-    margin-left: 2rem;
-}
 .has-error {
     border: 1px solid $color_pink;
     border-radius: 4px;
@@ -233,8 +198,21 @@ input[type="number"]:focus {
     left: 45.5rem;
     bottom: 14.5rem;
 }
+@media (max-width: 1460px) {
+    .wrapper-contacts {
+        width: 100%;
+    }
+}
+@media (max-width: 1290px) {
+    .container-contacts {
+        &__form {
+            @include wihi(100%, 70.1rem);
+        }
+    }
+}
 @media (max-width: 1200px) {
     .container-contacts {
+        margin: 0 12% 3.5rem 11.5%;
         &__img {
             width: 80rem;
         }
@@ -269,7 +247,7 @@ input[type="number"]:focus {
     }
 }
 @media (max-width: 886px) {
-    .wrapper-contacts {
+    .container-contacts {
         margin: 0 7.5% 3.5rem 3%;
     }
 }
@@ -341,10 +319,8 @@ input[type="number"]:focus {
     }
 }
 @media (max-width: 450px) {
-    .wrapper-contacts {
-        margin: 7rem 0 0 0;
-    }
     .container-contacts {
+        margin: 7rem 0 0 0;
         width: 100%;
         &__line {
             margin: 0 $pt_2rem;
@@ -371,6 +347,10 @@ input[type="number"]:focus {
     }
     .container__title {
         font-size: 2.8rem;
+    }
+    .container__angle,
+    .container__home {
+        margin-right: $pw_1-5rem;
     }
     .container__button {
         width: 33.5rem;

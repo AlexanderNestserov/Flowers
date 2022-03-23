@@ -7,13 +7,14 @@ import { ContactsComponent } from './contacts.component';
 import { ContactsService } from './contacts.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SpinnerModule } from '../spinner/spinner.module';
-import { UrlInterceptor } from '../../../environments/environment'
-
-
+import { UrlInterceptor } from '../../../environments/environment';
+import { PopupErrorSuccessModule } from '../popup-success-error/popupErrorSuccess.module';
+import { InputTextModule } from 'primeng/inputtext';
 
 @NgModule({
   declarations: [
     ContactsComponent
+
   ],
   imports: [
     CommonModule,
@@ -21,7 +22,9 @@ import { UrlInterceptor } from '../../../environments/environment'
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    SpinnerModule
+    SpinnerModule,
+    PopupErrorSuccessModule,
+    InputTextModule
   ],
   providers: [ContactsService,
     { provide: HTTP_INTERCEPTORS, useClass: UrlInterceptor, multi: true },

@@ -9,12 +9,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
-
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
-import { LoaderInterceptor } from './interceptors/spinner.interceptor'
-import { UrlInterceptor } from '../environments/environment'
+import { LoaderInterceptor } from './interceptors/spinner.interceptor';
+import { UrlInterceptor } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -35,9 +34,7 @@ import { UrlInterceptor } from '../environments/environment'
     BrowserAnimationsModule
   ],
   bootstrap: [AppComponent],
-  providers: [{ provide: HTTP_INTERCEPTORS, useClass: UrlInterceptor, multi: true },
-  { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true },
-  ]
+  providers: []
 
 })
 export class AppModule { }

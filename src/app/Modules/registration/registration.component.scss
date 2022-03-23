@@ -41,7 +41,8 @@
     background: $color_darkgrey;
     opacity: 0.2;
     height: 1px;
-    margin: 1.6rem 6% 5.1rem 5%;
+    width: 111rem;
+    margin: 1.6rem 0 5.1rem 15.5%;
 }
 .container__title {
     @include font(Montserrat, normal, 700, 3.6rem, 110%, 0em, $color_darkgrey);
@@ -272,43 +273,6 @@ input[type="number"]:focus {
     background-color: $color_darkgrey;
     opacity: 0.2;
 }
-.container__popup-exit {
-    position: relative;
-    top: 1.3rem;
-    left: 33.3rem;
-}
-.container__popup-exit:active {
-    top: 1.4rem;
-    left: 33.4rem;
-}
-.container__popup-text1 {
-    @include font(Montserrat, normal, 700, 2.2rem, 120%, 0em, $color_green);
-    width: 32.5rem;
-    text-align: center;
-    margin-top: 1.5rem;
-    margin-left: 2rem;
-}
-.container__popup-text2 {
-    @include font(Montserrat, normal, 700, 2.2rem, 120%, 0em, $color_green);
-    width: 32.5rem;
-    text-align: center;
-    margin-top: 2.5rem;
-    margin-left: 2rem;
-}
-.container__popup-text11 {
-    @include font(Montserrat, normal, 700, 2.2rem, 120%, 0em, $color_pink);
-    width: 32.5rem;
-    text-align: center;
-    margin-top: 1.5rem;
-    margin-left: 2rem;
-}
-.container__popup-text21 {
-    @include font(Montserrat, normal, 700, 2.2rem, 120%, 0em, $color_pink);
-    width: 32.5rem;
-    text-align: center;
-    margin-top: 2.5rem;
-    margin-left: 2rem;
-}
 .container__text1 {
     @include font(Montserrat, normal, 600, $pw_1-5rem, 110%, 0.05em, $color_darkgrey);
     text-transform: uppercase;
@@ -371,12 +335,130 @@ input[type="number"]:focus {
     left: 47.9rem;
     bottom: 6.8rem;
 }
+.container__modal {
+    @include wihi(61rem, 37rem);
+    position: fixed;
+    top: 25rem;
+    left: center;
+    background: $color_white;
+    box-shadow: 0px 1rem 2.5rem rgba(0, 0, 0, 0.1);
+    border-radius: 1.6rem;
+}
+.container__modal-container {
+    margin: 3.3rem 3rem 3rem 3.3rem;
+}
+.container__dialog {
+    display: flex;
+    justify-content: space-between;
+}
+.container__dialog-title {
+    text-transform: uppercase;
+    @include font(Montserrat, normal, 600, 1.5rem, 110%, 0.05em, $color_darkgrey);
+}
+.container__close {
+    background-color: $color_white;
+}
+.close-img {
+    @include wihi(2.4rem, 2.4rem);
+}
+.close-img:active {
+    position: relative;
+    top: 0.1rem;
+    left: 0.1rem;
+}
+.container__main-text {
+    margin-top: 3.5rem;
+    margin-bottom: 2.4rem;
+    @include font(Montserrat, normal, 700, 2.8rem, 120%, 0em, $color_darkgrey);
+}
+.container__paragraph {
+    @include font(Montserrat, normal, 400, 1.8rem, 150%, 0em, $color_darkgrey);
+    margin-bottom: 3rem;
+}
+.container__buttons {
+    text-align: right;
+}
+.container__cancel {
+    @include wihi(14.9rem, 5.7rem);
+    border: 1px solid $color_green;
+    border-radius: 10px;
+    background-color: $color_white;
+    text-transform: uppercase;
+    .button__paragraph-cancel {
+        @include font(Montserrat, normal, 600, $pw_1-5rem, 110%, 0.05em, $color_green);
+    }
+}
+.container__cancel:hover {
+    border: 1px solid $color_darklightgreen;
+    .button__paragraph-cancel {
+        color: $color_darklightgreen;
+    }
+}
+.container__cancel:active {
+    .button__paragraph-cancel {
+        padding-top: 0.2rem;
+    }
+}
+.container__action {
+    @include wihi(14.9rem, 5.7rem);
+    background-color: $color_green;
+    border-radius: $pb_1rem;
+    text-transform: uppercase;
+    margin-left: 2rem;
+    .button__paragraph-action {
+        @include font(Montserrat, normal, 600, $pw_1-5rem, 110%, 0.05em, $color_white);
+    }
+}
+.container__action:hover {
+    background: $color_darkgreen;
+}
+.container__action:active {
+    .button__paragraph-action {
+        padding-top: 0.2rem;
+    }
+}
+@media (max-width: 1800px) {
+    .container__lineb {
+        margin: 1.6rem 0 5.1rem 12%;
+    }
+}
+@media (max-width: 1640px) {
+    .container__lineb {
+        margin: 1.6rem 0 5.1rem 10%;
+    }
+}
+@media (max-width: 1550px) {
+    .container__lineb {
+        margin: 1.6rem 0 5.1rem 5.5%;
+    }
+}
 @media (max-width: 1286px) {
     .container__lineb {
+        width: 90%;
         margin: 1.6rem 3% 5.1rem 5%;
     }
 }
 @media (max-width: 886px) {
+    .container__modal {
+        @include wihi(33.5rem, 40rem);
+        top: 20rem;
+    }
+    .container__main-text {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+    }
+    .container__paragraph {
+        margin-bottom: 1rem;
+    }
+    .container__cancel {
+        @include wihi(11.9rem, 5.7rem);
+    }
+    .container__action {
+        @include wihi(11.9rem, 5.7rem);
+    }
+    .container__buttons {
+        text-align: start;
+    }
     .wrapper-registration {
         margin: 0 0 3.5rem 2rem;
     }

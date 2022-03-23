@@ -2,11 +2,12 @@
 @import "../../styles/_mixins.scss";
 
 .wrapper-aboutus {
-    margin: 0 5% 0 7.5%;
+    margin: 0 auto;
+    width: 144rem;
 }
 .container-aboutus {
-    width: 90%;
-    margin: 0 auto;
+    max-width: 100%;
+    margin: 0 10.5% 3.5rem 11.5%;
     &__line {
         background: $color_darkgrey;
         opacity: 0.2;
@@ -109,6 +110,11 @@
         background-size: 4.5rem 4.5rem;
     }
 }
+@media (max-width: 1460px) {
+    .wrapper-aboutus {
+        width: 100%;
+    }
+}
 @media (max-width: 1410px) {
     .container-aboutus {
         &__flowers {
@@ -173,21 +179,27 @@
     }
 }
 @media (max-width: 886px) {
-    .wrapper-aboutus {
+    .container-aboutus {
         width: 90%;
+        margin: 0 0 3.5rem 8%;
+    }
+}
+@media (max-width: 500px) {
+    .container-aboutus {
+        margin: 0 0 3.5rem 2rem;
     }
 }
 @media (max-width: 450px) {
     .wrapper-aboutus {
-        margin-top: 8rem;
-        margin-left: $pt_2rem;
+        margin-top: 6.4rem;
     }
     .container-aboutus {
-        width: 100%;
         &__path {
             margin: 1.5rem auto;
         }
         &__title {
+            font-weight: 700;
+            line-height: 110%;
             font-size: 3.6rem;
             margin-top: 0.5rem;
             margin-bottom: 2.8rem;
@@ -208,5 +220,9 @@
     }
     .image-flower {
         margin-top: 4rem;
+    }
+    .container__home,
+    .container__angle {
+        margin-right: $pw_1-5rem;
     }
 }

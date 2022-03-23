@@ -7,9 +7,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RegistrationService } from './registration.service';
 import { SpinnerModule } from '../spinner/spinner.module';
 import { UrlInterceptor } from '../../../environments/environment';
-
-
-
+import { PopupErrorSuccessModule } from '../popup-success-error/popupErrorSuccess.module';
 
 @NgModule({
     declarations: [
@@ -21,7 +19,8 @@ import { UrlInterceptor } from '../../../environments/environment';
         RegistrationRoutingModule,
         HttpClientModule,
         ReactiveFormsModule,
-        SpinnerModule
+        SpinnerModule,
+        PopupErrorSuccessModule
     ],
     providers: [RegistrationService,
         { provide: HTTP_INTERCEPTORS, useClass: UrlInterceptor, multi: true },

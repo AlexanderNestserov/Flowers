@@ -1,9 +1,13 @@
 import { Component, OnInit, ChangeDetectionStrategy, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { RegistrationService } from './registration.service';
-import { RegisterUserDto } from './registration.model';
 import { divTrigger, divTriggerError } from '../popup-success-error/popupSuccessError.animations';
 import { ConfirmPassword } from './confirmPassword.component';
+
+enum ClickedDivState {
+  hide = 'hide',
+  show = 'show'
+}
 
 @Component({
   selector: 'app-registration',
@@ -13,11 +17,10 @@ import { ConfirmPassword } from './confirmPassword.component';
   animations: [divTrigger, divTriggerError]
 })
 
-
 export class RegistrationComponent implements OnInit {
   static passwordConfirming: ConfirmPassword;
-  clickedDivState = 'hide';
-  clickedDivErr = 'hide';
+  clickedDivState: ClickedDivState = ClickedDivState.hide;
+  clickedDivStateError: ClickedDivState = ClickedDivState.hide;
   formValue: FormGroup = this.formbuilder.group({
     firstName: ['', [Validators.required, Validators.maxLength(255),]],
     lastName: ['', [Validators.required, Validators.maxLength(255),]],
@@ -30,7 +33,9 @@ export class RegistrationComponent implements OnInit {
     confirmPassword: ['', [Validators.required, Validators.minLength(8)]],
   }, { validator: RegistrationComponent.passwordConfirming }
   );
-  isDisabled = false
+  isDisabled = false;
+  isDialog = true;
+  isChecked = false
 
   constructor(private api: RegistrationService, private formbuilder: FormBuilder) {
   }
@@ -66,24 +71,34 @@ export class RegistrationComponent implements OnInit {
   get myCheckbox() {
     return this.formValue.get('myCheckbox') as FormControl
   }
+  dialogTitle() {
+    this.isDialog = false;
+  }
+  checked() {
+    this.isDialog = true;
+    this.isChecked = true
+  }
 
   postDataDetails() {
     this.isDisabled = true
     this.api.postData({ ...this.formValue.value })
       .subscribe({
         next: (res) => {
+          this.clickedDivState = ClickedDivState.show;
           this.formValue.reset();
-          this.clickedDivState = 'show';
         },
         error: (error) => {
+          this.clickedDivStateError = ClickedDivState.show;
           this.formValue.reset();
-          this.clickedDivErr = 'show';
         }
       });
-    this.isDisabled = false
+    this.isDisabled = false;
+    this.clickedDivState = ClickedDivState.hide;
+    this.clickedDivStateError = ClickedDivState.hide;
   }
+
   closeMenu() {
-    this.clickedDivState = 'hide';
-    this.clickedDivErr = 'hide';
+    this.clickedDivState = ClickedDivState.hide;
+    this.clickedDivStateError = ClickedDivState.hide;
   }
 }

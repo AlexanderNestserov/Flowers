@@ -1,15 +1,12 @@
 import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
 import { ContactsService } from './contacts.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ContactMeDto } from './contacts.model';
-import { Observable, timer } from 'rxjs';
-import { mergeMap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 import { divTrigger, divTriggerError } from '../popup-success-error/popupSuccessError.animations';
-
 
 enum ClickedDivState {
   hide = 'hide',
-  show = 'show'
+  show = 'show',
 }
 
 @Component({
@@ -24,14 +21,13 @@ export class ContactsComponent implements OnInit {
   clickedDivState: ClickedDivState = ClickedDivState.hide;
   clickedDivStateError: ClickedDivState = ClickedDivState.hide;
   isDisabled = false;
-
+  value1: any;
   contactsData: Observable<any> = this.api.getAdress();
   formValue: FormGroup = this.formbuilder.group({
     name: ['', [Validators.required, Validators.maxLength(255),]],
     phone: ['', [Validators.required, Validators.pattern(/^[\+\][0-9]{12}$/)]],
     text: ['', [Validators.required, Validators.maxLength(255)]]
   });
-
 
   constructor(private api: ContactsService, private formbuilder: FormBuilder) { }
 
@@ -49,43 +45,26 @@ export class ContactsComponent implements OnInit {
     return this.formValue.get('text') as FormControl
   }
 
-  hide() {
-    //this.clickedDivStateError = ClickedDivState.hide;
-    this.clickedDivState = ClickedDivState.hide;
-  }
-
   postDataDetails() {
     this.isDisabled = true;
-
     this.api.postData({ ...this.formValue.value })
       .subscribe({
         next: (res) => {
           this.clickedDivState = ClickedDivState.show;
-          setTimeout(() => {
-            this.clickedDivState = ClickedDivState.hide;
-          }
-            , 2000);
-
           this.formValue.reset();
         },
         error: (error) => {
-
           this.clickedDivStateError = ClickedDivState.show;
-
-          setTimeout(() => {
-            this.hide()
-            console.log(this.hide())
-
-          }
-            , 5000);
           this.formValue.reset();
         }
       });
     this.isDisabled = false;
-  }
-
-  closeMenu() {
     this.clickedDivState = ClickedDivState.hide;
     this.clickedDivStateError = ClickedDivState.hide;
   }
+
+  //closeMenu() {
+  //this.clickedDivState = ClickedDivState.hide;
+  // this.clickedDivStateError = ClickedDivState.hide;
+  //  }
 }

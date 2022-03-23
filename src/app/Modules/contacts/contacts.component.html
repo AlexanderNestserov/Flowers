@@ -59,17 +59,7 @@
                 </button>
             </form>
         </div>
-        <div [@divTrigger]="clickedDivState">
-            <div class="container__popup-exit" (click)="closeMenu()"><img src="../../../assets/img-registration/x.png"
-                    alt="close"></div>
-            <p class="container__popup-text1">Your message was sent successfully!</p>
-            <p class="container__popup-text2">We will contact you shortly!</p>
-        </div>
-        <div [@divTriggerError]="clickedDivStateError">
-            <div class="container__popup-exit" (click)="closeMenu()"><img src="../../../assets/img-registration/x.png"
-                    alt="close"></div>
-            <p class="container__popup-text11">An error occurred while sending the message.</p>
-            <p class="container__popup-text21">Please, try again.</p>
-        </div>
+        <app-popup [@divTrigger]="clickedDivState"></app-popup>
+        <app-popup-error [@divTriggerError]="clickedDivStateError"></app-popup-error>
     </div>
 </div>

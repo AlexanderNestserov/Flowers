@@ -88,9 +88,10 @@
                             src="../../../assets/img-registration/alert-circle.png"></span>
                 </div>
                 <div class="container__checkbox">
-                    <input type="checkbox" id="inputCheckbox" required formControlName="myCheckbox">
+                    <input type="checkbox" id="inputCheckbox" required formControlName="myCheckbox"
+                        [checked]="isChecked">
                     <label for="inputCheckbox" class="container__input-checkbox">I agree to the </label><a
-                        class="container__linking">processing of
+                        class="container__linking" (click)="dialogTitle()">processing of
                         personal data</a>
                 </div>
                 <button type="submit" class="container__button"
@@ -116,17 +117,28 @@
             <img id="google" src="../../../assets/img-registration/flat-color-icons_google.png" alt="google">
             <span class="container__signin-google">sign in with Google</span>
         </button>
-        <div [@divTrigger]="clickedDivState">
-            <div class="container__popup-exit" (click)="closeMenu()"><img src="../../../assets/img-registration/x.png"
-                    alt="close"></div>
-            <p class="container__popup-text1">Your message was sent successfully!</p>
-            <p class="container__popup-text2">We will contact you shortly!</p>
-        </div>
-        <div [@divTriggerError]="clickedDivErr">
-            <div class="container__popup-exit" (click)="closeMenu()"><img src="../../../assets/img-registration/x.png"
-                    alt="close"></div>
-            <p class="container__popup-text11">An error occurred while sending the message.</p>
-            <p class="container__popup-text21">Please, try again.</p>
+        <app-popup [@divTrigger]="clickedDivState"></app-popup>
+        <app-popup-error [@divTriggerError]="clickedDivStateError"></app-popup-error>
+        <div class="container__modal" [hidden]="isDialog">
+            <div class="container__modal-container">
+                <div class="container__dialog">
+                    <p class="container__dialog-title">Dialog title</p>
+                    <button class="container__close" (click)="isDialog=true"><img
+                            src="../../../assets/img-registration/close.png" alt="close" class="close-img"></button>
+                </div>
+                <div class="container__main-text">Main text heading</div>
+                <p class="container__paragraph">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egestas
+                    tincidunt fames tempus, tristique pellentesque quam
+                    pulvinar. Egestas ultrices mauris, sem sed velit nunc pellentesque.</p>
+                <div class="container__buttons">
+                    <button class="container__cancel" (click)="isDialog=true">
+                        <p class="button__paragraph-cancel">Cancel</p>
+                    </button>
+                    <button class="container__action" (click)="checked()">
+                        <p class="button__paragraph-action">Action</p>
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
 </div>
