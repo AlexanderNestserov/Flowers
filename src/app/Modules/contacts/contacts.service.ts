@@ -9,12 +9,12 @@ import { ContactMeDto } from './contacts.model';
     }
 )
 export class ContactsService {
-    private getUrl: string = 'contact'
+    public getUrl: string = 'contact'
     private postUrl: string = 'mail'
     constructor(private http: HttpClient) { }
 
-    getAdress(): Observable<string | number> {
-        return this.http.get<string | number>(this.getUrl)
+    getAdress(): Observable<string | number | object> {
+        return this.http.get<string | number | object>(this.getUrl)
     }
     postData(formValue: ContactMeDto): Observable<any> {
         let body: ContactMeDto = { ...formValue };

@@ -7,13 +7,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { LoaderInterceptor } from './interceptors/spinner.interceptor';
 import { UrlInterceptor } from '../environments/environment';
+import { ContactsService } from './Modules/contacts/contacts.service';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,5 @@ import { UrlInterceptor } from '../environments/environment';
   ],
   bootstrap: [AppComponent],
   providers: []
-
 })
 export class AppModule { }

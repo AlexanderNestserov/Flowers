@@ -12,6 +12,7 @@ import { PopupErrorSuccessModule } from '../popup-success-error/popupErrorSucces
 import { ErrorDirectiveModule } from 'src/app/directives/error-form/error-directive.module';
 import { ErrorFormRegistrationModule } from './error-form/error-form.module';
 
+
 @NgModule({
     declarations: [
         RegistrationComponent

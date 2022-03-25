@@ -28,9 +28,5 @@ export class NewsComponent implements OnInit {
     }
   }
   ngOnInit(): void {
-    // for (let i = 0; i < 60; i++) {
-    //  const item = Object.assign({}, this.item);
-    //  item.id = item.id + i;
-    //   this.collection.push(item);
   }
 }

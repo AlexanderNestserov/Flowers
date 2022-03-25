@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-
 const routes: Routes = [{ path: '', redirectTo: 'home', pathMatch: 'full' },
 { path: 'home', loadChildren: () => import('./Modules/home/home.module').then(m => m.HomeModule) },
 { path: 'catalog', loadChildren: () => import('./Modules/catalog/catalog.module').then(m => m.CatalogModule) },

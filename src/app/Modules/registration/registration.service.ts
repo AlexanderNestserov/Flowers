@@ -6,7 +6,7 @@ import { RegisterUserDto } from './registration.model';
 
 @Injectable()
 export class RegistrationService {
-    private postUrl: string = 'users/registration'
+    public postUrl: string = 'users/registration'
     constructor(private http: HttpClient) { }
 
     postData(formValue: RegisterUserDto): Observable<any> {

@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
     }
 )
 export class NewsService {
-    private getUrl: string = 'news'
+    public getUrl: string = 'news'
 
     constructor(private http: HttpClient) { }
 

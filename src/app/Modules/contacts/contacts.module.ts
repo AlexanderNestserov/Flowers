@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ContactsRoutingModule } from './contacts-routing.module';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { ContactsComponent } from './contacts.component';
 import { ContactsService } from './contacts.service';
@@ -19,7 +19,6 @@ import { ErrorDirectiveModule } from 'src/app/directives/error-form/error-direct
   imports: [
     CommonModule,
     ContactsRoutingModule,
-    HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
     SpinnerModule,
@@ -27,8 +26,8 @@ import { ErrorDirectiveModule } from 'src/app/directives/error-form/error-direct
     ErrorFormModule,
     ErrorDirectiveModule
   ],
-  providers: [ContactsService,
-    { provide: HTTP_INTERCEPTORS, useClass: UrlInterceptor, multi: true },
+  providers: [
+    ContactsService, { provide: HTTP_INTERCEPTORS, useClass: UrlInterceptor, multi: true },
   ]
 })
 export class ContactsModule { }

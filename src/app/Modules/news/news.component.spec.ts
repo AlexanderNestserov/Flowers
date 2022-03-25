@@ -1,10 +1,10 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { PaginatePipe } from 'ngx-pagination';
-import { PaginationService } from 'ngx-pagination';
+import { NewsService } from './news.service';
 import { BannersModule } from '../banners/banners.module';
-
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { NewsComponent } from './news.component';
 
 describe('NewsComponent', () => {
@@ -12,10 +12,9 @@ describe('NewsComponent', () => {
   let fixture: ComponentFixture<NewsComponent>;
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [NewsComponent, PaginatePipe],
-      imports: [RouterTestingModule.withRoutes([]), BannersModule],
-      providers: [PaginationService],
+    TestBed.configureTestingModule({
+      declarations: [NewsComponent],
+      imports: [RouterTestingModule.withRoutes([]), HttpClientTestingModule],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     })
       .compileComponents();
