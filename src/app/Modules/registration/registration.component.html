@@ -7,40 +7,31 @@
         </div>
         <div class="container-registration__form">
             <form [formGroup]='formValue' (ngSubmit)="postDataDetails()">
-                <div class="container__firstname" [class.has-error]="firstName.touched && firstName.invalid">
+                <div class="container__firstname" errorDirective [formControlItem]="firstName">
                     <input type="text" id="inputFirstName" required formControlName="firstName">
                     <label class="container__input-firstname" for="inputFirstName">First name<span
                             class="container__star">*</span>
                     </label>
-                    <span class="container__error" *ngIf="firstName.touched && firstName.errors?.['required']">First
-                        Name
-                        is required <img class="alert-firstname" src="../../../assets/img-registration/alert-circle.png"
-                            alt="alert"></span>
+                    <app-field-error-registration [formControlItem]="firstName"></app-field-error-registration>
                 </div>
-                <div class="container__lastname" [class.has-error]="lastName.touched && lastName.invalid">
+                <div class="container__lastname" errorDirective [formControlItem]="lastName">
                     <input type="text" id="inputLastName" required formControlName="lastName">
                     <label class="container__input-lastname" for="inputLastName">Last name<span
                             class="container__star">*</span>
                     </label>
-                    <span class="container__error" *ngIf="lastName.touched && lastName.errors?.['required']">Last Name
-                        is required <img class="alert-lastname" src="../../../assets/img-registration/alert-circle.png"
-                            alt="alert"></span>
+                    <app-field-error-registration [formControlItem]="lastName"></app-field-error-registration>
                 </div>
-                <div class="container__email" [class.has-error]="email.touched && email.invalid">
-                    <input type="email" id="inputEmail" required formControlName="email">
+                <div class="container__email" errorDirective [formControlItem]="email">
+                    <input type="text" id="inputEmail" required formControlName="email">
                     <label class="container__input-email" for="inputEmail">Email<span
                             class="container__star">*</span></label>
-                    <span class="container__error" *ngIf="email.touched && email.errors?.['required']">Email is
-                        required <img class="alert-email"
-                            src="../../../assets/img-registration/alert-circle.png"></span>
+                    <app-field-error-registration [formControlItem]="email"></app-field-error-registration>
                 </div>
-                <div class="container__phone-number" [class.has-error]="phone.touched && phone.invalid">
+                <div class="container__phone-number" errorDirective [formControlItem]="phone">
                     <input type="number" id="inputPhone" required formControlName="phone">
                     <label class="container__input-phone" for="inputPhone">Phone number<span
                             class="container__star">*</span></label>
-                    <span class="container__error" *ngIf="phone.touched && phone.errors?.['required']">Phone number is
-                        required <img class="alert-phone"
-                            src="../../../assets/img-registration/alert-circle.png"></span>
+                    <app-field-error-registration [formControlItem]="phone"></app-field-error-registration>
                 </div>
                 <div class="container__map">
                     <img id="image-area" src="../../../assets/img-registration/Minsk-area.png" alt="area">
@@ -61,33 +52,26 @@
                     <label class="container__input-info" for="inputInfo">Additional information</label>
                 </div>
                 <p class="container__point">Intercom, GPS coordinates or other additional information</p>
-                <div class="container__password" [class.has-error]="password.touched && password.invalid">
+                <div class="container__password" errorDirective [formControlItem]="password">
                     <input type="password" id="inputPassword" required formControlName="password">
                     <label class="container__input-password" for="inputPassword">Password<span
                             class="container__star">*</span></label>
-                    <span class="container__error" *ngIf="password.touched && password.errors?.['required']">Password is
-                        required <img class="alert-password"
-                            src="../../../assets/img-registration/alert-circle.png"></span>
+                    <app-field-error-registration [formControlItem]="password"></app-field-error-registration>
                 </div>
-                <div class="container__confirm" [class.has-error]="confirmPassword.touched && confirmPassword.invalid">
+                <div class="container__confirm" [class.has-error]="showError()">
                     <input type="password" id="inputConfirm" required formControlName="confirmPassword">
                     <label class="container__input-confirm" appConfirmPassword="password" for="inputConfirm">Confirm
                         password
                         <span class="container__star">*</span>
                     </label>
+                    <app-field-error-registration [formControlItem]="confirmPassword"></app-field-error-registration>
                     <span class="container__error"
-                        *ngIf="confirmPassword.touched && confirmPassword.errors?.['required']">Confirm Password is
-                        required
-                        <img class="alert-confirmpassword"
-                            src="../../../assets/img-registration/alert-circle.png"></span>
-                    <span class="container__error"
-                        *ngIf="formValue.errors?.['mismatch'] && (formValue.controls['confirmPassword'].dirty || formValue.controls['confirmPassword'].touched) && !confirmPassword.errors?.['required']">Password
-                        and Confirm
-                        Password does not match
-                        <img class="alert-confirmpassword-notmatch"
-                            src="../../../assets/img-registration/alert-circle.png"></span>
+                        *ngIf="formValue.errors?.['noMatchingPassword'] && !confirmPassword.errors?.['required'] && !confirmPassword.errors?.['minlength']">Passwords
+                        did not match</span><img class="alert-confirmpassword"
+                        *ngIf="formValue.errors?.['noMatchingPassword'] && !confirmPassword.errors?.['required'] && !confirmPassword.errors?.['minlength']"
+                        src="../../../assets/img-registration/alert-circle.png">
                 </div>
-                <div class="container__checkbox">
+                <div class=" container__checkbox">
                     <input type="checkbox" id="inputCheckbox" required formControlName="myCheckbox"
                         [checked]="isChecked">
                     <label for="inputCheckbox" class="container__input-checkbox">I agree to the </label><a

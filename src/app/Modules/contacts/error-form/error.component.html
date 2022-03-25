@@ -1,0 +1,9 @@
+<span class="container__error" *ngIf="formControlItem.touched && formControlItem.errors?.['required']">This field is
+    required</span><img class="alert-name" *ngIf="formControlItem.touched && formControlItem.errors?.['required']"
+    src="../../../../assets/img-registration/alert-circle.png">
+<span class="container__error" *ngIf="formControlItem.errors?.['minlength']">This field is too short </span><img
+    class="alert-name" *ngIf="formControlItem.touched && formControlItem.errors?.['minlength']"
+    src="../../../../assets/img-registration/alert-circle.png">
+<span class="container__error" *ngIf="formControlItem.errors?.['pattern']">Invalid value for this field </span><img
+    class="alert-name" *ngIf="formControlItem.touched && formControlItem.errors?.['pattern']"
+    src="../../../../assets/img-registration/alert-circle.png">

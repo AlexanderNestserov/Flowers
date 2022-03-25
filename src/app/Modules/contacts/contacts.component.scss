@@ -93,6 +93,7 @@
     @include font(Montserrat, normal, 700, 3.6rem, 110%, 0em, $color_darkgrey);
 }
 .container__name,
+.container__name1,
 .container__phone-number {
     @include wihi(66.5rem, 7.6rem);
     margin-left: 9.5rem;
@@ -183,16 +184,6 @@ input[type="number"]:focus {
     color: $color_red;
     width: 30rem;
 }
-.alert-name {
-    position: relative;
-    left: 47rem;
-    bottom: 5rem;
-}
-.alert-phone-number {
-    position: relative;
-    left: 44.3rem;
-    bottom: 5rem;
-}
 .alert-text-message {
     position: relative;
     left: 45.5rem;
@@ -221,12 +212,6 @@ input[type="number"]:focus {
     .container__phone-number,
     .container__message {
         width: 50rem;
-    }
-    .alert-name {
-        left: 31rem;
-    }
-    .alert-phone-number {
-        left: 28.3rem;
     }
     .alert-text-message {
         left: 29.5rem;
@@ -263,12 +248,6 @@ input[type="number"]:focus {
     }
     .container__title {
         padding-left: 4.5rem;
-    }
-    .alert-name {
-        left: 21rem;
-    }
-    .alert-phone-number {
-        left: 18.3rem;
     }
     .alert-text-message {
         left: 19.5rem;
@@ -307,12 +286,6 @@ input[type="number"]:focus {
     .container__title {
         padding-left: 3.5rem;
         padding-top: 4.5rem;
-    }
-    .alert-name {
-        left: 15rem;
-    }
-    .alert-phone-number {
-        left: 12.3rem;
     }
     .alert-text-message {
         left: 13.5rem;

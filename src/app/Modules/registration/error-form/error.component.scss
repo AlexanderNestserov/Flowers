@@ -1,0 +1,19 @@
+@import "../../../styles/_variables.scss";
+@import "../../../styles/_mixins.scss";
+
+.container__error {
+    display: inline-block;
+    @include font(Montserrat, normal, 400, 1.2rem, 150%, 0em, $color_black);
+    color: $color_red;
+    width: 30rem;
+}
+.alert-name {
+    position: relative;
+    left: 18rem;
+    bottom: 5rem;
+}
+@media (max-width: 640px) {
+    .alert-name {
+        left: -1.3rem;
+    }
+}

@@ -28,29 +28,21 @@
         <div class="container-contacts__form">
             <div class="container__title">Contact us</div>
             <form [formGroup]='formValue' (ngSubmit)="postDataDetails()">
-                <div class="container__name" [class.has-error]="name.touched && name.invalid">
+                <div class="container__name" errorDirective [formControlItem]="name">
                     <input type="text" id="inputName" required formControlName="name">
                     <label class="container__input-name" for="inputName">Your name</label>
-                    <span class="container__error" *ngIf="name.touched && name.errors?.['required']">Your name
-                        is
-                        required
-                        <img class="alert-name" src="../../../assets/img-registration/alert-circle.png"></span>
+                    <app-field-error [formControlItem]="name"></app-field-error>
                 </div>
-                <div class="container__phone-number" [class.has-error]="phone.touched && phone.invalid">
+                <div class="container__phone-number" errorDirective [formControlItem]="phone">
                     <input type="number" id="inputNumber" required formControlName="phone">
                     <label class="container__input-number" for="inputNumber">Phone number</label>
-                    <span class="container__error" *ngIf="phone.touched && phone.errors?.['required']">Phone number
-                        is
-                        required
-                        <img class="alert-phone-number" src="../../../assets/img-registration/alert-circle.png"></span>
+                    <app-field-error [formControlItem]="phone"></app-field-error>
                 </div>
-                <div class="container__message" [class.has-error]="text.touched && text.invalid">
+                <div class="container__message" errorDirective [formControlItem]="text">
                     <textarea type="text" id="inputMessage" required formControlName="text"></textarea>
                     <label class="container__input-message" for="inputMessage">Text message</label>
                     <span class="container__error" *ngIf="text.touched && text.errors?.['required']">Text
-                        message
-                        is
-                        required
+                        message is required
                         <img class="alert-text-message" src="../../../assets/img-registration/alert-circle.png"></span>
                 </div>
                 <button type="submit" class="container__button"
@@ -59,7 +51,7 @@
                 </button>
             </form>
         </div>
-        <app-popup [@divTrigger]="clickedDivState"></app-popup>
-        <app-popup-error [@divTriggerError]="clickedDivStateError"></app-popup-error>
+        <app-popup [@divTrigger]="clickedDivState" (click)="closeMenu()"></app-popup>
+        <app-popup-error [@divTriggerError]="clickedDivStateError" (click)="closeMenu()"></app-popup-error>
     </div>
 </div>

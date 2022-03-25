@@ -1,8 +1,8 @@
-import { Component, OnInit, ChangeDetectionStrategy, ViewChild } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { RegistrationService } from './registration.service';
 import { divTrigger, divTriggerError } from '../popup-success-error/popupSuccessError.animations';
-import { ConfirmPassword } from './confirmPassword.component';
+import { PasswordMatchVaildator } from './error-form/passwordmatch';
 
 enum ClickedDivState {
   hide = 'hide',
@@ -18,7 +18,6 @@ enum ClickedDivState {
 })
 
 export class RegistrationComponent implements OnInit {
-  static passwordConfirming: ConfirmPassword;
   clickedDivState: ClickedDivState = ClickedDivState.hide;
   clickedDivStateError: ClickedDivState = ClickedDivState.hide;
   formValue: FormGroup = this.formbuilder.group({
@@ -31,17 +30,22 @@ export class RegistrationComponent implements OnInit {
     myCheckbox: ['boolean'],
     password: ['', [Validators.required, Validators.minLength(8), Validators.pattern(/^[0-9a-zA-Z]/)]],
     confirmPassword: ['', [Validators.required, Validators.minLength(8)]],
-  }, { validator: RegistrationComponent.passwordConfirming }
+  }, { validators: this.passwordMatchValidator.validate }
   );
   isDisabled = false;
   isDialog = true;
   isChecked = false
 
-  constructor(private api: RegistrationService, private formbuilder: FormBuilder) {
+  constructor(private api: RegistrationService, private formbuilder: FormBuilder, private passwordMatchValidator: PasswordMatchVaildator) {
   }
 
   ngOnInit(): void {
     this.formValue.reset();
+  }
+
+  showError() {
+    const { touched, invalid, errors } = this.confirmPassword;
+    return (touched && invalid && errors) || this.formValue.errors?.['noMatchingPassword'];
   }
 
   get firstName() {

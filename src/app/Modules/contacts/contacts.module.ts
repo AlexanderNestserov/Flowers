@@ -9,12 +9,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SpinnerModule } from '../spinner/spinner.module';
 import { UrlInterceptor } from '../../../environments/environment';
 import { PopupErrorSuccessModule } from '../popup-success-error/popupErrorSuccess.module';
-import { InputTextModule } from 'primeng/inputtext';
+import { ErrorFormModule } from './error-form/error-form.module';
+import { ErrorDirectiveModule } from 'src/app/directives/error-form/error-directive.module';
 
 @NgModule({
   declarations: [
     ContactsComponent
-
   ],
   imports: [
     CommonModule,
@@ -24,7 +24,8 @@ import { InputTextModule } from 'primeng/inputtext';
     ReactiveFormsModule,
     SpinnerModule,
     PopupErrorSuccessModule,
-    InputTextModule
+    ErrorFormModule,
+    ErrorDirectiveModule
   ],
   providers: [ContactsService,
     { provide: HTTP_INTERCEPTORS, useClass: UrlInterceptor, multi: true },

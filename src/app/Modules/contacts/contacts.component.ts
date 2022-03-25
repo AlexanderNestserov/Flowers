@@ -18,6 +18,7 @@ enum ClickedDivState {
 })
 
 export class ContactsComponent implements OnInit {
+
   clickedDivState: ClickedDivState = ClickedDivState.hide;
   clickedDivStateError: ClickedDivState = ClickedDivState.hide;
   isDisabled = false;
@@ -63,8 +64,8 @@ export class ContactsComponent implements OnInit {
     this.clickedDivStateError = ClickedDivState.hide;
   }
 
-  //closeMenu() {
-  //this.clickedDivState = ClickedDivState.hide;
-  // this.clickedDivStateError = ClickedDivState.hide;
-  //  }
+  closeMenu() {
+    this.clickedDivState = ClickedDivState.hide;
+    this.clickedDivStateError = ClickedDivState.hide;
+  }
 }
