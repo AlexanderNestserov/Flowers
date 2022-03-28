@@ -10,7 +10,7 @@ import { ContactMeDto } from './contacts.model';
 )
 export class ContactsService {
     public getUrl: string = 'contact'
-    private postUrl: string = 'mail'
+    public postUrl: string = 'mail'
     constructor(private http: HttpClient) { }
 
     getAdress(): Observable<string | number | object> {

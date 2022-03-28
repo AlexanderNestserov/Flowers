@@ -4,6 +4,8 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { UrlInterceptor } from 'src/environments/environment';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { environment } from '../../../environments/environment';
+import { ContactMeDto } from './contacts.model';
+import { HttpResponse } from "@angular/common/http";
 
 describe('ContactsService', () => {
     let service: ContactsService;
@@ -24,7 +26,7 @@ describe('ContactsService', () => {
     });
 
     describe('#getAddress', () => {
-        let Address: any;
+        let Address: Object;
 
         beforeEach(() => {
 
@@ -45,17 +47,29 @@ describe('ContactsService', () => {
             expect(req.request.method).toEqual('GET');
             req.flush(Address);
         })));
-
-
         it('should add an Url', () => {
             service.getAdress().subscribe(response => {
                 expect(response).toBeTruthy();
             });
-
             const httpRequest = httpMock.expectOne(`${environment.serverUrl
                 }contact`);
-
             expect(httpRequest.request.url).toEqual('http://172.16.16.41:15000/contact');
         });
+    });
+    it('should add an user and return it', () => {
+        const newEmp: ContactMeDto = {
+            name: 'Alex',
+            phone: '123456789012',
+            text: 'Hello'
+        };
+        service.postData(newEmp).subscribe(
+            data => expect(data).toEqual(''),
+            fail
+        );
+        const req = httpMock.expectOne(environment.serverUrl + service.postUrl);
+        expect(req.request.method).toEqual('POST');
+        expect(req.request.body).toEqual(newEmp);
+        const expectedResponse = '';
+        req.flush(expectedResponse);
     });
 });

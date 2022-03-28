@@ -20,13 +20,11 @@ describe('SpinnerComponent', () => {
       declarations: [SpinnerComponent],
       imports: [RouterTestingModule.withRoutes([]), HttpClientTestingModule],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      providers: [SpinnerService,
-        { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true },
-      ],
+      providers: [SpinnerService]
     })
       .compileComponents();
-    service = TestBed.get(SpinnerService);
-    httpMock = TestBed.get(HttpTestingController);
+    service = TestBed.inject(SpinnerService);
+    httpMock = TestBed.inject(HttpTestingController);
   });
 
   beforeEach(() => {
@@ -38,11 +36,6 @@ describe('SpinnerComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-
-  it('should be createed', inject([SpinnerService], (service: SpinnerService) => {
-    expect(service).toBeTruthy();
-  }));
-
 });
 
 

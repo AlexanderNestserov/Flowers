@@ -101,8 +101,8 @@
             <img id="google" src="../../../assets/img-registration/flat-color-icons_google.png" alt="google">
             <span class="container__signin-google">sign in with Google</span>
         </button>
-        <app-popup [@divTrigger]="clickedDivState"></app-popup>
-        <app-popup-error [@divTriggerError]="clickedDivStateError"></app-popup-error>
+        <app-popup [@divTrigger]="clickedDivState" (click)="closeMenu()"></app-popup>
+        <app-popup-error [@divTriggerError]="clickedDivStateError" (click)="closeMenu()"></app-popup-error>
         <div class="container__modal" [hidden]="isDialog">
             <div class="container__modal-container">
                 <div class="container__dialog">

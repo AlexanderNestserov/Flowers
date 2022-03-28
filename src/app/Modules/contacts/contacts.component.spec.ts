@@ -9,6 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { SpinnerModule } from '../spinner/spinner.module';
+import { By } from '@angular/platform-browser';
 
 describe('ContactsComponent', () => {
   let component: ContactsComponent;
@@ -31,5 +32,19 @@ describe('ContactsComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+  it('should be created closeMenu', () => {
+    const link = fixture.debugElement.query(By.css('app-popup'));
+    link.nativeElement.click();
+    expect(component.closeMenu).toBeTruthy()
+  });
+  it('should be created closeMenu error', () => {
+    const link = fixture.debugElement.query(By.css('app-popup-error'));
+    link.nativeElement.click();
+    expect(component.closeMenu).toBeTruthy()
+  });
+  it('should be created postDataDetails', () => {
+    const result = component.postDataDetails()
+    expect(result).toBe()
   });
 });
