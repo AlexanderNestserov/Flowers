@@ -1,18 +1,22 @@
 import { inject, TestBed, fakeAsync } from '@angular/core/testing';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ContactsService } from './contacts.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
 import { UrlInterceptor } from 'src/environments/environment';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { environment } from '../../../environments/environment';
 import { ContactMeDto } from './contacts.model';
-import { HttpResponse } from "@angular/common/http";
+import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
 
 describe('ContactsService', () => {
     let service: ContactsService;
     let httpMock: HttpTestingController;
     beforeEach(async () => {
         TestBed.configureTestingModule({
-            imports: [HttpClientTestingModule],
+            imports: [HttpClientTestingModule, ReactiveFormsModule, CommonModule],
+            schemas: [CUSTOM_ELEMENTS_SCHEMA],
             providers: [ContactsService,
                 { provide: HTTP_INTERCEPTORS, useClass: UrlInterceptor, multi: true }
             ]

@@ -9,28 +9,39 @@ import { RouterTestingModule } from '@angular/router/testing';
 
 
 
-
+const mockSpinnerService = jasmine.createSpyObj('mockSpinnerService', ['error']);
+const fakeEnv = { base_url: 'http://172.16.16.41:15000/' };
+const fakeURL = 'http://172.16.16.41:15000/mail';
 
 describe('SpinnerComponent', () => {
     let service: SpinnerService;
     let httpMock: HttpTestingController;
+    let interceptor: LoaderInterceptor;
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
             imports: [RouterTestingModule.withRoutes([]), HttpClientTestingModule],
             schemas: [CUSTOM_ELEMENTS_SCHEMA],
             providers: [SpinnerService,
+                LoaderInterceptor,
                 { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true },
+
             ],
         })
 
         service = TestBed.inject(SpinnerService);
         httpMock = TestBed.inject(HttpTestingController);
+        interceptor = TestBed.inject(LoaderInterceptor);
+    });
+
+    afterEach(() => {
+        httpMock.verify();
     });
 
     it('should be createed', inject([SpinnerService], (service: SpinnerService) => {
         expect(service).toBeTruthy();
     }));
+
 
     it('should be created show', inject([SpinnerService], (service: SpinnerService) => {
         const show = service.show();
@@ -41,18 +52,8 @@ describe('SpinnerComponent', () => {
         expect(hide).toBe();
     }));
 
-    it('should add an Url', async () => {
-
-        spyOn(service, 'show').and.callFake(() => true);
-        const res = service.show();
-        expect(res).toBe(service.show())
-
-        //let httpRequest = httpMock.verify();
-
-
-
-        //expect(httpRequest).toBeUndefined();
-    });
-
+    it('should be create interceptor', async(() => {
+        expect(interceptor).toBeDefined();
+    }));
 });
 

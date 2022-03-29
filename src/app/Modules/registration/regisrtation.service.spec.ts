@@ -7,13 +7,16 @@ import { environment } from '../../../environments/environment';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RegisterUserDto } from './registration.model';
 import { HttpResponse } from "@angular/common/http";
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 describe('ContactsService', () => {
     let service: RegistrationService;
     let httpMock: HttpTestingController;
     beforeEach(async () => {
         TestBed.configureTestingModule({
-            imports: [HttpClientTestingModule, ReactiveFormsModule],
+            imports: [HttpClientTestingModule, ReactiveFormsModule, CommonModule],
+            schemas: [CUSTOM_ELEMENTS_SCHEMA],
             providers: [RegistrationService,
                 { provide: HTTP_INTERCEPTORS, useClass: UrlInterceptor, multi: true }
             ]

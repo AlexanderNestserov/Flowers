@@ -1,4 +1,5 @@
 import { Input, Directive, ElementRef, Renderer2, HostListener } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 
 @Directive({
@@ -10,7 +11,7 @@ export class PrintErrorDirective {
     @Input() placeholder: string = '';
     @Input() isError: any;
 
-    constructor(private el: ElementRef, private renderer: Renderer2) {
+    constructor(public el: ElementRef, public renderer: Renderer2) {
     }
     @HostListener('cut', ['$event']) cut(event: ClipboardEvent) {
         this.renderer.addClass(this.el.nativeElement, 'has-error');

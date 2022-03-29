@@ -16,7 +16,8 @@ import { HeaderRoutingModule } from './header-routing.module';
         ButtonModule,
         FormsModule,
         ToggleButtonModule,
-        HeaderRoutingModule
-    ]
+        HeaderRoutingModule,
+    ],
+    providers: [Location]
 })
 export class HeaderModule { }

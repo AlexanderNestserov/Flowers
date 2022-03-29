@@ -23,7 +23,7 @@ import { ContactsService } from './Modules/contacts/contacts.service';
     FooterComponent
   ],
   imports: [
-    CommonModule,
+    BrowserModule,
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,

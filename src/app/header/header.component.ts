@@ -17,7 +17,16 @@ export class HeaderComponent implements OnInit {
   isShown = false;
   urlRegistration = false;
 
-  constructor(private activatedRoute: ActivatedRoute, private router: Router) {
+  constructor(private activatedRoute: ActivatedRoute, public router: Router) {
+    this.router.events.pipe(
+      filter((e: any) => e instanceof NavigationEnd)
+    ).subscribe((e: RouterEvent) => {
+      if (e.url === '/registration') {
+        this.urlRegistration = true
+      } else {
+        this.urlRegistration = false
+      }
+    });
   }
 
   toggleDisplay() {
@@ -45,10 +54,7 @@ export class HeaderComponent implements OnInit {
     this.isMenu = true;
   }
   ngOnInit(): void {
-
-    window.onload = () => {
-      onScroll();
-    };
+    onScroll();
 
     function onScroll() {
       fromEvent(window, 'scroll').subscribe(callbackFunc);
@@ -61,15 +67,5 @@ export class HeaderComponent implements OnInit {
         }
       }
     }
-
-    this.router.events.pipe(
-      filter((e: any) => e instanceof NavigationEnd)
-    ).subscribe((e: RouterEvent) => {
-      if (e.url === '/registration') {
-        this.urlRegistration = true
-      } else {
-        this.urlRegistration = false
-      }
-    });
   }
 }

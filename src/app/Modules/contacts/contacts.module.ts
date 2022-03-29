@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ContactsRoutingModule } from './contacts-routing.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -11,6 +11,7 @@ import { UrlInterceptor } from '../../../environments/environment';
 import { PopupErrorSuccessModule } from '../popup-success-error/popupErrorSuccess.module';
 import { ErrorFormModule } from './error-form/error-form.module';
 import { ErrorDirectiveModule } from 'src/app/directives/error-form/error-directive.module';
+import { BrowserModule } from '@angular/platform-browser';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { ErrorDirectiveModule } from 'src/app/directives/error-form/error-direct
   ],
   providers: [
     ContactsService, { provide: HTTP_INTERCEPTORS, useClass: UrlInterceptor, multi: true },
-  ]
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class ContactsModule { }
 

@@ -6,6 +6,7 @@ import { NewsService } from './news.service';
 import { BannersModule } from '../banners/banners.module';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { NewsComponent } from './news.component';
+import { CommonModule } from '@angular/common';
 
 describe('NewsComponent', () => {
   let component: NewsComponent;
@@ -14,7 +15,7 @@ describe('NewsComponent', () => {
   beforeEach(async () => {
     TestBed.configureTestingModule({
       declarations: [NewsComponent],
-      imports: [RouterTestingModule.withRoutes([]), HttpClientTestingModule],
+      imports: [RouterTestingModule.withRoutes([]), HttpClientTestingModule, CommonModule],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     })
       .compileComponents();

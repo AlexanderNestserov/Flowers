@@ -1,32 +1,56 @@
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { CUSTOM_ELEMENTS_SCHEMA, DebugElement, ElementRef, Renderer2 } from '@angular/core';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { ContactsComponent } from './contacts.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { ContactsService } from './contacts.service';
-import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
-import { UrlInterceptor } from 'src/environments/environment';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { SpinnerModule } from '../spinner/spinner.module';
 import { By } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
+import { ErrorDirectiveModule } from 'src/app/directives/error-form/error-directive.module';
+import { ContactsService } from './contacts.service';
+import { ContactMeDto } from './contacts.model';
+import { Observable, of } from 'rxjs';
+import { PrintErrorDirective } from 'src/app/directives/error-form/error-form.directive';
+
 
 describe('ContactsComponent', () => {
   let component: ContactsComponent;
   let fixture: ComponentFixture<ContactsComponent>;
+  let hostElement: DebugElement;
+  let directive: PrintErrorDirective;
 
-  beforeEach(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ContactsComponent],
-      imports: [RouterTestingModule.withRoutes([]), HttpClientTestingModule, ReactiveFormsModule, BrowserAnimationsModule],
+      declarations: [ContactsComponent, PrintErrorDirective],
+      imports: [RouterTestingModule.withRoutes([]), HttpClientTestingModule, ReactiveFormsModule, BrowserAnimationsModule, CommonModule, ErrorDirectiveModule],
+      providers: [{
+        provide: ContactsService, useClass: class MockContactsPostService {
+          postData(formValue: ContactMeDto): Observable<any> {
+            return of({})
+          }
+        }
+      },
+      {
+        provide: ContactsService, useClass: class MockContactsGetService {
+          getAdress(): Observable<string | number | object> {
+            return of({})
+          }
+        }
+      }
+      ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     })
       .compileComponents();
-  });
+  }));
 
   beforeEach(() => {
+
     fixture = TestBed.createComponent(ContactsComponent);
     component = fixture.componentInstance;
+    hostElement = fixture.debugElement;
+
+
     fixture.detectChanges();
   });
 
@@ -44,7 +68,12 @@ describe('ContactsComponent', () => {
     expect(component.closeMenu).toBeTruthy()
   });
   it('should be created postDataDetails', () => {
-    const result = component.postDataDetails()
-    expect(result).toBe()
+    const result = component.postDataDetails
+    expect(result).toBeTruthy()
+  });
+  it('should create an instance directive', () => {
+    const renderer = fixture.componentRef.injector.get(Renderer2);
+
+    expect(directive).toBeUndefined();
   });
 });

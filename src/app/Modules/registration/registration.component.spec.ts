@@ -1,5 +1,5 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { async, ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
+import { waitForAsync, async, ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RegistrationComponent } from './registration.component';
 import { RegistrationService } from './registration.service';
@@ -7,21 +7,30 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { By } from '@angular/platform-browser';
-import { ConfirmPassword } from './confirmPassword.component';
+import { CommonModule } from '@angular/common';
+import { ErrorDirectiveModule } from 'src/app/directives/error-form/error-directive.module';
+import { RegisterUserDto } from './registration.model';
+import { Observable, of } from 'rxjs';
 
 describe('RegistrationComponent', () => {
   let component: RegistrationComponent;
   let fixture: ComponentFixture<RegistrationComponent>;
 
-  beforeEach(async () => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [RegistrationComponent],
-      imports: [RouterTestingModule.withRoutes([]), HttpClientTestingModule, ReactiveFormsModule, BrowserAnimationsModule],
-      providers: [RegistrationService],
+      imports: [RouterTestingModule.withRoutes([]), HttpClientTestingModule, ReactiveFormsModule, BrowserAnimationsModule, CommonModule, ErrorDirectiveModule],
+      providers: [{
+        provide: RegistrationService, useClass: class MockRegistrationService {
+          postData(formValue: RegisterUserDto): Observable<any> {
+            return of({})
+          }
+        }
+      }],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     })
       .compileComponents();
-  });
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(RegistrationComponent);
@@ -74,9 +83,10 @@ describe('RegistrationComponent', () => {
     expect(result).toBeTruthy()
   });
   it('should be created checked', fakeAsync(async () => {
-    const submitSpy = jasmine.createSpy('submit');
-    spyOn(component, 'showError')
-    expect(component.confirmPassword.invalid && component.confirmPassword.errors).toBeTruthy()
+    component.showError()
+
+
+    expect(component.confirmPassword.invalid).toEqual(true)
 
   }));
 });

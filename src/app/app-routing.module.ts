@@ -8,7 +8,6 @@ const routes: Routes = [{ path: '', redirectTo: 'home', pathMatch: 'full' },
 { path: 'news', loadChildren: () => import('./Modules/news/news.module').then(m => m.NewsModule) },
 { path: 'contacts', loadChildren: () => import('./Modules/contacts/contacts.module').then(m => m.ContactsModule) },
 { path: 'search', loadChildren: () => import('./Modules/search/search.module').then(m => m.SearchModule) },
-
 { path: 'registration', loadChildren: () => import('./Modules/registration/registration.module').then(m => m.RegistrationModule) },
 { path: '**', redirectTo: 'home', pathMatch: 'full' },
 
