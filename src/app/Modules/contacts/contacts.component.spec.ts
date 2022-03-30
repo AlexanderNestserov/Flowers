@@ -18,7 +18,8 @@ describe('ContactsComponent', () => {
   let component: ContactsComponent;
   let fixture: ComponentFixture<ContactsComponent>;
   let hostElement: DebugElement;
-  let directive: PrintErrorDirective;
+  let element: HTMLElement;
+  let directive: PrintErrorDirective
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -48,8 +49,8 @@ describe('ContactsComponent', () => {
 
     fixture = TestBed.createComponent(ContactsComponent);
     component = fixture.componentInstance;
-    hostElement = fixture.debugElement;
-
+    hostElement = fixture.debugElement.query(By.css('.container__name'));
+    element = fixture.nativeElement
 
     fixture.detectChanges();
   });
@@ -72,8 +73,21 @@ describe('ContactsComponent', () => {
     expect(result).toBeTruthy()
   });
   it('should create an instance directive', () => {
-    const renderer = fixture.componentRef.injector.get(Renderer2);
-
     expect(directive).toBeUndefined();
+  });
+  it('should create an instance directive cut listener', () => {
+    const event = new ClipboardEvent('cut');
+    hostElement.nativeElement.dispatchEvent(event);
+    expect(hostElement.nativeElement.value).toBeUndefined();
+  });
+  it('should create an instance directive focusout listener', () => {
+    const event = new FocusEvent('focusout');
+    hostElement.nativeElement.dispatchEvent(event);
+    expect(hostElement.nativeElement.value).toBeUndefined();
+  });
+  it('should create an instance directive keyup listener', () => {
+    const event = new Event('keyup');
+    hostElement.nativeElement.dispatchEvent(event);
+    expect(hostElement.nativeElement.value).toBeUndefined();
   });
 });

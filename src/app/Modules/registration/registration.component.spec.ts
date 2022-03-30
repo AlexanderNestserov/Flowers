@@ -82,11 +82,18 @@ describe('RegistrationComponent', () => {
     const result = component.myCheckbox
     expect(result).toBeTruthy()
   });
-  it('should be created checked', fakeAsync(async () => {
-    component.showError()
+  it('should be created showError true', fakeAsync(async () => {
+    let ctrl = component.confirmPassword;
+    ctrl.invalid && ctrl.touched && ctrl.errors// || component.formValue.errors?.['noMatchingPassword'];
+    ctrl.setValue(true);
+    fixture.detectChanges();
+    expect(component.showError()).toBeTruthy()
+  }));
+  it('should be created showError true', fakeAsync(async () => {
+    let ctrl = component.confirmPassword;
+    component.formValue.errors?.['noMatchingPassword'];
+    ctrl.setValue(true);
 
-
-    expect(component.confirmPassword.invalid).toEqual(true)
-
+    expect(component.showError()).toBeTruthy()
   }));
 });

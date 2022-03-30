@@ -7,7 +7,7 @@ import { UrlInterceptor } from 'src/environments/environment';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { environment } from '../../../environments/environment';
 import { ContactMeDto } from './contacts.model';
-import { BrowserModule } from '@angular/platform-browser';
+import { HttpResponse } from "@angular/common/http";
 import { CommonModule } from '@angular/common';
 
 describe('ContactsService', () => {
@@ -77,3 +77,4 @@ describe('ContactsService', () => {
         req.flush(expectedResponse);
     });
 });
+

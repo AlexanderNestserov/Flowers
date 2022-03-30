@@ -66,11 +66,12 @@ describe('HeaderComponent', () => {
     const foo = document.body.style.overflow;
     component.toggleDisplay();
     fixture.detectChanges();
-    expect(foo).toEqual('hidden' || '');
+    expect(foo).toEqual('');
   });
   it('should be created toggleDisplays if', () => {
     const spy = spyOn(component, 'toggleDisplay');
     component.isShow = false;
+    fixture.detectChanges();
     component.toggleDisplays();
     expect(spy).toHaveBeenCalled();
   });
@@ -95,14 +96,14 @@ describe('HeaderComponent', () => {
     let scroll = component.ngOnInit.bind(onscroll)
     expect(scroll).toBeTruthy()
   });
-  it('should be created onScroll function', () => {
+  it('should be created onScroll add scroll', () => {
     window.dispatchEvent(new Event("scroll"));
     window.scrollTo(0, 50);
     let sticky = window.pageYOffset = 0;
     fixture.detectChanges();
     expect(sticky).toBe(0);
   });
-  it('should be created onScroll function', () => {
+  it('should be created onScroll remove scroll', () => {
     const link = fixture.debugElement.query(By.css('header.scroll'));
     expect(link).toBeNull()
   });
@@ -114,6 +115,6 @@ describe('HeaderComponent', () => {
     fixture.detectChanges();
     component.ngOnInit();
     expect(link).toBeNull();
-  })
+  });
 
 })
