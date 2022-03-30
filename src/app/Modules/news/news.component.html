@@ -23,7 +23,7 @@
                         <div class="container__date">
                             {{item.date}}
                         </div>
-                        <a routerLink="newsarticle">
+                        <a [routerLink]="['/news',item.id]" [queryParams]="{text:item.text}">
                             <div class="container__titles">
                                 {{item.title}}
                             </div>
