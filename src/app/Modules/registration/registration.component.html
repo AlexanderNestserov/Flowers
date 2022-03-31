@@ -78,7 +78,7 @@
                         class="container__linking" (click)="dialogTitle()">processing of
                         personal data</a>
                 </div>
-                <button type="submit" class="container__button"
+                <button type="submit" class="container__button" (click)="login()"
                     [ngClass]="{'disabled': formValue.invalid || isDisabled}"
                     [disabled]="formValue.invalid || isDisabled">Register <app-spinner></app-spinner></button>
             </form>

@@ -8,11 +8,8 @@ import { RegistrationService } from './registration.service';
 import { SpinnerModule } from '../spinner/spinner.module';
 import { UrlInterceptor } from '../../../environments/environment';
 import { PopupErrorSuccessModule } from '../popup-success-error/popupErrorSuccess.module';
-
 import { ErrorDirectiveModule } from 'src/app/directives/error-form/error-directive.module';
 import { ErrorFormRegistrationModule } from './error-form/error-form.module';
-import { BrowserModule } from '@angular/platform-browser';
-
 
 @NgModule({
     declarations: [

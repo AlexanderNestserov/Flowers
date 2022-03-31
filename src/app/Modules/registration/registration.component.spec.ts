@@ -1,5 +1,5 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { waitForAsync, async, ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
+import { waitForAsync, async, ComponentFixture, fakeAsync, TestBed, inject } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RegistrationComponent } from './registration.component';
 import { RegistrationService } from './registration.service';
@@ -11,6 +11,7 @@ import { CommonModule } from '@angular/common';
 import { ErrorDirectiveModule } from 'src/app/directives/error-form/error-directive.module';
 import { RegisterUserDto } from './registration.model';
 import { Observable, of } from 'rxjs';
+import { KeycloakService } from 'keycloak-angular';
 
 describe('RegistrationComponent', () => {
   let component: RegistrationComponent;
@@ -26,7 +27,8 @@ describe('RegistrationComponent', () => {
             return of({})
           }
         }
-      }],
+      },
+        KeycloakService],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     })
       .compileComponents();
@@ -38,6 +40,12 @@ describe('RegistrationComponent', () => {
     fixture.detectChanges();
   });
 
+  it('should be created', inject(
+    [KeycloakService],
+    (service: KeycloakService) => {
+      expect(service).toBeTruthy();
+    }
+  ));
   it('should create', () => {
     expect(component).toBeTruthy();
   });
@@ -84,7 +92,7 @@ describe('RegistrationComponent', () => {
   });
   it('should be created showError true', fakeAsync(async () => {
     let ctrl = component.confirmPassword;
-    ctrl.invalid && ctrl.touched && ctrl.errors// || component.formValue.errors?.['noMatchingPassword'];
+    ctrl.invalid && ctrl.touched && ctrl.errors
     ctrl.setValue(true);
     fixture.detectChanges();
     expect(component.showError()).toBeTruthy()
@@ -93,7 +101,6 @@ describe('RegistrationComponent', () => {
     let ctrl = component.confirmPassword;
     component.formValue.errors?.['noMatchingPassword'];
     ctrl.setValue(true);
-
     expect(component.showError()).toBeTruthy()
   }));
 });

@@ -7,8 +7,6 @@ import { LoaderInterceptor } from '../../interceptors/spinner.interceptor';
 import { environment } from 'src/environments/environment';
 import { RouterTestingModule } from '@angular/router/testing';
 
-
-
 const mockSpinnerService = jasmine.createSpyObj('mockSpinnerService', ['error']);
 const fakeEnv = { base_url: 'http://172.16.16.41:15000/' };
 const fakeURL = 'http://172.16.16.41:15000/mail';
@@ -52,7 +50,7 @@ describe('SpinnerComponent', () => {
         expect(hide).toBe();
     }));
 
-    it('should be create interceptor', async(() => {
+    it('should be create interceptor', fakeAsync(() => {
         expect(interceptor).toBeDefined();
     }));
 });

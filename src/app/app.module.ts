@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { CarouselModule } from 'primeng/carousel';
 import { InputTextModule } from 'primeng/inputtext';
@@ -6,15 +6,12 @@ import { ButtonModule } from 'primeng/button';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { CommonModule } from '@angular/common';
-import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
-
+import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
-import { LoaderInterceptor } from './interceptors/spinner.interceptor';
-import { UrlInterceptor } from '../environments/environment';
-import { ContactsService } from './Modules/contacts/contacts.service';
+import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
+import { initializeKeycloak } from './utility/app.init';
 
 @NgModule({
   declarations: [
@@ -32,9 +29,15 @@ import { ContactsService } from './Modules/contacts/contacts.service';
     CarouselModule,
     FormsModule,
     ReactiveFormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    KeycloakAngularModule
   ],
   bootstrap: [AppComponent],
-  providers: []
+  providers: [{
+    provide: APP_INITIALIZER,
+    useFactory: initializeKeycloak,
+    multi: true,
+    deps: [KeycloakService]
+  }]
 })
 export class AppModule { }

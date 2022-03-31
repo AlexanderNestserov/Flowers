@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 import { RegistrationService } from './registration.service';
 import { divTrigger, divTriggerError } from '../popup-success-error/popupSuccessError.animations';
 import { PasswordMatchVaildator } from './error-form/passwordmatch';
+import { KeycloakService } from 'keycloak-angular';
 
 enum ClickedDivState {
   hide = 'hide',
@@ -36,11 +37,15 @@ export class RegistrationComponent implements OnInit {
   isDialog = true;
   isChecked = false
 
-  constructor(private api: RegistrationService, private formbuilder: FormBuilder, private passwordMatchValidator: PasswordMatchVaildator) {
+  constructor(private api: RegistrationService, private formbuilder: FormBuilder, private passwordMatchValidator: PasswordMatchVaildator, private readonly keycloak: KeycloakService) {
   }
 
   ngOnInit(): void {
     this.formValue.reset();
+  }
+
+  public login() {
+    this.keycloak.login();
   }
 
   showError() {

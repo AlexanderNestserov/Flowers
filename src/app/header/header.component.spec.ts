@@ -1,25 +1,31 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed, async } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Location } from "@angular/common";
 import { Router, RouterModule } from '@angular/router';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { HeaderComponent } from './header.component';
 import { RegistrationComponent } from '../Modules/registration/registration.component';
 import { routes } from '../app.component';
-
+import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
   let fixture: ComponentFixture<HeaderComponent>;
+  let httpMock: HttpTestingController;
+  let service: KeycloakService
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [HeaderComponent, RegistrationComponent],
-      imports: [RouterTestingModule.withRoutes(routes), RouterModule],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA]
+      imports: [RouterTestingModule.withRoutes(routes), RouterModule, KeycloakAngularModule, HttpClientTestingModule],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
+      providers: [KeycloakService]
     })
       .compileComponents();
+    service = TestBed.inject(KeycloakService);
+    httpMock = TestBed.inject(HttpTestingController);
   });
 
   beforeEach(() => {
@@ -27,6 +33,7 @@ describe('HeaderComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
+
   describe('routes', () => {
     let location: Location;
     let router: Router;
@@ -66,7 +73,7 @@ describe('HeaderComponent', () => {
     const foo = document.body.style.overflow;
     component.toggleDisplay();
     fixture.detectChanges();
-    expect(foo).toEqual('');
+    expect(foo).toBe('hidden' || '');
   });
   it('should be created toggleDisplays if', () => {
     const spy = spyOn(component, 'toggleDisplay');
@@ -103,10 +110,6 @@ describe('HeaderComponent', () => {
     fixture.detectChanges();
     expect(sticky).toBe(0);
   });
-  it('should be created onScroll remove scroll', () => {
-    const link = fixture.debugElement.query(By.css('header.scroll'));
-    expect(link).toBeNull()
-  });
   it('should be created onScroll function', async () => {
     const link = fixture.debugElement.query(By.css('header.scroll'));
     window.dispatchEvent(new Event("scroll"));
@@ -116,5 +119,14 @@ describe('HeaderComponent', () => {
     component.ngOnInit();
     expect(link).toBeNull();
   });
-
+  it('should be created logout', () => {
+    const toggle = component.logout()
+    fixture.detectChanges();
+    expect(toggle).toBe();
+  });
+  it('should be created logout', async () => {
+    component.isLoggedIn = true;
+    fixture.detectChanges();
+    expect(component.keycloak.getToken).toBeTruthy()
+  })
 })

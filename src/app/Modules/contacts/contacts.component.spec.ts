@@ -1,5 +1,5 @@
-import { CUSTOM_ELEMENTS_SCHEMA, DebugElement, ElementRef, Renderer2 } from '@angular/core';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { CUSTOM_ELEMENTS_SCHEMA, DebugElement } from '@angular/core';
+import { async, ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { ContactsComponent } from './contacts.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -26,14 +26,14 @@ describe('ContactsComponent', () => {
       declarations: [ContactsComponent, PrintErrorDirective],
       imports: [RouterTestingModule.withRoutes([]), HttpClientTestingModule, ReactiveFormsModule, BrowserAnimationsModule, CommonModule, ErrorDirectiveModule],
       providers: [{
-        provide: ContactsService, useClass: class MockContactsPostService {
+        provide: ContactsService, useClass: class MockContactsPService {
           postData(formValue: ContactMeDto): Observable<any> {
             return of({})
           }
         }
       },
       {
-        provide: ContactsService, useClass: class MockContactsGetService {
+        provide: ContactsService, useClass: class MockContactsService {
           getAdress(): Observable<string | number | object> {
             return of({})
           }
@@ -46,12 +46,10 @@ describe('ContactsComponent', () => {
   }));
 
   beforeEach(() => {
-
     fixture = TestBed.createComponent(ContactsComponent);
     component = fixture.componentInstance;
     hostElement = fixture.debugElement.query(By.css('.container__name'));
     element = fixture.nativeElement
-
     fixture.detectChanges();
   });
 
@@ -67,10 +65,6 @@ describe('ContactsComponent', () => {
     const link = fixture.debugElement.query(By.css('app-popup-error'));
     link.nativeElement.click();
     expect(component.closeMenu).toBeTruthy()
-  });
-  it('should be created postDataDetails', () => {
-    const result = component.postDataDetails
-    expect(result).toBeTruthy()
   });
   it('should create an instance directive', () => {
     expect(directive).toBeUndefined();
