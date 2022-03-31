@@ -5,6 +5,7 @@ import { ButtonModule } from 'primeng/button';
 import { ToggleButtonModule } from 'primeng/togglebutton';
 
 import { HeaderComponent } from './header.component';
+import { HeaderRoutingModule } from './header-routing.module';
 
 @NgModule({
     declarations: [
@@ -14,7 +15,9 @@ import { HeaderComponent } from './header.component';
         CommonModule,
         ButtonModule,
         FormsModule,
-        ToggleButtonModule
-    ]
+        ToggleButtonModule,
+        HeaderRoutingModule,
+    ],
+    providers: [Location]
 })
 export class HeaderModule { }

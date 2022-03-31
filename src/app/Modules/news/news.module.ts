@@ -5,18 +5,24 @@ import { NewsRoutingModule } from './news-routing.module';
 import { BannersModule } from '../banners/banners.module';
 
 import { NewsComponent } from './news.component';
-import { NewsarticleComponent } from './newsarticle/newsarticle.component';
+import { NewsService } from './news.service';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { UrlInterceptor } from '../../../environments/environment';
 
 @NgModule({
   declarations: [
-    NewsComponent,
-    NewsarticleComponent
+    NewsComponent
+
   ],
   imports: [
     CommonModule,
     NewsRoutingModule,
     NgxPaginationModule,
-    BannersModule
+    BannersModule,
+    HttpClientModule
+  ],
+  providers: [NewsService,
+    { provide: HTTP_INTERCEPTORS, useClass: UrlInterceptor, multi: true },
   ]
 })
 export class NewsModule { }

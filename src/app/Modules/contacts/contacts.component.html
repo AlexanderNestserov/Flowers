@@ -1,7 +1,7 @@
-<div class="wrapper">
-    <div class="container">
-        <div class="container__line"></div>
-        <div class="container__path flex justify-content-start">
+<div class="wrapper-contacts">
+    <div class="container-contacts">
+        <div class="container-contacts__line"></div>
+        <div class="container-contacts__path flex justify-content-start">
             <div class="container__home">
                 <a class="container__link" routerLink="/">Home</a>
             </div>
@@ -10,37 +10,48 @@
             </div>
             <div class="container__contacts">Contacts</div>
         </div>
-        <div class="container__img">
+        <div class="container-contacts__img">
             <img class="image-map" src="../../../assets/img-contacts/marker.png" alt="map">
         </div>
-        <div class="container__titl">Contacts</div>
-        <p class="container__text">For several years now, our company has been delighting customers with the delivery of
+        <div class="container-contacts__titl">Contacts</div>
+        <p class="container-contacts__text">For several years now, our company has been delighting customers with the
+            delivery of
             flowers and congratulations. We
             are really proud of the clear and well-coordinated work of our employees and are always confident that your
             order will
             be delivered at the right time to the right place.</p>
-        <div class="container__contacts1">
-            <p class="container__street">Kalvariyskaya str., 19, room 45</p>
-            <p class="container__number">+375 29 123-45-67</p>
-            <p class="container__mail">info@flowershop.by</p>
+        <div class="container-contacts__contacts-data" *ngIf="contactsData|async as objectData">
+            <p class="container__street">{{objectData.address}}</p>
+            <p class="container__number">{{objectData.phone}}</p>
+            <p class="container__mail">{{objectData.email}}</p>
         </div>
-        <div class="container__form">
+        <div class="container-contacts__form">
             <div class="container__title">Contact us</div>
-            <form action="" method="post">
-                <div class="container__name">
-                    <input type="text" id="inputName" required>
+            <form [formGroup]='formValue' (ngSubmit)="postDataDetails()">
+                <div class="container__name" errorDirective [formControlItem]="name">
+                    <input type="text" id="inputName" required formControlName="name">
                     <label class="container__input-name" for="inputName">Your name</label>
+                    <app-field-error [formControlItem]="name"></app-field-error>
                 </div>
-                <div class="container__phone-number">
-                    <input type="number" id="inputNumber" required>
+                <div class="container__phone-number" errorDirective [formControlItem]="phone">
+                    <input type="number" id="inputNumber" required formControlName="phone">
                     <label class="container__input-number" for="inputNumber">Phone number</label>
+                    <app-field-error [formControlItem]="phone"></app-field-error>
                 </div>
-                <div class="container__message">
-                    <textarea type="text" id="inputMessage" required></textarea>
+                <div class="container__message" errorDirective [formControlItem]="text">
+                    <textarea type="text" id="inputMessage" required formControlName="text"></textarea>
                     <label class="container__input-message" for="inputMessage">Text message</label>
+                    <span class="container__error" *ngIf="text.touched && text.errors?.['required']">Text
+                        message is required
+                        <img class="alert-text-message" src="../../../assets/img-registration/alert-circle.png"></span>
                 </div>
+                <button type="submit" class="container__button"
+                    [ngClass]="{'disabled': formValue.invalid || isDisabled}"
+                    [disabled]="formValue.invalid || isDisabled">SEND<app-spinner></app-spinner>
+                </button>
             </form>
-            <button class="container__button">SEND</button>
         </div>
+        <app-popup [@divTrigger]="clickedDivState" (click)="closeMenu()"></app-popup>
+        <app-popup-error [@divTriggerError]="clickedDivStateError" (click)="closeMenu()"></app-popup-error>
     </div>
 </div>

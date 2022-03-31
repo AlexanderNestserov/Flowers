@@ -1,23 +1,27 @@
 @import "../../styles/_variables.scss";
 @import "../../styles/_mixins.scss";
-.wrapper {
-    margin: 0 6% 0 7%;
-}
-.container {
-    width: 90%;
+.wrapper-search {
     margin: 0 auto;
+    width: 144rem;
 }
-.container__line {
-    background: $color_darkgrey;
-    opacity: 0.2;
-    height: 1px;
-}
-.container__titles {
-    @include font(Montserrat, normal, bold, 2.8rem, 120%, 0em, $color_darkgrey);
-    margin: 6rem auto 2.6rem;
-}
-.container__search {
-    margin-bottom: 5rem;
+.container-search {
+    max-width: 100%;
+    margin: 0 10.5% 3.5rem 11.5%;
+    &__line {
+        background: $color_darkgrey;
+        opacity: 0.2;
+        height: 1px;
+    }
+    &__titles {
+        @include font(Montserrat, normal, bold, 2.8rem, 120%, 0em, $color_darkgrey);
+        margin: 6rem auto 2.6rem;
+    }
+    &__search {
+        margin-bottom: 5rem;
+    }
+    &__paragraph {
+        @include font(Montserrat, normal, normal, 1.8rem, 150%, 0em, $color_darkgrey);
+    }
 }
 .p-input-icon-right {
     width: 100%;
@@ -61,33 +65,36 @@
         }
     }
 }
-.container__paragraph {
-    @include font(Montserrat, normal, normal, 1.8rem, 150%, 0em, $color_darkgrey);
+@media (max-width: 1460px) {
+    .wrapper-search {
+        width: 100%;
+    }
 }
 @media (max-width: 886px) {
-    .wrapper {
+    .container-search {
         margin: 0 6% 0 4%;
     }
 }
 @media (max-width: 500px) {
-    .wrapper {
-        margin: 0 2rem 0 2rem;
+    .wrapper-search {
+        width: 90%;
+        margin: 0 2rem 0 0;
     }
-    .container {
+    .container-search {
         width: 100%;
     }
 }
 @media (max-width: 450px) {
-    .wrapper {
+    .container-search {
         margin: 8rem 2rem 0 2rem;
-    }
-    .container__titles {
-        margin: 5rem 0 2.6rem 0;
-    }
-    .title {
-        display: none;
-    }
-    .container__search {
-        margin-top: 1.9rem;
+        &__titles {
+            margin: 5rem 0 2.6rem 0;
+        }
+        &__search {
+            margin-top: 1.9rem;
+        }
+        .title {
+            display: none;
+        }
     }
 }

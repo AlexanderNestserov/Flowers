@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
@@ -14,7 +15,7 @@ describe('HomeComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [HomeComponent],
-      imports: [RouterTestingModule.withRoutes([]), SwiperModule, BannersModule],
+      imports: [RouterTestingModule.withRoutes([]), SwiperModule, BannersModule, CommonModule],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     })
       .compileComponents();

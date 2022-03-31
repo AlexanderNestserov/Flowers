@@ -1,21 +1,18 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { PaginatePipe } from 'ngx-pagination';
-import { PaginationService } from 'ngx-pagination';
-import { BannersModule } from '../banners/banners.module';
-
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { NewsComponent } from './news.component';
+import { CommonModule } from '@angular/common';
 
 describe('NewsComponent', () => {
   let component: NewsComponent;
   let fixture: ComponentFixture<NewsComponent>;
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [NewsComponent, PaginatePipe],
-      imports: [RouterTestingModule.withRoutes([]), BannersModule],
-      providers: [PaginationService],
+    TestBed.configureTestingModule({
+      declarations: [NewsComponent],
+      imports: [RouterTestingModule.withRoutes([]), HttpClientTestingModule, CommonModule],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     })
       .compileComponents();

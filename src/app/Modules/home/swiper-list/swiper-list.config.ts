@@ -1,3 +1,11 @@
+export interface Item {
+    id: number,
+    link: string,
+    imageUrl: string,
+    title: string,
+    text: string
+}
+
 export const ITEMS =
     [
         {
@@ -44,6 +52,16 @@ export const ITEMS =
         }
     ]
 
+export interface Config {
+    slidesPerView: number,
+    spaceBetween: number,
+    loop: boolean,
+    pagination: {
+        clickable: boolean
+    },
+    navigation: boolean
+}
+
 export const SWIPER_CONFIG =
 {
     slidesPerView: 6,
@@ -53,6 +71,13 @@ export const SWIPER_CONFIG =
         clickable: true
     },
     navigation: true
+}
+
+export interface Adaptive {
+    [key: string]: {
+        slidesPerView: number,
+        spaceBetween: number
+    }
 }
 
 export const ADAPTIVE_SWIPER =

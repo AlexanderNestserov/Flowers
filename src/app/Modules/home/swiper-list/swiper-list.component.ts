@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ITEMS, SWIPER_CONFIG, ADAPTIVE_SWIPER } from './swiper-list.config';
+import { ITEMS, SWIPER_CONFIG, ADAPTIVE_SWIPER, Item, Config, Adaptive } from './swiper-list.config';
 
 @Component({
   selector: 'app-home-swiper-list',
@@ -7,7 +7,7 @@ import { ITEMS, SWIPER_CONFIG, ADAPTIVE_SWIPER } from './swiper-list.config';
   styleUrls: ['./swiper-list.component.scss']
 })
 export class SwiperListComponent {
-  items: any[] = ITEMS;
-  swiperConfig = SWIPER_CONFIG;
-  adaptiveSwiper = ADAPTIVE_SWIPER;
+  items: Array<Item> = ITEMS;
+  swiperConfig: Config = SWIPER_CONFIG;
+  adaptiveSwiper: Adaptive = ADAPTIVE_SWIPER;
 }

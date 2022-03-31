@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ITEMS } from './items.config'
+import { Item, ITEMS } from './items.config'
 
 @Component({
   selector: 'app-home-items',
@@ -7,5 +7,5 @@ import { ITEMS } from './items.config'
   styleUrls: ['./items.component.scss']
 })
 export class ItemsComponent {
-  items: any[] = ITEMS;
+  items: Array<Item> = ITEMS
 }

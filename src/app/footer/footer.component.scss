@@ -1,8 +1,8 @@
 @import "../styles/_variables.scss";
 @import "../styles/_mixins.scss";
 
-.wrapper {
-    max-width: 1440px;
+.wrapper-footer {
+    max-width: 100%;
     margin: 7rem auto 0;
 }
 .footer {
@@ -11,7 +11,7 @@
 }
 .footer__flex {
     @extend %flex;
-    width: 90%;
+    width: 130rem;
     margin: 0 auto;
     padding-top: 8.5rem;
     padding-bottom: 6.2rem;
@@ -87,6 +87,9 @@
     @include font(Montserrat, normal, 500, 1.4rem, 150%, 0em, $color_white);
 }
 @media (max-width: 1328px) {
+    .footer__flex {
+        width: 90%;
+    }
     .footer__store {
         width: 20%;
         margin-right: 5rem;

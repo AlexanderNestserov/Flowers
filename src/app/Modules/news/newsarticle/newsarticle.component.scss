@@ -1,17 +1,54 @@
 @import "../../../styles/_variables.scss";
 @import "../../../styles/_mixins.scss";
 
-.wrapper {
-    margin: 1.7rem 0 3rem 0;
+.wrapper-newsarticle {
+    margin: 0 auto;
+    width: 144rem;
 }
-.container__line {
-    margin: 0 10% 0 12%;
-    background: $color_darkgrey;
-    opacity: 0.2;
-    height: 1px;
-}
-.container__path {
-    margin: 2.5rem 0 2.5rem 12%;
+.container-newsarticle {
+    max-width: 100%;
+    &__line {
+        margin: 0 10% 0 12%;
+        background: $color_darkgrey;
+        opacity: 0.2;
+        height: 1px;
+    }
+    &__path {
+        margin: 2.5rem 0 2.5rem 12%;
+    }
+    &__title {
+        margin: 4.5rem 0 2rem 12%;
+        background: $color_gradient;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-weight: 800;
+        font-size: 4.8rem;
+        line-height: 120%;
+    }
+    &__text {
+        @include font(Montserrat, normal, normal, 1.8rem, 150%, 0em, $color_black);
+        margin: 2.2rem 0 6.5rem 12%;
+        width: 80rem;
+    }
+    &__description-first {
+        @include font(Montserrat, normal, normal, 1.6rem, 170%, 0em, $color_darkgrey);
+        margin: 1.7rem 0 1.7rem 12%;
+        width: 82.5rem;
+    }
+    &__img-delivery {
+        margin: 0 10% 6.5rem 12%;
+        #imgDelivery {
+            width: 100%;
+            border-radius: 10px;
+        }
+    }
+    &__img-woman {
+        margin: 4.5rem 12.5% 7rem 12%;
+        #imgWoman {
+            width: 76%;
+            border-radius: 10px;
+        }
+    }
 }
 .container__home {
     margin-right: 2.5rem;
@@ -30,113 +67,97 @@
     @include font(Montserrat, normal, normal, 1.4rem, 150%, 0em, $color_lightdarkgrey);
     display: none;
 }
-.container__titl {
-    margin: 4.5rem 0 2rem 12%;
-    background: $color_gradient;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font-weight: 800;
-    font-size: 4.8rem;
-    line-height: 120%;
-}
-.container__text {
-    @include font(Montserrat, normal, normal, 1.8rem, 150%, 0em, $color_black);
-    margin: 2.2rem 0 6.5rem 12%;
-    width: 80rem;
-}
-.container__text1 {
-    @include font(Montserrat, normal, normal, 1.6rem, 170%, 0em, $color_darkgrey);
-    margin: 1.7rem 0 1.7rem 12%;
-    width: 82.5rem;
-}
-.container__img1 {
-    margin: 0 10% 6.5rem 12%;
-    #imgDelivery {
+@media (max-width: 1460px) {
+    .wrapper-newsarticle {
         width: 100%;
-        border-radius: 10px;
-    }
-}
-.container__img3 {
-    margin: 4.5rem 12.5% 7rem 12%;
-    #imgWoman {
-        width: 76%;
-        border-radius: 10px;
     }
 }
 @media (max-width: 968px) {
-    .container__text,
-    .container__text1 {
-        width: 60rem;
-    }
-    .container__img3 {
-        #imgWoman {
-            width: 90%;
+    .container-newsarticle {
+        &__text,
+        &__description-first {
+            width: 60rem;
+        }
+        &__img-woman {
+            #imgWoman {
+                width: 90%;
+            }
         }
     }
 }
 @media (max-width: 886px) {
-    .container__line {
-        margin: 0 10% 0 8%;
-    }
-    .container__path {
-        margin: 1.5rem 0 1.6rem 8%;
-    }
-    .container__titl {
-        margin: 1.6rem 0 2rem 8%;
-        font-size: 3.6rem;
-    }
-    .container__text {
-        margin: 2.2rem 0 2.9rem 8%;
-        width: 40rem;
-    }
-    .container__img1 {
-        margin: 0 10% 2.9rem 8%;
-    }
-    .container__text1 {
-        margin: 2.9rem 0 2.9rem 8%;
-        width: 40rem;
-    }
-    .container__img3 {
-        margin: 13.7rem 0 2.9rem 8%;
+    .container-newsarticle {
+        &__line {
+            margin: 0 10% 0 8%;
+        }
+        &__path {
+            margin: 1.5rem 0 1.6rem 8%;
+        }
+        &__title {
+            margin: 1.6rem 0 2rem 8%;
+            font-size: 3.6rem;
+        }
+        &__text {
+            margin: 2.2rem 0 2.9rem 8%;
+            width: 40rem;
+        }
+        &__img-delivery {
+            margin: 0 10% 2.9rem 8%;
+        }
+        &__description-first {
+            margin: 2.9rem 0 2.9rem 8%;
+            width: 40rem;
+        }
+        &__img-woman {
+            margin: 13.7rem 0 2.9rem 8%;
+        }
     }
 }
 @media (max-width: 500px) {
-    .container__line {
-        margin: 0 4% 0 $pt_2rem;
-    }
-    .container__path {
-        margin: 1.5rem 0 1.6rem $pt_2rem;
-    }
-    .container__titl {
-        margin: 1.6rem 0 2rem $pt_2rem;
-        font-size: 3.6rem;
-    }
-    .container__text {
-        margin: 2.2rem 0 2.9rem $pt_2rem;
-        width: 33.5rem;
-    }
-    .container__img1 {
-        margin: 0 5% 2.9rem $pt_2rem;
-    }
-    .container__text1 {
-        margin: 2.9rem 0 2.9rem $pt_2rem;
-        width: 33.5rem;
-    }
-    .container__img3 {
-        margin: 2.9rem 5% 2.9rem $pt_2rem;
-        #imgWoman {
-            width: 100%;
+    .container-newsarticle {
+        &__line {
+            margin: 0 4% 0 $pt_2rem;
+        }
+        &__path {
+            margin: 1.5rem 0 1.6rem $pt_2rem;
+        }
+        &__title {
+            margin: 1.6rem 0 2rem $pt_2rem;
+            font-size: 3.6rem;
+            font-weight: 700;
+            line-height: 110%;
+        }
+        &__text {
+            margin: 2.2rem 0 2.9rem $pt_2rem;
+            width: 33.5rem;
+        }
+        &__img-delivery {
+            margin: 0 5% 2.9rem $pt_2rem;
+        }
+        &__description-first {
+            margin: 2.9rem 0 2.9rem $pt_2rem;
+            width: 33.5rem;
+        }
+        &__img-woman {
+            margin: 2.9rem 5% 2.9rem $pt_2rem;
+            #imgWoman {
+                width: 100%;
+            }
         }
     }
 }
 @media (max-width: 450px) {
-    .wrapper {
-        margin-top: 8rem;
+    .wrapper-newsarticle {
+        margin-top: 6.4rem;
     }
     .container__new {
         display: block;
     }
     .container__news {
         display: none;
+    }
+    .container__angle,
+    .container__home {
+        margin-right: $pw_1-5rem;
     }
 }
