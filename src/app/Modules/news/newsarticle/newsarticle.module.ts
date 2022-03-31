@@ -3,9 +3,7 @@ import { CommonModule } from '@angular/common';
 import { NewsarticleRoutingModule } from './newsarticle-routing.module';
 import { BannersModule } from '../../banners/banners.module';
 import { NewsarticleComponent } from './newsarticle.component';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { UrlInterceptor } from '../../../../environments/environment';
-import { NewsArticleService } from './newsarticle.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -17,8 +15,6 @@ import { NewsArticleService } from './newsarticle.service';
     BannersModule,
     HttpClientModule
   ],
-  providers: [NewsArticleService,
-    { provide: HTTP_INTERCEPTORS, useClass: UrlInterceptor, multi: true },
-  ]
+  providers: []
 })
 export class NewsarticleModule { }
