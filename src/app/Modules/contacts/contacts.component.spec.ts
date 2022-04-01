@@ -13,13 +13,12 @@ import { ContactMeDto } from './contacts.model';
 import { Observable, of } from 'rxjs';
 import { PrintErrorDirective } from 'src/app/directives/error-form/error-form.directive';
 
-
 describe('ContactsComponent', () => {
   let component: ContactsComponent;
   let fixture: ComponentFixture<ContactsComponent>;
   let hostElement: DebugElement;
   let element: HTMLElement;
-  let directive: PrintErrorDirective
+  let directive = jasmine.createSpyObj('PrintErrorDirective', ['keyup', 'focusout'])
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -30,10 +29,6 @@ describe('ContactsComponent', () => {
           postData(formValue: ContactMeDto): Observable<any> {
             return of({})
           }
-        }
-      },
-      {
-        provide: ContactsService, useClass: class MockContactsService {
           getAdress(): Observable<string | number | object> {
             return of({})
           }
@@ -49,7 +44,8 @@ describe('ContactsComponent', () => {
     fixture = TestBed.createComponent(ContactsComponent);
     component = fixture.componentInstance;
     hostElement = fixture.debugElement.query(By.css('.container__name'));
-    element = fixture.nativeElement
+    element = fixture.nativeElement;
+    directive.keyup();
     fixture.detectChanges();
   });
 
@@ -67,7 +63,7 @@ describe('ContactsComponent', () => {
     expect(component.closeMenu).toBeTruthy()
   });
   it('should create an instance directive', () => {
-    expect(directive).toBeUndefined();
+    expect(directive).toBeTruthy();
   });
   it('should create an instance directive cut listener', () => {
     const event = new ClipboardEvent('cut');
@@ -84,4 +80,20 @@ describe('ContactsComponent', () => {
     hostElement.nativeElement.dispatchEvent(event);
     expect(hostElement.nativeElement.value).toBeUndefined();
   });
+
+  describe('method postDataDetails', () => {
+    it('should call api.postData and reset form. Next branch', async () => {
+      component.formValue.patchValue({ name: 'test' });
+      expect(component.name.value).toBe('test');
+      component.postDataDetails();
+      expect(component.name.value).toBe(null);
+    })
+
+    it('should call api.postData and reset form. Error branch', async () => {
+      component.formValue.patchValue({ name: 'test' });
+      expect(component.name.value).toBe('test');
+      component.postDataDetails();
+      expect(component.name.value).toBe(null);
+    })
+  })
 });

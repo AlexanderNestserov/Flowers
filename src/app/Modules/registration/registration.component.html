@@ -3,7 +3,7 @@
     <div class="container-registration">
         <div class="container-registration__logo">
             <p class="container__title">Registration</p>
-            <a class="container__link">Sign in</a>
+            <a class="container__link" (click)="signIn()">Sign in</a>
         </div>
         <div class="container-registration__form">
             <form [formGroup]='formValue' (ngSubmit)="postDataDetails()">
@@ -78,7 +78,7 @@
                         class="container__linking" (click)="dialogTitle()">processing of
                         personal data</a>
                 </div>
-                <button type="submit" class="container__button" (click)="login()"
+                <button type="submit" class="container__button"
                     [ngClass]="{'disabled': formValue.invalid || isDisabled}"
                     [disabled]="formValue.invalid || isDisabled">Register <app-spinner></app-spinner></button>
             </form>

@@ -43,7 +43,6 @@ describe('ContactsService', () => {
             password: 'fuck',
             shippingAddress: 'Minsk'
         };
-
         service.postData(newEmp).subscribe(
             data => expect(data).toEqual(newEmp, 'should return the employee'),
             fail
@@ -51,7 +50,6 @@ describe('ContactsService', () => {
         const req = httpMock.expectOne(environment.serverUrl + service.postUrl);
         expect(req.request.method).toEqual('POST');
         expect(req.request.body).toEqual(newEmp);
-
         const expectedResponse = new HttpResponse({ status: 200, statusText: 'Created', body: newEmp });
         req.event(expectedResponse);
     });
@@ -69,10 +67,8 @@ describe('ContactsService', () => {
         }).subscribe(response => {
             expect(response).toBeTruthy();
         });
-
         const httpRequest = httpMock.expectOne(`${environment.serverUrl
             }users/registration`);
-
         expect(httpRequest.request.url).toEqual('http://172.16.16.41:15000/users/registration');
     });
 });

@@ -16,6 +16,9 @@ import { KeycloakService } from 'keycloak-angular';
 describe('RegistrationComponent', () => {
   let component: RegistrationComponent;
   let fixture: ComponentFixture<RegistrationComponent>;
+  let keycloak = jasmine.createSpyObj('KeycloakService', ['login']);
+  let service: RegistrationService;
+  let MockRegistrationService = jasmine.createSpyObj('fakeService', ['postData']);
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -28,7 +31,7 @@ describe('RegistrationComponent', () => {
           }
         }
       },
-        KeycloakService],
+      { provide: KeycloakService, useValue: keycloak }],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     })
       .compileComponents();
@@ -37,6 +40,8 @@ describe('RegistrationComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(RegistrationComponent);
     component = fixture.componentInstance;
+    keycloak.login();
+    service = TestBed.inject(RegistrationService);
     fixture.detectChanges();
   });
 
@@ -103,4 +108,15 @@ describe('RegistrationComponent', () => {
     ctrl.setValue(true);
     expect(component.showError()).toBeTruthy()
   }));
+  it('should be created login', async () => {
+    component.signIn();
+    expect(keycloak.login).toHaveBeenCalled()
+  });
+  it('should be created login', () => {
+    jasmine.clock().install();
+    component.postDataDetails();
+    jasmine.clock().tick(5000);
+    expect(keycloak.login()).toBeUndefined();
+    jasmine.clock().uninstall();
+  });
 });

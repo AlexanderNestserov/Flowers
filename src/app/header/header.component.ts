@@ -56,7 +56,7 @@ export class HeaderComponent implements OnInit {
     this.isMenu = true;
   }
 
-  public async ngOnInit(): Promise<void> {
+  public async ngOnInit() {
     onScroll();
     this.isLoggedIn = await this.keycloak.isLoggedIn();
     function onScroll() {

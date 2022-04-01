@@ -14,14 +14,17 @@ describe('HeaderComponent', () => {
   let component: HeaderComponent;
   let fixture: ComponentFixture<HeaderComponent>;
   let httpMock: HttpTestingController;
-  let service: KeycloakService
+  let service: KeycloakService;
+  let keycloakService = jasmine.createSpyObj(['login', 'logout', 'isLoggedIn'])
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [HeaderComponent, RegistrationComponent],
       imports: [RouterTestingModule.withRoutes(routes), RouterModule, KeycloakAngularModule, HttpClientTestingModule],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      providers: [KeycloakService]
+      providers: [
+        { provide: KeycloakService, useValue: keycloakService }
+      ]
     })
       .compileComponents();
     service = TestBed.inject(KeycloakService);
@@ -31,13 +34,15 @@ describe('HeaderComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(HeaderComponent);
     component = fixture.componentInstance;
+    keycloakService.login();
+    keycloakService.logout();
+    keycloakService.isLoggedIn();
     fixture.detectChanges();
   });
 
   describe('routes', () => {
     let location: Location;
     let router: Router;
-
     beforeEach(() => {
       router = TestBed.inject(Router);
       location = TestBed.inject(Location);
@@ -63,17 +68,22 @@ describe('HeaderComponent', () => {
     const toggle = component.toggleDisplay();
     expect(toggle).toBe();
   });
-  it('should be created toggleDisplay run', () => {
+  it('should be created toggleDisplay run', async () => {
     const link = fixture.debugElement.query(By.css('.burger'));
     link.nativeElement.click();
-    expect(component.toggleDisplay).toBeTruthy()
-  });
-  it('should be created toggleDisplay else', () => {
-    component.isShow = !component.isShow;
+    component.isShow = false;
     const foo = document.body.style.overflow;
-    component.toggleDisplay();
     fixture.detectChanges();
-    expect(foo).toBe('hidden' || '');
+    component.toggleDisplay();
+    expect(foo).toBe('hidden')
+  });
+  it('should be created toggleDisplay else', async () => {
+    let spy = spyOn(component, 'toggleDisplay').and.callFake(() => {
+      document.body.style.overflow;
+    })
+    component.isShow = true;
+    component.toggleDisplay();
+    expect(spy).toHaveBeenCalled();
   });
   it('should be created toggleDisplays if', () => {
     const spy = spyOn(component, 'toggleDisplay');
@@ -87,12 +97,10 @@ describe('HeaderComponent', () => {
     link.nativeElement.click();
     expect(component.toggleDisplays).toBeTruthy()
   });
-
   it('should be created toggleUser', () => {
     const link = fixture.debugElement.query(By.css('.header__user'));
     link.nativeElement.click();
     expect(component.toggleUser).toBeTruthy()
-
   });
   it('should be created toggleUser', () => {
     let click = component.ngOnInit()
@@ -120,13 +128,13 @@ describe('HeaderComponent', () => {
     expect(link).toBeNull();
   });
   it('should be created logout', () => {
-    const toggle = component.logout()
-    fixture.detectChanges();
-    expect(toggle).toBe();
+    component.logout();
+    expect(keycloakService.logout).toHaveBeenCalled();
   });
   it('should be created logout', async () => {
     component.isLoggedIn = true;
-    fixture.detectChanges();
-    expect(component.keycloak.getToken).toBeTruthy()
+    component.logout();
+    expect(keycloakService.logout).toHaveBeenCalled();
   })
+
 })

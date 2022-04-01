@@ -3,7 +3,10 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 import { RegistrationService } from './registration.service';
 import { divTrigger, divTriggerError } from '../popup-success-error/popupSuccessError.animations';
 import { PasswordMatchVaildator } from './error-form/passwordmatch';
-import { KeycloakService } from 'keycloak-angular';
+import { KeycloakEventType, KeycloakService } from 'keycloak-angular';
+
+import { async } from 'rxjs';
+import { waitForAsync } from '@angular/core/testing';
 
 enum ClickedDivState {
   hide = 'hide',
@@ -36,16 +39,11 @@ export class RegistrationComponent implements OnInit {
   isDisabled = false;
   isDialog = true;
   isChecked = false
-
   constructor(private api: RegistrationService, private formbuilder: FormBuilder, private passwordMatchValidator: PasswordMatchVaildator, private readonly keycloak: KeycloakService) {
   }
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.formValue.reset();
-  }
-
-  public login() {
-    this.keycloak.login();
   }
 
   showError() {
@@ -89,10 +87,13 @@ export class RegistrationComponent implements OnInit {
   }
 
   postDataDetails() {
-    this.isDisabled = true
+    this.isDisabled = true;
     this.api.postData({ ...this.formValue.value })
       .subscribe({
         next: (res) => {
+          setTimeout(() => {
+            this.keycloak.login();
+          }, 5000);
           this.clickedDivState = ClickedDivState.show;
           this.formValue.reset();
         },
@@ -104,6 +105,10 @@ export class RegistrationComponent implements OnInit {
     this.isDisabled = false;
     this.clickedDivState = ClickedDivState.hide;
     this.clickedDivStateError = ClickedDivState.hide;
+  }
+
+  signIn() {
+    this.keycloak.login();
   }
 
   closeMenu() {
