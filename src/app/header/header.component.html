@@ -49,7 +49,8 @@
                         <li class=" user__li user__li-2" *ngIf="isLoggedIn"><a href="" class="user__text">MANAGE MY
                                 ACCOUNT</a></li>
                         <div class="line"></div>
-                        <li class=" user__li user__li-3"><a (click)="logout()" class="user__text">LOG OUT</a></li>
+                        <li class=" user__li user__li-3" *ngIf="isLoggedIn"><a (click)="logout()" class="user__text">LOG
+                                OUT</a></li>
                     </ul>
                 </li>
             </div>

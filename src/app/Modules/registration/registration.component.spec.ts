@@ -1,5 +1,5 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { waitForAsync, async, ComponentFixture, fakeAsync, TestBed, inject } from '@angular/core/testing';
+import { waitForAsync, async, ComponentFixture, fakeAsync, TestBed, inject, tick } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RegistrationComponent } from './registration.component';
 import { RegistrationService } from './registration.service';
@@ -10,7 +10,7 @@ import { By } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { ErrorDirectiveModule } from 'src/app/directives/error-form/error-directive.module';
 import { RegisterUserDto } from './registration.model';
-import { Observable, of } from 'rxjs';
+import { catchError, Observable, of, throwError } from 'rxjs';
 import { KeycloakService } from 'keycloak-angular';
 
 describe('RegistrationComponent', () => {
@@ -112,11 +112,19 @@ describe('RegistrationComponent', () => {
     component.signIn();
     expect(keycloak.login).toHaveBeenCalled()
   });
-  it('should be created login', () => {
+  it('should be created login on setTimeout', () => {
     jasmine.clock().install();
     component.postDataDetails();
     jasmine.clock().tick(5000);
     expect(keycloak.login()).toBeUndefined();
     jasmine.clock().uninstall();
   });
+  it('should call api.postData and reset form. Error branch', () => {
+    component.formValue.patchValue({ firstName: null })
+    const spy = MockRegistrationService.postData.and.returnValue(throwError(() => new Error('error')));
+    expect(component.firstName.value).toBe(null);
+    component.postDataDetails();
+    expect(spy).toBeTruthy();
+    expect(component.firstName.value).toBe(null);
+  })
 });
