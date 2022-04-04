@@ -4,7 +4,7 @@ import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Location } from "@angular/common";
 import { Router, RouterModule } from '@angular/router';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { HeaderComponent } from './header.component';
 import { RegistrationComponent } from '../Modules/registration/registration.component';
 import { routes } from '../app.component';
@@ -13,8 +13,6 @@ import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
   let fixture: ComponentFixture<HeaderComponent>;
-  let httpMock: HttpTestingController;
-  let service: KeycloakService;
   let keycloakService = jasmine.createSpyObj(['login', 'logout', 'isLoggedIn'])
 
   beforeEach(async () => {
@@ -27,8 +25,6 @@ describe('HeaderComponent', () => {
       ]
     })
       .compileComponents();
-    service = TestBed.inject(KeycloakService);
-    httpMock = TestBed.inject(HttpTestingController);
   });
 
   beforeEach(() => {
@@ -82,6 +78,7 @@ describe('HeaderComponent', () => {
       document.body.style.overflow;
     })
     component.isShow = true;
+    fixture.detectChanges();
     component.toggleDisplay();
     expect(spy).toHaveBeenCalled();
   });
@@ -108,8 +105,8 @@ describe('HeaderComponent', () => {
     expect(toggle).toBeTruthy(click);
   });
   it('should be created onScroll', () => {
-    let scroll = component.ngOnInit.bind(onscroll)
-    expect(scroll).toBeTruthy()
+    let scroll = component.ngOnInit.bind(onscroll);
+    expect(scroll).toBeTruthy();
   });
   it('should be created onScroll add scroll', () => {
     window.dispatchEvent(new Event("scroll"));
@@ -127,14 +124,17 @@ describe('HeaderComponent', () => {
     component.ngOnInit();
     expect(link).toBeNull();
   });
-  it('should be created logout', () => {
+  it('should be created logout', fakeAsync(() => {
     component.logout();
     expect(keycloakService.logout).toHaveBeenCalled();
-  });
-  it('should be created logout', async () => {
+  }));
+  it('should be created logout', fakeAsync(() => {
     component.isLoggedIn = true;
     component.logout();
     expect(keycloakService.logout).toHaveBeenCalled();
-  })
-
+  }));
+  it('should be created ngOnDestroy', () => {
+    let spy = component.ngOnDestroy()
+    expect(spy).toBeUndefined()
+  });
 })

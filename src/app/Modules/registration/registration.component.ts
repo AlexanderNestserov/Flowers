@@ -3,10 +3,10 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 import { RegistrationService } from './registration.service';
 import { divTrigger, divTriggerError } from '../popup-success-error/popupSuccessError.animations';
 import { PasswordMatchVaildator } from './error-form/passwordmatch';
-import { KeycloakEventType, KeycloakService } from 'keycloak-angular';
+import { KeycloakService } from 'keycloak-angular';
+import { KeycloakLoginOptions } from 'keycloak-js';
 
-import { async } from 'rxjs';
-import { waitForAsync } from '@angular/core/testing';
+
 
 enum ClickedDivState {
   hide = 'hide',
@@ -31,14 +31,17 @@ export class RegistrationComponent implements OnInit {
     phone: ['', [Validators.required, Validators.pattern(/^[\+\][0-9]{12}$/)]],
     homeAddress: ['', [Validators.maxLength(255),]],
     additionalInformation: ['', [Validators.maxLength(255),]],
-    myCheckbox: ['boolean'],
-    password: ['', [Validators.required, Validators.minLength(8), Validators.pattern(/^[0-9a-zA-Z]/)]],
+    myCheckbox: [false],
+    password: ['', [Validators.required, Validators.minLength(8), Validators.pattern(/(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}/g)]],
     confirmPassword: ['', [Validators.required, Validators.minLength(8)]],
   }, { validators: this.passwordMatchValidator.validate }
   );
   isDisabled = false;
   isDialog = true;
-  isChecked = false
+  isChecked = false;
+  keycloakLoginOption: KeycloakLoginOptions = {
+    redirectUri: 'http://localhost:4200/home'
+  }
   constructor(private api: RegistrationService, private formbuilder: FormBuilder, private passwordMatchValidator: PasswordMatchVaildator, private readonly keycloak: KeycloakService) {
   }
 
@@ -81,10 +84,6 @@ export class RegistrationComponent implements OnInit {
   dialogTitle() {
     this.isDialog = false;
   }
-  checked() {
-    this.isDialog = true;
-    this.isChecked = true
-  }
 
   postDataDetails() {
     this.isDisabled = true;
@@ -92,7 +91,7 @@ export class RegistrationComponent implements OnInit {
       .subscribe({
         next: (res) => {
           setTimeout(() => {
-            this.keycloak.login();
+            this.keycloak.login(this.keycloakLoginOption);
           }, 5000);
           this.clickedDivState = ClickedDivState.show;
           this.formValue.reset();
@@ -108,7 +107,7 @@ export class RegistrationComponent implements OnInit {
   }
 
   signIn() {
-    this.keycloak.login();
+    this.keycloak.login(this.keycloakLoginOption);
   }
 
   closeMenu() {

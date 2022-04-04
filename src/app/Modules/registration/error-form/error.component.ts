@@ -7,5 +7,4 @@ import { Component, Input, Output } from '@angular/core';
 })
 export class PrintErrorRegistrationComponent {
     @Input() formControlItem: any;
-
 }

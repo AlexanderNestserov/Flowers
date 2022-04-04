@@ -1,6 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { filter, fromEvent } from 'rxjs';
-import { ActivatedRoute, NavigationEnd, Router, RouterEvent } from '@angular/router';
+import { filter, fromEvent, Subscription } from 'rxjs';
+import { NavigationEnd, Router, RouterEvent } from '@angular/router';
 import { KeycloakService } from 'keycloak-angular';
 
 @Component({
@@ -13,13 +13,14 @@ import { KeycloakService } from 'keycloak-angular';
   }
 })
 export class HeaderComponent implements OnInit {
+  obs!: Subscription;
   isMenu = true;
   isShow = true;
   isShown = false;
   urlRegistration = false;
   public isLoggedIn = false;
 
-  constructor(private activatedRoute: ActivatedRoute, public router: Router, public readonly keycloak: KeycloakService) {
+  constructor(public router: Router, public readonly keycloak: KeycloakService) {
     this.router.events.pipe(
       filter((e: any) => e instanceof NavigationEnd)
     ).subscribe((e: RouterEvent) => {
@@ -57,11 +58,11 @@ export class HeaderComponent implements OnInit {
   }
 
   public async ngOnInit() {
-    onScroll();
     this.isLoggedIn = await this.keycloak.isLoggedIn();
-    function onScroll() {
-      fromEvent(window, 'scroll').subscribe(callbackFunc);
-      function callbackFunc() {
+
+    let onScroll = () => {
+      this.obs = fromEvent(window, 'scroll').subscribe(callbackFunction);
+      function callbackFunction() {
         let y = window.pageYOffset;
         if (y > 0) {
           document.querySelector('.header')?.classList.add("scroll");
@@ -70,10 +71,18 @@ export class HeaderComponent implements OnInit {
         }
       }
     }
+    onScroll();
   }
+
   public logout() {
     if (this.isLoggedIn) {
       this.keycloak.logout();
+    }
+  }
+
+  ngOnDestroy() {
+    if (this.obs) {
+      this.obs.unsubscribe();
     }
   }
 }

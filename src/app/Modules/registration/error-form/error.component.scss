@@ -5,15 +5,15 @@
     display: inline-block;
     @include font(Montserrat, normal, 400, 1.2rem, 150%, 0em, $color_black);
     color: $color_red;
-    width: 30rem;
+    width: 35rem;
 }
 .alert-name {
     position: relative;
-    left: 18rem;
+    left: 13rem;
     bottom: 5rem;
 }
 @media (max-width: 640px) {
     .alert-name {
-        left: -1.3rem;
+        left: -6.3rem;
     }
 }

@@ -66,9 +66,9 @@
                     </label>
                     <app-field-error-registration [formControlItem]="confirmPassword"></app-field-error-registration>
                     <span class="container__error"
-                        *ngIf="formValue.errors?.['noMatchingPassword'] && !confirmPassword.errors?.['required'] && !confirmPassword.errors?.['minlength']">Passwords
+                        *ngIf="formValue.errors?.['noMatchingPassword'] && !confirmPassword.errors?.['required']">Passwords
                         did not match</span><img class="alert-confirmpassword"
-                        *ngIf="formValue.errors?.['noMatchingPassword'] && !confirmPassword.errors?.['required'] && !confirmPassword.errors?.['minlength']"
+                        *ngIf="formValue.errors?.['noMatchingPassword'] && !confirmPassword.errors?.['required']"
                         src="../../../assets/img-registration/alert-circle.png">
                 </div>
                 <div class=" container__checkbox">
@@ -118,7 +118,7 @@
                     <button class="container__cancel" (click)="isDialog=true">
                         <p class="button__paragraph-cancel">Cancel</p>
                     </button>
-                    <button class="container__action" (click)="checked()">
+                    <button class="container__action" (click)="isDialog=true">
                         <p class="button__paragraph-action">Action</p>
                     </button>
                 </div>

@@ -59,11 +59,6 @@ describe('RegistrationComponent', () => {
     link.nativeElement.click();
     expect(component.dialogTitle).toBeTruthy()
   });
-  it('should be created checked', () => {
-    const link = fixture.debugElement.query(By.css('.container__action'));
-    link.nativeElement.click();
-    expect(component.checked).toBeTruthy()
-  });
   it('should be created closeMenu', () => {
     const link = fixture.debugElement.query(By.css('app-popup'));
     link.nativeElement.click();

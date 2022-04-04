@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from "@angular/common/http";
 import { Observable } from "rxjs";
+import { KeycloakLoginOptions } from "keycloak-js";
 
 @Injectable()
 export class UrlInterceptor implements HttpInterceptor {
@@ -16,12 +17,35 @@ export class UrlInterceptor implements HttpInterceptor {
 
 export const environment: Env = {
   production: false,
-  serverUrl: 'http://172.16.16.41:15000/'
+  serverUrl: 'http://172.16.16.41:15000/',
+  config: {
+    url: 'http://172.16.16.41:15003/auth',
+    realm: 'angular_trainee',
+    clientId: 'angular_trainee_client',
+  },
+  initOptions: {
+    onLoad: 'check-sso',
+    silentCheckSsoRedirectUri:
+      window.location.origin + '/assets/silent-check-sso.html'
+  },
+  enableBearerInterceptor: true,
+  bearerPrefix: 'Bearer'
 }
 
 export interface Env {
   production?: boolean,
-  serverUrl: string
+  serverUrl: string,
+  config: {
+    url: string,
+    realm: string,
+    clientId: string,
+  },
+  initOptions: {
+    onLoad: any,
+    silentCheckSsoRedirectUri: any;
+  },
+  enableBearerInterceptor: boolean,
+  bearerPrefix: string
 }
 
 /*

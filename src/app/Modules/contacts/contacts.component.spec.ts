@@ -17,8 +17,8 @@ describe('ContactsComponent', () => {
   let component: ContactsComponent;
   let fixture: ComponentFixture<ContactsComponent>;
   let hostElement: DebugElement;
-  let element: HTMLElement;
-  let directive = jasmine.createSpyObj('PrintErrorDirective', ['keyup', 'focusout'])
+  let directive = jasmine.createSpyObj('PrintErrorDirective', ['keyup', 'focusout']);
+  let service: ContactsService;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -41,10 +41,10 @@ describe('ContactsComponent', () => {
   }));
 
   beforeEach(() => {
+    service = TestBed.inject(ContactsService);
     fixture = TestBed.createComponent(ContactsComponent);
     component = fixture.componentInstance;
     hostElement = fixture.debugElement.query(By.css('.container__name'));
-    element = fixture.nativeElement;
     directive.keyup();
     fixture.detectChanges();
   });
