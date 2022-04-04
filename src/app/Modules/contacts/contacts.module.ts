@@ -11,7 +11,6 @@ import { UrlInterceptor } from '../../../environments/environment';
 import { PopupErrorSuccessModule } from '../popup-success-error/popupErrorSuccess.module';
 import { ErrorFormModule } from './error-form/error-form.module';
 import { ErrorDirectiveModule } from 'src/app/directives/error-form/error-directive.module';
-import { BrowserModule } from '@angular/platform-browser';
 
 @NgModule({
   declarations: [

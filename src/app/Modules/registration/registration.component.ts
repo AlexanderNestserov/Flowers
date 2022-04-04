@@ -4,9 +4,7 @@ import { RegistrationService } from './registration.service';
 import { divTrigger, divTriggerError } from '../popup-success-error/popupSuccessError.animations';
 import { PasswordMatchVaildator } from './error-form/passwordmatch';
 import { KeycloakService } from 'keycloak-angular';
-import { KeycloakLoginOptions } from 'keycloak-js';
-
-
+import { environment } from 'src/environments/environment';
 
 enum ClickedDivState {
   hide = 'hide',
@@ -39,9 +37,8 @@ export class RegistrationComponent implements OnInit {
   isDisabled = false;
   isDialog = true;
   isChecked = false;
-  keycloakLoginOption: KeycloakLoginOptions = {
-    redirectUri: 'http://localhost:4200/home'
-  }
+  keycloakLoginOption = environment.keycloakLoginOption;
+
   constructor(private api: RegistrationService, private formbuilder: FormBuilder, private passwordMatchValidator: PasswordMatchVaildator, private readonly keycloak: KeycloakService) {
   }
 

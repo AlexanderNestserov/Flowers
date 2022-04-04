@@ -1,5 +1,5 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { waitForAsync, async, ComponentFixture, fakeAsync, TestBed, inject, tick } from '@angular/core/testing';
+import { waitForAsync, async, ComponentFixture, fakeAsync, TestBed, inject } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RegistrationComponent } from './registration.component';
 import { RegistrationService } from './registration.service';
@@ -10,7 +10,7 @@ import { By } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { ErrorDirectiveModule } from 'src/app/directives/error-form/error-directive.module';
 import { RegisterUserDto } from './registration.model';
-import { catchError, Observable, of, throwError } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
 import { KeycloakService } from 'keycloak-angular';
 
 describe('RegistrationComponent', () => {

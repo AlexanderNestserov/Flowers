@@ -28,6 +28,9 @@ export const environment: Env = {
     silentCheckSsoRedirectUri:
       window.location.origin + '/assets/silent-check-sso.html'
   },
+  keycloakLoginOption: {
+    redirectUri: 'http://localhost:4200/home'
+  },
   enableBearerInterceptor: true,
   bearerPrefix: 'Bearer'
 }
@@ -44,6 +47,7 @@ export interface Env {
     onLoad: any,
     silentCheckSsoRedirectUri: any;
   },
+  keycloakLoginOption: KeycloakLoginOptions,
   enableBearerInterceptor: boolean,
   bearerPrefix: string
 }

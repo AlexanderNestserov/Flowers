@@ -1,6 +1,4 @@
 import { Input, Directive, ElementRef, Renderer2, HostListener } from '@angular/core';
-import { FormControl } from '@angular/forms';
-
 
 @Directive({
     selector: '[errorDirective]',
