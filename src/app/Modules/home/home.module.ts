@@ -33,6 +33,7 @@ import { ItemsComponent } from './items/items.component';
     TabViewModule,
     BannersModule,
     FormsModule
-  ]
+  ],
+  exports: [SwiperListComponent, ItemsComponent]
 })
 export class HomeModule { }

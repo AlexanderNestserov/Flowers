@@ -30,14 +30,14 @@ import { initializeKeycloak } from './utility/app.init';
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    KeycloakAngularModule
+    // KeycloakAngularModule
   ],
   bootstrap: [AppComponent],
-  providers: [{
-    provide: APP_INITIALIZER,
-    useFactory: initializeKeycloak,
-    multi: true,
-    deps: [KeycloakService]
-  }]
+  //providers: [{
+  //provide: APP_INITIALIZER,
+  // useFactory: initializeKeycloak,
+  //multi: true,
+  // deps: [KeycloakService]
+  // }]
 })
 export class AppModule { }

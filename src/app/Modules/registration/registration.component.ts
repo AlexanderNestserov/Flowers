@@ -5,6 +5,7 @@ import { divTrigger, divTriggerError } from '../popup-success-error/popupSuccess
 import { PasswordMatchVaildator } from './error-form/passwordmatch';
 import { KeycloakService } from 'keycloak-angular';
 import { environment } from 'src/environments/environment';
+import { KeycloakLoginOptions } from 'keycloak-js';
 
 enum ClickedDivState {
   hide = 'hide',

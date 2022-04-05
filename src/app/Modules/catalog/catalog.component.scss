@@ -1,0 +1,193 @@
+@import "../../styles/_variables.scss";
+@import "../../styles/_mixins.scss";
+
+.wrapper-catalog {
+    margin: 0 auto;
+    width: 144rem;
+}
+
+.container-catalog {
+    max-width: 100%;
+    margin: 0 11.5% 3.5rem 11.5%;
+    &__line {
+        background: $color_darkgrey;
+        opacity: 0.2;
+        height: 1px;
+        margin-top: 1.6rem;
+    }
+    &__path {
+        margin: 2.6rem auto;
+    }
+    &__line-main{
+        background: $color_darkgrey;
+        opacity: 0.2;
+        height: 1px;
+        margin-top: 3.1rem;
+        margin-bottom: 4.2rem;
+    }
+    &__title{
+    background: $color_gradient;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 800;
+    font-size: 4.8rem;
+    line-height: 120%;
+    margin-right: 12%;
+    margin-bottom: 2.4rem;
+    }
+    &__text{
+        @include font(Montserrat, normal, 400, 1.8rem, 150%, 0em, $color_black);
+        margin-bottom: 3.7rem;
+    }
+    &__filter-products{
+        margin-bottom: 7.6rem;
+    }
+    &__filter{
+        width: 25.5rem;
+    }
+    &__filter-title{
+        @include font(Montserrat, normal, 700, 2.8rem, 120%, 0em, $color_darkgrey);
+        margin-bottom: 3.5rem;
+    }
+    &__filter-cost{
+        margin-bottom: 4.2rem;
+    }
+    &__filter-cost-title{
+        @include font(Montserrat, normal, 700, 1.8rem, 150%, 0em, $color_darkgrey);
+        margin-bottom: 1.4rem;
+    }
+    &__filter-cost-min-max{
+        margin-bottom: 2.9rem;
+    }
+}
+.container__home {
+    margin-right: 2.6rem;
+    .container__link {
+        @include font(Montserrat, normal, normal, 1.4rem, 150%, 0em, $color_darkgrey);
+    }
+}
+.container__angle {
+    margin-right: 2.6rem;
+    margin-top: 0.35rem;
+}
+.container__catalogs {
+    @include font(Montserrat, normal, normal, 1.4rem, 150%, 0em, $color_lightdarkgrey);
+  
+    }
+
+
+.container-catalog {}
+
+.container-catalog {}
+
+.container-catalog {}
+
+.container-catalog {}
+
+.container-catalog__ {}
+
+.container-catalog {}
+
+
+.p-float-label {
+    @include wihi(100%,5rem);
+}
+.filter-min,
+.filter-max{
+    @include font(Montserrat, normal, 400, 1.6rem, 170%, 0em, $color_grey);
+}
+
+:host{
+    ::ng-deep p-inputnumber.p-element.p-inputwrapper{
+        height:5rem;
+    }
+    ::ng-deep p-inputnumber{
+justify-content: center;
+    }
+    ::ng-deep #currency-min
+    {
+        width: 12rem;
+        margin-right: 1.5rem;
+    }
+    ::ng-deep #currency-max {
+        width: 12rem;
+    }
+    ::ng-deep .p-inputtext{
+        @include font(Montserrat, normal, 400, 1.6rem, 170%, 0em, $color_darkgrey);
+        padding: 0.5rem;
+        border-radius: 0.4rem;
+        border:1px solid $color_lightgrey;
+    }
+    ::ng-deep .p-inputtext:enabled:hover {
+        border-color:$color_darkgrey ;
+    }
+    ::ng-deep .p-inputtext:enabled:focus {
+        box-shadow:none;
+        border-color:$color_darkgrey;
+    }
+    ::ng-deep .p-float-label label{
+        top:0.8rem;
+      margin-top: 0.4rem;
+    }
+    ::ng-deep .p-float-label .p-inputwrapper-focus ~ label,
+    ::ng-deep .p-float-label .p-inputwrapper-filled~label
+    {
+        top:-0.5rem;
+    }
+    ::ng-deep .p-slider{
+        background-color:$color_lightgrey ;
+        width: 25.5rem;
+    }
+    ::ng-deep .p-slider .p-slider-range{
+        background:$color_pink ;
+    }
+    ::ng-deep .p-slider.p-slider-horizontal{
+        height:0.3rem;
+        width: 25.5rem;
+    }
+    ::ng-deep .p-slider .p-slider-handle {
+        @include wihi(2.1rem,2.1rem);
+        background:$color_pink;
+        border:none;
+        cursor: pointer;
+        transition: box-shadow 0.2s;
+    }
+    ::ng-deep .p-slider .p-slider-handle:focus {
+        box-shadow: 0 0 0 0.2rem $color_lightpink;
+    }
+   ::ng-deep .p-slider:not(.p-disabled) .p-slider-handle:hover{
+       background: $color_pink;
+        box-shadow: 0 0 0 0.2rem $color_lightpink;
+   }
+    ::ng-deep .p-slider.p-slider-horizontal .p-slider-handle {
+        margin-top: -1rem;
+    }
+
+}
+.container-catalog__filter-category {}
+
+.container-catalog__filter-category-title {}
+
+.container-catalog__filter-category-checkbox {}
+
+.field-checkbox {}
+
+.container-catalog__filter-additional {}
+
+.container-catalog__filter-additional-title {}
+
+.container-catalog__filter-buttons {}
+
+.container-catalog__filter-buttons-button1 {}
+
+.p-button-outlined {}
+
+.p-button-success {}
+
+.container-catalog__filter-buttons-button2 {}
+
+.container-catalog__products {}
+
+.container-catalog__products-title {}
+
+.container-catalog__products-quantity {}

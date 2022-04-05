@@ -1,1 +1,78 @@
-<p>catalog works!</p>
+<div class="wrapper-catalog">
+    <div class="container-catalog">
+        <div class="container-catalog__line"></div>
+        <div class="container-catalog__path flex justify-content-start">
+            <div class="container__home">
+                <a class="container__link" routerLink="/">Home</a>
+            </div>
+            <div class="container__angle">
+                <img src="../../../assets/img-aboutus/Angle.png" alt="angle">
+            </div>
+            <div class="container__catalogs">Catalog</div>
+        </div>
+        <div class="container-catalog__swiper">
+            <app-home-swiper-list></app-home-swiper-list>
+        </div>
+        <div class="container-catalog__line-main"></div>
+        <div class="container-catalog__title">Catalog</div>
+        <p class="container-catalog__text">For several years now, our company has been delighting customers with the
+            delivery
+            of flowers and congratulations. We are really proud of the clear and well-coordinated work of our employees
+            and are always confident that your order will be delivered at the right time to the right place.</p>
+        <div class="container-catalog__filter-products flex justify-content-start">
+            <div class="container-catalog__filter">
+                <div class="container-catalog__filter-title">Filter</div>
+                <div class="container-catalog__filter-cost">
+                    <div class="container-catalog__filter-cost-title">Cost</div>
+                    <div class="container-catalog__filter-cost-min-max flex justify-content-between">
+
+                        <div class="p-float-label">
+                            <p-inputNumber inputId="currency-min" mode="currency" currency="EUR" locale="en-US">
+                            </p-inputNumber>
+                            <label for="currency-min" class="filter-min">From</label>
+                        </div>
+
+                        <div class="p-float-label">
+                            <p-inputNumber inputId="currency-max" mode="currency" currency="EUR" locale="en-US">
+                            </p-inputNumber>
+                            <label for="currency-max" class="filter-max">To</label>
+                        </div>
+                    </div>
+                    <p-slider [(ngModel)]="rangeValues" [range]="true"></p-slider>
+                </div>
+                <div class="container-catalog__filter-category">
+                    <div class="container-catalog__filter-category-title">Category</div>
+                    <div class="container-catalog__filter-category-checkbox">
+                        <div *ngFor="let category of categories" class="field-checkbox">
+                            <p-checkbox name="group2" value="category" [value]="category"
+                                [(ngModel)]="selectedCategories" [inputId]="category.key"></p-checkbox>
+                            <label [for]="category.key">{{category.name}}</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="container-catalog__filter-additional">
+                    <div class="container-catalog__filter-additional-title">Additional filters</div>
+                    <div class="field-checkbox">
+                        <p-checkbox [(ngModel)]="checked" [binary]="true" inputId="binary"></p-checkbox>
+                        <label for="binary">In stock</label>
+                    </div>
+                </div>
+                <div class="container-catalog__filter-buttons">
+                    <p-button class="container-catalog__filter-buttons-button1" label="Apply filter" icon="pi pi-check">
+                    </p-button>
+                    <button pButton pRipple type="button" label="Clear filter"
+                        class="p-button-outlined p-button-success container-catalog__filter-buttons-button2"></button>
+                </div>
+            </div>
+            <div class="container-catalog__products">
+                <div class="container-catalog__products-title flex justify-content-between">
+                    <p class="container-catalog__products-quantity">287 products found</p>
+                    <p-splitButton label="Sort by..." [model]="this.items"
+                        styleClass="p-button-raised p-button-secondary p-button-text mr-2 mb-2"></p-splitButton>
+                </div>
+                <app-home-items></app-home-items>
+            </div>
+        </div>
+        <app-banners></app-banners>
+    </div>
+</div>

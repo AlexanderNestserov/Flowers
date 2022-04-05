@@ -26,7 +26,8 @@ export const environment: Env = {
   initOptions: {
     onLoad: 'check-sso',
     silentCheckSsoRedirectUri:
-      window.location.origin + '/assets/silent-check-sso.html'
+      window.location.origin + '/assets/silent-check-sso.html',
+    checkLoginIframe: true
   },
   keycloakLoginOption: {
     redirectUri: 'http://localhost:4200/home'
@@ -45,7 +46,8 @@ export interface Env {
   },
   initOptions: {
     onLoad: any,
-    silentCheckSsoRedirectUri: any;
+    silentCheckSsoRedirectUri: any,
+    checkLoginIframe: boolean
   },
   keycloakLoginOption: KeycloakLoginOptions,
   enableBearerInterceptor: boolean,
