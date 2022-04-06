@@ -55,7 +55,13 @@
 .swiper-container{
     margin:0 11% 0 11%;
 }
+.container-banners{
+    margin-left: 12%;
+}
 @media (max-width: 500px) {
+    .container-banners {
+        margin-left: 0;
+    }
     .container-home {
         &__beauties {
             @include font(Montserrat, normal, 700, 2.2rem, 120%, 0em, $color_darkgrey);

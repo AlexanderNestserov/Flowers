@@ -37,13 +37,14 @@
     }
     &__text{
         @include font(Montserrat, normal, 400, 1.8rem, 150%, 0em, $color_black);
-        margin-bottom: 3.7rem;
+        margin-bottom: 2.5rem;
     }
     &__filter-products{
-        margin-bottom: 7.6rem;
+        margin-bottom: 6.5rem;
     }
     &__filter{
         width: 25.5rem;
+        margin-top: 1.1rem;
     }
     &__filter-title{
         @include font(Montserrat, normal, 700, 2.8rem, 120%, 0em, $color_darkgrey);
@@ -59,6 +60,37 @@
     &__filter-cost-min-max{
         margin-bottom: 2.9rem;
     }
+    &__filter-category{
+        margin-top: 5.2rem;
+        margin-bottom:4.5rem;
+    }
+    &__filter-category-title{
+        @include font(Montserrat, normal, 700, 1.8rem, 150%, 0em, $color_darkgrey);
+        margin-bottom: 2.2rem;
+    }
+    &__filter-additional{
+        margin-bottom: 4.2rem;
+    }
+    &__filter-additional-title{
+        @include font(Montserrat, normal, 700, 1.8rem, 150%, 0em, $color_darkgrey);
+        margin-bottom: 1.2rem;
+    }
+    &__filter-buttons-button1{
+        display: block;
+        margin-bottom: 2.3rem;
+    }
+    &__products-title{
+        margin-bottom: 3.1rem;
+        margin-left: 1.5rem;
+    }
+    &__products{
+        margin-left: 1.5rem;
+        width: 100%;
+    }
+    &__products-quantity{
+        @include font(Montserrat, normal, 700, 1.8rem, 150%, 0em, $color_darkgrey);
+        margin-top: 1.1rem;
+    }
 }
 .container__home {
     margin-right: 2.6rem;
@@ -72,23 +104,7 @@
 }
 .container__catalogs {
     @include font(Montserrat, normal, normal, 1.4rem, 150%, 0em, $color_lightdarkgrey);
-  
     }
-
-
-.container-catalog {}
-
-.container-catalog {}
-
-.container-catalog {}
-
-.container-catalog {}
-
-.container-catalog__ {}
-
-.container-catalog {}
-
-
 .p-float-label {
     @include wihi(100%,5rem);
 }
@@ -96,13 +112,12 @@
 .filter-max{
     @include font(Montserrat, normal, 400, 1.6rem, 170%, 0em, $color_grey);
 }
-
 :host{
     ::ng-deep p-inputnumber.p-element.p-inputwrapper{
         height:5rem;
     }
     ::ng-deep p-inputnumber{
-justify-content: center;
+        justify-content: center;
     }
     ::ng-deep #currency-min
     {
@@ -127,10 +142,10 @@ justify-content: center;
     }
     ::ng-deep .p-float-label label{
         top:0.8rem;
-      margin-top: 0.4rem;
+        margin-top: 0.4rem;
     }
     ::ng-deep .p-float-label .p-inputwrapper-focus ~ label,
-    ::ng-deep .p-float-label .p-inputwrapper-filled~label
+    ::ng-deep .p-float-label .p-inputwrapper-filled ~ label
     {
         top:-0.5rem;
     }
@@ -155,39 +170,144 @@ justify-content: center;
     ::ng-deep .p-slider .p-slider-handle:focus {
         box-shadow: 0 0 0 0.2rem $color_lightpink;
     }
-   ::ng-deep .p-slider:not(.p-disabled) .p-slider-handle:hover{
-       background: $color_pink;
+    ::ng-deep .p-slider:not(.p-disabled) .p-slider-handle:hover{
+        background: $color_pink;
         box-shadow: 0 0 0 0.2rem $color_lightpink;
-   }
+    }
     ::ng-deep .p-slider.p-slider-horizontal .p-slider-handle {
         margin-top: -1rem;
     }
-
+    ::ng-deep .p-checkbox{
+        @include wihi(2rem,2rem);
+    }
+    ::ng-deep .p-checkbox .p-checkbox-box{
+        border: 1px solid $color_grey;
+        box-sizing: border-box;
+        border-radius: .4rem;
+        @include wihi(2rem, 2rem);
+    }
+    ::ng-deep .p-checkbox .p-checkbox-box.p-highlight{
+        background: $color_green;
+    }
+    ::ng-deep .p-checkbox:not(.p-checkbox-disabled) .p-checkbox-box.p-highlight:hover {
+        border-color: $color_green;
+        background: $color_green;
+    }
+    ::ng-deep .p-checkbox:not(.p-checkbox-disabled) .p-checkbox-box:hover{
+        border-color: $color_green;
+    }
+    ::ng-deep .p-checkbox:not(.p-checkbox-disabled) .p-checkbox-box.p-focus {
+        border-color: $color_green;
+        box-shadow: none;
+    }
+    ::ng-deep .p-label-active+label{
+        @include font(Montserrat, normal, 400, 1.8rem, 150%, 0em, $color_darkgrey);
+    }
+    ::ng-deep .p-button{
+        @include wihi(25.5rem, 5.7rem);
+        padding: 2rem 5.6rem;
+        border-radius: 1rem;
+        background: $color_green;
+        border: none;
+        @include font(Montserrat, normal, 600, 1.5rem, 110%, 0.05em, $color_white);
+      
+    }
+    ::ng-deep .container-catalog__filter-buttons-button1 .p-button-label{
+        @include font(Montserrat, normal, 600, 1.5rem, 110%, 0.05em, $color_white);
+        text-transform: uppercase;
+    }
+    ::ng-deep .container-catalog__filter-buttons-button1 .p-button:hover{
+        background: $color_darkgreen;
+    }
+    ::ng-deep .container-catalog__filter-buttons-button1 .p-button:active {
+        padding-top: 2.1rem;
+    }
+    ::ng-deep .container-catalog__filter-buttons-button1 .p-button:focus{
+        box-shadow: none;
+    }
+    ::ng-deep .p-button.p-button-success.p-button-outlined{
+        border:1px solid $color_green;
+        color:$color_green;
+        background-color: $color_white;
+    }
+    ::ng-deep .container-catalog__filter-buttons-button2 .p-button-label {
+        @include font(Montserrat, normal, 600, 1.5rem, 110%, 0.05em, $color_green);
+        text-transform: uppercase;
+    }
+    ::ng-deep .container-catalog__filter-buttons-button2 .p-button-label:hover {
+        color:$color_darkgreen;
+    }
+    ::ng-deep .p-button.p-button-success.p-button-outlined:hover {
+        border-color:$color_darkgreen;
+        background: $color_white;
+    }
+    ::ng-deep .p-button.p-button-success.p-button-outlined:active {
+        padding-top: 2.1rem;
+    }
+    ::ng-deep .p-button.p-button-success.p-button-outlined:focus {
+        box-shadow: none;
+    }
+    ::ng-deep .pi{
+        font-size: 1.3rem;
+    }
+    ::ng-deep .p-button .p-button-icon-left{
+        margin-right: 1rem;
+    }
+    ::ng-deep .p-dropdown {
+        @include wihi(25.5rem,5rem);
+        border:1px solid $color_lightgrey;
+        border-radius: 0.4rem;
+    }
+    ::ng-deep .p-dropdown:not(.p-disabled):hover { 
+        border-color: $color_darkgrey; 
+    }
+    ::ng-deep .p-dropdown:not(.p-disabled).p-focus {
+        border-color: $color_darkgrey;
+        box-shadow: none;
+    }
+    ::ng-deep .p-dropdown .p-dropdown-label.p-placeholder{
+        @include font(Montserrat, normal, 400, 1.8rem, 150%, 0em, $color_darkgrey);
+        padding: 1rem 2.9rem;
+        border:none;
+    }
+    ::ng-deep .p-dropdown .p-dropdown-label.p-inputtext {
+        @include font(Montserrat, normal, 400, 1.8rem, 150%, 0em, $color_darkgrey);
+        padding: 1rem 2.9rem;
+        border: none;
+    }
+    ::ng-deep .p-dropdown .p-dropdown-trigger{
+        width:5rem;
+        color:$color_darkgrey;
+    }
+    ::ng-deep .p-dropdown .p-dropdown-clear-icon{
+        color:$color_darkgrey;
+        right: 5rem;
+    }
+    ::ng-deep .p-dropdown-panel .p-dropdown-items .p-dropdown-item.p-highlight{
+        color:$color_darkgrey;
+        background: $color_lightpink;
+    }
+    ::ng-deep .p-dropdown-panel .p-dropdown-items .p-dropdown-item {
+        background: $color_white;
+    }
+    ::ng-deep .p-dropdown-panel .p-dropdown-items .p-dropdown-item .ng-star-inserted {
+        @include font(Montserrat, normal, 400, 1.4rem, 150%, 0em, $color_darkgrey);
+    }
+    ::ng-deep .p-dropdown-panel .p-dropdown-items .p-dropdown-item:hover {
+        color: $color_darkgrey;
+        background: $color_pink;
+    }
+    ::ng-deep .p-dropdown-panel .p-dropdown-items .p-dropdown-item.p-highlight:hover {
+        color: $color_darkgrey;
+        background: $color_pink;
+    }
 }
-.container-catalog__filter-category {}
-
-.container-catalog__filter-category-title {}
-
-.container-catalog__filter-category-checkbox {}
-
-.field-checkbox {}
-
-.container-catalog__filter-additional {}
-
-.container-catalog__filter-additional-title {}
-
-.container-catalog__filter-buttons {}
-
-.container-catalog__filter-buttons-button1 {}
-
-.p-button-outlined {}
-
-.p-button-success {}
-
-.container-catalog__filter-buttons-button2 {}
-
-.container-catalog__products {}
-
-.container-catalog__products-title {}
-
-.container-catalog__products-quantity {}
+.field-checkbox {
+    margin-bottom: 2rem;
+}
+.field-checkbox > label{
+margin-left: 2.4rem;
+}
+.container-banners{
+    margin-left: 14%;
+}

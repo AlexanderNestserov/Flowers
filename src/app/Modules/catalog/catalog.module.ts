@@ -12,10 +12,16 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { ButtonModule } from 'primeng/button';
 import { SplitButtonModule } from 'primeng/splitbutton';
 import { BannersModule } from '../banners/banners.module';
+import { DropdownModule } from 'primeng/dropdown';
+import { NgxPaginationModule } from 'ngx-pagination';
+
+import { CatalogItemsComponent } from './catalog-items/catalog-items.component';
+
 
 @NgModule({
   declarations: [
     CatalogComponent,
+    CatalogItemsComponent,
   ],
   imports: [
     CommonModule,
@@ -29,7 +35,9 @@ import { BannersModule } from '../banners/banners.module';
     CheckboxModule,
     ButtonModule,
     SplitButtonModule,
-    BannersModule
+    BannersModule,
+    DropdownModule,
+    NgxPaginationModule
 
   ],
   providers: []

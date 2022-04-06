@@ -1,6 +1,11 @@
 import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
-import { MenuItem } from 'primeng/api';
+import { SelectItem } from 'primeng/api';
 import { MessageService } from 'primeng/api';
+
+interface City {
+  name: string,
+  code: string
+}
 
 @Component({
   selector: 'app-catalog',
@@ -13,7 +18,8 @@ export class CatalogComponent implements OnInit {
   rangeValues: number[] = [0, 300];
   selectedCities: string[] = [];
 
-  selectedCategories: any[] = ['Technology', 'Sports'];
+  cities: City[] = [];
+
 
   categories: any[] = [{ name: 'Fresh flowers', key: 'F' },
   { name: 'Indoor plants', key: 'I' },
@@ -22,23 +28,20 @@ export class CatalogComponent implements OnInit {
   { name: 'Landscape design', key: 'L' }];
 
   checked: boolean = false;
-  items: MenuItem[] = [];
+
   value6: any;
   constructor(private messageService: MessageService) { }
 
   ngOnInit() {
-    this.selectedCategories = this.categories.slice(1, 3);
 
-    this.items = [
-      {
-        label: 'Fresh flowers'
-      },
-      {
-        label: 'Indoor plants'
-      },
-      { label: 'Planting material' },
-      { label: 'Floral accessories' },
-      { label: 'Landscape design' }
+
+
+    this.cities = [
+      { name: 'Fresh flowers', code: 'F' },
+      { name: 'Indoor plants', code: 'I' },
+      { name: 'Planting material', code: 'P' },
+      { name: 'Floral accessories', code: 'A' },
+      { name: 'Landscape design', code: 'L' }
     ];
   }
 }

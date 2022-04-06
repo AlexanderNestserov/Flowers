@@ -1,0 +1,17 @@
+<div class="container__items">
+    <div class="container__wrap" *ngFor="let item of items | paginate: { itemsPerPage: 12, currentPage: p }">
+        <div class="container__item">
+            <img [src]="item.imageUrl" alt="img1" class="image-item">
+            <h5 class="container__title">{{item.title}}</h5>
+            <h6 class="opacity">{{item.subTitle}}</h6>
+            <p class="container__paragraph">{{item.price}}</p>
+            <button class="button">
+                <img id="imageBaggy" src="../../../../assets/img-home/button-bag.png" alt="baggy">
+                <p class="button__paragraph">ADD TO CART</p>
+            </button>
+        </div>
+    </div>
+    <pagination-controls class="my-pag" (pageChange)="p=($event)" [directionLinks]="false" [maxSize]="5">
+        <pagination-template></pagination-template>
+    </pagination-controls>
+</div>

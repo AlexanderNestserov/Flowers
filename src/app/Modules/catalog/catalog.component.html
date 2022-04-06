@@ -44,8 +44,8 @@
                     <div class="container-catalog__filter-category-title">Category</div>
                     <div class="container-catalog__filter-category-checkbox">
                         <div *ngFor="let category of categories" class="field-checkbox">
-                            <p-checkbox name="group2" value="category" [value]="category"
-                                [(ngModel)]="selectedCategories" [inputId]="category.key"></p-checkbox>
+                            <p-checkbox name="group2" value="category" [value]="category" class="p-label-active"
+                                [inputId]="category.key"></p-checkbox>
                             <label [for]="category.key">{{category.name}}</label>
                         </div>
                     </div>
@@ -53,7 +53,8 @@
                 <div class="container-catalog__filter-additional">
                     <div class="container-catalog__filter-additional-title">Additional filters</div>
                     <div class="field-checkbox">
-                        <p-checkbox [(ngModel)]="checked" [binary]="true" inputId="binary"></p-checkbox>
+                        <p-checkbox [(ngModel)]="checked" [binary]="true" inputId="binary" class="p-label-active">
+                        </p-checkbox>
                         <label for="binary">In stock</label>
                     </div>
                 </div>
@@ -67,12 +68,14 @@
             <div class="container-catalog__products">
                 <div class="container-catalog__products-title flex justify-content-between">
                     <p class="container-catalog__products-quantity">287 products found</p>
-                    <p-splitButton label="Sort by..." [model]="this.items"
-                        styleClass="p-button-raised p-button-secondary p-button-text mr-2 mb-2"></p-splitButton>
+                    <p-dropdown [options]="cities" placeholder="Sort by..." optionLabel="name" [showClear]="true">
+                    </p-dropdown>
                 </div>
-                <app-home-items></app-home-items>
+                <app-catalog-items></app-catalog-items>
             </div>
         </div>
+    </div>
+    <div class="container-banners">
         <app-banners></app-banners>
     </div>
 </div>

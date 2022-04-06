@@ -15,7 +15,9 @@
             delivery
             of flowers and congratulations. We are really proud of the clear and well-coordinated work of our employees
             and are always confident that your order will be delivered at the right time to the right place.</p>
-        <app-banners></app-banners>
+        <div class="container-banners">
+            <app-banners></app-banners>
+        </div>
         <div class="container-news__list">
             <ul class="list__ul" *ngIf="newsData|async as news">
                 <li *ngFor="let item of news | paginate: { itemsPerPage: 4, currentPage: p }">

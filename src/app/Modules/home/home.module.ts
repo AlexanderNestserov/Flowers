@@ -34,6 +34,6 @@ import { ItemsComponent } from './items/items.component';
     BannersModule,
     FormsModule
   ],
-  exports: [SwiperListComponent, ItemsComponent]
+  exports: [SwiperListComponent]
 })
 export class HomeModule { }
