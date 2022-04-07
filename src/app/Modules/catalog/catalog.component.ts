@@ -1,47 +1,61 @@
 import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
-import { SelectItem } from 'primeng/api';
-import { MessageService } from 'primeng/api';
-
-interface City {
-  name: string,
-  code: string
-}
+import { Item, ITEMS } from './catalog-items/catalog-items';
 
 @Component({
   selector: 'app-catalog',
   templateUrl: './catalog.component.html',
   styleUrls: ['./catalog.component.scss'],
-  providers: [MessageService],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CatalogComponent implements OnInit {
   rangeValues: number[] = [0, 300];
-  selectedCities: string[] = [];
 
-  cities: City[] = [];
+  items: Array<Item> = ITEMS;
+  item: any;
+  p: number = 1;
 
 
-  categories: any[] = [{ name: 'Fresh flowers', key: 'F' },
-  { name: 'Indoor plants', key: 'I' },
-  { name: 'Planting material', key: 'P' },
-  { name: 'Floral accessories', key: 'A' },
-  { name: 'Landscape design', key: 'L' }];
+  categories: any[] = [{ name: this.items[0].subTitle, key: 'F', checked: false },
+  { name: this.items[22].subTitle, key: 'I', checked: false },
+  { name: this.items[20].subTitle, key: 'P', checked: false },
+  { name: this.items[15].subTitle, key: 'A', checked: false },
+  { name: this.items[11].subTitle, key: 'L', checked: false }];
 
-  checked: boolean = false;
 
-  value6: any;
-  constructor(private messageService: MessageService) { }
 
+
+  searchText: string = '';
+
+
+
+  getSelected() {
+    this.items = this.categories.filter(s => {
+      return s.checked;
+    });
+
+  }
+
+
+
+
+
+  constructor() {
+
+  }
   ngOnInit() {
 
-
-
-    this.cities = [
-      { name: 'Fresh flowers', code: 'F' },
-      { name: 'Indoor plants', code: 'I' },
-      { name: 'Planting material', code: 'P' },
-      { name: 'Floral accessories', code: 'A' },
-      { name: 'Landscape design', code: 'L' }
-    ];
   }
+
+
+
+  clearFilter() {
+    this.searchText = "";
+    this.categories = this.categories.filter(g => {
+      g.checked = false;
+      return true;
+    });
+
+  }
+
+
 }

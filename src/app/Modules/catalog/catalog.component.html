@@ -25,53 +25,72 @@
                 <div class="container-catalog__filter-cost">
                     <div class="container-catalog__filter-cost-title">Cost</div>
                     <div class="container-catalog__filter-cost-min-max flex justify-content-between">
-
                         <div class="p-float-label">
-                            <p-inputNumber inputId="currency-min" mode="currency" currency="EUR" locale="en-US">
+                            <p-inputNumber inputId="currency-min" mode="currency" [(ngModel)]="rangeValues[0]"
+                                currency="EUR" locale="en-US">
                             </p-inputNumber>
                             <label for="currency-min" class="filter-min">From</label>
                         </div>
-
                         <div class="p-float-label">
-                            <p-inputNumber inputId="currency-max" mode="currency" currency="EUR" locale="en-US">
+                            <p-inputNumber inputId="currency-max" [(ngModel)]="rangeValues[1]" mode="currency"
+                                currency="EUR" locale="en-US">
                             </p-inputNumber>
                             <label for="currency-max" class="filter-max">To</label>
                         </div>
                     </div>
-                    <p-slider [(ngModel)]="rangeValues" [range]="true"></p-slider>
+                    <p-slider [(ngModel)]="rangeValues" [range]="true" [min]="0" [max]="300"></p-slider>
                 </div>
                 <div class="container-catalog__filter-category">
                     <div class="container-catalog__filter-category-title">Category</div>
                     <div class="container-catalog__filter-category-checkbox">
-                        <div *ngFor="let category of categories" class="field-checkbox">
-                            <p-checkbox name="group2" value="category" [value]="category" class="p-label-active"
-                                [inputId]="category.key"></p-checkbox>
-                            <label [for]="category.key">{{category.name}}</label>
+                        <div *ngFor="let category of categories | search:searchText " class="field-checkbox">
+                            <p-checkbox name="group2" [(ngModel)]="category.checked" value="category" [value]="category"
+                                class="p-label-active" [inputId]="category.key" [label]="category.name"
+                                (change)="getSelected()">
+                            </p-checkbox>
                         </div>
                     </div>
                 </div>
                 <div class="container-catalog__filter-additional">
                     <div class="container-catalog__filter-additional-title">Additional filters</div>
                     <div class="field-checkbox">
-                        <p-checkbox [(ngModel)]="checked" [binary]="true" inputId="binary" class="p-label-active">
+                        <p-checkbox name="group1" inputId="st" class="p-label-active" label="In stock" value="In stock">
                         </p-checkbox>
-                        <label for="binary">In stock</label>
                     </div>
                 </div>
                 <div class="container-catalog__filter-buttons">
                     <p-button class="container-catalog__filter-buttons-button1" label="Apply filter" icon="pi pi-check">
                     </p-button>
-                    <button pButton pRipple type="button" label="Clear filter"
+                    <button pButton pRipple type="button" (click)="clearFilter()" label="Clear filter"
                         class="p-button-outlined p-button-success container-catalog__filter-buttons-button2"></button>
                 </div>
             </div>
             <div class="container-catalog__products">
                 <div class="container-catalog__products-title flex justify-content-between">
-                    <p class="container-catalog__products-quantity">287 products found</p>
-                    <p-dropdown [options]="cities" placeholder="Sort by..." optionLabel="name" [showClear]="true">
+                    <p class="container-catalog__products-quantity">{{items.length}} products found</p>
+                    <p-dropdown [options]="categories" placeholder="Sort by..." optionLabel="name" [editable]="true"
+                        [showClear]="true" [(ngModel)]="searchText">
                     </p-dropdown>
                 </div>
-                <app-catalog-items></app-catalog-items>
+                <div class="container__items">
+                    <div class="container__wrap"
+                        *ngFor="let item of items | paginate: { itemsPerPage: 12, currentPage: p }">
+                        <div class="container__item">
+                            <img [src]="item.imageUrl" alt="img1" class="image-item">
+                            <h5 class="container__title">{{item.title}}</h5>
+                            <h6 class="opacity">{{item.subTitle}}</h6>
+                            <p class="container__paragraph">{{item.price}}</p>
+                            <button class="button">
+                                <img id="imageBaggy" src="../../../../assets/img-home/button-bag.png" alt="baggy">
+                                <p class="button__paragraph">ADD TO CART</p>
+                            </button>
+                        </div>
+                    </div>
+                    <pagination-controls class="my-pag" (pageChange)="p=($event)" [directionLinks]="false"
+                        [maxSize]="5">
+                        <pagination-template></pagination-template>
+                    </pagination-controls>
+                </div>
             </div>
         </div>
     </div>

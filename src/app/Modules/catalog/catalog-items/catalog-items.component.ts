@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { Item, ITEMS } from './catalog-items';
 
 @Component({
@@ -7,9 +7,16 @@ import { Item, ITEMS } from './catalog-items';
   styleUrls: ['./catalog-items.component.scss']
 })
 export class CatalogItemsComponent implements OnInit {
-  items: Array<Item> = ITEMS;
-  item: any;
-  p: number = 1;
-  ngOnInit(): void {
+
+
+  constructor() {
+
   }
+  ngOnInit(): void {
+
+
+
+  }
+
+
 }

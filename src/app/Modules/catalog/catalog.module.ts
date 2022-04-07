@@ -16,12 +16,13 @@ import { DropdownModule } from 'primeng/dropdown';
 import { NgxPaginationModule } from 'ngx-pagination';
 
 import { CatalogItemsComponent } from './catalog-items/catalog-items.component';
+import { ItemFilterPipe } from './catalog-items/items-filter.pipe';
 
 
 @NgModule({
   declarations: [
     CatalogComponent,
-    CatalogItemsComponent,
+    ItemFilterPipe
   ],
   imports: [
     CommonModule,
@@ -38,7 +39,6 @@ import { CatalogItemsComponent } from './catalog-items/catalog-items.component';
     BannersModule,
     DropdownModule,
     NgxPaginationModule
-
   ],
   providers: []
 })
