@@ -28,12 +28,8 @@ export class CatalogComponent implements OnInit {
 
 
 
-  getSelected() {
-    this.items = this.categories.filter(s => {
-      return s.checked;
-    });
 
-  }
+
 
 
 
@@ -43,7 +39,7 @@ export class CatalogComponent implements OnInit {
 
   }
   ngOnInit() {
-
+    //  this.getItems();
   }
 
 
@@ -58,4 +54,41 @@ export class CatalogComponent implements OnInit {
   }
 
 
+  itemsArray: any = [];
+
+  getItems() {
+    this.itemsArray = this.items;
+  }
+
+
+  tempArray: any = [];
+  newArray: any = [];
+
+  getSelected(event: any) {
+    // console.log(event);
+    //  if (event.checked.length == 1) {
+    // for (let i = 0; i < this.items.length; i++) {
+    //  let obj = this.items[i];
+    //  if (obj.subTitle == event.checked[0].name && event.checked.length == 1) {
+    //  this.tempArray.push(obj);
+    // } else if (event.checked.length == 0) {
+    //   this.tempArray.pop(obj);
+    //  }
+    // }
+
+    // } else {
+    // for (let i = 0; i < this.items.length; i++) {
+    //let obj = this.items[i];
+    // if (obj.subTitle != event.checked[0].name) {
+    //  this.tempArray.push(obj);
+    //  this.newArray.push(this.tempArray)
+    //  console.log(this.newArray);
+
+    // }
+    // this.items = this.tempArray
+  }
+
 }
+    // console.log(event.checked[0]);
+
+

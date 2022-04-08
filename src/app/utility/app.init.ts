@@ -13,7 +13,7 @@ export function initializeKeycloak(keycloak: KeycloakService) {
                 onLoad: 'check-sso',
                 silentCheckSsoRedirectUri:
                     window.location.origin + '/assets/silent-check-sso.html',
-                //checkLoginIframe: true
+                checkLoginIframe: true
             },
             enableBearerInterceptor: true,
             bearerPrefix: 'Bearer'

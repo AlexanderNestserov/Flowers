@@ -6,12 +6,13 @@ import { ButtonModule } from 'primeng/button';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
 import { initializeKeycloak } from './utility/app.init';
+import { UrlInterceptor } from './interceptors/url.interceptor';
 
 @NgModule({
   declarations: [
@@ -30,14 +31,16 @@ import { initializeKeycloak } from './utility/app.init';
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    // KeycloakAngularModule
+    KeycloakAngularModule
   ],
   bootstrap: [AppComponent],
-  //providers: [{
-  //provide: APP_INITIALIZER,
-  // useFactory: initializeKeycloak,
-  //multi: true,
-  // deps: [KeycloakService]
-  // }]
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: UrlInterceptor, multi: true },
+  {
+    provide: APP_INITIALIZER,
+    useFactory: initializeKeycloak,
+    multi: true,
+    deps: [KeycloakService]
+  }
+  ]
 })
 export class AppModule { }

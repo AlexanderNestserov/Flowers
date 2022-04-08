@@ -14,6 +14,9 @@ import { SliderLogoComponent } from './slider-logo/slider-logo.component';
 import { SwiperLogoComponent } from './swiper-logo/swiper-logo.component';
 import { SwiperListComponent } from './swiper-list/swiper-list.component';
 import { ItemsComponent } from './items/items.component';
+import { SwiperListService } from './swiper-list/swiper-list.service';
+import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -32,8 +35,12 @@ import { ItemsComponent } from './items/items.component';
     ToastModule,
     TabViewModule,
     BannersModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
-  exports: [SwiperListComponent]
+  exports: [SwiperListComponent],
+  providers: [
+    SwiperListService
+  ],
 })
 export class HomeModule { }

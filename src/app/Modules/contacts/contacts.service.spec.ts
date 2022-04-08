@@ -3,7 +3,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ContactsService } from './contacts.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
-import { UrlInterceptor } from 'src/environments/environment';
+import { UrlInterceptor } from 'src/app/interceptors/url.interceptor';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { environment } from '../../../environments/environment';
 import { ContactMeDto } from './contacts.model';

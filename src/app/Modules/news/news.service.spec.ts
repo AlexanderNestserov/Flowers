@@ -1,7 +1,7 @@
 import { inject, TestBed, fakeAsync } from '@angular/core/testing';
 import { NewsService } from './news.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { UrlInterceptor } from 'src/environments/environment';
+import { UrlInterceptor } from 'src/app/interceptors/url.interceptor';
 import { HttpTestingController, HttpClientTestingModule } from '@angular/common/http/testing';
 import { environment } from '../../../environments/environment'
 

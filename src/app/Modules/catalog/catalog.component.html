@@ -43,10 +43,10 @@
                 <div class="container-catalog__filter-category">
                     <div class="container-catalog__filter-category-title">Category</div>
                     <div class="container-catalog__filter-category-checkbox">
-                        <div *ngFor="let category of categories | search:searchText " class="field-checkbox">
+                        <div *ngFor="let category of categories  " class="field-checkbox">
                             <p-checkbox name="group2" [(ngModel)]="category.checked" value="category" [value]="category"
                                 class="p-label-active" [inputId]="category.key" [label]="category.name"
-                                (change)="getSelected()">
+                                (onChange)="getSelected($event)">
                             </p-checkbox>
                         </div>
                     </div>

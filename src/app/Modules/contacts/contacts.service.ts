@@ -3,11 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ContactMeDto } from './contacts.model';
 
-@Injectable(
-    {
-        providedIn: 'root'
-    }
-)
+@Injectable()
 export class ContactsService {
     public getUrl: string = 'contact'
     public postUrl: string = 'mail'
