@@ -6,7 +6,8 @@ import { BannersModule } from '../banners/banners.module';
 
 import { NewsComponent } from './news.component';
 import { NewsService } from './news.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { UrlInterceptor } from 'src/app/interceptors/url.interceptor';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { HttpClientModule } from '@angular/common/http';
     BannersModule,
     HttpClientModule
   ],
-  providers: [NewsService
+  providers: [NewsService,
+    { provide: HTTP_INTERCEPTORS, useClass: UrlInterceptor, multi: true },
   ]
 })
 export class NewsModule { }

@@ -15,7 +15,8 @@ import { SwiperLogoComponent } from './swiper-logo/swiper-logo.component';
 import { SwiperListComponent } from './swiper-list/swiper-list.component';
 import { ItemsComponent } from './items/items.component';
 import { SwiperListService } from './swiper-list/swiper-list.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { UrlInterceptor } from 'src/app/interceptors/url.interceptor';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import { HttpClientModule } from '@angular/common/http';
   ],
   exports: [SwiperListComponent],
   providers: [
-    SwiperListService
+    SwiperListService,
+    { provide: HTTP_INTERCEPTORS, useClass: UrlInterceptor, multi: true },
   ],
 })
 export class HomeModule { }

@@ -175,4 +175,25 @@ export const ITEMS = [
         subTitle: 'Indoor plants',
         price: '€62.17 EUR'
     }
+    , {
+        id: 25,
+        imageUrl: '../../../../assets/img-home/image 2.png',
+        title: 'You’re Precious Bonquet',
+        subTitle: 'Compositions made of artifical materials',
+        price: '€83.49 EUR'
+    },
+    {
+        id: 26,
+        imageUrl: '../../../../assets/img-home/image 3.png',
+        title: 'Smiles and Sunshine',
+        subTitle: 'Compositions made of artifical materials',
+        price: '€22.47 EUR'
+    },
+    {
+        id: 27,
+        imageUrl: '../../../../assets/img-home/image 4 .png',
+        title: 'Light of my Life',
+        subTitle: 'Compositions made of artifical materials',
+        price: '€62.17 EUR'
+    }
 ]

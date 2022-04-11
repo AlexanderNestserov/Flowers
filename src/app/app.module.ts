@@ -34,13 +34,13 @@ import { UrlInterceptor } from './interceptors/url.interceptor';
     KeycloakAngularModule
   ],
   bootstrap: [AppComponent],
-  providers: [{ provide: HTTP_INTERCEPTORS, useClass: UrlInterceptor, multi: true },
-  {
-    provide: APP_INITIALIZER,
-    useFactory: initializeKeycloak,
-    multi: true,
-    deps: [KeycloakService]
-  }
+  providers: [
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initializeKeycloak,
+      multi: true,
+      deps: [KeycloakService]
+    }
   ]
 })
 export class AppModule { }

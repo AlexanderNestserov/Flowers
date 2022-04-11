@@ -19,7 +19,7 @@
             delivery
             of flowers and congratulations. We are really proud of the clear and well-coordinated work of our employees
             and are always confident that your order will be delivered at the right time to the right place.</p>
-        <div class="container-catalog__filter-products flex justify-content-start">
+        <div class="container-catalog__filter-products">
             <div class="container-catalog__filter">
                 <div class="container-catalog__filter-title">Filter</div>
                 <div class="container-catalog__filter-cost">
@@ -44,9 +44,8 @@
                     <div class="container-catalog__filter-category-title">Category</div>
                     <div class="container-catalog__filter-category-checkbox">
                         <div *ngFor="let category of categories  " class="field-checkbox">
-                            <p-checkbox name="group2" [(ngModel)]="category.checked" value="category" [value]="category"
-                                class="p-label-active" [inputId]="category.key" [label]="category.name"
-                                (onChange)="getSelected($event)">
+                            <p-checkbox name="group2" [(ngModel)]="checked" value="category" [value]="category"
+                                class="p-label-active" [inputId]="category.key" [label]="category.name">
                             </p-checkbox>
                         </div>
                     </div>
@@ -54,7 +53,8 @@
                 <div class="container-catalog__filter-additional">
                     <div class="container-catalog__filter-additional-title">Additional filters</div>
                     <div class="field-checkbox">
-                        <p-checkbox name="group1" inputId="st" class="p-label-active" label="In stock" value="In stock">
+                        <p-checkbox name="group1" [(ngModel)]="checked" inputId="st" class="p-label-active"
+                            label="In stock" value="In stock">
                         </p-checkbox>
                     </div>
                 </div>
@@ -66,31 +66,19 @@
                 </div>
             </div>
             <div class="container-catalog__products">
-                <div class="container-catalog__products-title flex justify-content-between">
+                <div class="container-catalog__products-title">
                     <p class="container-catalog__products-quantity">{{items.length}} products found</p>
                     <p-dropdown [options]="categories" placeholder="Sort by..." optionLabel="name" [editable]="true"
-                        [showClear]="true" [(ngModel)]="searchText">
+                        [showClear]="true" [(ngModel)]="searchText" class="dropdown-button">
                     </p-dropdown>
-                </div>
-                <div class="container__items">
-                    <div class="container__wrap"
-                        *ngFor="let item of items | paginate: { itemsPerPage: 12, currentPage: p }">
-                        <div class="container__item">
-                            <img [src]="item.imageUrl" alt="img1" class="image-item">
-                            <h5 class="container__title">{{item.title}}</h5>
-                            <h6 class="opacity">{{item.subTitle}}</h6>
-                            <p class="container__paragraph">{{item.price}}</p>
-                            <button class="button">
-                                <img id="imageBaggy" src="../../../../assets/img-home/button-bag.png" alt="baggy">
-                                <p class="button__paragraph">ADD TO CART</p>
-                            </button>
-                        </div>
+                    <div class="container-catalog__mobile-buttons">
+                        <button pButton pRipple type="button" label="Filter"
+                            class="p-button-outlined p-button-success container-catalog__mobile-buttons-filter"></button>
+                        <button pButton pRipple type="button" label="Sorting"
+                            class="p-button-outlined p-button-success container-catalog__mobile-buttons-sorting"></button>
                     </div>
-                    <pagination-controls class="my-pag" (pageChange)="p=($event)" [directionLinks]="false"
-                        [maxSize]="5">
-                        <pagination-template></pagination-template>
-                    </pagination-controls>
                 </div>
+                <app-catalog-items></app-catalog-items>
             </div>
         </div>
     </div>

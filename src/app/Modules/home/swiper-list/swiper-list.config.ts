@@ -1,3 +1,5 @@
+import { environment } from "src/environments/environment"
+
 export interface Item {
     id: number,
     link: string,
@@ -103,3 +105,30 @@ export const ADAPTIVE_SWIPER =
         spaceBetween: 20
     }
 }
+
+export const Images = [
+    {
+        id: 1,
+        name: 'images/fresh-flowers-photo'
+    },
+    {
+        id: 2,
+        name: 'images/plant-photo'
+    },
+    {
+        id: 3,
+        name: 'images/sprout-photo'
+    },
+    {
+        id: 4,
+        name: 'images/vase-photo'
+    },
+    {
+        id: 5,
+        name: 'images/bonsai-photo'
+    },
+    {
+        id: 6,
+        name: 'images/fountain-photo'
+    }
+]

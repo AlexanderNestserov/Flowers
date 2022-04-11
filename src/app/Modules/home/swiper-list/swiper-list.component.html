@@ -6,7 +6,7 @@
             <ng-template swiperSlide *ngFor="let item of categoriesData|async">
                 <div class="container__block flex justify-content-center">
                     <a class="container__link">
-                        <img class="item-image" [src]="'images/fresh-flowers-photo'" alt="logo1">
+                        <img class="item-image" [src]="getImage()" alt="logo1">
                         <h6 class="h6">{{item.name}}</h6>
                         <p class="container__paragraph">{{item.description}}</p>
                     </a>

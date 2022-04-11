@@ -10,6 +10,7 @@ import { SpinnerModule } from '../spinner/spinner.module';
 import { PopupErrorSuccessModule } from '../popup-success-error/popupErrorSuccess.module';
 import { ErrorFormModule } from './error-form/error-form.module';
 import { ErrorDirectiveModule } from 'src/app/directives/error-form/error-directive.module';
+import { UrlInterceptor } from 'src/app/interceptors/url.interceptor';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { ErrorDirectiveModule } from 'src/app/directives/error-form/error-direct
     ErrorDirectiveModule
   ],
   providers: [
-    ContactsService
+    ContactsService,
+    { provide: HTTP_INTERCEPTORS, useClass: UrlInterceptor, multi: true },
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
