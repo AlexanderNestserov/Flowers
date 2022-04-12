@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CatalogRoutingModule } from './catalog-routing.module';
 
-import { CatalogComponent } from './catalog.component';
-import { HomeModule } from '../home/home.module';
+import { CatalogCategoriesComponent } from './catalog-categories.component';
+import { CatalogModule } from '../catalog.module';
+import { BannersModule } from '../../banners/banners.module';
+import { CatalogCategoriesRoutingModule } from './catalog-categories-routing.module';
+import { HomeModule } from '../../home/home.module';
 import { SwiperModule } from 'swiper/angular';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -11,23 +13,23 @@ import { SliderModule } from 'primeng/slider';
 import { CheckboxModule } from 'primeng/checkbox';
 import { ButtonModule } from 'primeng/button';
 import { SplitButtonModule } from 'primeng/splitbutton';
-import { BannersModule } from '../banners/banners.module';
 import { DropdownModule } from 'primeng/dropdown';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { ItemService } from '../../home/items/item.service';
 
-import { CatalogItemsComponent } from './catalog-items/catalog-items.component';
-import { ItemService } from '../home/items/item.service';
 
 
 @NgModule({
   declarations: [
-    CatalogComponent,
-    CatalogItemsComponent
+    CatalogCategoriesComponent
   ],
   imports: [
     CommonModule,
-    CatalogRoutingModule,
+
+    BannersModule,
+    CatalogCategoriesRoutingModule,
     HomeModule,
+    CatalogModule,
     SwiperModule,
     InputNumberModule,
     FormsModule,
@@ -38,11 +40,10 @@ import { ItemService } from '../home/items/item.service';
     SplitButtonModule,
     BannersModule,
     DropdownModule,
-    NgxPaginationModule,
+    NgxPaginationModule
   ],
-  exports: [
-    CatalogItemsComponent,
-  ],
-  providers: [ItemService]
+  providers: [
+    ItemService
+  ]
 })
-export class CatalogModule { }
+export class CatalogCategoriesModule { }

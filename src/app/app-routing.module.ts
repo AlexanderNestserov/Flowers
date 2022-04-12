@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [{ path: '', redirectTo: 'home', pathMatch: 'full' },
 { path: 'home', loadChildren: () => import('./Modules/home/home.module').then(m => m.HomeModule) },
+{ path: 'catalog/:name', loadChildren: () => import('./Modules/catalog/catalog-categories/catalog-categories.module').then(m => m.CatalogCategoriesModule) },
 { path: 'catalog', loadChildren: () => import('./Modules/catalog/catalog.module').then(m => m.CatalogModule) },
 { path: 'about-us', loadChildren: () => import('./Modules/aboutus/aboutus.module').then(m => m.AboutusModule) },
 { path: 'news', loadChildren: () => import('./Modules/news/news.module').then(m => m.NewsModule) },
@@ -11,7 +12,6 @@ const routes: Routes = [{ path: '', redirectTo: 'home', pathMatch: 'full' },
 { path: 'search', loadChildren: () => import('./Modules/search/search.module').then(m => m.SearchModule) },
 { path: 'registration', loadChildren: () => import('./Modules/registration/registration.module').then(m => m.RegistrationModule) },
 { path: '**', redirectTo: 'home', pathMatch: 'full' },
-
 ];
 
 @NgModule({

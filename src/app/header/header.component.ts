@@ -17,7 +17,9 @@ export class HeaderComponent implements OnInit {
   isMenu = true;
   isShow = true;
   isShown = false;
+  urlCatalog = false;
   urlRegistration = false;
+  urlNewsArticle = false;
   public isLoggedIn = false;
 
   constructor(public router: Router, public readonly keycloak: KeycloakService) {
@@ -28,6 +30,16 @@ export class HeaderComponent implements OnInit {
         this.urlRegistration = true
       } else {
         this.urlRegistration = false
+      }
+      if (e.url.split('/')[1] === 'news') {
+        this.urlNewsArticle = true
+      } else {
+        this.urlNewsArticle = false
+      }
+      if (e.url.split('/')[1] === 'catalog') {
+        this.urlCatalog = true
+      } else {
+        this.urlCatalog = false
       }
     });
   }

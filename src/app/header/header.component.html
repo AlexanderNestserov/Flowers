@@ -16,11 +16,11 @@
             <li class="menu menu1"><a class="menu-link" routerLink="/home" routerLinkActive="active"
                     [routerLinkActiveOptions]="{exact:true}">HOME</a></li>
             <li class="menu menu2"><a class="menu-link" routerLink="/catalog" routerLinkActive="active"
-                    [routerLinkActiveOptions]="{exact:true}">CATALOG</a></li>
+                    [ngClass]="{'active': urlCatalog}">CATALOG</a></li>
             <li class="menu menu3"><a class="menu-link" routerLink="/about-us" routerLinkActive="active"
                     [routerLinkActiveOptions]="{exact:true}">ABOUT US</a></li>
-            <li class="menu menu4"><a class="menu-link" routerLink="/news" routerLinkActive="active"
-                    [routerLinkActiveOptions]="{exact:true}">NEWS</a></li>
+            <li class="menu menu4"><a class="menu-link" routerLink="/news" [ngClass]="{'active': urlNewsArticle}"
+                    routerLinkActive="active">NEWS</a></li>
             <li class="menu menu5"><a class="menu-link" routerLink="/contacts" routerLinkActive="active"
                     [routerLinkActiveOptions]="{exact:true}">CONTACTS</a></li>
             <div class=" header__icon flex justify-content-start">

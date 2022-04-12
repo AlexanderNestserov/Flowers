@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Adaptive, ADAPTIVE_SWIPER, Config, Item, ITEMS, SWIPER_CONFIG } from './swiper-list.config';
-import { map } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { SwiperListService } from './swiper-list.service';
 import { environment } from '../../../../environments/environment';
 
@@ -14,7 +14,7 @@ import { environment } from '../../../../environments/environment';
 
 export class SwiperListComponent {
   src: [] = [];
-  categoriesData: any = this.http.getCategories().pipe(map((res: any) =>
+  categoriesData: Observable<any> = this.http.getCategories().pipe(map((res: any) =>
     res.content
   ));
   category: any[] = [];
@@ -23,7 +23,6 @@ export class SwiperListComponent {
   adaptiveSwiper: Adaptive = ADAPTIVE_SWIPER;
 
   constructor(private http: SwiperListService) {
-    this.http.getCategories().subscribe(console.log)
   }
 
   getImage(item: string): string {

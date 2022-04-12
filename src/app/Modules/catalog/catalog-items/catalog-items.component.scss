@@ -18,7 +18,6 @@
     border-radius: 10px;
     padding-bottom: $pb_1rem;
     position: relative;
-
     .image-item {
         display: inline-block;
         width: 17rem;
@@ -86,7 +85,9 @@
     }
 }
 .my-pag{
-   margin:0 auto;
+    position:relative;
+    top:38rem;
+    left:12rem;
 }
 .my-pag::ng-deep .ngx-pagination {
     margin-top: 1rem;
@@ -141,7 +142,6 @@
         flex: 0 0 31%;
         margin-left: 1.85rem;
     }
-
 }
 @media (max-width: 1435px) {
     .container__items {
@@ -152,6 +152,15 @@
         flex: 0 0 42%;
         margin-bottom: 3rem;
     }
+    .my-pag{
+        left:-37rem;  
+    }
+}
+@media (max-width: 1284px) {
+.my-pag {
+    left: 25rem;
+    top:0rem;
+}
 }
 @media (max-width: 1270px) {
     .container__items {
@@ -163,6 +172,10 @@
     }
 }
 @media (max-width: 1145px) {
+    .my-pag {
+        left: 0rem;
+        top: 0rem;
+    }
     .container__items {
         margin: 0 $pt_2rem;
         display: block;

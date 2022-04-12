@@ -1,30 +1,36 @@
-<div class="wrapper-catalog">
-    <div class="container-catalog">
-        <div class="container-catalog__line"></div>
-        <div class="container-catalog__path flex justify-content-start">
+<div class="wrapper-catalogies">
+    <div class="container-catalogies">
+        <div class="container-catalogies__line"></div>
+        <div class="container-catalogies__path flex justify-content-start">
             <div class="container__home">
                 <a class="container__link" routerLink="/">Home</a>
             </div>
             <div class="container__angle">
-                <img src="../../../assets/img-aboutus/Angle.png" alt="angle">
+                <img src="../../../../assets/img-aboutus/Angle.png" alt="angle">
             </div>
-            <div class="container__catalogs">Catalog</div>
+            <div class="container__home">
+                <a class="container__link" routerLink="/catalog">Catalog</a>
+            </div>
+            <div class="container__angle">
+                <img src="../../../../assets/img-aboutus/Angle.png" alt="angle">
+            </div>
+            <div class="container__catalogs">{{itemCategories}}</div>
         </div>
-        <div class="container-catalog__swiper">
+        <div class="container-catalogies__swiper">
             <app-home-swiper-list></app-home-swiper-list>
         </div>
-        <div class="container-catalog__line-main"></div>
-        <div class="container-catalog__title">Catalog</div>
-        <p class="container-catalog__text">For several years now, our company has been delighting customers with the
+        <div class="container-catalogies__line-main"></div>
+        <div class="container-catalogies__title">{{itemCategories}}</div>
+        <p class="container-catalogies__text">For several years now, our company has been delighting customers with the
             delivery
             of flowers and congratulations. We are really proud of the clear and well-coordinated work of our employees
             and are always confident that your order will be delivered at the right time to the right place.</p>
-        <div class="container-catalog__filter-products">
-            <div class="container-catalog__filter">
-                <div class="container-catalog__filter-title">Filter</div>
-                <div class="container-catalog__filter-cost">
-                    <div class="container-catalog__filter-cost-title">Cost</div>
-                    <div class="container-catalog__filter-cost-min-max flex justify-content-between">
+        <div class="container-catalogies__filter-products">
+            <div class="container-catalogies__filter">
+                <div class="container-catalogies__filter-title">Filter</div>
+                <div class="container-catalogies__filter-cost">
+                    <div class="container-catalogies__filter-cost-title">Cost</div>
+                    <div class="container-catalogies__filter-cost-min-max flex justify-content-between">
                         <div class="p-float-label">
                             <p-inputNumber inputId="currency-min" mode="currency" [(ngModel)]="rangeValues[0]"
                                 currency="EUR" locale="en-US">
@@ -40,39 +46,40 @@
                     </div>
                     <p-slider [(ngModel)]="rangeValues" [range]="true" [min]="0" [max]="300"></p-slider>
                 </div>
-                <div class="container-catalog__filter-category">
-                    <div class="container-catalog__filter-category-title">Category</div>
-                    <div class="container-catalog__filter-category-checkbox">
-                        <div *ngFor="let category of categories  " class="field-checkbox">
+                <div class="container-catalogies__filter-category">
+                    <div class="container-catalogies__filter-category-title">Category</div>
+                    <div class="container-catalogies__filter-category-checkbox">
+                        <div *ngFor="let category of categoriesData|async" class="field-checkbox">
                             <p-checkbox name="group2" [(ngModel)]="checked" value="category" [value]="category"
-                                class="p-label-active" [inputId]="category.key" [label]="category.name"
-                                (onChange)="filterCategories($event)">
+                                class="p-label-active" [inputId]="category.id" [label]="category.name"
+                                (onChange)="label($event)">
                             </p-checkbox>
                         </div>
                     </div>
                 </div>
-                <div class="container-catalog__filter-additional">
-                    <div class="container-catalog__filter-additional-title">Additional filters</div>
+                <div class="container-catalogies__filter-additional">
+                    <div class="container-catalogies__filter-additional-title">Additional filters</div>
                     <div class="field-checkbox">
                         <p-checkbox name="group1" [(ngModel)]="checked" inputId="st" class="p-label-active"
                             label="In stock" value="In stock">
                         </p-checkbox>
                     </div>
                 </div>
-                <div class="container-catalog__filter-buttons">
-                    <p-button class="container-catalog__filter-buttons-button1" label="Apply filter" icon="pi pi-check">
+                <div class="container-catalogies__filter-buttons">
+                    <p-button class="container-catalogies__filter-buttons-button1" label="Apply filter"
+                        icon="pi pi-check">
                     </p-button>
                     <button pButton pRipple type="button" (click)="clearFilter()" label="Clear filter"
                         class="p-button-outlined p-button-success container-catalog__filter-buttons-button2"></button>
                 </div>
             </div>
-            <div class="container-catalog__products">
-                <div class="container-catalog__products-title" *ngIf="itemsData|async as data">
-                    <p class="container-catalog__products-quantity">{{data}} products found</p>
+            <div class="container-catalogies__products">
+                <div class="container-catalogies__products-title" *ngIf="itemsData|async as data">
+                    <p class="container-catalogies__products-quantity">{{data}} products found</p>
                     <p-dropdown [options]="categories" placeholder="Sort by..." optionLabel="name" [editable]="true"
                         [showClear]="true" [(ngModel)]="searchText" class="dropdown-button">
                     </p-dropdown>
-                    <div class="container-catalog__mobile-buttons">
+                    <div class="container-catalogies__mobile-buttons">
                         <button pButton pRipple type="button" label="Filter"
                             class="p-button-outlined p-button-success container-catalog__mobile-buttons-filter"></button>
                         <button pButton pRipple type="button" label="Sorting"

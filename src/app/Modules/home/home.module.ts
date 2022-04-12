@@ -15,7 +15,7 @@ import { SwiperLogoComponent } from './swiper-logo/swiper-logo.component';
 import { SwiperListComponent } from './swiper-list/swiper-list.component';
 import { ItemsComponent } from './items/items.component';
 import { SwiperListService } from './swiper-list/swiper-list.service';
-
+import { ItemService } from './items/item.service';
 
 @NgModule({
   declarations: [
@@ -39,6 +39,7 @@ import { SwiperListService } from './swiper-list/swiper-list.service';
   exports: [SwiperListComponent],
   providers: [
     SwiperListService,
+    ItemService,
   ],
 })
 export class HomeModule { }

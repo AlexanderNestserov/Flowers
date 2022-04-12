@@ -1,10 +1,10 @@
 <div class="container__items flex">
-    <div class="container__wrap" *ngFor="let item of items">
+    <div class="container__wrap" *ngFor="let item of itemsData|async">
         <div class="container__item">
             <img [src]="item.imageUrl" alt="img1" class="image-item">
-            <h5 class="container__title">{{item.title}}</h5>
-            <h6 class="opacity">{{item.subTitle}}</h6>
-            <p class="container__paragraph">{{item.price}}</p>
+            <h5 class="container__title">{{item.name}}</h5>
+            <h6 class="opacity">{{item.category.name}}</h6>
+            <p class="container__paragraph">€{{item.priceDto.price}} EUR</p>
             <button class="button">
                 <img id="imageBaggy" src="../../../../assets/img-home/button-bag.png" alt="baggy">
                 <p class="button__paragraph">ADD TO CART</p>
