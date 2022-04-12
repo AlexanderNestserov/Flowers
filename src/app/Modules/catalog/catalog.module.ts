@@ -16,9 +16,6 @@ import { DropdownModule } from 'primeng/dropdown';
 import { NgxPaginationModule } from 'ngx-pagination';
 
 import { CatalogItemsComponent } from './catalog-items/catalog-items.component';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { UrlInterceptor } from 'src/app/interceptors/url.interceptor';
-import { SwiperListComponent } from '../home/swiper-list/swiper-list.component';
 
 
 @NgModule({

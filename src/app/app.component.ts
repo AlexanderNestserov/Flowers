@@ -10,7 +10,6 @@ import { RegistrationComponent } from './Modules/registration/registration.compo
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent {
-
 }
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },

@@ -1,8 +1,6 @@
-import { inject, TestBed, fakeAsync } from '@angular/core/testing';
+import { fakeAsync, inject, TestBed } from '@angular/core/testing';
 import { NewsService } from './news.service';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { UrlInterceptor } from 'src/app/interceptors/url.interceptor';
-import { HttpTestingController, HttpClientTestingModule } from '@angular/common/http/testing';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { environment } from '../../../environments/environment'
 
 describe('ContactsService', () => {
@@ -12,7 +10,6 @@ describe('ContactsService', () => {
         TestBed.configureTestingModule({
             imports: [HttpClientTestingModule],
             providers: [NewsService,
-                { provide: HTTP_INTERCEPTORS, useClass: UrlInterceptor, multi: true }
             ]
         });
         service = TestBed.inject(NewsService);

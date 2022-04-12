@@ -1,6 +1,5 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { inject, TestBed, fakeAsync, async } from '@angular/core/testing';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { fakeAsync, inject, TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { SpinnerService } from './spinner.service';
 import { LoaderInterceptor } from '../../interceptors/spinner.interceptor';
@@ -17,8 +16,6 @@ describe('SpinnerComponent', () => {
             schemas: [CUSTOM_ELEMENTS_SCHEMA],
             providers: [SpinnerService,
                 LoaderInterceptor,
-                { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true },
-
             ],
         })
         service = TestBed.inject(SpinnerService);
