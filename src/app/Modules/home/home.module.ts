@@ -17,6 +17,7 @@ import { ItemsComponent } from './items/items.component';
 import { SwiperListService } from './swiper-list/swiper-list.service';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { UrlInterceptor } from 'src/app/interceptors/url.interceptor';
+import { ItemService } from './items/item.service';
 
 
 @NgModule({
@@ -39,9 +40,10 @@ import { UrlInterceptor } from 'src/app/interceptors/url.interceptor';
     FormsModule,
     HttpClientModule
   ],
-  exports: [SwiperListComponent],
+  exports: [SwiperListComponent, ItemsComponent],
   providers: [
     SwiperListService,
+    ItemService,
     { provide: HTTP_INTERCEPTORS, useClass: UrlInterceptor, multi: true },
   ],
 })

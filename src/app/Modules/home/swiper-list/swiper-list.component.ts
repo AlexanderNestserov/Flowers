@@ -39,10 +39,12 @@ export class SwiperListComponent implements OnInit {
 
 
   src: [] = [];
-  categoriesData: any = this.http.getCategories().pipe(map((res: any) =>
+  categoriesData: Observable<any> = this.http.getCategories().pipe(map((res: any) =>
     res.content
   ));
-  // imagesData: Observable<any> = this.http.getImages()
+
+
+  imagesData: Observable<any> = this.http.getImages()
   // itemes: any = this.categoriesData.pipe(map(data => data.photo
   // ))
 
@@ -60,18 +62,17 @@ export class SwiperListComponent implements OnInit {
 
   constructor(private http: SwiperListService) {
 
-
   }
 
 
 
   ngOnInit(): void {
-    this.src = this.categoriesData
-    for (let i = 0; i < this.src.length; i++) {
-      let im = this.src[i]
+    //  this.src = this.categoriesData
+    //  for (let i = 0; i < this.src.length; i++) {
+    //  let im = this.src[i]
 
 
-    }
+    // }
 
 
   }

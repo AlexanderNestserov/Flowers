@@ -17,7 +17,7 @@ export class SwiperListService {
 
 
 
-    // public imagesUrl: any = this.ima;
+    public imagesUrl: any = 'images';
 
     constructor(private http: HttpClient) { }
 
@@ -30,12 +30,12 @@ export class SwiperListService {
         });
     }
 
-    // getImages(): Observable<any | object> {
+    getImages(): Observable<any | object> {
 
-    //  const headers = new HttpHeaders()
-    //    .set('content-type', 'image/jpeg')
-    //   return this.http.get<any | object>(this.imagesUrl, {
-    //       headers: headers
-    //  });
-    // }
+        const headers = new HttpHeaders()
+            .set('content-type', 'image/jpeg')
+        return this.http.get<any | object>(this.imagesUrl, {
+            headers: headers
+        });
+    }
 }
