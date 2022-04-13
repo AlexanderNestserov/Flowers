@@ -36,7 +36,7 @@ export class HeaderComponent implements OnInit {
       } else {
         this.urlNewsArticle = false
       }
-      if (e.url.split('/')[1] === 'catalog') {
+      if (e.url.split('/')[1].split('?')[0] === 'catalog') {
         this.urlCatalog = true
       } else {
         this.urlCatalog = false

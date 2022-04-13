@@ -15,8 +15,6 @@ import { SwiperLogoComponent } from './swiper-logo/swiper-logo.component';
 import { SwiperListComponent } from './swiper-list/swiper-list.component';
 import { ItemsComponent } from './items/items.component';
 import { SwiperListService } from './swiper-list/swiper-list.service';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { UrlInterceptor } from 'src/app/interceptors/url.interceptor';
 import { ItemService } from './items/item.service';
 
 
@@ -37,14 +35,11 @@ import { ItemService } from './items/item.service';
     ToastModule,
     TabViewModule,
     BannersModule,
-    FormsModule,
-    HttpClientModule
+    FormsModule
   ],
   exports: [SwiperListComponent, ItemsComponent],
   providers: [
     SwiperListService,
-    ItemService,
-    { provide: HTTP_INTERCEPTORS, useClass: UrlInterceptor, multi: true },
-  ],
+    ItemService],
 })
 export class HomeModule { }

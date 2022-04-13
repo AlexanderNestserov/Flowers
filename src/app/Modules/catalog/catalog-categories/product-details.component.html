@@ -1,0 +1,128 @@
+<div class="wrapper-product">
+  <div class="container-product">
+    <div class="container-product__line"></div>
+    <div class="container-product__path flex justify-content-start">
+      <div class="container__home">
+        <a class="container__link" routerLink="/">Home</a>
+      </div>
+      <div class="container__angle">
+        <img src="../../../../assets/img-aboutus/Angle.png" alt="angle" />
+      </div>
+      <div class="container__home">
+        <a class="container__link" routerLink="/catalog">Catalog</a>
+      </div>
+      <div class="container__angle">
+        <img src="../../../../assets/img-aboutus/Angle.png" alt="angle" />
+      </div>
+      <div class="container__home">
+        <a
+          class="container__link"
+          routerLink="/catalog"
+          [queryParams]="{ name: categoryName }"
+          >{{ categoryName }}</a
+        >
+      </div>
+      <div class="container__angle">
+        <img src="../../../../assets/img-aboutus/Angle.png" alt="angle" />
+      </div>
+      <div class="container__catalogs">{{ itemName }}</div>
+    </div>
+    <div class="container-product__photo-description">
+      <div class="container-product__photo">
+        <div class="container-product__photo-image">
+          <img
+            id="itemImage"
+            src="../../../../assets/img-home/itemImage.jpg"
+            alt="itemImage"
+          />
+        </div>
+        <div class="container-product__photo-images">
+          <img
+            id="itemImage"
+            src="../../../../assets/img-home/itemImageMini.png"
+            alt="itemImage"
+          />
+          <img
+            id="itemImage"
+            src="../../../../assets/img-home/itemImageRepeat.png"
+            alt="itemImage"
+          />
+        </div>
+      </div>
+      <div class="container-product__descriptoin">
+        <div class="container-product__descriptoin-title"></div>
+        <div class="container-product__descriptoin-description">
+          For several years now, our company has been delighting customers with
+          the delivery of flowers and congratulations. We are really proud of
+          the clear and well-coordinated work of our employees and are always
+          confident that your order will be delivered at the right time to the
+          right place.
+        </div>
+        <div class="container-product__descriptoin-price">
+          <div class="container-product__descriptoin-price-euro">
+            €60.04 EUR
+          </div>
+          <div class="container-product__descriptoin-price-changes">
+            Price changes
+          </div>
+        </div>
+        <button class="button">
+          <img
+            id="imageBaggy"
+            src="../../../../assets/img-home/button-bag.png"
+            alt="baggy"
+          />
+          <p class="button__paragraph">ADD TO CART</p>
+        </button>
+      </div>
+    </div>
+    <div class="container-product__descriptions">
+      <div class="container-product__descriptions-title">Descriptions</div>
+      <p class="container-product__descriptions-descriptions">
+        For several years now, our company has been delighting customers with
+        the delivery of flowers and congratulations. We are really proud of the
+        clear and well-coordinated work of our employees and are always
+        confident that your order will be delivered at the right time to the
+        right place.
+      </p>
+      <div class="container-product__flowers">
+        <div class="container__picture">
+          <img
+            class="image-flower"
+            src="../../../../assets/img-aboutus/image 3.1png.png"
+            alt="flower1"
+          />
+        </div>
+        <div class="container__picture">
+          <img
+            class="image-flower"
+            src="../../../../assets/img-aboutus/image 4.1.png"
+            alt="flower2"
+          />
+        </div>
+        <div class="container__picture">
+          <img
+            class="image-flower"
+            src="../../../../assets/img-aboutus/image 5.1.png"
+            alt="flower3"
+          />
+        </div>
+      </div>
+      <p class="container-product__figcapture">Examples of our work</p>
+      <p class="container-product__text">
+        We always know where your order is located, at any time it can be
+        tracked thanks to the means of mobile communication and navigation that
+        each of our couriers has, regardless of whether he moves on foot or
+        using one of the types of his own transport.
+      </p>
+      <p class="container-product__text">
+        We are pleased with the constant influx of new customers, and we value
+        each of them. And our reputation is growing every day thanks to constant
+        feedback from grateful customers who have used our services.
+      </p>
+    </div>
+    <div class="container-banners">
+      <app-banners></app-banners>
+    </div>
+  </div>
+</div>

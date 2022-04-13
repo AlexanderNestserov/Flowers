@@ -1,9 +1,7 @@
-import { inject, TestBed, fakeAsync } from '@angular/core/testing';
+import { fakeAsync, inject, TestBed, } from '@angular/core/testing';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ContactsService } from './contacts.service';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
-import { UrlInterceptor } from 'src/app/interceptors/url.interceptor';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { environment } from '../../../environments/environment';
 import { ContactMeDto } from './contacts.model';
@@ -16,9 +14,7 @@ describe('ContactsService', () => {
         TestBed.configureTestingModule({
             imports: [HttpClientTestingModule, ReactiveFormsModule, CommonModule],
             schemas: [CUSTOM_ELEMENTS_SCHEMA],
-            providers: [ContactsService,
-                { provide: HTTP_INTERCEPTORS, useClass: UrlInterceptor, multi: true }
-            ]
+            providers: [ContactsService]
         });
         service = TestBed.inject(ContactsService);
         httpMock = TestBed.inject(HttpTestingController);

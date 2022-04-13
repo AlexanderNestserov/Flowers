@@ -112,7 +112,10 @@
 }
 .container__catalogs {
     @include font(Montserrat, normal, normal, 1.4rem, 150%, 0em, $color_lightdarkgrey);
-    }
+}
+.container__catalogs-categories{
+@include font(Montserrat, normal, normal, 1.4rem, 150%, 0em, $color_lightdarkgrey);
+}
 .p-float-label {
     @include wihi(100%,5rem);
 }

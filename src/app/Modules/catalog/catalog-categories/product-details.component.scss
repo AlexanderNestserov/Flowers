@@ -1,7 +1,6 @@
 @import "../../../styles/_variables.scss";
 @import "../../../styles/_mixins.scss";
 
-
 .wrapper-catalogies {
     margin: 0 auto;
     width: 144rem;
@@ -159,8 +158,8 @@
         margin-top: 0.4rem;
     }
 
-    ::ng-deep .p-float-label .p-inputwrapper-focus~label,
-    ::ng-deep .p-float-label .p-inputwrapper-filled~label {
+    ::ng-deep .p-float-label .p-inputwrapper-focus ~ label,
+    ::ng-deep .p-float-label .p-inputwrapper-filled ~ label {
         top: -0.5rem;
     }
 
@@ -206,7 +205,7 @@
     ::ng-deep .p-checkbox .p-checkbox-box {
         border: 1px solid $color_grey;
         box-sizing: border-box;
-        border-radius: .4rem;
+        border-radius: 0.4rem;
         @include wihi(2rem, 2rem);
     }
 
@@ -359,12 +358,10 @@
 }
 
 .container-banners {
-
-
     margin-left: 14%;
 }
 
-@media(max-width:1460px) {
+@media (max-width: 1460px) {
     .wrapper-catalogies {
         width: 100%;
     }

@@ -8,13 +8,23 @@
             <div class="container__angle">
                 <img src="../../../assets/img-aboutus/Angle.png" alt="angle">
             </div>
-            <div class="container__catalogs">Catalog</div>
+            <div *ngIf="categoriesFilterName" class="container__home">
+                <a class="container__link" routerLink="/catalog">Catalog</a>
+            </div>
+            <div *ngIf="!categoriesFilterName" class="container__catalogs">Catalog</div>
+            <div class="container-categories flex justify-content-start" *ngIf="categoriesFilterName">
+                <div class="container__angle">
+                    <img src="../../../../assets/img-aboutus/Angle.png" alt="angle">
+                </div>
+                <div class="container__catalogs-categories">{{categoriesFilterName}}</div>
+            </div>
         </div>
         <div class="container-catalog__swiper">
             <app-home-swiper-list></app-home-swiper-list>
         </div>
         <div class="container-catalog__line-main"></div>
-        <div class="container-catalog__title">Catalog</div>
+        <div *ngIf="!categoriesFilterName" class="container-catalog__title">Catalog</div>
+        <div *ngIf="categoriesFilterName" class="container-catalog__title">{{categoriesFilterName}}</div>
         <p class="container-catalog__text">For several years now, our company has been delighting customers with the
             delivery
             of flowers and congratulations. We are really proud of the clear and well-coordinated work of our employees
@@ -43,7 +53,7 @@
                 <div class="container-catalog__filter-category">
                     <div class="container-catalog__filter-category-title">Category</div>
                     <div class="container-catalog__filter-category-checkbox">
-                        <div *ngFor="let category of categories  " class="field-checkbox">
+                        <div *ngFor="let category of categoriesData|async  " class="field-checkbox">
                             <p-checkbox name="group2" [(ngModel)]="checked" value="category" [value]="category"
                                 class="p-label-active" [inputId]="category.key" [label]="category.name"
                                 (onChange)="filterCategories($event)">
@@ -68,7 +78,7 @@
             </div>
             <div class="container-catalog__products">
                 <div class="container-catalog__products-title" *ngIf="itemsData|async as data">
-                    <p class="container-catalog__products-quantity">{{data}} products found</p>
+                    <p class="container-catalog__products-quantity">{{data.length}} products found</p>
                     <p-dropdown [options]="categories" placeholder="Sort by..." optionLabel="name" [editable]="true"
                         [showClear]="true" [(ngModel)]="searchText" class="dropdown-button">
                     </p-dropdown>

@@ -6,8 +6,6 @@ import { BannersModule } from '../banners/banners.module';
 
 import { NewsComponent } from './news.component';
 import { NewsService } from './news.service';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { UrlInterceptor } from 'src/app/interceptors/url.interceptor';
 
 
 @NgModule({
@@ -19,11 +17,8 @@ import { UrlInterceptor } from 'src/app/interceptors/url.interceptor';
     CommonModule,
     NewsRoutingModule,
     NgxPaginationModule,
-    BannersModule,
-    HttpClientModule
+    BannersModule
   ],
-  providers: [NewsService,
-    { provide: HTTP_INTERCEPTORS, useClass: UrlInterceptor, multi: true },
-  ]
+  providers: [NewsService]
 })
 export class NewsModule { }

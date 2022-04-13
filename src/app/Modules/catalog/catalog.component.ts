@@ -1,8 +1,9 @@
 import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { map, Observable } from 'rxjs';
+import { ActivatedRoute, NavigationEnd, Params, Router, RouterEvent } from '@angular/router';
+import { filter, map, Observable, Subscription } from 'rxjs';
 import { ItemService } from '../home/items/item.service';
-import { Item, ITEMS } from './catalog-items/catalog-items';
+import { SwiperListService } from '../home/swiper-list/swiper-list.service';
+
 
 @Component({
   selector: 'app-catalog',
@@ -11,42 +12,65 @@ import { Item, ITEMS } from './catalog-items/catalog-items';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CatalogComponent implements OnInit {
+
+obs!: Subscription;
+
   rangeValues: number[] = [0, 300];
 
-  itemsData: any = this.http.getItems().pipe(map((res: any) =>
-    res.content.length
+  itemsData: Observable<any> = this.http.getItems().pipe(map((res: any) =>
+    res.content
   ));
 
-  items: Array<Item> = ITEMS;
-  item: string = '';
+  categoriesData: Observable<any> = this.httpCategories.getCategories().pipe(map((res: any) =>
+    res.content
+  ));
+  
+categoriesFilterName:string='';
 
+item:any;
   checked: boolean = false;
+  
 
-  categories: any[] = [{ name: this.items[0].subTitle, key: 'F' },
-  { name: this.items[22].subTitle, key: 'I' },
-  { name: this.items[20].subTitle, key: 'P' },
-  { name: this.items[15].subTitle, key: 'A' },
-  { name: this.items[26].subTitle, key: 'C' },
-  { name: this.items[11].subTitle, key: 'L' }];
+  categories: any[] = [{ name: 'Max Price' },
+  { name: 'Min Price' }
+  ];
 
   searchText: string = '';
 
-  constructor(private http: ItemService, private router: Router, private route: ActivatedRoute) {
+  constructor(private http: ItemService, private router: Router, private route: ActivatedRoute,private httpCategories: SwiperListService) {}
 
-  }
   ngOnInit() {
-
+    this.categoriesFilterName = this.route.snapshot.queryParams['name'];
+    this.route.queryParams.subscribe((params: Params) => {
+        this.categoriesFilterName = params['name'];
+        
+    })
   }
+
   clearFilter() {
     this.searchText = "";
     this.checked = false;
   }
 
-  filterCategories(event: any) {
-    console.log(event);
+ filterCategories(event: any) {
+ //  if(event.checked.length===0){
+// this.router.navigate(['/catalog'])
+ //  }else{
+ //this.item = event.checked[0].name;
+ //  this.router.navigate(['/catalog'],{queryParams:{name:this.item}});
+  // }
+if(this.categoriesFilterName==''){
+this.checked=false;
+}else{
+  this.checked=event.checked
+}
 
-    this.item = event.checked[0].name;
-    this.router.navigate([this.item], { relativeTo: this.route })
+} 
+
+  ngOnDestroy(){
+ if (this.obs) {
+      this.obs.unsubscribe();
+    }
   }
 
 }

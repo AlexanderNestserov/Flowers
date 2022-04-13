@@ -1,7 +1,6 @@
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ContactsRoutingModule } from './contacts-routing.module';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { ContactsComponent } from './contacts.component';
 import { ContactsService } from './contacts.service';
@@ -10,7 +9,6 @@ import { SpinnerModule } from '../spinner/spinner.module';
 import { PopupErrorSuccessModule } from '../popup-success-error/popupErrorSuccess.module';
 import { ErrorFormModule } from './error-form/error-form.module';
 import { ErrorDirectiveModule } from 'src/app/directives/error-form/error-directive.module';
-import { UrlInterceptor } from 'src/app/interceptors/url.interceptor';
 
 @NgModule({
   declarations: [
@@ -26,10 +24,7 @@ import { UrlInterceptor } from 'src/app/interceptors/url.interceptor';
     ErrorFormModule,
     ErrorDirectiveModule
   ],
-  providers: [
-    ContactsService,
-    { provide: HTTP_INTERCEPTORS, useClass: UrlInterceptor, multi: true },
-  ],
+  providers: [ContactsService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class ContactsModule { }

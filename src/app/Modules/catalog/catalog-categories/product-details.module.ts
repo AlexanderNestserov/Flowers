@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { CatalogCategoriesComponent } from './catalog-categories.component';
+import {  ProductDetailsComponent } from './product-details.component';
 import { CatalogModule } from '../catalog.module';
 import { BannersModule } from '../../banners/banners.module';
-import { CatalogCategoriesRoutingModule } from './catalog-categories-routing.module';
+import { ProductDetailsRoutingModule } from './product-details-routing.module';
 import { HomeModule } from '../../home/home.module';
 import { SwiperModule } from 'swiper/angular';
 import { InputNumberModule } from 'primeng/inputnumber';
@@ -20,13 +20,13 @@ import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
-    CatalogCategoriesComponent
+    ProductDetailsComponent
   ],
   imports: [
     CommonModule,
 
     BannersModule,
-    CatalogCategoriesRoutingModule,
+    ProductDetailsRoutingModule,
     HomeModule,
     CatalogModule,
     SwiperModule,
@@ -42,4 +42,4 @@ import { NgxPaginationModule } from 'ngx-pagination';
     NgxPaginationModule
   ]
 })
-export class CatalogCategoriesModule { }
+export class ProductDetailsModule { }

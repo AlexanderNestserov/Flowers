@@ -1,5 +1,23 @@
 import { KeycloakLoginOptions } from "keycloak-js";
 
+export interface Env {
+  production?: boolean,
+  serverUrl: string,
+  config: {
+    url: string,
+    realm: string,
+    clientId: string,
+  },
+  initOptions: {
+    onLoad: any,
+    silentCheckSsoRedirectUri: any,
+    checkLoginIframe: boolean
+  },
+  keycloakLoginOption: KeycloakLoginOptions,
+  enableBearerInterceptor: boolean,
+  bearerPrefix: string
+}
+
 export const environment: Env = {
   production: false,
   serverUrl: 'http://172.16.16.41:15000/',
@@ -19,24 +37,6 @@ export const environment: Env = {
   },
   enableBearerInterceptor: true,
   bearerPrefix: 'Bearer'
-}
-
-export interface Env {
-  production?: boolean,
-  serverUrl: string,
-  config: {
-    url: string,
-    realm: string,
-    clientId: string,
-  },
-  initOptions: {
-    onLoad: any,
-    silentCheckSsoRedirectUri: any,
-    checkLoginIframe: boolean
-  },
-  keycloakLoginOption: KeycloakLoginOptions,
-  enableBearerInterceptor: boolean,
-  bearerPrefix: string
 }
 
 /*

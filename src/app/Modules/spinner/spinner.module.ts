@@ -2,9 +2,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { SpinnerComponent } from './spinner.component';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { SpinnerService } from './spinner.service';
-import { LoaderInterceptor } from '../../interceptors/spinner.interceptor'
 
 @NgModule({
     declarations: [
@@ -13,12 +11,9 @@ import { LoaderInterceptor } from '../../interceptors/spinner.interceptor'
     imports: [
         CommonModule,
         FormsModule,
-        HttpClientModule,
         ReactiveFormsModule
     ],
-    providers: [SpinnerService,
-        { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true }
-    ],
+    providers: [SpinnerService],
     exports: [SpinnerComponent]
 })
 export class SpinnerModule { }

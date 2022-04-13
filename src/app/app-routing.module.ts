@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [{ path: '', redirectTo: 'home', pathMatch: 'full' },
 { path: 'home', loadChildren: () => import('./Modules/home/home.module').then(m => m.HomeModule) },
-{ path: 'catalog/:name', loadChildren: () => import('./Modules/catalog/catalog-categories/catalog-categories.module').then(m => m.CatalogCategoriesModule) },
+{ path: 'catalog/:name', loadChildren: () => import('./Modules/catalog/catalog-categories/product-details.module').then(m => m.ProductDetailsModule) },
 { path: 'catalog', loadChildren: () => import('./Modules/catalog/catalog.module').then(m => m.CatalogModule) },
 { path: 'about-us', loadChildren: () => import('./Modules/aboutus/aboutus.module').then(m => m.AboutusModule) },
 { path: 'news', loadChildren: () => import('./Modules/news/news.module').then(m => m.NewsModule) },

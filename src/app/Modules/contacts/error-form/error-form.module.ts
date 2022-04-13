@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { PrintErrorComponent } from './error.component';
-import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
     declarations: [
@@ -13,7 +12,6 @@ import { HttpClientModule } from '@angular/common/http';
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
-        HttpClientModule,
         ReactiveFormsModule
     ],
     providers: [],

@@ -2,7 +2,7 @@ import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { ItemService } from '../../home/items/item.service';
-import { Item, ITEMS } from './catalog-items';
+
 
 @Component({
   selector: 'app-catalog-items',
@@ -18,13 +18,6 @@ export class CatalogItemsComponent implements OnInit {
     res.content
   ));
 
-
-  getItems() {
-    return environment.serverUrl + 'images/flower-7-photo';
-  }
-
-  items: Array<Item> = ITEMS;
-  item: any;
   p: number = 1;
   pageSize = 12;
   constructor(private http: ItemService) {
@@ -42,5 +35,10 @@ export class CatalogItemsComponent implements OnInit {
       this.pageSize = 12;
     }
   }
+
+  getItemImage(item:string):string {
+     return `${environment.serverUrl}images/${item.replace('.jpg', '')}`;
+  }
+
 
 }

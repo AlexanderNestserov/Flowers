@@ -15,24 +15,9 @@ export interface Obj {
 export class ItemService {
     public categoriesUrl: string = 'items';
 
-
-
-    // public imagesUrl: any = this.ima;
-
     constructor(private http: HttpClient) { }
 
-    getItems(): Observable<any | object> {
-
-
-        return this.http.get<any | object>(this.categoriesUrl);
+    getItems(): Observable<any> {
+        return this.http.get<any>(this.categoriesUrl);
     }
-
-    // getImages(): Observable<any | object> {
-
-    //  const headers = new HttpHeaders()
-    //    .set('content-type', 'image/jpeg')
-    //   return this.http.get<any | object>(this.imagesUrl, {
-    //       headers: headers
-    //  });
-    // }
 }

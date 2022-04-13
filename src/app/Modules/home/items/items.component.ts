@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { map, Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { ItemService } from './item.service';
-import { Item, ITEMS } from './items.config'
 
 @Component({
   selector: 'app-home-items',
@@ -13,13 +13,12 @@ export class ItemsComponent implements OnInit {
   itemsData: Observable<any> = this.http.getItems().pipe(map((res: any) =>
     res.content
   ));
-  items: Array<Item> = ITEMS
 
-  constructor(private http: ItemService) {
-
-  }
+  constructor(private http: ItemService) {}
 
   ngOnInit(): void {
-
+  }
+  getItemImage(item:string):string{
+  return `${environment.serverUrl}images/${item.replace('.jpg', '')}`;
   }
 }
