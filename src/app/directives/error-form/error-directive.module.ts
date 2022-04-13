@@ -10,6 +10,10 @@ import { PrintErrorDirective } from './error-form.directive';
     imports: [
         CommonModule,
         FormsModule,
+<<<<<<< HEAD
+=======
+        ReactiveFormsModule,
+>>>>>>> af7f5584e7b3d619e5d3f6d915bc0649e434dead
         ReactiveFormsModule
     ],
     providers: [],

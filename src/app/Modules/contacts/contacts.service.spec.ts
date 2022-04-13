@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import { fakeAsync, inject, TestBed, } from '@angular/core/testing';
+=======
+import { fakeAsync, inject, TestBed } from '@angular/core/testing';
+>>>>>>> af7f5584e7b3d619e5d3f6d915bc0649e434dead
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ContactsService } from './contacts.service';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -14,7 +18,12 @@ describe('ContactsService', () => {
         TestBed.configureTestingModule({
             imports: [HttpClientTestingModule, ReactiveFormsModule, CommonModule],
             schemas: [CUSTOM_ELEMENTS_SCHEMA],
+<<<<<<< HEAD
             providers: [ContactsService]
+=======
+            providers: [ContactsService,
+            ]
+>>>>>>> af7f5584e7b3d619e5d3f6d915bc0649e434dead
         });
         service = TestBed.inject(ContactsService);
         httpMock = TestBed.inject(HttpTestingController);

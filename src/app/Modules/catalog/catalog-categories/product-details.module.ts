@@ -15,6 +15,7 @@ import { ButtonModule } from 'primeng/button';
 import { SplitButtonModule } from 'primeng/splitbutton';
 import { DropdownModule } from 'primeng/dropdown';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { ItemService } from '../../home/items/item.service';
 
 
 
@@ -40,6 +41,9 @@ import { NgxPaginationModule } from 'ngx-pagination';
     BannersModule,
     DropdownModule,
     NgxPaginationModule
+  ],
+  providers: [
+    ItemService
   ]
 })
 export class ProductDetailsModule { }

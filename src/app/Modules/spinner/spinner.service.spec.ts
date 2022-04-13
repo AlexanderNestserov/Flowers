@@ -14,7 +14,13 @@ describe('SpinnerComponent', () => {
         await TestBed.configureTestingModule({
             imports: [RouterTestingModule.withRoutes([]), HttpClientTestingModule],
             schemas: [CUSTOM_ELEMENTS_SCHEMA],
+<<<<<<< HEAD
             providers: [SpinnerService, LoaderInterceptor],
+=======
+            providers: [SpinnerService,
+                LoaderInterceptor,
+            ],
+>>>>>>> af7f5584e7b3d619e5d3f6d915bc0649e434dead
         })
         service = TestBed.inject(SpinnerService);
         httpMock = TestBed.inject(HttpTestingController);

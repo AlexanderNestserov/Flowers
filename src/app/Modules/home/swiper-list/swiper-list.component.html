@@ -5,7 +5,11 @@
             [breakpoints]="adaptiveSwiper" class="myswiper">
             <ng-template swiperSlide *ngFor="let item of categoriesData|async">
                 <div class="container__block flex justify-content-center">
+<<<<<<< HEAD
                     <a class="container__link" routerLink="/catalog" [queryParams]="{name:item.name}">
+=======
+                    <a class="container__link" [routerLink]="['/catalog',item.name]">>
+>>>>>>> af7f5584e7b3d619e5d3f6d915bc0649e434dead
                         <img class="item-image" [src]="getImage(item.photo)" alt="logo1">
                         <h6 class="h6">{{item.name}}</h6>
                         <p class="container__paragraph">{{item.description}}</p>

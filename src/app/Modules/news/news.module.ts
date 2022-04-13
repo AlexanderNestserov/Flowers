@@ -17,8 +17,15 @@ import { NewsService } from './news.service';
     CommonModule,
     NewsRoutingModule,
     NgxPaginationModule,
+<<<<<<< HEAD
     BannersModule
   ],
   providers: [NewsService]
+=======
+    BannersModule,
+  ],
+  providers: [NewsService,
+  ]
+>>>>>>> af7f5584e7b3d619e5d3f6d915bc0649e434dead
 })
 export class NewsModule { }

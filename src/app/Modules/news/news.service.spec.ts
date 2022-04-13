@@ -9,7 +9,12 @@ describe('ContactsService', () => {
     beforeEach(async () => {
         TestBed.configureTestingModule({
             imports: [HttpClientTestingModule],
+<<<<<<< HEAD
             providers: [NewsService]
+=======
+            providers: [NewsService,
+            ]
+>>>>>>> af7f5584e7b3d619e5d3f6d915bc0649e434dead
         });
         service = TestBed.inject(NewsService);
         httpMock = TestBed.inject(HttpTestingController);
