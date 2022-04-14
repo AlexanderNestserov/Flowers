@@ -73,27 +73,31 @@
     margin-left: 2.3rem;
 }
 .header__search.active {
-    background: url("../../assets/img-home/search-red.png") 0 0 no-repeat,
+    background: url("../../assets/img-home/search-red.png") 0.1rem 0 no-repeat,
         url("../../assets/img-home/Rectangle2.png") 0 3.8rem no-repeat;
     padding-bottom: $pt_2rem;
 }
 
 .header__search:hover {
-    background: url("../../assets/img-home/search-red.png") 0 0 no-repeat,
+    background: url("../../assets/img-home/search-red.png") 0.1rem 0 no-repeat,
         url("../../assets/img-home/Rectangle2.png") 0 3.8rem no-repeat;
     padding-bottom: $pt_2rem;
 }
 .header__search {
-    background: url("../../assets/img-home/search.png") 0 0 no-repeat;
+    background: url("../../assets/img-home/search.png") 0.1rem 0 no-repeat;
     @extend %width;
 }
-
+.header__bag.active {
+    background: url("../../assets/img-home/shopping-bag-red.png") 0.1rem 0 no-repeat,
+        url("../../assets/img-home/Rectangle2.png") 0 3.8rem no-repeat;
+    padding-bottom: $pb_1rem;
+}
 .header__bag {
-    background: url("../../assets/img-home/shopping-bag.png") 0 0 no-repeat;
+    background: url("../../assets/img-home/shopping-bag.png") 0.1rem 0 no-repeat;
     @extend %width;
 }
 .header__bag:hover {
-    background: url("../../assets/img-home/shopping-bag-red.png") 0 0 no-repeat,
+    background: url("../../assets/img-home/shopping-bag-red.png") 0.1rem 0 no-repeat,
         url("../../assets/img-home/Rectangle2.png") 0 3.8rem no-repeat;
     padding-bottom: $pb_1rem;
 }
@@ -106,22 +110,22 @@
     width: 2.8rem;
     height: 2.1rem;
     border-radius: 8px;
-    padding: 2px 5px;
+    padding: 3px 0 0 6px;
     @include font(Montserrat, normal, 600, 1.5rem, 110%, 0.05em, $color_white);
     vertical-align: top;
     background-color: $color_pink;
 }
 .header__user {
-    background: url("../../assets/img-home/user.png") 0 0 no-repeat;
+    background: url("../../assets/img-home/user.png") 0.1rem 0 no-repeat;
     @extend %width;
 }
 .header__user:hover {
-    background: url("../../assets/img-home/user-red.png") 0 0 no-repeat,
+    background: url("../../assets/img-home/user-red.png") 0.1rem 0 no-repeat,
         url("../../assets/img-home/Rectangle2.png") 0 3.8rem no-repeat;
     padding-bottom: $pb_1rem;
 }
 .header__user.active {
-    background: url("../../assets/img-home/user-red.png") 0 0 no-repeat,
+    background: url("../../assets/img-home/user-red.png") 0.1rem 0 no-repeat,
         url("../../assets/img-home/Rectangle2.png") 0 3.8rem no-repeat;
     padding-bottom: $pb_1rem;
 }

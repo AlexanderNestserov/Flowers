@@ -11,9 +11,7 @@ import { ErrorFormModule } from './error-form/error-form.module';
 import { ErrorDirectiveModule } from 'src/app/directives/error-form/error-directive.module';
 
 @NgModule({
-  declarations: [
-    ContactsComponent
-  ],
+  declarations: [ContactsComponent],
   imports: [
     CommonModule,
     ContactsRoutingModule,
@@ -22,16 +20,9 @@ import { ErrorDirectiveModule } from 'src/app/directives/error-form/error-direct
     SpinnerModule,
     PopupErrorSuccessModule,
     ErrorFormModule,
-    ErrorDirectiveModule
+    ErrorDirectiveModule,
   ],
-<<<<<<< HEAD
   providers: [ContactsService],
-=======
-  providers: [
-    ContactsService,
-  ],
->>>>>>> af7f5584e7b3d619e5d3f6d915bc0649e434dead
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class ContactsModule { }
-
+export class ContactsModule {}

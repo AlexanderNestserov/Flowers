@@ -11,24 +11,17 @@ import { ErrorDirectiveModule } from 'src/app/directives/error-form/error-direct
 import { ErrorFormRegistrationModule } from './error-form/error-form.module';
 
 @NgModule({
-    declarations: [
-        RegistrationComponent
-    ],
-    imports: [
-        CommonModule,
-        FormsModule,
-        RegistrationRoutingModule,
-        ReactiveFormsModule,
-        SpinnerModule,
-        PopupErrorSuccessModule,
-        ErrorDirectiveModule,
-        ErrorFormRegistrationModule
-    ],
-<<<<<<< HEAD
-    providers: [RegistrationService]
-=======
-    providers: [RegistrationService,
-    ]
->>>>>>> af7f5584e7b3d619e5d3f6d915bc0649e434dead
+  declarations: [RegistrationComponent],
+  imports: [
+    CommonModule,
+    FormsModule,
+    RegistrationRoutingModule,
+    ReactiveFormsModule,
+    SpinnerModule,
+    PopupErrorSuccessModule,
+    ErrorDirectiveModule,
+    ErrorFormRegistrationModule,
+  ],
+  providers: [RegistrationService],
 })
-export class RegistrationModule { }
+export class RegistrationModule {}

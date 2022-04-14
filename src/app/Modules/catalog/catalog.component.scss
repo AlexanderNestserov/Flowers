@@ -8,7 +8,7 @@
 
 .container-catalog {
     max-width: 100%;
-    margin: 0 11.5% 15rem 11.5%;
+    margin: 0 10.5% 15rem 11.5%;
     &__line {
         background: $color_darkgrey;
         opacity: 0.2;
@@ -17,86 +17,87 @@
     }
     &__path {
         margin: 2.6rem auto;
+        flex-wrap: wrap;
     }
-    &__line-main{
+    &__line-main {
         background: $color_darkgrey;
         opacity: 0.2;
         height: 1px;
         margin-top: 3.1rem;
         margin-bottom: 4.2rem;
     }
-    &__title{
-    background: $color_gradient;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font-weight: 800;
-    font-size: 4.8rem;
-    line-height: 120%;
-    margin-right: 12%;
-    margin-bottom: 2.4rem;
+    &__title {
+        background: $color_gradient;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-weight: 800;
+        font-size: 4.8rem;
+        line-height: 120%;
+        margin-right: 12%;
+        margin-bottom: 2.4rem;
     }
-    &__text{
+    &__text {
         @include font(Montserrat, normal, 400, 1.8rem, 150%, 0em, $color_black);
         margin-bottom: 2.5rem;
     }
-    &__filter-products{
+    &__filter-products {
         margin-bottom: 0rem;
         display: flex;
         justify-content: flex-start;
     }
-    &__filter{
+    &__filter {
         width: 25.5rem;
         margin-top: 1.1rem;
     }
-    &__filter-title{
+    &__filter-title {
         @include font(Montserrat, normal, 700, 2.8rem, 120%, 0em, $color_darkgrey);
         margin-bottom: 3.5rem;
     }
-    &__filter-cost{
+    &__filter-cost {
         margin-bottom: 4.2rem;
     }
-    &__filter-cost-title{
+    &__filter-cost-title {
         @include font(Montserrat, normal, 700, 1.8rem, 150%, 0em, $color_darkgrey);
         margin-bottom: 1.4rem;
     }
-    &__filter-cost-min-max{
+    &__filter-cost-min-max {
         margin-bottom: 2.9rem;
     }
-    &__filter-category{
+    &__filter-category {
         margin-top: 5.2rem;
-        margin-bottom:4.5rem;
+        margin-bottom: 4.5rem;
     }
-    &__filter-category-title{
+    &__filter-category-title {
         @include font(Montserrat, normal, 700, 1.8rem, 150%, 0em, $color_darkgrey);
         margin-bottom: 2.2rem;
     }
-    &__filter-additional{
+    &__filter-additional {
         margin-bottom: 4.2rem;
     }
-    &__filter-additional-title{
+    &__filter-additional-title {
         @include font(Montserrat, normal, 700, 1.8rem, 150%, 0em, $color_darkgrey);
         margin-bottom: 1.2rem;
     }
-    &__filter-buttons-button1{
+    &__filter-buttons-button1 {
         display: block;
         margin-bottom: 2.3rem;
     }
-    &__products-title{
+    &__products-title {
         margin-bottom: 3.1rem;
         margin-left: 1.5rem;
         display: flex;
         justify-content: space-between;
     }
-    &__products{
+    &__products {
         margin-left: 1.5rem;
         width: 100%;
         margin-bottom: 0rem;
     }
-    &__products-quantity{
+    &__products-quantity {
         @include font(Montserrat, normal, 700, 1.8rem, 150%, 0em, $color_darkgrey);
         margin-top: 1.1rem;
     }
-    &__mobile-buttons{
+    &__mobile-buttons {
         display: none;
     }
 }
@@ -113,149 +114,144 @@
 .container__catalogs {
     @include font(Montserrat, normal, normal, 1.4rem, 150%, 0em, $color_lightdarkgrey);
 }
-.container__catalogs-categories{
-@include font(Montserrat, normal, normal, 1.4rem, 150%, 0em, $color_lightdarkgrey);
+.container__catalogs-categories {
+    @include font(Montserrat, normal, normal, 1.4rem, 150%, 0em, $color_lightdarkgrey);
 }
 .p-float-label {
-    @include wihi(100%,5rem);
+    @include wihi(100%, 5rem);
 }
 .filter-min,
-.filter-max{
+.filter-max {
     @include font(Montserrat, normal, 400, 1.6rem, 170%, 0em, $color_grey);
 }
-:host{
-    ::ng-deep p-inputnumber.p-element.p-inputwrapper{
-        height:5rem;
+:host {
+    ::ng-deep p-inputnumber.p-element.p-inputwrapper {
+        height: 5rem;
     }
-    ::ng-deep p-inputnumber{
+    ::ng-deep p-inputnumber {
         justify-content: center;
     }
-    ::ng-deep #currency-min
-    {
+    ::ng-deep #currency-min {
         width: 12rem;
         margin-right: 1.5rem;
     }
     ::ng-deep #currency-max {
         width: 12rem;
     }
-    ::ng-deep .p-inputtext{
+    ::ng-deep .p-inputtext {
         @include font(Montserrat, normal, 400, 1.6rem, 170%, 0em, $color_darkgrey);
         padding: 0.5rem;
         border-radius: 0.4rem;
-        border:1px solid $color_lightgrey;
+        border: 1px solid $color_lightgrey;
     }
     ::ng-deep .p-inputtext:enabled:hover {
-        border-color:$color_darkgrey ;
+        border-color: $color_darkgrey;
     }
     ::ng-deep .p-inputtext:enabled:focus {
-        box-shadow:none;
-        border-color:$color_darkgrey;
+        box-shadow: none;
+        border-color: $color_darkgrey;
     }
-    ::ng-deep .p-float-label label{
-        top:0.8rem;
+    ::ng-deep .p-float-label label {
+        top: 0.8rem;
         margin-top: 0.4rem;
     }
     ::ng-deep .p-float-label .p-inputwrapper-focus ~ label,
-    ::ng-deep .p-float-label .p-inputwrapper-filled ~ label
-    {
-        top:-0.5rem;
+    ::ng-deep .p-float-label .p-inputwrapper-filled ~ label {
+        top: -0.5rem;
     }
-    ::ng-deep .p-slider{
-        background-color:$color_lightgrey ;
+    ::ng-deep .p-slider {
+        background-color: $color_lightgrey;
         width: 25.5rem;
     }
-    ::ng-deep .p-slider .p-slider-range{
-        background:$color_pink ;
+    ::ng-deep .p-slider .p-slider-range {
+        background: $color_pink;
     }
-    ::ng-deep .p-slider.p-slider-horizontal{
-        height:0.3rem;
+    ::ng-deep .p-slider.p-slider-horizontal {
+        height: 0.3rem;
         width: 25.5rem;
     }
     ::ng-deep .p-slider .p-slider-handle {
-        @include wihi(2.1rem,2.1rem);
-        background:$color_pink;
-        border:none;
+        @include wihi(2.1rem, 2.1rem);
+        background: $color_pink;
+        border: none;
         cursor: pointer;
         transition: box-shadow 0.2s;
     }
     ::ng-deep .p-slider .p-slider-handle:focus {
         box-shadow: 0 0 0 0.2rem $color_lightpink;
     }
-    ::ng-deep .p-slider:not(.p-disabled) .p-slider-handle:hover{
+    ::ng-deep .p-slider:not(.p-disabled) .p-slider-handle:hover {
         background: $color_pink;
         box-shadow: 0 0 0 0.2rem $color_lightpink;
     }
     ::ng-deep .p-slider.p-slider-horizontal .p-slider-handle {
         margin-top: -1rem;
     }
-    ::ng-deep .p-checkbox{
-        @include wihi(2rem,2rem);
-    }
-    ::ng-deep .p-checkbox .p-checkbox-box{
-        border: 1px solid $color_grey;
-        box-sizing: border-box;
-        border-radius: .4rem;
+    ::ng-deep .p-checkbox {
         @include wihi(2rem, 2rem);
     }
-    ::ng-deep .p-checkbox .p-checkbox-box.p-highlight{
+    ::ng-deep .p-checkbox .p-checkbox-box {
+        border: 1px solid $color_grey;
+        box-sizing: border-box;
+        border-radius: 0.4rem;
+        @include wihi(2rem, 2rem);
+    }
+    ::ng-deep .p-checkbox .p-checkbox-box.p-highlight {
         background: $color_green;
     }
     ::ng-deep .p-checkbox:not(.p-checkbox-disabled) .p-checkbox-box.p-highlight:hover {
         border-color: $color_green;
         background: $color_green;
     }
-    ::ng-deep .p-checkbox:not(.p-checkbox-disabled) .p-checkbox-box:hover{
+    ::ng-deep .p-checkbox:not(.p-checkbox-disabled) .p-checkbox-box:hover {
         border-color: $color_green;
     }
     ::ng-deep .p-checkbox:not(.p-checkbox-disabled) .p-checkbox-box.p-focus {
         border-color: $color_green;
         box-shadow: none;
     }
-    ::ng-deep .p-checkbox-label{
+    ::ng-deep .p-checkbox-label {
         @include font(Montserrat, normal, 400, 1.8rem, 150%, 0em, $color_darkgrey);
         margin-left: 2.4rem;
     }
     ::ng-deep .p-checkbox-label-active {
         font-weight: 700;
     }
-   
-    ::ng-deep .p-button{
+    ::ng-deep .p-button {
         @include wihi(25.5rem, 5.7rem);
         padding: 2rem 5.6rem;
         border-radius: 1rem;
         background: $color_green;
         border: none;
         @include font(Montserrat, normal, 600, 1.5rem, 110%, 0.05em, $color_white);
-      
     }
-    ::ng-deep .container-catalog__filter-buttons-button1 .p-button-label{
+    ::ng-deep .container-catalog__filter-buttons-button1 .p-button-label {
         @include font(Montserrat, normal, 600, 1.5rem, 110%, 0.05em, $color_white);
         text-transform: uppercase;
     }
-    ::ng-deep .container-catalog__filter-buttons-button1 .p-button:hover{
+    ::ng-deep .container-catalog__filter-buttons-button1 .p-button:hover {
         background: $color_darkgreen;
     }
     ::ng-deep .container-catalog__filter-buttons-button1 .p-button:active {
         padding-top: 2.1rem;
     }
-    ::ng-deep .container-catalog__filter-buttons-button1 .p-button:focus{
+    ::ng-deep .container-catalog__filter-buttons-button1 .p-button:focus {
         box-shadow: none;
     }
-    ::ng-deep .p-button.p-button-success.p-button-outlined{
-        border:1px solid $color_green;
-        color:$color_green;
+    ::ng-deep .p-button.p-button-success.p-button-outlined {
+        border: 1px solid $color_green;
+        color: $color_green;
         background-color: $color_white;
     }
-    ::ng-deep .p-button-success .p-button-label
-    {
+    ::ng-deep .p-button-success .p-button-label {
         @include font(Montserrat, normal, 600, 1.5rem, 110%, 0.05em, $color_green);
         text-transform: uppercase;
     }
     ::ng-deep .p-button-success .p-button-label:hover {
-        color:$color_darkgreen;
+        color: $color_darkgreen;
     }
     ::ng-deep .p-button.p-button-success.p-button-outlined:hover {
-        border-color:$color_darkgreen;
+        border-color: $color_darkgreen;
         background: $color_white;
     }
     ::ng-deep .p-button.p-button-success.p-button-outlined:active {
@@ -264,44 +260,44 @@
     ::ng-deep .p-button.p-button-success.p-button-outlined:focus {
         box-shadow: none;
     }
-    ::ng-deep .pi{
+    ::ng-deep .pi {
         font-size: 1.3rem;
     }
-    ::ng-deep .p-button .p-button-icon-left{
+    ::ng-deep .p-button .p-button-icon-left {
         margin-right: 1rem;
     }
     ::ng-deep .p-dropdown {
-        @include wihi(25.5rem,5rem);
-        border:1px solid $color_lightgrey;
+        @include wihi(25.5rem, 5rem);
+        border: 1px solid $color_lightgrey;
         border-radius: 0.4rem;
     }
-    ::ng-deep .p-dropdown:not(.p-disabled):hover { 
-        border-color: $color_darkgrey; 
+    ::ng-deep .p-dropdown:not(.p-disabled):hover {
+        border-color: $color_darkgrey;
     }
     ::ng-deep .p-dropdown:not(.p-disabled).p-focus {
         border-color: $color_darkgrey;
         box-shadow: none;
     }
-    ::ng-deep .p-dropdown .p-dropdown-label.p-placeholder{
+    ::ng-deep .p-dropdown .p-dropdown-label.p-placeholder {
         @include font(Montserrat, normal, 400, 1.8rem, 150%, 0em, $color_darkgrey);
         padding: 1rem 2.9rem;
-        border:none;
+        border: none;
     }
     ::ng-deep .p-dropdown .p-dropdown-label.p-inputtext {
         @include font(Montserrat, normal, 400, 1.8rem, 150%, 0em, $color_darkgrey);
         padding: 1rem 2.9rem;
         border: none;
     }
-    ::ng-deep .p-dropdown .p-dropdown-trigger{
-        width:5rem;
-        color:$color_darkgrey;
+    ::ng-deep .p-dropdown .p-dropdown-trigger {
+        width: 5rem;
+        color: $color_darkgrey;
     }
-    ::ng-deep .p-dropdown .p-dropdown-clear-icon{
-        color:$color_darkgrey;
+    ::ng-deep .p-dropdown .p-dropdown-clear-icon {
+        color: $color_darkgrey;
         right: 5rem;
     }
-    ::ng-deep .p-dropdown-panel .p-dropdown-items .p-dropdown-item.p-highlight{
-        color:$color_darkgrey;
+    ::ng-deep .p-dropdown-panel .p-dropdown-items .p-dropdown-item.p-highlight {
+        color: $color_darkgrey;
         background: $color_lightpink;
     }
     ::ng-deep .p-dropdown-panel .p-dropdown-items .p-dropdown-item {
@@ -322,20 +318,18 @@
 .field-checkbox {
     margin-bottom: 2rem;
 }
-.container-banners{
- 
-    
+.container-banners {
     margin-left: 14%;
 }
-@media(max-width:1460px){
+@media (max-width: 1460px) {
     .wrapper-catalog {
         width: 100%;
     }
 }
 @media (max-width: 970px) {
-.container-banners {
-    margin-left: 3%;
-}
+    .container-banners {
+        margin-left: 3%;
+    }
 }
 @media (max-width: 886px) {
     .container-catalog {
@@ -343,12 +337,12 @@
     }
 }
 @media (max-width: 840px) {
-    .container-catalog{
-        &__filter{
-        display: none;
+    .container-catalog {
+        &__filter {
+            display: none;
         }
-        &__filter-products{
-        display: block;
+        &__filter-products {
+            display: block;
         }
         &__products-title {
             display: block;
@@ -357,29 +351,41 @@
         &__products {
             margin-left: 0;
         }
-        &__mobile-buttons{
+        &__mobile-buttons {
             display: inline-block;
-            margin-top:$pt_2rem ;
+            margin-top: $pt_2rem;
             margin-bottom: 4rem;
             display: flex;
             justify-content: space-between;
         }
     }
-    .dropdown-button{
+    .dropdown-button {
         display: none;
     }
 }
 @media (max-width: 600px) {
-    :host{
-        ::ng-deep .p-button{
+    :host {
+        ::ng-deep .p-button {
             width: 15.8rem;
             padding: 2rem 3.6rem;
         }
     }
+    .container__home {
+        margin-right: 1.6rem;
+    }
+    .container__angle {
+        margin-right: 1.6rem;
+    }
+}
+@media (max-width: 538px) {
+    .container__catalogs-categories {
+        height: 2.1rem;
+        overflow: hidden;
+    }
 }
 @media (max-width: 450px) {
-.container-catalog {
-    margin: 7rem 2rem 0 2rem;
+    .container-catalog {
+        margin: 7rem 2rem 0 2rem;
         &__path {
             margin: 1.5rem auto;
         }
@@ -402,9 +408,9 @@
         }
         &__filter-products {
             margin-bottom: 6rem;
-        }   
+        }
     }
-    .container-banners{
+    .container-banners {
         margin-left: 0;
     }
 }

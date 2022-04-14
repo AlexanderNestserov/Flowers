@@ -15,11 +15,7 @@ import { initializeKeycloak } from './utility/app.init';
 import { UrlInterceptor } from './interceptors/url.interceptor';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HeaderComponent,
-    FooterComponent
-  ],
+  declarations: [AppComponent, HeaderComponent, FooterComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
@@ -31,7 +27,7 @@ import { UrlInterceptor } from './interceptors/url.interceptor';
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    KeycloakAngularModule
+    KeycloakAngularModule,
   ],
   bootstrap: [AppComponent],
   providers: [
@@ -39,9 +35,9 @@ import { UrlInterceptor } from './interceptors/url.interceptor';
       provide: APP_INITIALIZER,
       useFactory: initializeKeycloak,
       multi: true,
-      deps: [KeycloakService]
+      deps: [KeycloakService],
     },
-    { provide: HTTP_INTERCEPTORS, useClass: UrlInterceptor, multi: true }
-  ]
+    { provide: HTTP_INTERCEPTORS, useClass: UrlInterceptor, multi: true },
+  ],
 })
-export class AppModule { }
+export class AppModule {}

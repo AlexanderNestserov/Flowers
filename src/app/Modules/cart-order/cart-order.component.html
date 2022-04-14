@@ -1,0 +1,221 @@
+<div class="wrapper-cartorder">
+  <div class="container-cartorder">
+    <div class="container-cartorder__line"></div>
+    <div class="container-cartorder__path flex justify-content-start">
+      <div class="container__home">
+        <a class="container__link" routerLink="/">Home</a>
+      </div>
+      <div class="container__angle">
+        <img src="../../../assets/img-aboutus/Angle.png" alt="angle" />
+      </div>
+      <div class="container__contacts">Contacts</div>
+    </div>
+    <div class="container-cartorder__cart-title">Cart</div>
+    <div class="container-cartorder__cart-item">
+      <p-checkbox></p-checkbox>
+      <img id="miniItemImage" src="" alt="itemImage" />
+      <div class="container-cartorder__cart-item-description">
+        <p class="item-name">You’re Precious Bonquet</p>
+        <p class="item-category">Fresh flowers</p>
+      </div>
+      <div class="container-cartorder__cart-item-price-one">€62.17 EUR</div>
+      <div class="container-cartorder__cart-item-x">x</div>
+      <p-inputNumber></p-inputNumber>
+      <div class="container-cartorder__cart-item-price-total">€62.17 EUR</div>
+      <img id="deleteItem" src="" alt="x" />
+    </div>
+    <div class="container-cartorder__cart-total">
+      <button class="button-delete">Delete selected</button>
+      <div class="container-cartorder__cart-total-total-price-text">
+        Total price —
+      </div>
+      <div class="container-cartorder__cart-total-total-price-number">
+        €662.30 EUR
+      </div>
+    </div>
+    <div class="container-cartorder__line"></div>
+    <div class="container-cartorder__order-title">Order placement</div>
+    <div class="container-cartorder__form">
+      <form [formGroup]="formValue" (ngSubmit)="postDataDetails()">
+        <div
+          class="container__firstname"
+          errorDirective
+          [formControlItem]="firstName"
+        >
+          <input
+            type="text"
+            id="inputFirstName"
+            required
+            formControlName="firstName"
+          />
+          <label class="container__input-firstname" for="inputFirstName"
+            >First name<span class="container__star">*</span>
+          </label>
+          <app-field-error-registration
+            [formControlItem]="firstName"
+          ></app-field-error-registration>
+        </div>
+        <div
+          class="container__lastname"
+          errorDirective
+          [formControlItem]="lastName"
+        >
+          <input
+            type="text"
+            id="inputLastName"
+            required
+            formControlName="lastName"
+          />
+          <label class="container__input-lastname" for="inputLastName"
+            >Last name<span class="container__star">*</span>
+          </label>
+          <app-field-error-registration
+            [formControlItem]="lastName"
+          ></app-field-error-registration>
+        </div>
+        <div class="container__email" errorDirective [formControlItem]="email">
+          <input type="text" id="inputEmail" required formControlName="email" />
+          <label class="container__input-email" for="inputEmail"
+            >Email<span class="container__star">*</span></label
+          >
+          <app-field-error-registration
+            [formControlItem]="email"
+          ></app-field-error-registration>
+        </div>
+        <div
+          class="container__phone-number"
+          errorDirective
+          [formControlItem]="phone"
+        >
+          <input
+            type="number"
+            id="inputPhone"
+            required
+            formControlName="phone"
+          />
+          <label class="container__input-phone" for="inputPhone"
+            >Phone number<span class="container__star">*</span></label
+          >
+          <app-field-error-registration
+            [formControlItem]="phone"
+          ></app-field-error-registration>
+        </div>
+        <div class="container__map">
+          <img
+            id="image-area"
+            src="../../../assets/img-registration/Minsk-area.png"
+            alt="area"
+          />
+          <img
+            id="image-arrow"
+            src="../../../assets/img-registration/arrow.png"
+            alt="arrow"
+          />
+          <div class="container__area">
+            <img
+              id="image-square"
+              src="../../../assets/img-registration/square.png"
+              alt="square"
+            />
+            <span class="container__minsk">Delivery area - Minsk</span>
+          </div>
+        </div>
+        <div class="container__address">
+          <input
+            type="text"
+            id="inputAddress"
+            formControlName="homeAddress"
+            placeholder=" "
+          />
+          <label class="container__input-address" for="inputAddress"
+            >Address</label
+          >
+        </div>
+        <p class="container__point">
+          You can enter the address manually or specify a point on the map
+        </p>
+        <div class="container__info">
+          <textarea
+            type="text"
+            id="inputInfo"
+            formControlName="additionalInformation"
+            placeholder=" "
+          ></textarea>
+          <label class="container__input-info" for="inputInfo"
+            >Additional information</label
+          >
+        </div>
+        <p class="container__point">
+          Intercom, GPS coordinates or other additional information
+        </p>
+        <div
+          class="container__password"
+          errorDirective
+          [formControlItem]="password"
+        >
+          <input
+            type="password"
+            id="inputPassword"
+            required
+            formControlName="password"
+          />
+          <label class="container__input-password" for="inputPassword"
+            >Password<span class="container__star">*</span></label
+          >
+          <app-field-error-registration
+            [formControlItem]="password"
+          ></app-field-error-registration>
+        </div>
+        <div class="container__confirm" [class.has-error]="showError()">
+          <input
+            type="password"
+            id="inputConfirm"
+            required
+            formControlName="confirmPassword"
+          />
+          <label
+            class="container__input-confirm"
+            appConfirmPassword="password"
+            for="inputConfirm"
+            >Confirm password
+            <span class="container__star">*</span>
+          </label>
+          <app-field-error-registration
+            [formControlItem]="confirmPassword"
+          ></app-field-error-registration>
+          <span
+            class="container__error"
+            *ngIf="formValue.errors?.['noMatchingPassword'] && !confirmPassword.errors?.['required']"
+            >Passwords did not match</span
+          ><img
+            class="alert-confirmpassword"
+            *ngIf="formValue.errors?.['noMatchingPassword'] && !confirmPassword.errors?.['required']"
+            src="../../../assets/img-registration/alert-circle.png"
+          />
+        </div>
+        <div class="container__checkbox">
+          <input
+            type="checkbox"
+            id="inputCheckbox"
+            required
+            formControlName="myCheckbox"
+            [checked]="isChecked"
+          />
+          <label for="inputCheckbox" class="container__input-checkbox"
+            >I agree to the </label
+          ><a class="container__linking" (click)="dialogTitle()"
+            >processing of personal data</a
+          >
+        </div>
+        <button
+          type="submit"
+          class="container__button"
+          [ngClass]="{ disabled: formValue.invalid || isDisabled }"
+          [disabled]="formValue.invalid || isDisabled"
+        >
+          Register <app-spinner></app-spinner>
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

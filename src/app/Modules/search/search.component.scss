@@ -11,6 +11,7 @@
         background: $color_darkgrey;
         opacity: 0.2;
         height: 1px;
+        margin-top: 1.6rem;
     }
     &__titles {
         @include font(Montserrat, normal, bold, 2.8rem, 120%, 0em, $color_darkgrey);

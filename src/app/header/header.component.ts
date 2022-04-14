@@ -9,8 +9,8 @@ import { KeycloakService } from 'keycloak-angular';
   styleUrls: ['./header.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    "(window:click)": "onClick()"
-  }
+    '(window:click)': 'onClick()',
+  },
 })
 export class HeaderComponent implements OnInit {
   obs!: Subscription;
@@ -20,28 +20,37 @@ export class HeaderComponent implements OnInit {
   urlCatalog = false;
   urlRegistration = false;
   urlNewsArticle = false;
+  urlCartOrder = false;
   public isLoggedIn = false;
 
-  constructor(public router: Router, public readonly keycloak: KeycloakService) {
-    this.router.events.pipe(
-      filter((e: any) => e instanceof NavigationEnd)
-    ).subscribe((e: RouterEvent) => {
-      if (e.url === '/registration') {
-        this.urlRegistration = true
-      } else {
-        this.urlRegistration = false
-      }
-      if (e.url.split('/')[1] === 'news') {
-        this.urlNewsArticle = true
-      } else {
-        this.urlNewsArticle = false
-      }
-      if (e.url.split('/')[1].split('?')[0] === 'catalog') {
-        this.urlCatalog = true
-      } else {
-        this.urlCatalog = false
-      }
-    });
+  constructor(
+    public router: Router,
+    public readonly keycloak: KeycloakService
+  ) {
+    this.router.events
+      .pipe(filter((e: any) => e instanceof NavigationEnd))
+      .subscribe((e: RouterEvent) => {
+        if (e.url === '/registration') {
+          this.urlRegistration = true;
+        } else {
+          this.urlRegistration = false;
+        }
+        if (e.url.split('/')[1] === 'news') {
+          this.urlNewsArticle = true;
+        } else {
+          this.urlNewsArticle = false;
+        }
+        if (e.url.split('/')[1].split('?')[0] === 'catalog') {
+          this.urlCatalog = true;
+        } else {
+          this.urlCatalog = false;
+        }
+        if (e.url === '/cartorder') {
+          this.urlCartOrder = true;
+        } else {
+          this.urlCartOrder = false;
+        }
+      });
   }
 
   toggleDisplay() {
@@ -56,7 +65,7 @@ export class HeaderComponent implements OnInit {
 
   toggleDisplays() {
     if (!this.isShow) {
-      this.toggleDisplay()
+      this.toggleDisplay();
     }
   }
 
@@ -77,12 +86,12 @@ export class HeaderComponent implements OnInit {
       function callbackFunction() {
         let y = window.pageYOffset;
         if (y > 0) {
-          document.querySelector('.header')?.classList.add("scroll");
+          document.querySelector('.header')?.classList.add('scroll');
         } else {
-          document.querySelector('.header')?.classList.remove("scroll");
+          document.querySelector('.header')?.classList.remove('scroll');
         }
       }
-    }
+    };
     onScroll();
   }
 

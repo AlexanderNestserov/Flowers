@@ -32,39 +32,43 @@
         <div class="container-product__photo-image">
           <img
             id="itemImage"
-            src="../../../../assets/img-home/itemImage.jpg"
             alt="itemImage"
+            [src]="
+              !isActive
+                ? getPhoto(photo)
+                : '../../../../assets/img-home/itemImageRepeat.png'
+            "
           />
         </div>
         <div class="container-product__photo-images">
           <img
-            id="itemImage"
-            src="../../../../assets/img-home/itemImageMini.png"
+            id="itemImageMini1"
+            [src]="getPhoto(photo)"
             alt="itemImage"
+            (click)="getFirstElement()"
           />
           <img
-            id="itemImage"
+            id="itemImageMini"
             src="../../../../assets/img-home/itemImageRepeat.png"
             alt="itemImage"
+            (click)="getSecondElement()"
           />
         </div>
       </div>
       <div class="container-product__descriptoin">
-        <div class="container-product__descriptoin-title"></div>
+        <div class="container-product__descriptoin-title">{{ itemName }}</div>
         <div class="container-product__descriptoin-description">
-          For several years now, our company has been delighting customers with
-          the delivery of flowers and congratulations. We are really proud of
-          the clear and well-coordinated work of our employees and are always
-          confident that your order will be delivered at the right time to the
-          right place.
+          {{ shortDescription }}
         </div>
         <div class="container-product__descriptoin-price">
           <div class="container-product__descriptoin-price-euro">
-            €60.04 EUR
+            €{{ price }} EUR
           </div>
-          <div class="container-product__descriptoin-price-changes">
-            Price changes
-          </div>
+          <a class="container-product__descriptoin-price-changes-link">
+            <div class="container-product__descriptoin-price-changes">
+              Price changes
+            </div>
+          </a>
         </div>
         <button class="button">
           <img
@@ -79,11 +83,7 @@
     <div class="container-product__descriptions">
       <div class="container-product__descriptions-title">Descriptions</div>
       <p class="container-product__descriptions-descriptions">
-        For several years now, our company has been delighting customers with
-        the delivery of flowers and congratulations. We are really proud of the
-        clear and well-coordinated work of our employees and are always
-        confident that your order will be delivered at the right time to the
-        right place.
+        {{ description }}
       </p>
       <div class="container-product__flowers">
         <div class="container__picture">
@@ -121,8 +121,8 @@
         feedback from grateful customers who have used our services.
       </p>
     </div>
-    <div class="container-banners">
-      <app-banners></app-banners>
-    </div>
+  </div>
+  <div class="container-banners">
+    <app-banners></app-banners>
   </div>
 </div>

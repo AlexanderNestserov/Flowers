@@ -6,6 +6,7 @@ import {
 } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { map, Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { ItemService } from '../../home/items/item.service';
 import { SwiperListService } from '../../home/swiper-list/swiper-list.service';
 
@@ -24,8 +25,13 @@ export class ProductDetailsComponent implements OnInit {
     .getCategories()
     .pipe(map((res: any) => res.content));
 
-  itemName: any;
-  categoryName: any;
+  itemName: string = '';
+  categoryName: string = '';
+  price: number = 0;
+  shortDescription: string = '';
+  description: string = '';
+  photo: any;
+  isActive: boolean = false;
 
   checked: boolean = false;
 
@@ -39,15 +45,21 @@ export class ProductDetailsComponent implements OnInit {
     private cd: ChangeDetectorRef
   ) {}
   ngOnInit() {
-    this.http.getItems().subscribe(console.log);
-
     this.itemName = this.route.snapshot.params['name'];
     this.categoryName = this.route.snapshot.queryParams['categoryName'];
+    this.price = this.route.snapshot.queryParams['price'];
+    this.description = this.route.snapshot.queryParams['description'];
+    this.shortDescription = this.route.snapshot.queryParams['shortDescription'];
+    this.photo = this.route.snapshot.queryParams['photo'];
+
     this.route.params.subscribe((params: Params) => {
       this.itemName = params['name'];
     });
     this.route.queryParams.subscribe((params: Params) => {
       this.categoryName = params['categoryName'];
+      this.price = params['price'];
+      this.description = params['description'];
+      this.shortDescription = params['shortDescription'];
     });
   }
   clearFilter() {
@@ -60,5 +72,15 @@ export class ProductDetailsComponent implements OnInit {
     //if (this.itemCategories !== 'Fresh flowers') {
     //  this.cd.detectChanges();
     //}
+  }
+  getSecondElement() {
+    this.isActive = true;
+  }
+  getFirstElement() {
+    this.isActive = false;
+  }
+
+  getPhoto(photo: string): string {
+    return `${environment.serverUrl}images/${photo.replace('.jpg', '')}`;
   }
 }
