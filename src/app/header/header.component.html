@@ -100,7 +100,7 @@
           <a
             class="header__user icon"
             (click)="toggleUser($event)"
-            [ngClass]="{ active: !isMenu || urlRegistration }"
+            [ngClass]="{ active: !isMenu || urlRegistration || urlAccount }"
             routerLinkActive="active"
             [routerLinkActiveOptions]="{ exact: true }"
           ></a>
@@ -126,7 +126,13 @@
               </a>
             </li>
             <li class="user__li user__li-2" *ngIf="isLoggedIn">
-              <a href="" class="user__text">MANAGE MY ACCOUNT</a>
+              <a
+                routerLink="/account"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }"
+                class="user__text"
+                >MANAGE MY ACCOUNT</a
+              >
             </li>
             <div class="line"></div>
             <li class="user__li user__li-3" *ngIf="isLoggedIn">

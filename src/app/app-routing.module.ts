@@ -63,6 +63,11 @@ const routes: Routes = [
         (m) => m.RegistrationModule
       ),
   },
+  {
+    path: 'account',
+    loadChildren: () =>
+      import('./Modules/account/account.module').then((m) => m.AccountModule),
+  },
   { path: '**', redirectTo: 'home', pathMatch: 'full' },
 ];
 

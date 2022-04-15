@@ -21,6 +21,7 @@ export class HeaderComponent implements OnInit {
   urlRegistration = false;
   urlNewsArticle = false;
   urlCartOrder = false;
+  urlAccount = false;
   public isLoggedIn = false;
 
   constructor(
@@ -30,11 +31,17 @@ export class HeaderComponent implements OnInit {
     this.router.events
       .pipe(filter((e: any) => e instanceof NavigationEnd))
       .subscribe((e: RouterEvent) => {
+        if (e.url === '/account') {
+          this.urlAccount = true;
+        } else {
+          this.urlAccount = false;
+        }
         if (e.url === '/registration') {
           this.urlRegistration = true;
         } else {
           this.urlRegistration = false;
         }
+
         if (e.url.split('/')[1] === 'news') {
           this.urlNewsArticle = true;
         } else {

@@ -1,0 +1,44 @@
+<span
+  class="container__error"
+  *ngIf="formControlItem.touched && formControlItem.errors?.['required']"
+  >This field is required</span
+><img
+  class="alert-name"
+  *ngIf="formControlItem.touched && formControlItem.errors?.['required']"
+  src="../../../../assets/img-registration/alert-circle.png"
+/>
+<span
+  class="container__error"
+  *ngIf="formControlItem.errors?.['pattern']?['/(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}/g']:null"
+>
+  <span class="container__error" *ngIf="formControlItem.errors?.['minlength']"
+    >This field is too short
+  </span>
+  <span
+    class="container__error"
+    *ngIf="!formControlItem.errors?.['minlength'] && formControlItem.errors?.['pattern']?['/(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}/g']:null"
+    >This field is invalid.
+  </span>
+</span>
+<img
+  class="alert-name"
+  *ngIf="formControlItem.errors?.['pattern']?['/(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}/g']:null"
+  src="../../../../assets/img-registration/alert-circle.png"
+/>
+<span
+  class="container__error"
+  *ngIf="formControlItem.touched && formControlItem.errors?.['email']"
+  >This email is invalid</span
+><img
+  class="alert-name"
+  *ngIf="formControlItem.touched && formControlItem.errors?.['email']"
+  src="../../../../assets/img-registration/alert-circle.png"
+/>
+
+<span class="container__error" *ngIf="formControlItem.errors?.['maxlength']"
+  >This field is too long </span
+><img
+  class="alert-name"
+  *ngIf="formControlItem.touched && formControlItem.errors?.['maxlength']"
+  src="../../../../assets/img-registration/alert-circle.png"
+/>

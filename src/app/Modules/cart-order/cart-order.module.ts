@@ -3,15 +3,17 @@ import { CommonModule } from '@angular/common';
 import { CartOrderRoutingModule } from './cart-order-routing.module';
 import { CheckboxModule } from 'primeng/checkbox';
 import { InputNumberModule } from 'primeng/inputnumber';
+import { RadioButtonModule } from 'primeng/radiobutton';
 
 import { CartOrderComponent } from './cart-order.component';
 import { SpinnerModule } from '../spinner/spinner.module';
 import { ErrorDirectiveModule } from 'src/app/directives/error-form/error-directive.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ErrorFormRegistrationModule } from '../registration/error-form/error-form.module';
+import { MapModule } from '../map/map.module';
+import { CartOrderErrorFormComponent } from './cart-order-error-form/cart-order-error-form.component';
 
 @NgModule({
-  declarations: [CartOrderComponent],
+  declarations: [CartOrderComponent, CartOrderErrorFormComponent],
   imports: [
     CommonModule,
     CartOrderRoutingModule,
@@ -21,7 +23,8 @@ import { ErrorFormRegistrationModule } from '../registration/error-form/error-fo
     ErrorDirectiveModule,
     FormsModule,
     ReactiveFormsModule,
-    ErrorFormRegistrationModule,
+    RadioButtonModule,
+    MapModule,
   ],
 })
 export class CartOrderModule {}

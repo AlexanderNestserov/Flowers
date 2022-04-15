@@ -427,6 +427,16 @@
             width: 2.4rem;
             height: 2.4rem;
         }
+        .burger:active {
+            position: fixed;
+            top: 2.1rem;
+            left: 2.1rem;
+        }
+        .close:active {
+            position: fixed;
+            top: 2.1rem;
+            left: 2.1rem;
+        }
     }
     .header {
         position: fixed;

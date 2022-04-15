@@ -8,32 +8,51 @@
       <div class="container__angle">
         <img src="../../../assets/img-aboutus/Angle.png" alt="angle" />
       </div>
-      <div class="container__contacts">Contacts</div>
+      <div class="container__cartorder">Cart and order placement</div>
     </div>
     <div class="container-cartorder__cart-title">Cart</div>
     <div class="container-cartorder__cart-item">
-      <p-checkbox></p-checkbox>
-      <img id="miniItemImage" src="" alt="itemImage" />
-      <div class="container-cartorder__cart-item-description">
-        <p class="item-name">You’re Precious Bonquet</p>
-        <p class="item-category">Fresh flowers</p>
+      <div class="field-checkbox">
+        <p-checkbox
+          name="group1"
+          [(ngModel)]="checked"
+          inputId="st"
+          value="In stock"
+        ></p-checkbox>
       </div>
-      <div class="container-cartorder__cart-item-price-one">€62.17 EUR</div>
-      <div class="container-cartorder__cart-item-x">x</div>
-      <p-inputNumber></p-inputNumber>
-      <div class="container-cartorder__cart-item-price-total">€62.17 EUR</div>
-      <img id="deleteItem" src="" alt="x" />
+      <img
+        id="miniItemImage"
+        src="../../../assets/img-home/image 1.png"
+        alt="itemImage"
+      />
+      <div class="container-cartorder__cart-item-container">
+        <div class="container-cartorder__cart-item-description">
+          <p class="item-name">You’re Precious Bonquet</p>
+          <p class="item-category">Fresh flowers</p>
+        </div>
+        <div class="container-cartorder__cart-item-price-container">
+          <div class="container-cartorder__cart-item-price-one">€62.17 EUR</div>
+          <div class="container-cartorder__cart-item-x">x</div>
+          <div class="field-number">
+            <p-inputNumber [(ngModel)]="val"></p-inputNumber>
+          </div>
+        </div>
+        <div class="container-cartorder__cart-item-price-total">€62.17 EUR</div>
+      </div>
+      <img id="deleteItem" src="../../../assets/img-home/x.png" alt="x" />
     </div>
     <div class="container-cartorder__cart-total">
       <button class="button-delete">Delete selected</button>
-      <div class="container-cartorder__cart-total-total-price-text">
-        Total price —
-      </div>
-      <div class="container-cartorder__cart-total-total-price-number">
-        €662.30 EUR
+      <div class="container-cartorder__cart-total-container">
+        <div class="container-cartorder__cart-total-total-price-text">
+          Total price —
+        </div>
+        <div class="container-cartorder__cart-total-total-price-number">
+          €662.30 EUR
+        </div>
       </div>
     </div>
-    <div class="container-cartorder__line"></div>
+    <div class="container-cartorder__line-two"></div>
     <div class="container-cartorder__order-title">Order placement</div>
     <div class="container-cartorder__form">
       <form [formGroup]="formValue" (ngSubmit)="postDataDetails()">
@@ -51,9 +70,9 @@
           <label class="container__input-firstname" for="inputFirstName"
             >First name<span class="container__star">*</span>
           </label>
-          <app-field-error-registration
+          <app-cart-order-error-form
             [formControlItem]="firstName"
-          ></app-field-error-registration>
+          ></app-cart-order-error-form>
         </div>
         <div
           class="container__lastname"
@@ -69,18 +88,18 @@
           <label class="container__input-lastname" for="inputLastName"
             >Last name<span class="container__star">*</span>
           </label>
-          <app-field-error-registration
+          <app-cart-order-error-form
             [formControlItem]="lastName"
-          ></app-field-error-registration>
+          ></app-cart-order-error-form>
         </div>
         <div class="container__email" errorDirective [formControlItem]="email">
           <input type="text" id="inputEmail" required formControlName="email" />
           <label class="container__input-email" for="inputEmail"
             >Email<span class="container__star">*</span></label
           >
-          <app-field-error-registration
+          <app-cart-order-error-form
             [formControlItem]="email"
-          ></app-field-error-registration>
+          ></app-cart-order-error-form>
         </div>
         <div
           class="container__phone-number"
@@ -96,30 +115,22 @@
           <label class="container__input-phone" for="inputPhone"
             >Phone number<span class="container__star">*</span></label
           >
-          <app-field-error-registration
+          <app-cart-order-error-form
             [formControlItem]="phone"
-          ></app-field-error-registration>
+          ></app-cart-order-error-form>
         </div>
-        <div class="container__map">
-          <img
-            id="image-area"
-            src="../../../assets/img-registration/Minsk-area.png"
-            alt="area"
-          />
-          <img
-            id="image-arrow"
-            src="../../../assets/img-registration/arrow.png"
-            alt="arrow"
-          />
-          <div class="container__area">
-            <img
-              id="image-square"
-              src="../../../assets/img-registration/square.png"
-              alt="square"
-            />
-            <span class="container__minsk">Delivery area - Minsk</span>
-          </div>
+        <div class="container__message">
+          <textarea
+            type="text"
+            id="inputMessage"
+            formControlName="message"
+            placeholder=" "
+          ></textarea>
+          <label class="container__input-message" for="inputMessage"
+            >Congratulatory message</label
+          >
         </div>
+        <app-map></app-map>
         <div class="container__address">
           <input
             type="text"
@@ -128,8 +139,8 @@
             placeholder=" "
           />
           <label class="container__input-address" for="inputAddress"
-            >Address</label
-          >
+            >Address
+          </label>
         </div>
         <p class="container__point">
           You can enter the address manually or specify a point on the map
@@ -145,67 +156,30 @@
             >Additional information</label
           >
         </div>
-        <p class="container__point">
-          Intercom, GPS coordinates or other additional information
-        </p>
-        <div
-          class="container__password"
-          errorDirective
-          [formControlItem]="password"
-        >
-          <input
-            type="password"
-            id="inputPassword"
-            required
-            formControlName="password"
-          />
-          <label class="container__input-password" for="inputPassword"
-            >Password<span class="container__star">*</span></label
-          >
-          <app-field-error-registration
-            [formControlItem]="password"
-          ></app-field-error-registration>
-        </div>
-        <div class="container__confirm" [class.has-error]="showError()">
-          <input
-            type="password"
-            id="inputConfirm"
-            required
-            formControlName="confirmPassword"
-          />
-          <label
-            class="container__input-confirm"
-            appConfirmPassword="password"
-            for="inputConfirm"
-            >Confirm password
-            <span class="container__star">*</span>
-          </label>
-          <app-field-error-registration
-            [formControlItem]="confirmPassword"
-          ></app-field-error-registration>
-          <span
-            class="container__error"
-            *ngIf="formValue.errors?.['noMatchingPassword'] && !confirmPassword.errors?.['required']"
-            >Passwords did not match</span
-          ><img
-            class="alert-confirmpassword"
-            *ngIf="formValue.errors?.['noMatchingPassword'] && !confirmPassword.errors?.['required']"
-            src="../../../assets/img-registration/alert-circle.png"
-          />
-        </div>
         <div class="container__checkbox">
-          <input
-            type="checkbox"
-            id="inputCheckbox"
-            required
-            formControlName="myCheckbox"
-            [checked]="isChecked"
-          />
-          <label for="inputCheckbox" class="container__input-checkbox"
-            >I agree to the </label
-          ><a class="container__linking" (click)="dialogTitle()"
-            >processing of personal data</a
-          >
+          <div class="container-cartorder__checkbox-title">
+            Choose a payment method:
+          </div>
+          <div class="field-radiobutton">
+            <p-radioButton
+              formControlName="payment"
+              name="payment"
+              value="cash"
+              [(ngModel)]="selected"
+              inputId="cash"
+            ></p-radioButton>
+            <label for="cash">In cash to the courier</label>
+          </div>
+          <div class="field-radiobutton">
+            <p-radioButton
+              formControlName="payment"
+              name="payment"
+              value="card"
+              [(ngModel)]="selected"
+              inputId="card"
+            ></p-radioButton>
+            <label for="card">By bank card on the website</label>
+          </div>
         </div>
         <button
           type="submit"
@@ -213,8 +187,9 @@
           [ngClass]="{ disabled: formValue.invalid || isDisabled }"
           [disabled]="formValue.invalid || isDisabled"
         >
-          Register <app-spinner></app-spinner>
+          Confirmt order <app-spinner></app-spinner>
         </button>
+        <button class="container__button-continue">countinue shopping</button>
       </form>
     </div>
   </div>

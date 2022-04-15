@@ -52,11 +52,11 @@
     @include font(Montserrat, normal, 400, 1.8rem, 150%, 0em, $color_pink);
 }
 .container__link:hover {
-text-decoration:underline;
+    text-decoration: underline;
 }
 .container__link:active {
-  color:$color_red;
-  padding-top: 1.6rem;
+    color: $color_red;
+    padding-top: 1.6rem;
 }
 .container__firstname,
 .container__lastname,
@@ -169,13 +169,14 @@ input[type="number"]:focus {
 .container__map {
     @include wihi(54rem, 39.6rem);
     background: url("../../../assets/img-registration/Minsk.jpg") 0 0 no-repeat;
+    background-size: 100% 100%;
     position: relative;
     margin-bottom: 0.8rem;
 }
 #image-area {
     position: absolute;
     top: 5.3rem;
-    left: 9.45rem;
+    left: 9.2rem;
 }
 #image-arrow {
     position: absolute;
