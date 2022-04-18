@@ -10,10 +10,10 @@ import { SpinnerModule } from '../spinner/spinner.module';
 import { ErrorDirectiveModule } from 'src/app/directives/error-form/error-directive.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MapModule } from '../map/map.module';
-import { CartOrderErrorFormComponent } from './cart-order-error-form/cart-order-error-form.component';
+import { CartOrderErrorFormModule } from './cart-order-error-form/cart-order-error-form.module';
 
 @NgModule({
-  declarations: [CartOrderComponent, CartOrderErrorFormComponent],
+  declarations: [CartOrderComponent],
   imports: [
     CommonModule,
     CartOrderRoutingModule,
@@ -25,6 +25,7 @@ import { CartOrderErrorFormComponent } from './cart-order-error-form/cart-order-
     ReactiveFormsModule,
     RadioButtonModule,
     MapModule,
+    CartOrderErrorFormModule,
   ],
 })
 export class CartOrderModule {}

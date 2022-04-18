@@ -89,6 +89,7 @@
         <li class="menu-icon">
           <a
             class="header__bag icon"
+            (click)="toggleDisplays()"
             routerLink="/cartorder"
             routerLinkActive="active"
             [routerLinkActiveOptions]="{ exact: true }"
@@ -131,6 +132,7 @@
                 routerLinkActive="active"
                 [routerLinkActiveOptions]="{ exact: true }"
                 class="user__text"
+                (click)="toggleDisplays()"
                 >MANAGE MY ACCOUNT</a
               >
             </li>

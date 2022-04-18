@@ -1,38 +1,20 @@
-import { KeycloakLoginOptions } from "keycloak-js";
+import { KeycloakLoginOptions } from 'keycloak-js';
 export interface Env {
-  production?: boolean,
-  serverUrl: string,
+  production?: boolean;
+  serverUrl: string;
   config: {
-    url: string,
-    realm: string,
-    clientId: string,
-  },
+    url: string;
+    realm: string;
+    clientId: string;
+  };
   initOptions: {
-    onLoad: any,
-    silentCheckSsoRedirectUri: any,
-    checkLoginIframe: boolean
-  },
-  keycloakLoginOption: KeycloakLoginOptions,
-  enableBearerInterceptor: boolean,
-  bearerPrefix: string
-}
-
-export interface Env {
-  production?: boolean,
-  serverUrl: string,
-  config: {
-    url: string,
-    realm: string,
-    clientId: string,
-  },
-  initOptions: {
-    onLoad: any,
-    silentCheckSsoRedirectUri: any,
-    checkLoginIframe: boolean
-  },
-  keycloakLoginOption: KeycloakLoginOptions,
-  enableBearerInterceptor: boolean,
-  bearerPrefix: string
+    onLoad: any;
+    silentCheckSsoRedirectUri: any;
+    checkLoginIframe: boolean;
+  };
+  keycloakLoginOption: KeycloakLoginOptions;
+  enableBearerInterceptor: boolean;
+  bearerPrefix: string;
 }
 
 export const environment: Env = {
@@ -47,14 +29,14 @@ export const environment: Env = {
     onLoad: 'check-sso',
     silentCheckSsoRedirectUri:
       window.location.origin + '/assets/silent-check-sso.html',
-    checkLoginIframe: true
+    checkLoginIframe: true,
   },
   keycloakLoginOption: {
-    redirectUri: 'http://localhost:4200/home'
+    redirectUri: 'http://localhost:4200/home',
   },
   enableBearerInterceptor: true,
-  bearerPrefix: 'Bearer'
-}
+  bearerPrefix: 'Bearer',
+};
 
 /*
  * For easier debugging in development mode, you can import the following file

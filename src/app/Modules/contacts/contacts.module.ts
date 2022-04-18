@@ -23,6 +23,5 @@ import { ErrorDirectiveModule } from 'src/app/directives/error-form/error-direct
     ErrorDirectiveModule,
   ],
   providers: [ContactsService],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class ContactsModule {}

@@ -225,6 +225,7 @@
 #deleteItem {
     @include wihi(2.4rem, 2.4rem);
     margin-top: 2.4rem;
+    cursor: pointer;
 }
 #deleteItem:active {
     padding-top: 0.1rem;

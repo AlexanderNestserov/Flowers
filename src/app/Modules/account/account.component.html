@@ -1,1 +1,231 @@
-<p>hello</p>
+<div class="wrapper-account">
+  <div class="container-account">
+    <div class="container-account__line"></div>
+    <div class="container-account__path flex justify-content-start">
+      <div class="container__home">
+        <a class="container__link" routerLink="/">Home</a>
+      </div>
+      <div class="container__angle">
+        <img src="../../../assets/img-aboutus/Angle.png" alt="angle" />
+      </div>
+      <div class="container__account">My account</div>
+    </div>
+    <div class="container-account__account-title">My account</div>
+    <div class="container-account__form">
+      <div class="error-get-user" *ngIf="!this.error">
+        Error! You are not registered in the system. Try to register or sign in!
+      </div>
+      <form
+        [formGroup]="formValue"
+        (ngSubmit)="postUserDetails()"
+        *ngIf="getUserData | async as user"
+      >
+        <div
+          class="container__firstname"
+          errorDirective
+          [formControlItem]="firstName"
+        >
+          <input
+            type="text"
+            id="inputFirstName"
+            required
+            formControlName="firstName"
+            [(ngModel)]="user.firstName"
+          />
+          <label class="container__input-firstname" for="inputFirstName"
+            >First name<span class="container__star">*</span>
+          </label>
+          <app-cart-order-error-form
+            [formControlItem]="firstName"
+          ></app-cart-order-error-form>
+        </div>
+        <div
+          class="container__lastname"
+          errorDirective
+          [formControlItem]="lastName"
+        >
+          <input
+            type="text"
+            id="inputLastName"
+            required
+            formControlName="lastName"
+            [(ngModel)]="user.lastName"
+          />
+          <label class="container__input-lastname" for="inputLastName"
+            >Last name<span class="container__star">*</span>
+          </label>
+          <app-cart-order-error-form
+            [formControlItem]="lastName"
+          ></app-cart-order-error-form>
+        </div>
+        <div class="container__email" errorDirective [formControlItem]="email">
+          <input
+            type="text"
+            id="inputEmail"
+            required
+            formControlName="email"
+            [(ngModel)]="user.email"
+          />
+          <label class="container__input-email" for="inputEmail"
+            >Email<span class="container__star">*</span></label
+          >
+          <app-cart-order-error-form
+            [formControlItem]="email"
+          ></app-cart-order-error-form>
+        </div>
+        <div
+          class="container__phone-number"
+          errorDirective
+          [formControlItem]="phone"
+        >
+          <input
+            type="number"
+            id="inputPhone"
+            required
+            formControlName="phone"
+            [(ngModel)]="user.phone"
+          />
+          <label class="container__input-phone" for="inputPhone"
+            >Phone number<span class="container__star">*</span></label
+          >
+          <app-cart-order-error-form
+            [formControlItem]="phone"
+          ></app-cart-order-error-form>
+        </div>
+        <app-map></app-map>
+        <div class="container__address">
+          <input
+            type="text"
+            id="inputAddress"
+            formControlName="homeAddress"
+            placeholder=" "
+            [(ngModel)]="user.homeAddress"
+          />
+          <label class="container__input-address" for="inputAddress"
+            >Address
+          </label>
+        </div>
+        <p class="container__point">
+          You can enter the address manually or specify a point on the map
+        </p>
+        <div class="container__info">
+          <textarea
+            type="text"
+            id="inputInfo"
+            formControlName="additionalInformation"
+            placeholder=" "
+            [(ngModel)]="user.additionalInformation"
+          ></textarea>
+          <label class="container__input-info" for="inputInfo"
+            >Additional information</label
+          >
+          <p class="container__point">
+            Intercom, GPS coordinates or other additional information
+          </p>
+        </div>
+        <button
+          type="submit"
+          class="container-account__save-button button"
+          [ngClass]="{ disabled: formValue.invalid || isDisabled }"
+          [disabled]="formValue.invalid || isDisabled"
+        >
+          Save changes <app-spinner></app-spinner>
+        </button>
+      </form>
+    </div>
+    <div class="container-account__change-password-title">Password</div>
+    <div class="container-account__change-password-form">
+      <form
+        *ngIf="isFormShow"
+        [formGroup]="formChangePassword"
+        (ngSubmit)="postChangePassword()"
+      >
+        <div
+          class="container__old-password"
+          errorDirective
+          [formControlItem]="oldPassword"
+        >
+          <input
+            type="password"
+            id="inputOldPassword"
+            required
+            formControlName="oldPassword"
+          />
+          <label class="container__input-old-password" for="inputOldPassword"
+            >Old password</label
+          >
+          <app-cart-order-error-form
+            [formControlItem]="oldPassword"
+          ></app-cart-order-error-form>
+        </div>
+        <div
+          class="container__new-password"
+          errorDirective
+          [formControlItem]="newPassword"
+        >
+          <input
+            type="password"
+            id="inputNewPassword"
+            required
+            formControlName="newPassword"
+          />
+          <label class="container__input-new-password" for="inputNewPassword"
+            >New password</label
+          >
+          <app-cart-order-error-form
+            [formControlItem]="newPassword"
+          ></app-cart-order-error-form>
+        </div>
+        <div class="container__confirm" [class.has-error]="showError()">
+          <input
+            type="password"
+            id="inputConfirm"
+            required
+            formControlName="confirmPassword"
+          />
+          <label
+            class="container__input-confirm"
+            appConfirmPassword="password"
+            for="inputConfirm"
+            >Confirm new password
+          </label>
+          <app-cart-order-error-form
+            [formControlItem]="confirmPassword"
+          ></app-cart-order-error-form>
+          <span
+            class="container__error"
+            *ngIf="formChangePassword.errors?.['noMatchingPassword'] && !confirmPassword.errors?.['required']"
+            >Passwords did not match</span
+          ><img
+            class="alert-confirmpassword"
+            *ngIf="formChangePassword.errors?.['noMatchingPassword'] && !confirmPassword.errors?.['required']"
+            src="../../../assets/img-registration/alert-circle.png"
+          />
+        </div>
+        <div class="error-get-user" *ngIf="this.errorPassword">
+          {{ errorPassword }}
+        </div>
+        <button
+          type="submit"
+          class="container-account__save-password-button button"
+          [ngClass]="{
+            disabled: formChangePassword.invalid || isDisabledPassword
+          }"
+          [disabled]="formChangePassword.invalid || isDisabledPassword"
+        >
+          Change password <app-spinner></app-spinner>
+        </button>
+      </form>
+      <button
+        *ngIf="!isFormShow"
+        (click)="isChangePasswordShow()"
+        class="container-account__change-password-button button"
+      >
+        Change password
+      </button>
+    </div>
+
+    <div class="container-account__sign-out-title">Account</div>
+    <button class="container-account__sign-out-button button">Sign out</button>
+  </div>
+</div>
