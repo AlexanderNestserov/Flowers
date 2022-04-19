@@ -78,8 +78,8 @@
         <button
           type="submit"
           class="container__button"
-          [ngClass]="{ disabled: formValue.invalid || isDisabled }"
-          [disabled]="formValue.invalid || isDisabled"
+          [ngClass]="{ disabled: this.formValue.invalid || isDisabled }"
+          [disabled]="this.formValue.invalid || isDisabled"
         >
           SEND<app-spinner></app-spinner>
         </button>

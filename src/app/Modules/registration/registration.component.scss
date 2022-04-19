@@ -274,6 +274,9 @@ input[type="number"]:focus {
 .disabled:hover {
     background: $color_grey;
 }
+.disabled:active {
+    padding-top: 0;
+}
 .container__lines {
     display: inline-block;
     height: 1px;
@@ -310,7 +313,7 @@ input[type="number"]:focus {
 }
 .alert-confirmpassword {
     position: relative;
-    left: 18.2rem;
+    left: 18rem;
     bottom: 5rem;
 }
 .container__modal {

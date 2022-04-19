@@ -13,13 +13,14 @@ import { FooterComponent } from './footer/footer.component';
 import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
 import { initializeKeycloak } from './utility/app.init';
 import { UrlInterceptor } from './interceptors/url.interceptor';
+import { LoaderInterceptor } from './interceptors/spinner.interceptor';
+import { SpinnerService } from './Modules/spinner/spinner.service';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, FooterComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
-    BrowserModule,
     AppRoutingModule,
     InputTextModule,
     ButtonModule,
@@ -31,6 +32,7 @@ import { UrlInterceptor } from './interceptors/url.interceptor';
   ],
   bootstrap: [AppComponent],
   providers: [
+    SpinnerService,
     {
       provide: APP_INITIALIZER,
       useFactory: initializeKeycloak,
@@ -38,6 +40,7 @@ import { UrlInterceptor } from './interceptors/url.interceptor';
       deps: [KeycloakService],
     },
     { provide: HTTP_INTERCEPTORS, useClass: UrlInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true },
   ],
 })
 export class AppModule {}

@@ -224,8 +224,20 @@
         Change password
       </button>
     </div>
-
     <div class="container-account__sign-out-title">Account</div>
-    <button class="container-account__sign-out-button button">Sign out</button>
+    <button
+      class="container-account__sign-out-button button"
+      (click)="signOut()"
+    >
+      Sign out
+    </button>
+    <app-popup
+      [@divTrigger]="clickedDivState"
+      (click)="closeMenu()"
+    ></app-popup>
+    <app-popup-error
+      [@divTriggerError]="clickedDivStateError"
+      (click)="closeMenu()"
+    ></app-popup-error>
   </div>
 </div>

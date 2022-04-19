@@ -14,6 +14,8 @@ export class ContactsService {
   }
   postData(formValue: ContactMeDto): Observable<any> {
     let body: ContactMeDto = { ...formValue };
-    return this.http.post(this.postUrl, body);
+    return this.http.post(this.postUrl, body, {
+      responseType: 'text',
+    });
   }
 }

@@ -9,6 +9,7 @@ import { SpinnerModule } from '../spinner/spinner.module';
 import { ErrorDirectiveModule } from 'src/app/directives/error-form/error-directive.module';
 import { MapModule } from '../map/map.module';
 import { AccountService } from './account.service';
+import { PopupErrorSuccessModule } from '../popup-success-error/popupErrorSuccess.module';
 
 @NgModule({
   declarations: [AccountComponent],
@@ -21,6 +22,7 @@ import { AccountService } from './account.service';
     SpinnerModule,
     ErrorDirectiveModule,
     MapModule,
+    PopupErrorSuccessModule,
   ],
   exports: [],
   providers: [AccountService],

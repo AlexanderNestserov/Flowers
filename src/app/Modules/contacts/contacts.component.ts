@@ -54,11 +54,11 @@ export class ContactsComponent implements OnInit {
   postDataDetails() {
     this.isDisabled = true;
     this.api.postData({ ...this.formValue.value }).subscribe({
-      next: (res) => {
+      next: () => {
         this.clickedDivState = ClickedDivState.show;
         this.formValue.reset();
       },
-      error: (error) => {
+      error: () => {
         this.clickedDivStateError = ClickedDivState.show;
         this.formValue.reset();
       },

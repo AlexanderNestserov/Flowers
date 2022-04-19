@@ -6,9 +6,10 @@
     flex-wrap: wrap;
     display: flex;
     justify-content: flex-start;
+    align-items: flex-start;
 }
 .container__wrap {
-    flex: 0 0 31% ;
+    flex: 0 1 31%;
     margin-left: 1.95rem;
     margin-bottom: 3rem;
 }
@@ -84,10 +85,10 @@
         }
     }
 }
-.my-pag{
-    position:relative;
-    top:38rem;
-    left:12rem;
+.my-pag {
+    display: block;
+    margin-top: 37rem;
+    margin-left: 10rem;
 }
 .my-pag::ng-deep .ngx-pagination {
     margin-top: 1rem;
@@ -133,9 +134,9 @@
     }
 }
 @media (max-width: 1460px) {
-.container__wrap {
-    margin-left: 1.9rem;
-}
+    .container__wrap {
+        margin-left: 1.9rem;
+    }
 }
 @media (max-width: 1440px) {
     .container__wrap {
@@ -146,21 +147,20 @@
 @media (max-width: 1435px) {
     .container__items {
         margin-left: 12%;
-        flex-wrap: wrap;
     }
     .container__wrap {
         flex: 0 0 42%;
-        margin-bottom: 3rem;
     }
-    .my-pag{
-        left:-37rem;  
+    .my-pag {
+        margin-top: 0rem;
+        margin-left: 28rem;
     }
 }
 @media (max-width: 1284px) {
-.my-pag {
-    left: 25rem;
-    top:0rem;
-}
+    .my-pag {
+        left: 25rem;
+        top: 0rem;
+    }
 }
 @media (max-width: 1270px) {
     .container__items {
@@ -173,8 +173,7 @@
 }
 @media (max-width: 1145px) {
     .my-pag {
-        left: 0rem;
-        top: 0rem;
+        margin-left: 10rem;
     }
     .container__items {
         margin: 0 $pt_2rem;
@@ -268,7 +267,7 @@
 }
 @media (max-width: 840px) {
     .container__items {
-        margin-left: 0 ;
+        margin-left: 0;
     }
     .container__wrap {
         margin-left: 0;
@@ -278,7 +277,7 @@
     }
 }
 @media (max-width: 840px) {
-    .my-pag{
+    .my-pag {
         margin-left: 0;
     }
 }

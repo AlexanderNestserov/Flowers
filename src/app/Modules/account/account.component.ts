@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -8,19 +8,36 @@ import {
 import { Observable } from 'rxjs';
 import { AccountService } from './account.service';
 import { PasswordMatchChangeVaildator } from './passwordmatch-change';
+import {
+  divTrigger,
+  divTriggerError,
+} from '../popup-success-error/popupSuccessError.animations';
+import { KeycloakService } from 'keycloak-angular';
+import { environment } from 'src/environments/environment';
+
+enum ClickedDivState {
+  hide = 'hide',
+  show = 'show',
+}
 
 @Component({
   selector: 'app-account',
   templateUrl: './account.component.html',
   styleUrls: ['./account.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  animations: [divTrigger, divTriggerError],
 })
 export class AccountComponent implements OnInit {
+  clickedDivState: ClickedDivState = ClickedDivState.hide;
+  clickedDivStateError: ClickedDivState = ClickedDivState.hide;
   isDisabled = false;
   isDisabledPassword = false;
   isFormShow = false;
   getUserData: Observable<any> = this.http.getUserData();
   error: any;
   errorPassword: any;
+  keycloakLogoutOption = environment.keycloakLogoutOption;
+  isLoggedIn = false;
 
   formValue: FormGroup = this.formbuilder.group({
     firstName: ['', [Validators.required, Validators.maxLength(255)]],
@@ -61,10 +78,12 @@ export class AccountComponent implements OnInit {
   constructor(
     private formbuilder: FormBuilder,
     private passwordMatchValidator: PasswordMatchChangeVaildator,
-    private http: AccountService
+    private http: AccountService,
+    private readonly keycloak: KeycloakService
   ) {}
 
-  ngOnInit(): void {
+  async ngOnInit() {
+    this.isLoggedIn = await this.keycloak.isLoggedIn();
     this.getUserData.subscribe((error) => {
       this.error = error;
     });
@@ -100,14 +119,16 @@ export class AccountComponent implements OnInit {
   postUserDetails() {
     this.isDisabled = true;
     this.http.patchData({ ...this.formValue.value }).subscribe({
-      next: (res) => {
-        this.formValue.reset();
+      next: () => {
+        this.clickedDivState = ClickedDivState.show;
       },
-      error: (error) => {
-        this.formValue.reset();
+      error: () => {
+        this.clickedDivStateError = ClickedDivState.show;
       },
     });
     this.isDisabled = false;
+    this.clickedDivState = ClickedDivState.hide;
+    this.clickedDivStateError = ClickedDivState.hide;
   }
 
   get oldPassword() {
@@ -125,17 +146,33 @@ export class AccountComponent implements OnInit {
     this.http
       .postChangePassword({ ...this.formChangePassword.value })
       .subscribe({
-        next: (res) => {
+        next: () => {
+          this.clickedDivState = ClickedDivState.show;
           this.formChangePassword.reset();
+          this.errorPassword = '';
         },
         error: (error) => {
+          this.clickedDivStateError = ClickedDivState.show;
           this.errorPassword = error.error;
         },
       });
     this.isDisabledPassword = false;
+    this.clickedDivState = ClickedDivState.hide;
+    this.clickedDivStateError = ClickedDivState.hide;
   }
 
   isChangePasswordShow() {
     this.isFormShow = !this.isFormShow;
+  }
+
+  closeMenu() {
+    this.clickedDivState = ClickedDivState.hide;
+    this.clickedDivStateError = ClickedDivState.hide;
+  }
+
+  signOut() {
+    if (this.isLoggedIn) {
+      this.keycloak.logout(this.keycloakLogoutOption);
+    }
   }
 }

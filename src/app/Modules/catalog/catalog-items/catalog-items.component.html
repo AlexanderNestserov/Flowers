@@ -8,6 +8,9 @@
     "
   >
     <div
+      *ngIf="
+        !categoriesFilterName || categoriesFilterName == item.category.name
+      "
       class="container__item"
       [routerLink]="['/catalog', item.name]"
       [queryParams]="{

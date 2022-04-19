@@ -2,6 +2,7 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { filter, fromEvent, Subscription } from 'rxjs';
 import { NavigationEnd, Router, RouterEvent } from '@angular/router';
 import { KeycloakService } from 'keycloak-angular';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-header',
@@ -23,6 +24,7 @@ export class HeaderComponent implements OnInit {
   urlCartOrder = false;
   urlAccount = false;
   public isLoggedIn = false;
+  keycloakLogoutOption = environment.keycloakLogoutOption;
 
   constructor(
     public router: Router,
@@ -104,7 +106,7 @@ export class HeaderComponent implements OnInit {
 
   public logout() {
     if (this.isLoggedIn) {
-      this.keycloak.logout();
+      this.keycloak.logout(this.keycloakLogoutOption);
     }
   }
 

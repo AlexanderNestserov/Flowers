@@ -97,6 +97,9 @@
 .disabled:hover {
     background: $color_grey;
 }
+.disabled:active {
+    padding-top: 0;
+}
 .container__firstname,
 .container__lastname,
 .container__email,
@@ -222,7 +225,7 @@ input[type="number"]:focus {
 }
 .alert-confirmpassword {
     position: relative;
-    left: 38.2rem;
+    left: 46rem;
     bottom: 5rem;
 }
 @media (max-width: 1460px) {
@@ -242,6 +245,9 @@ input[type="number"]:focus {
             width: 50.6rem;
         }
     }
+    .alert-confirmpassword {
+        left: 15rem;
+    }
 }
 @media (max-width: 570px) {
     .container-account {
@@ -249,6 +255,9 @@ input[type="number"]:focus {
         &__change-password-form {
             width: 33.5rem;
         }
+    }
+    .alert-confirmpassword {
+        left: -2rem;
     }
 }
 @media (max-width: 450px) {

@@ -1,4 +1,4 @@
-import { KeycloakLoginOptions } from 'keycloak-js';
+import { KeycloakLoginOptions, KeycloakLogoutOptions } from 'keycloak-js';
 export interface Env {
   production?: boolean;
   serverUrl: string;
@@ -13,6 +13,7 @@ export interface Env {
     checkLoginIframe: boolean;
   };
   keycloakLoginOption: KeycloakLoginOptions;
+  keycloakLogoutOption: string;
   enableBearerInterceptor: boolean;
   bearerPrefix: string;
 }
@@ -34,6 +35,7 @@ export const environment: Env = {
   keycloakLoginOption: {
     redirectUri: 'http://localhost:4200/home',
   },
+  keycloakLogoutOption: 'http://localhost:4200/home',
   enableBearerInterceptor: true,
   bearerPrefix: 'Bearer',
 };
