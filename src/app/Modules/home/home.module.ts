@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { CarouselModule } from 'primeng/carousel';
 import { HomeRoutingModule } from './home-routing.module';
@@ -16,6 +16,8 @@ import { SwiperListComponent } from './swiper-list/swiper-list.component';
 import { ItemsComponent } from './items/items.component';
 import { SwiperListService } from './swiper-list/swiper-list.service';
 import { ItemService } from './items/item.service';
+import { SearchPipe } from '../search/search.pipe';
+import { CartOrderService } from '../cart-order/cart-order.service';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,7 @@ import { ItemService } from './items/item.service';
     SwiperLogoComponent,
     SwiperListComponent,
     ItemsComponent,
+    SearchPipe,
   ],
   imports: [
     CommonModule,
@@ -35,8 +38,9 @@ import { ItemService } from './items/item.service';
     TabViewModule,
     BannersModule,
     FormsModule,
+    ReactiveFormsModule,
   ],
-  exports: [SwiperListComponent],
+  exports: [SwiperListComponent, ItemsComponent],
   providers: [SwiperListService, ItemService],
 })
 export class HomeModule {}

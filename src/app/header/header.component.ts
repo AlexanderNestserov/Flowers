@@ -3,6 +3,7 @@ import { filter, fromEvent, Subscription } from 'rxjs';
 import { NavigationEnd, Router, RouterEvent } from '@angular/router';
 import { KeycloakService } from 'keycloak-angular';
 import { environment } from 'src/environments/environment';
+import { CartOrderService } from '../Modules/cart-order/cart-order.service';
 
 @Component({
   selector: 'app-header',
@@ -24,11 +25,13 @@ export class HeaderComponent implements OnInit {
   urlCartOrder = false;
   urlAccount = false;
   public isLoggedIn = false;
+  public quantityItem: number = 0;
   keycloakLogoutOption = environment.keycloakLogoutOption;
 
   constructor(
     public router: Router,
-    public readonly keycloak: KeycloakService
+    public readonly keycloak: KeycloakService,
+    private cartService: CartOrderService
   ) {
     this.router.events
       .pipe(filter((e: any) => e instanceof NavigationEnd))
@@ -102,6 +105,9 @@ export class HeaderComponent implements OnInit {
       }
     };
     onScroll();
+    this.cartService.getItem().subscribe((res) => {
+      this.quantityItem = res.length;
+    });
   }
 
   public logout() {

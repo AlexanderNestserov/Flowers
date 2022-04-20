@@ -11,7 +11,10 @@
       <div class="container__cartorder">Cart and order placement</div>
     </div>
     <div class="container-cartorder__cart-title">Cart</div>
-    <div class="container-cartorder__cart-item">
+    <div class="container-cartorder__empty" *ngIf="product.length == 0">
+      Your cart is empty!
+    </div>
+    <div class="container-cartorder__cart-item" *ngFor="let item of product">
       <div class="field-checkbox">
         <p-checkbox
           name="group1"
@@ -22,33 +25,45 @@
       </div>
       <img
         id="miniItemImage"
-        src="../../../assets/img-home/image 1.png"
+        [src]="getItemImage(item.photo)"
         alt="itemImage"
       />
       <div class="container-cartorder__cart-item-container">
         <div class="container-cartorder__cart-item-description">
-          <p class="item-name">You’re Precious Bonquet</p>
-          <p class="item-category">Fresh flowers</p>
+          <p class="item-name">{{ item.name }}</p>
+          <p class="item-category">{{ item.category.name }}</p>
         </div>
         <div class="container-cartorder__cart-item-price-container">
-          <div class="container-cartorder__cart-item-price-one">€62.17 EUR</div>
+          <div class="container-cartorder__cart-item-price-one">
+            €{{ item.priceDto.price }} EUR
+          </div>
           <div class="container-cartorder__cart-item-x">x</div>
           <div class="field-number">
             <p-inputNumber [(ngModel)]="val"></p-inputNumber>
           </div>
         </div>
-        <div class="container-cartorder__cart-item-price-total">€62.17 EUR</div>
+        <div class="container-cartorder__cart-item-price-total">
+          €{{ item.priceDto.price }} EUR
+        </div>
       </div>
-      <img id="deleteItem" src="../../../assets/img-home/x.png" alt="x" />
+      <img
+        (click)="deleteItem(item)"
+        id="deleteItem"
+        src="../../../assets/img-home/x.png"
+        alt="x"
+      />
     </div>
-    <div class="container-cartorder__cart-total">
+    <div
+      class="container-cartorder__cart-total"
+      *ngIf="this.product.length != 0"
+    >
       <button class="button-delete">Delete selected</button>
       <div class="container-cartorder__cart-total-container">
         <div class="container-cartorder__cart-total-total-price-text">
           Total price —
         </div>
         <div class="container-cartorder__cart-total-total-price-number">
-          €662.30 EUR
+          €{{ totalPrice }} EUR
         </div>
       </div>
     </div>
@@ -189,7 +204,9 @@
         >
           Confirmt order <app-spinner></app-spinner>
         </button>
-        <button class="container__button-continue">countinue shopping</button>
+        <button class="container__button-continue" routerLink="/catalog">
+          countinue shopping
+        </button>
       </form>
     </div>
   </div>

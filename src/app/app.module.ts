@@ -15,6 +15,7 @@ import { initializeKeycloak } from './utility/app.init';
 import { UrlInterceptor } from './interceptors/url.interceptor';
 import { LoaderInterceptor } from './interceptors/spinner.interceptor';
 import { SpinnerService } from './Modules/spinner/spinner.service';
+import { CartOrderService } from './Modules/cart-order/cart-order.service';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, FooterComponent],
@@ -33,6 +34,7 @@ import { SpinnerService } from './Modules/spinner/spinner.service';
   bootstrap: [AppComponent],
   providers: [
     SpinnerService,
+    CartOrderService,
     {
       provide: APP_INITIALIZER,
       useFactory: initializeKeycloak,

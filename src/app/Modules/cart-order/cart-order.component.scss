@@ -42,6 +42,9 @@
         display: flex;
         justify-content: flex-start;
     }
+    &__empty {
+        @include font(Montserrat, normal, 600, 1.8rem, 120%, 0em, $color_red);
+    }
     &__cart-item-description {
         margin-top: 2.6rem;
         width: 25rem;
@@ -367,6 +370,15 @@ input[type="number"]:focus {
 }
 .container__button-continue:active {
     padding-top: 0.2rem;
+}
+.disabled {
+    background: $color_grey;
+}
+.disabled:hover {
+    background: $color_grey;
+}
+.disabled:active {
+    padding-top: 0;
 }
 @media (max-width: 1460px) {
     .wrapper-cartorder {

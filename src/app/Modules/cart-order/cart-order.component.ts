@@ -5,6 +5,9 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
+import { CartOrderService } from './cart-order.service';
 
 @Component({
   selector: 'app-cart-order',
@@ -18,6 +21,9 @@ export class CartOrderComponent implements OnInit {
   isChecked = false;
   checked = false;
   val = 1;
+  public product: any = [];
+
+  public totalPrice: number = 0;
 
   formValue: FormGroup = this.formbuilder.group({
     firstName: ['', [Validators.required, Validators.maxLength(255)]],
@@ -29,9 +35,17 @@ export class CartOrderComponent implements OnInit {
     additionalInformation: ['', [Validators.maxLength(255)]],
     payment: [false],
   });
-  constructor(private formbuilder: FormBuilder) {}
+  constructor(
+    private formbuilder: FormBuilder,
+    private cartService: CartOrderService
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.cartService.getItem().subscribe((res) => {
+      this.product = res;
+      this.totalPrice = Math.ceil(this.cartService.getTotalPrice() * 100) / 100;
+    });
+  }
 
   get firstName() {
     return this.formValue.get('firstName') as FormControl;
@@ -57,5 +71,13 @@ export class CartOrderComponent implements OnInit {
 
   postDataDetails() {
     this.isDisabled = true;
+  }
+
+  getItemImage(item: string): string {
+    return `${environment.serverUrl}images/${item.replace('.jpg', '')}`;
+  }
+
+  deleteItem(item: any) {
+    this.cartService.removeCartItem(item);
   }
 }

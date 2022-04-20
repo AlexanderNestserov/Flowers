@@ -7,16 +7,14 @@ import { HeaderComponent } from './header.component';
 import { HeaderRoutingModule } from './header-routing.module';
 
 @NgModule({
-    declarations: [
-        HeaderComponent
-    ],
-    imports: [
-        CommonModule,
-        ButtonModule,
-        FormsModule,
-        ToggleButtonModule,
-        HeaderRoutingModule,
-    ],
-    providers: [Location]
+  declarations: [HeaderComponent],
+  imports: [
+    CommonModule,
+    ButtonModule,
+    FormsModule,
+    ToggleButtonModule,
+    HeaderRoutingModule,
+  ],
+  providers: [Location],
 })
-export class HeaderModule { }
+export class HeaderModule {}

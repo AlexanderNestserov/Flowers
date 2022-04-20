@@ -94,7 +94,7 @@
             routerLinkActive="active"
             [routerLinkActiveOptions]="{ exact: true }"
           >
-            <span class="header__quantity">10</span>
+            <span class="header__quantity">{{ quantityItem }}</span>
           </a>
         </li>
         <li class="menu-icon icon-user">
@@ -123,7 +123,9 @@
             <li class="user__li user__li-1" *ngIf="isLoggedIn">
               <a>
                 <span class="user__text">MY ORDERS</span>
-                <p class="user__number"><span class="user__numb">10</span></p>
+                <p class="user__number">
+                  <span class="user__numb">{{ quantityItem }}</span>
+                </p>
               </a>
             </li>
             <li class="user__li user__li-2" *ngIf="isLoggedIn">
