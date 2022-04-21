@@ -17,9 +17,10 @@ import { NgxPaginationModule } from 'ngx-pagination';
 
 import { CatalogItemsComponent } from './catalog-items/catalog-items.component';
 import { ItemService } from '../home/items/item.service';
+import { FilterCategoryPipe } from './catalog-items/filter.pipe';
 
 @NgModule({
-  declarations: [CatalogComponent, CatalogItemsComponent],
+  declarations: [CatalogComponent, CatalogItemsComponent, FilterCategoryPipe],
   imports: [
     CommonModule,
     CatalogRoutingModule,

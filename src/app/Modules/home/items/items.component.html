@@ -4,11 +4,23 @@
     *ngFor="let item of itemsData | async | search: searchInput"
   >
     <div class="container__item">
-      <img [src]="getItemImage(item.photo)" alt="img1" class="image-item" />
-      <h5 class="container__title">{{ item.name }}</h5>
-      <h6 class="opacity">{{ item.category.name }}</h6>
-      <p class="container__paragraph">€{{ item.priceDto.price }} EUR</p>
-      <button class="button" (click)="addToCart(item)">
+      <div
+        class="container-details"
+        (click)="addToProduct(item)"
+        [routerLink]="['/catalog', item.name]"
+        [queryParams]="{
+          categoryName: item.category.name
+        }"
+      >
+        <img [src]="getItemImage(item.photo)" alt="img1" class="image-item" />
+        <h5 class="container__title">{{ item.name }}</h5>
+        <h6 class="opacity">{{ item.category.name }}</h6>
+        <p class="container__paragraph" *ngIf="item != cartItem">
+          €{{ item.priceDto.price }} EUR
+        </p>
+        <p class="container__incart" *ngIf="item == cartItem">In the cart</p>
+      </div>
+      <button class="button" *ngIf="item != cartItem" (click)="addToCart(item)">
         <img
           id="imageBaggy"
           src="../../../../assets/img-home/button-bag.png"

@@ -1,5 +1,5 @@
 <div class="wrapper-product">
-  <div class="container-product">
+  <div class="container-product" *ngFor="let item of product">
     <div class="container-product__line"></div>
     <div class="container-product__path flex justify-content-start">
       <div class="container__home">
@@ -19,13 +19,13 @@
           class="container__link"
           routerLink="/catalog"
           [queryParams]="{ name: categoryName }"
-          >{{ categoryName }}</a
+          >{{ item.category.name }}</a
         >
       </div>
       <div class="container__angle">
         <img src="../../../../assets/img-aboutus/Angle.png" alt="angle" />
       </div>
-      <div class="container__catalogs">{{ itemName }}</div>
+      <div class="container__catalogs">{{ item.name }}</div>
     </div>
     <div class="container-product__photo-description">
       <div class="container-product__photo">
@@ -35,7 +35,7 @@
             alt="itemImage"
             [src]="
               !isActive
-                ? getPhoto(photo)
+                ? getPhoto(item.photo)
                 : '../../../../assets/img-home/itemImageRepeat.png'
             "
           />
@@ -43,7 +43,7 @@
         <div class="container-product__photo-images">
           <img
             id="itemImageMini1"
-            [src]="getPhoto(photo)"
+            [src]="getPhoto(item.photo)"
             alt="itemImage"
             (click)="getFirstElement()"
           />
@@ -56,13 +56,15 @@
         </div>
       </div>
       <div class="container-product__descriptoin">
-        <div class="container-product__descriptoin-title">{{ itemName }}</div>
+        <div class="container-product__descriptoin-title">
+          {{ item.name }}
+        </div>
         <div class="container-product__descriptoin-description">
-          {{ shortDescription }}
+          {{ item.shortDescription }}
         </div>
         <div class="container-product__descriptoin-price">
           <div class="container-product__descriptoin-price-euro">
-            €{{ price }} EUR
+            €{{ item.priceDto.price }} EUR
           </div>
           <a class="container-product__descriptoin-price-changes-link">
             <div class="container-product__descriptoin-price-changes">
@@ -70,7 +72,7 @@
             </div>
           </a>
         </div>
-        <button class="button">
+        <button class="button" (click)="addToCart(item)">
           <img
             id="imageBaggy"
             src="../../../../assets/img-home/button-bag.png"
@@ -83,7 +85,7 @@
     <div class="container-product__descriptions">
       <div class="container-product__descriptions-title">Descriptions</div>
       <p class="container-product__descriptions-descriptions">
-        {{ description }}
+        {{ item.description }}
       </p>
       <div class="container-product__flowers">
         <div class="container__picture">

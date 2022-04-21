@@ -30,10 +30,10 @@
         margin-bottom: 3rem;
         border: 1px solid $color_lightgrey;
         box-sizing: border-box;
-        border-radius: 10px;
+        border-radius: 1rem;
         #itemImage {
             @include wihi(100%, 100%);
-            border-radius: 10px;
+            border-radius: 1rem;
         }
     }
     &__photo-images {

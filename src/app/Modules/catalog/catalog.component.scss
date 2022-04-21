@@ -125,7 +125,8 @@
     @include font(Montserrat, normal, 400, 1.6rem, 170%, 0em, $color_grey);
 }
 .item {
-    height: 144rem;
+    display: block;
+    height: 100%;
 }
 :host {
     ::ng-deep p-inputnumber.p-element.p-inputwrapper {
@@ -322,6 +323,7 @@
     margin-bottom: 2rem;
 }
 .container-banners {
+    display: block;
     margin-left: 13%;
 }
 @media (max-width: 1460px) {
@@ -329,17 +331,9 @@
         width: 100%;
     }
 }
-@media (max-width: 1435px) {
-    .item {
-        height: 186rem;
-    }
-}
 @media (max-width: 1145px) {
     .container-catalog {
         margin-bottom: 7.6rem;
-    }
-    .item {
-        height: 100%;
     }
 }
 @media (max-width: 970px) {

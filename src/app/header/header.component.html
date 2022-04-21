@@ -101,7 +101,9 @@
           <a
             class="header__user icon"
             (click)="toggleUser($event)"
-            [ngClass]="{ active: !isMenu || urlRegistration || urlAccount }"
+            [ngClass]="{
+              active: !isMenu || urlRegistration || urlAccount || urlMyorders
+            }"
             routerLinkActive="active"
             [routerLinkActiveOptions]="{ exact: true }"
           ></a>
@@ -121,10 +123,15 @@
               >
             </li>
             <li class="user__li user__li-1" *ngIf="isLoggedIn">
-              <a>
+              <a
+                routerLink="/myorders"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }"
+                (click)="toggleDisplays()"
+              >
                 <span class="user__text">MY ORDERS</span>
                 <p class="user__number">
-                  <span class="user__numb">{{ quantityItem }}</span>
+                  <span class="user__numb">0</span>
                 </p>
               </a>
             </li>

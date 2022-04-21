@@ -90,7 +90,7 @@
                 class="p-label-active"
                 [inputId]="category.key"
                 [label]="category.name"
-                (onChange)="filterCategories($event)"
+                (onChange)="filterCategories(category)"
               >
               </p-checkbox>
             </div>
@@ -132,7 +132,7 @@
       <div class="container-catalog__products">
         <div
           class="container-catalog__products-title"
-          *ngIf="itemsData | async as data"
+          *ngIf="itemsData | async | filter: categoriesFilterName as data"
         >
           <p class="container-catalog__products-quantity">
             {{ data.length }} products found

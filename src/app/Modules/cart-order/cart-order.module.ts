@@ -11,7 +11,6 @@ import { ErrorDirectiveModule } from 'src/app/directives/error-form/error-direct
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MapModule } from '../map/map.module';
 import { CartOrderErrorFormModule } from './cart-order-error-form/cart-order-error-form.module';
-import { CartOrderService } from './cart-order.service';
 
 @NgModule({
   declarations: [CartOrderComponent],

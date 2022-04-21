@@ -2,6 +2,7 @@ import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { filter, map, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { CartOrderService } from '../../cart-order/cart-order.service';
 import { ItemService } from '../../home/items/item.service';
 
 @Component({
@@ -14,6 +15,7 @@ import { ItemService } from '../../home/items/item.service';
 })
 export class CatalogItemsComponent implements OnInit {
   categoriesFilterName: any;
+  itemsLength: any[] = [];
 
   itemsData: Observable<any> = this.http
     .getItems()
@@ -21,12 +23,19 @@ export class CatalogItemsComponent implements OnInit {
 
   p: number = 1;
   pageSize = 12;
-  constructor(private http: ItemService, private route: ActivatedRoute) {}
+  constructor(
+    private http: ItemService,
+    private route: ActivatedRoute,
+    private cartService: CartOrderService
+  ) {}
   ngOnInit(): void {
     this.onResize();
     this.categoriesFilterName = this.route.snapshot.queryParams['name'];
     this.route.queryParams.subscribe((params: Params) => {
       this.categoriesFilterName = params['name'];
+    });
+    this.itemsData.subscribe((res) => {
+      this.itemsLength = res;
     });
   }
 
@@ -40,5 +49,14 @@ export class CatalogItemsComponent implements OnInit {
 
   getItemImage(item: string): string {
     return `${environment.serverUrl}images/${item.replace('.jpg', '')}`;
+  }
+
+  filter(categories: string) {}
+
+  addToCart(item: any) {
+    this.cartService.addToCart(item);
+  }
+  addToProducts(item: any) {
+    this.cartService.addToProductDetails(item);
   }
 }

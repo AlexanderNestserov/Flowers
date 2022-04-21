@@ -24,6 +24,7 @@ export class HeaderComponent implements OnInit {
   urlNewsArticle = false;
   urlCartOrder = false;
   urlAccount = false;
+  urlMyorders = false;
   public isLoggedIn = false;
   public quantityItem: number = 0;
   keycloakLogoutOption = environment.keycloakLogoutOption;
@@ -36,6 +37,11 @@ export class HeaderComponent implements OnInit {
     this.router.events
       .pipe(filter((e: any) => e instanceof NavigationEnd))
       .subscribe((e: RouterEvent) => {
+        if (e.url === '/myorders') {
+          this.urlMyorders = true;
+        } else {
+          this.urlMyorders = false;
+        }
         if (e.url === '/account') {
           this.urlAccount = true;
         } else {
@@ -46,7 +52,6 @@ export class HeaderComponent implements OnInit {
         } else {
           this.urlRegistration = false;
         }
-
         if (e.url.split('/')[1] === 'news') {
           this.urlNewsArticle = true;
         } else {

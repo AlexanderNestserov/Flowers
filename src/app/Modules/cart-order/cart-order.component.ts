@@ -20,7 +20,8 @@ export class CartOrderComponent implements OnInit {
   isDisabled = false;
   isChecked = false;
   checked = false;
-  val = 1;
+  quantity: number = 1;
+
   public product: any = [];
 
   public totalPrice: number = 0;
@@ -79,5 +80,11 @@ export class CartOrderComponent implements OnInit {
 
   deleteItem(item: any) {
     this.cartService.removeCartItem(item);
+  }
+
+  key(event: any) {
+    console.log(event.originalEvent.target.id);
+
+    this.quantity = +event.value;
   }
 }

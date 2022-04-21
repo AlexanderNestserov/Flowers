@@ -10,6 +10,7 @@ import { ItemService } from './item.service';
   styleUrls: ['./items.component.scss'],
 })
 export class ItemsComponent implements OnInit {
+  cartItem: any;
   searchInput: string = '';
   itemsData: Observable<any> = this.http
     .getItems()
@@ -24,9 +25,6 @@ export class ItemsComponent implements OnInit {
     this.http.searching.subscribe((value: string) => {
       this.searchInput = value;
     });
-    this.itemsData.forEach((el) => {
-      Object.assign(el, {});
-    });
   }
   getItemImage(item: string): string {
     return `${environment.serverUrl}images/${item.replace('.jpg', '')}`;
@@ -34,5 +32,10 @@ export class ItemsComponent implements OnInit {
 
   addToCart(item: any) {
     this.cartService.addToCart(item);
+    this.cartItem = item;
+  }
+
+  addToProduct(item: any) {
+    this.cartService.addToProductDetails(item);
   }
 }

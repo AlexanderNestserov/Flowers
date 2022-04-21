@@ -19,8 +19,8 @@
         <p-checkbox
           name="group1"
           [(ngModel)]="checked"
-          inputId="st"
-          value="In stock"
+          [inputId]="item.id"
+          [value]="item.name"
         ></p-checkbox>
       </div>
       <img
@@ -39,11 +39,17 @@
           </div>
           <div class="container-cartorder__cart-item-x">x</div>
           <div class="field-number">
-            <p-inputNumber [(ngModel)]="val"></p-inputNumber>
+            <p-inputNumber
+              (onInput)="key($event)"
+              [inputId]="item.id"
+              placeholder="1"
+              [min]="1"
+              [max]="99"
+            ></p-inputNumber>
           </div>
         </div>
-        <div class="container-cartorder__cart-item-price-total">
-          €{{ item.priceDto.price }} EUR
+        <div class="container-cartorder__cart-item-price-total" id="item.id">
+          €{{ item.priceDto.price * quantity }} EUR
         </div>
       </div>
       <img

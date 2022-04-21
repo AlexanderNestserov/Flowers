@@ -64,6 +64,13 @@ const routes: Routes = [
       ),
   },
   {
+    path: 'myorders',
+    loadChildren: () =>
+      import('./Modules/myorders/myorders.module').then(
+        (m) => m.MyordersModule
+      ),
+  },
+  {
     path: 'account',
     loadChildren: () =>
       import('./Modules/account/account.module').then((m) => m.AccountModule),
