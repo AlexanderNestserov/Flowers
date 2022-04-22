@@ -1,0 +1,173 @@
+@import "../../styles/_variables.scss";
+@import "../../styles/_mixins.scss";
+
+.wrapper-myorders {
+    margin: 0 auto;
+    width: 144rem;
+}
+
+.container-myorders {
+    max-width: 100%;
+    margin: 0 10.5% 0 11.5%;
+    &__line {
+        background: $color_darkgrey;
+        opacity: 0.2;
+        height: 1px;
+        margin-top: 1.6rem;
+    }
+    &__path {
+        margin: 2.6rem auto 4.4rem auto;
+        flex-wrap: wrap;
+    }
+    &__cart-title {
+        @include font(Montserrat, normal, 700, 3.6rem, 110%, 0em, $color_darkgrey);
+        margin-bottom: 3.2rem;
+    }
+}
+.container__home {
+    margin-right: 2.6rem;
+    .container__link {
+        @include font(Montserrat, normal, normal, 1.4rem, 150%, 0em, $color_darkgrey);
+    }
+}
+.container__angle {
+    margin-right: 2.6rem;
+    margin-top: 0.35rem;
+}
+.container__myorders {
+    @include font(Montserrat, normal, normal, 1.4rem, 150%, 0em, $color_lightdarkgrey);
+}
+:host {
+    ::ng-deep .p-accordion .p-accordion-header .p-accordion-header-link {
+        background-color: $color_white;
+        @include wihi(82.5rem, 10.6rem);
+        border-radius: $pb_1rem;
+        padding: 0;
+    }
+    ::ng-deep .p-accordion .p-accordion-header:not(.p-disabled).p-highlight:hover .p-accordion-header-link {
+        border: 1px solid $color_lightgrey;
+        background: $color_white;
+    }
+    ::ng-deep .p-accordion .p-accordion-header:not(.p-highlight):not(.p-disabled):hover .p-accordion-header-link {
+        border: 1px solid $color_lightgrey;
+        background: $color_white;
+        box-shadow: 0 0 0 0.1rem $color_lightgrey;
+    }
+    ::ng-deep .p-accordion .p-accordion-header:not(.p-disabled).p-highlight .p-accordion-header-link {
+        border: 1px solid $color_lightgrey;
+        background: $color_white;
+    }
+    ::ng-deep .p-accordion .p-accordion-header:not(.p-disabled) .p-accordion-header-link:focus {
+        box-shadow: none;
+    }
+    ::ng-deep.p-accordion-header-link {
+        align-items: flex-start;
+    }
+    ::ng-deep .p-accordion .p-accordion-content {
+        width: 82.5rem;
+        background: $color_white;
+        border-bottom-right-radius: $pb_1rem;
+        border-bottom-left-radius: $pb_1rem;
+        padding-left: 0;
+        padding-right: 0;
+    }
+    ::ng-deep .p-accordion .p-accordion-header .p-accordion-header-link .p-accordion-toggle-icon {
+        margin: 0;
+    }
+    ::ng-deep .pi {
+        position: relative;
+        top: 2.7rem;
+        left: 77.9rem;
+        font-size: 1.8rem;
+    }
+}
+.container-order {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 2.6rem;
+    &__dot {
+        @include wihi(1.1rem, 1.1rem);
+        border-radius: 50%;
+        background-color: $color_green;
+        margin-top: 0.5rem;
+        margin-right: 2.9rem;
+    }
+    &__number-date {
+        margin-right: 6.7rem;
+    }
+    &__number {
+        @include font(Montserrat, normal, 500, 1.4rem, 150%, 0em, $color_darkgrey);
+        margin-bottom: 0.4rem;
+    }
+    &__date {
+        @include font(Montserrat, normal, 500, 1.4rem, 150%, 0em, $color_grey);
+    }
+    &__adress {
+        @include font(Montserrat, normal, 500, 1.4rem, 150%, 0em, $color_darkgrey);
+        margin-right: 23.7rem;
+    }
+    &__total-price {
+        @include font(Montserrat, normal, 700, 1.4rem, 150%, 0em, $color_darkgrey);
+        width: 10.8rem;
+        text-align: right;
+    }
+    &__title {
+        @include font(Montserrat, normal, 700, 1.4rem, 150%, 0em, $color_darkgrey);
+        margin: 1.4rem 0 2.7rem 6.25rem;
+    }
+    &__cart-item {
+        margin-bottom: 2rem;
+        margin-left: 6.25rem;
+        display: flex;
+        justify-content: flex-start;
+    }
+    &__cart-item-container,
+    &__mobile-container,
+    &__cart-item-price-container {
+        display: flex;
+    }
+    &__cart-item-container {
+        margin-top: 1rem;
+    }
+    &__cart-item-description {
+        width: 20.7rem;
+        margin-right: 10.2rem;
+    }
+    &__cart-item-price-one {
+        width: 8.8rem;
+        @include font(Montserrat, normal, 500, 1.4rem, 150%, 0em, $color_darkgrey);
+        margin-right: 1.1rem;
+        text-align: right;
+    }
+    &__cart-item-x {
+        @include font(Montserrat, normal, 400, 1.4rem, 150%, 0em, $color_grey);
+        margin-right: 2rem;
+    }
+    &__cart-item-number {
+        @include font(Montserrat, normal, 500, 1.4rem, 150%, 0em, $color_darkgrey);
+        margin-right: 6.3rem;
+    }
+    &__cart-item-price-total {
+        @include font(Montserrat, normal, 700, 1.4rem, 150%, 0em, $color_darkgrey);
+        width: 10rem;
+        text-align: right;
+    }
+    &__line {
+        background: $color_lightgrey;
+        height: 1px;
+        margin-bottom: 3.5rem;
+    }
+}
+#miniItemImage {
+    @include wihi(6.9rem, 6.9rem);
+    margin-right: 1.9rem;
+    margin-bottom: 0.1rem;
+}
+
+.item-name {
+    @include font(Montserrat, normal, 500, 1.4rem, 150%, 0em, $color_darkgrey);
+    margin-bottom: 0.4rem;
+}
+.item-category {
+    @include font(Montserrat, normal, 500, 1.4rem, 150%, 0em, $color_grey);
+}

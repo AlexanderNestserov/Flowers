@@ -5,8 +5,10 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { KeycloakService } from 'keycloak-angular';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { AccountService } from '../account/account.service';
 import { CartOrderService } from './cart-order.service';
 
 @Component({
@@ -20,7 +22,9 @@ export class CartOrderComponent implements OnInit {
   isDisabled = false;
   isChecked = false;
   checked = false;
-  quantity: number = 1;
+  isLoggedIn = false;
+  getUserData: Observable<any> = this.http.getUserData();
+  error: any;
 
   public product: any = [];
 
@@ -38,13 +42,19 @@ export class CartOrderComponent implements OnInit {
   });
   constructor(
     private formbuilder: FormBuilder,
-    private cartService: CartOrderService
+    private cartService: CartOrderService,
+    public readonly keycloak: KeycloakService,
+    private http: AccountService
   ) {}
 
-  ngOnInit(): void {
+  async ngOnInit() {
     this.cartService.getItem().subscribe((res) => {
       this.product = res;
       this.totalPrice = Math.ceil(this.cartService.getTotalPrice() * 100) / 100;
+    });
+    this.isLoggedIn = await this.keycloak.isLoggedIn();
+    this.getUserData.subscribe((error) => {
+      this.error = error;
     });
   }
 
@@ -82,9 +92,15 @@ export class CartOrderComponent implements OnInit {
     this.cartService.removeCartItem(item);
   }
 
-  key(event: any) {
-    console.log(event.originalEvent.target.id);
-
-    this.quantity = +event.value;
+  key(event: any, item: any, totalPrice: number) {
+    if (event.value == 0 || event.value == null) {
+      event.value = 1;
+    }
+    item.quantity = +event.value;
+    item.total = item.quantity * item.priceDto.price;
+    item.total = Math.ceil(item.total * 100) / 100;
+    totalPrice =
+      this.cartService.getTotalPrice() - item.priceDto.price + item.total;
+    this.totalPrice = Math.ceil(totalPrice * 100) / 100;
   }
 }

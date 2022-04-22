@@ -31,6 +31,8 @@ export class ItemsComponent implements OnInit {
   }
 
   addToCart(item: any) {
+    item.quantity = 1;
+    item.total = item.quantity * item.priceDto.price;
     this.cartService.addToCart(item);
     this.cartItem = item;
   }

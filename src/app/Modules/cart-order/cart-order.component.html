@@ -12,9 +12,12 @@
     </div>
     <div class="container-cartorder__cart-title">Cart</div>
     <div class="container-cartorder__empty" *ngIf="product.length == 0">
-      Your cart is empty!
+      Your cart is empty! Add items in the cart to confirm order!
     </div>
-    <div class="container-cartorder__cart-item" *ngFor="let item of product">
+    <div
+      class="container-cartorder__cart-item"
+      *ngFor="let item of product; let i = index"
+    >
       <div class="field-checkbox">
         <p-checkbox
           name="group1"
@@ -40,16 +43,16 @@
           <div class="container-cartorder__cart-item-x">x</div>
           <div class="field-number">
             <p-inputNumber
-              (onInput)="key($event)"
+              (onInput)="key($event, item, totalPrice)"
               [inputId]="item.id"
-              placeholder="1"
+              placeholder="{{ item.quantity }}"
               [min]="1"
               [max]="99"
             ></p-inputNumber>
           </div>
         </div>
         <div class="container-cartorder__cart-item-price-total" id="item.id">
-          €{{ item.priceDto.price * quantity }} EUR
+          €{{ item.total }} EUR
         </div>
       </div>
       <img
@@ -76,7 +79,14 @@
     <div class="container-cartorder__line-two"></div>
     <div class="container-cartorder__order-title">Order placement</div>
     <div class="container-cartorder__form">
-      <form [formGroup]="formValue" (ngSubmit)="postDataDetails()">
+      <div class="error-get-user" *ngIf="!this.error">
+        Error! You are not registered in the system. Try to register or sign in!
+      </div>
+      <form
+        [formGroup]="formValue"
+        (ngSubmit)="postDataDetails()"
+        *ngIf="getUserData | async as user"
+      >
         <div
           class="container__firstname"
           errorDirective
@@ -87,6 +97,7 @@
             id="inputFirstName"
             required
             formControlName="firstName"
+            [(ngModel)]="user.firstName"
           />
           <label class="container__input-firstname" for="inputFirstName"
             >First name<span class="container__star">*</span>
@@ -105,6 +116,7 @@
             id="inputLastName"
             required
             formControlName="lastName"
+            [(ngModel)]="user.lastName"
           />
           <label class="container__input-lastname" for="inputLastName"
             >Last name<span class="container__star">*</span>
@@ -114,7 +126,13 @@
           ></app-cart-order-error-form>
         </div>
         <div class="container__email" errorDirective [formControlItem]="email">
-          <input type="text" id="inputEmail" required formControlName="email" />
+          <input
+            type="text"
+            id="inputEmail"
+            required
+            formControlName="email"
+            [(ngModel)]="user.email"
+          />
           <label class="container__input-email" for="inputEmail"
             >Email<span class="container__star">*</span></label
           >
@@ -132,6 +150,7 @@
             id="inputPhone"
             required
             formControlName="phone"
+            [(ngModel)]="user.phone"
           />
           <label class="container__input-phone" for="inputPhone"
             >Phone number<span class="container__star">*</span></label
@@ -158,6 +177,7 @@
             id="inputAddress"
             formControlName="homeAddress"
             placeholder=" "
+            [(ngModel)]="user.homeAddress"
           />
           <label class="container__input-address" for="inputAddress"
             >Address
@@ -172,6 +192,7 @@
             id="inputInfo"
             formControlName="additionalInformation"
             placeholder=" "
+            [(ngModel)]="user.additionalInformation"
           ></textarea>
           <label class="container__input-info" for="inputInfo"
             >Additional information</label
@@ -205,8 +226,10 @@
         <button
           type="submit"
           class="container__button"
-          [ngClass]="{ disabled: formValue.invalid || isDisabled }"
-          [disabled]="formValue.invalid || isDisabled"
+          [ngClass]="{
+            disabled: formValue.invalid || isDisabled || product.length == 0
+          }"
+          [disabled]="formValue.invalid || isDisabled || product.length == 0"
         >
           Confirmt order <app-spinner></app-spinner>
         </button>

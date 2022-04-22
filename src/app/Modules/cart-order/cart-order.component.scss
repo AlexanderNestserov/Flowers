@@ -114,6 +114,9 @@
 .container__cartorder {
     @include font(Montserrat, normal, normal, 1.4rem, 150%, 0em, $color_lightdarkgrey);
 }
+.error-get-user {
+    @include font(Montserrat, normal, 600, 1.8rem, 150%, 0em, $color_red);
+}
 .button-delete {
     @include wihi(30.2rem, 5.7rem);
     border: 1px solid $color_lightgrey;
