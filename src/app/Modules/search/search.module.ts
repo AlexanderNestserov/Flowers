@@ -7,7 +7,8 @@ import { SearchRoutingModule } from './search-routing.module';
 
 import { SearchComponent } from './search.component';
 import { ItemService } from '../home/items/item.service';
-import { HomeModule } from '../home/home.module';
+import { FilterModule } from '../filter/filter.module';
+import { SwiperListService } from '../home/swiper-list/swiper-list.service';
 
 @NgModule({
   declarations: [SearchComponent],
@@ -18,8 +19,8 @@ import { HomeModule } from '../home/home.module';
     ButtonModule,
     FormsModule,
     ReactiveFormsModule,
-    HomeModule,
+    FilterModule,
   ],
-  providers: [ItemService],
+  providers: [ItemService, SwiperListService],
 })
 export class SearchModule {}

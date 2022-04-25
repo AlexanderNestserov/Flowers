@@ -1,8 +1,5 @@
 <div class="container__items flex">
-  <div
-    class="container__wrap"
-    *ngFor="let item of itemsData | async | search: searchInput"
-  >
+  <div class="container__wrap" *ngFor="let item of itemsEight">
     <div class="container__item">
       <div
         class="container-details"
@@ -15,12 +12,18 @@
         <img [src]="getItemImage(item.photo)" alt="img1" class="image-item" />
         <h5 class="container__title">{{ item.name }}</h5>
         <h6 class="opacity">{{ item.category.name }}</h6>
-        <p class="container__paragraph" *ngIf="item != cartItem">
+        <p class="container__paragraph" *ngIf="!cartItem.includes(item)">
           €{{ item.priceDto.price }} EUR
         </p>
-        <p class="container__incart" *ngIf="item == cartItem">In the cart</p>
+        <p class="container__incart" *ngIf="cartItem.includes(item)">
+          In the cart
+        </p>
       </div>
-      <button class="button" *ngIf="item != cartItem" (click)="addToCart(item)">
+      <button
+        class="button"
+        *ngIf="!cartItem.includes(item)"
+        (click)="addToCart(item)"
+      >
         <img
           id="imageBaggy"
           src="../../../../assets/img-home/button-bag.png"

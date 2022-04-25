@@ -19,32 +19,10 @@ import { SwiperListService } from '../home/swiper-list/swiper-list.service';
 export class CatalogComponent implements OnInit {
   obs!: Subscription;
 
-  rangeValues: number[] = [0, 300];
-
-  itemsData: Observable<any> = this.http
-    .getItems()
-    .pipe(map((res: any) => res.content));
-
-  categoriesData: Observable<any> = this.httpCategories
-    .getCategories()
-    .pipe(map((res: any) => res.content));
-
   categoriesFilterName: string = '';
   categoriesFilterId: number = 0;
 
-  item: any;
-  checked: boolean = false;
-
-  categories: any[] = [{ name: 'Max Price' }, { name: 'Min Price' }];
-
-  searchText: string = '';
-
-  constructor(
-    private http: ItemService,
-    private router: Router,
-    private route: ActivatedRoute,
-    private httpCategories: SwiperListService
-  ) {}
+  constructor(private route: ActivatedRoute) {}
 
   ngOnInit() {
     this.categoriesFilterName = this.route.snapshot.queryParams['name'];
@@ -53,25 +31,6 @@ export class CatalogComponent implements OnInit {
       this.categoriesFilterName = params['name'];
       this.categoriesFilterId = params['id'];
     });
-  }
-
-  clearFilter() {
-    this.searchText = '';
-    this.checked = false;
-  }
-
-  filterCategories(event: any) {
-    //  if(event.checked.length===0){
-    // this.router.navigate(['/catalog'])
-    //  }else{
-    //this.item = event.checked[0].name;
-    //  this.router.navigate(['/catalog'],{queryParams:{name:this.item}});
-    // }
-    if (this.categoriesFilterName == '') {
-      this.checked = false;
-    } else {
-      this.checked = event.checked;
-    }
   }
 
   ngOnDestroy() {

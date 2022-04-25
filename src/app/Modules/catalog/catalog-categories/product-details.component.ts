@@ -10,7 +10,7 @@ import { CartOrderService } from '../../cart-order/cart-order.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductDetailsComponent implements OnInit {
-  rangeValues: number[] = [0, 300];
+  cartItem: any;
   product: any = [];
   categoryName: string = '';
   isActive: boolean = false;
@@ -44,6 +44,9 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   addToCart(item: any) {
+    item.quantity = 1;
+    item.total = item.quantity * item.priceDto.price;
     this.cartService.addToCart(item);
+    this.cartItem = item;
   }
 }

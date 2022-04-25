@@ -16,8 +16,6 @@ import { SwiperListComponent } from './swiper-list/swiper-list.component';
 import { ItemsComponent } from './items/items.component';
 import { SwiperListService } from './swiper-list/swiper-list.service';
 import { ItemService } from './items/item.service';
-import { SearchPipe } from '../search/search.pipe';
-import { CartOrderService } from '../cart-order/cart-order.service';
 
 @NgModule({
   declarations: [
@@ -26,7 +24,6 @@ import { CartOrderService } from '../cart-order/cart-order.service';
     SwiperLogoComponent,
     SwiperListComponent,
     ItemsComponent,
-    SearchPipe,
   ],
   imports: [
     CommonModule,

@@ -10,8 +10,11 @@ import { ItemService } from './item.service';
   styleUrls: ['./items.component.scss'],
 })
 export class ItemsComponent implements OnInit {
-  cartItem: any;
-  searchInput: string = '';
+  cartItem: { id: number }[] = [];
+  element: any;
+  inStock = false;
+
+  itemsEight: any;
   itemsData: Observable<any> = this.http
     .getItems()
     .pipe(map((res: any) => res.content));
@@ -22,10 +25,11 @@ export class ItemsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.http.searching.subscribe((value: string) => {
-      this.searchInput = value;
+    this.itemsData.subscribe((res) => {
+      this.itemsEight = res.slice(0, 8);
     });
   }
+
   getItemImage(item: string): string {
     return `${environment.serverUrl}images/${item.replace('.jpg', '')}`;
   }
@@ -34,7 +38,9 @@ export class ItemsComponent implements OnInit {
     item.quantity = 1;
     item.total = item.quantity * item.priceDto.price;
     this.cartService.addToCart(item);
-    this.cartItem = item;
+    this.cartService.getItem().subscribe((res) => {
+      this.cartItem = res;
+    });
   }
 
   addToProduct(item: any) {

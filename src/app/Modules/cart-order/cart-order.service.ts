@@ -37,9 +37,9 @@ export class CartOrderService {
   getTotalPrice(): number {
     let totalPrice = 0;
     this.cartItemList.map((a: any) => {
-      totalPrice += a.priceDto.price * a.quantity;
+      totalPrice += a.priceDto.price;
     });
-    return totalPrice;
+    return +totalPrice;
   }
 
   removeCartItem(product: any) {

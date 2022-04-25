@@ -14,6 +14,9 @@ import { ItemService } from '../../home/items/item.service';
   },
 })
 export class CatalogItemsComponent implements OnInit {
+  searchInput: string = '';
+
+  cartItem: {}[] = [];
   categoriesFilterName: any;
   itemsLength: any[] = [];
 
@@ -37,8 +40,10 @@ export class CatalogItemsComponent implements OnInit {
     this.itemsData.subscribe((res) => {
       this.itemsLength = res;
     });
+    this.http.searching.subscribe((value: string) => {
+      this.searchInput = value;
+    });
   }
-
   onResize() {
     if (window.innerWidth < 1145) {
       this.pageSize = 5;
@@ -54,7 +59,12 @@ export class CatalogItemsComponent implements OnInit {
   filter(categories: string) {}
 
   addToCart(item: any) {
+    item.quantity = 1;
+    item.total = item.quantity * item.priceDto.price;
     this.cartService.addToCart(item);
+    this.cartService.getItem().subscribe((res) => {
+      this.cartItem = res;
+    });
   }
   addToProducts(item: any) {
     this.cartService.addToProductDetails(item);

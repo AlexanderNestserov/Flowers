@@ -85,6 +85,15 @@
         }
     }
 }
+.container__incart {
+    @include font(Montserrat, normal, 500, 1.4rem, 150%, 0.05em, $color_green);
+    background: url("../../../../assets/img-home/In\ cart.png") 0 0.5rem no-repeat;
+    margin-left: 2.5rem;
+    padding-left: 2.6rem;
+    position: absolute;
+    top: 30.5rem;
+    width: 20rem;
+}
 .my-pag {
     display: block;
     margin-top: 37rem;

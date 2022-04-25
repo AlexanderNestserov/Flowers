@@ -25,8 +25,6 @@
     <p class="container-search__paragraph" *ngIf="!searchValue">
       The search results will appear here
     </p>
-  </div>
-  <div class="container-serch__items" *ngIf="searchValue">
-    <app-home-items></app-home-items>
+    <app-filter *ngIf="searchValue"></app-filter>
   </div>
 </div>

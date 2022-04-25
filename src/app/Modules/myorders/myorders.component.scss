@@ -123,6 +123,7 @@
     }
     &__cart-item-container,
     &__mobile-container,
+    &__mobile-cart,
     &__cart-item-price-container {
         display: flex;
     }
@@ -157,6 +158,42 @@
         height: 1px;
         margin-bottom: 3.5rem;
     }
+    &__contact-information {
+        margin-bottom: 3.5rem;
+        margin-left: 6.25rem;
+    }
+    &__contact-title,
+    &__contact-additional-info-title,
+    &__contact-message-title,
+    &__payment-mathod-title {
+        @include font(Montserrat, normal, 700, 1.4rem, 150%, 0em, $color_darkgrey);
+        margin-bottom: 0.7rem;
+    }
+    &__contact-name {
+        @include font(Montserrat, normal, 400, 1.8rem, 150%, 0em, $color_darkgrey);
+        margin-bottom: 0.8rem;
+    }
+    &__contact-email,
+    &__contact-phone {
+        @include font(Montserrat, normal, 400, 1.6rem, 170%, 0em, $color_grey);
+    }
+    &__contact-additional-info-title {
+        margin-top: 2rem;
+    }
+    &__contact-additional-info-text,
+    &__contact-message-text {
+        @include font(Montserrat, normal, 400, 1.6rem, 170%, 0em, $color_darkgrey);
+        margin-bottom: 2rem;
+        width: 69.5rem;
+    }
+    &__payment-mathod-text {
+        @include font(Montserrat, normal, 400, 1.6rem, 170%, 0em, $color_darkgrey);
+        margin-bottom: 2.55rem;
+        margin-left: 6.25rem;
+    }
+    &__payment-mathod-title {
+        margin-left: 6.25rem;
+    }
 }
 #miniItemImage {
     @include wihi(6.9rem, 6.9rem);
@@ -170,4 +207,161 @@
 }
 .item-category {
     @include font(Montserrat, normal, 500, 1.4rem, 150%, 0em, $color_grey);
+}
+@media (max-width: 1460px) {
+    .wrapper-myorders {
+        width: 100%;
+    }
+}
+@media (max-width: 1020px) {
+    .container-myorders {
+        margin: 0 7.5% 0 7.5%;
+    }
+    :host {
+        ::ng-deep .p-accordion .p-accordion-header .p-accordion-header-link {
+            @include wihi(50.5rem, 12.1rem);
+        }
+        ::ng-deep .p-accordion .p-accordion-content {
+            width: 50.5rem;
+        }
+        ::ng-deep .pi {
+            top: 1.5rem;
+            left: 44.5rem;
+        }
+    }
+    .container-order {
+        margin-top: 1.4rem;
+        &__dot {
+            margin-right: 2rem;
+            width: 1.1rem;
+        }
+        &__number-date {
+            margin-right: 2rem;
+        }
+        &__adress {
+            margin-right: 0;
+        }
+        &__total-price {
+            padding-top: 3.5rem;
+        }
+        &__title,
+        &__cart-item,
+        &__contact-information,
+        &__payment-mathod-tex,
+        &__payment-mathod-title,
+        &__payment-mathod-text {
+            margin-left: 2.5rem;
+        }
+        &__mobile-container {
+            display: block;
+        }
+        &__cart-item-price-one {
+            text-align: left;
+        }
+        &__cart-item-description {
+            margin-right: 4.2rem;
+        }
+        &__contact-additional-info-text,
+        &__contact-message-text {
+            width: 45.5rem;
+        }
+    }
+    .item-category {
+        margin-bottom: 0.4rem;
+    }
+}
+@media (max-width: 610px) {
+    .container-myorders {
+        &__path {
+            margin-bottom: 1.5rem;
+        }
+        &__cart-title {
+            @include font(Montserrat, normal, 700, 2.8rem, 120%, 0em, $color_darkgrey);
+            margin-bottom: 3.4rem;
+        }
+    }
+    :host {
+        ::ng-deep .p-accordion .p-accordion-header .p-accordion-header-link {
+            @include wihi(33.5rem, 12.1rem);
+        }
+        ::ng-deep .p-accordion .p-accordion-content {
+            width: 33.5rem;
+        }
+        ::ng-deep .pi {
+            top: 1.5rem;
+            left: 29.5rem;
+        }
+    }
+    .container-order {
+        &__mobile-cart {
+            width: 15.3rem;
+            display: block;
+        }
+        &__date {
+            margin-bottom: 2rem;
+        }
+        &__number-date {
+            width: 15.3rem;
+            margin-right: 3rem;
+        }
+        &__adress {
+            margin-right: 0;
+        }
+        &__total-price {
+            padding-top: 6.7rem;
+        }
+        &__line {
+            margin-bottom: 2rem;
+        }
+        &__title {
+            margin-top: 1rem;
+            margin-bottom: 2rem;
+        }
+        &__cart-item-container {
+            margin-top: 0.5rem;
+        }
+        &__cart-item-price-one,
+        &__cart-item-x {
+            margin-right: 1rem;
+        }
+        &__cart-item-price-one {
+            text-align: left;
+            width: inherit;
+        }
+        &__mobile-container {
+            width: 20.7rem;
+        }
+        &__cart-item-price-total {
+            position: relative;
+            top: 5rem;
+            left: -7.8rem;
+        }
+        &__contact-additional-info-text,
+        &__contact-message-text {
+            width: 29.5rem;
+        }
+        &__payment-mathod-text {
+            margin-bottom: 1rem;
+        }
+        &__contact-information {
+            margin-bottom: 2rem;
+        }
+    }
+    #miniItemImage {
+        @include wihi(5.3rem, 5.3rem);
+        margin-right: 1rem;
+    }
+}
+@media (max-width: 500px) {
+    .container-myorders {
+        margin: 0 2rem 0 2rem;
+    }
+}
+@media (max-width: 450px) {
+    .container-myorders {
+        margin-top: 7rem;
+        &__path {
+            margin-top: 1.5rem;
+        }
+    }
 }

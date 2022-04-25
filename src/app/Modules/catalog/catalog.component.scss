@@ -5,7 +5,6 @@
     margin: 0 auto;
     width: 144rem;
 }
-
 .container-catalog {
     max-width: 100%;
     margin: 0 10.5% 15rem 11.5%;
@@ -40,66 +39,6 @@
         @include font(Montserrat, normal, 400, 1.8rem, 150%, 0em, $color_black);
         margin-bottom: 2.5rem;
     }
-    &__filter-products {
-        margin-bottom: 0rem;
-        display: flex;
-        justify-content: flex-start;
-    }
-    &__filter {
-        width: 25.5rem;
-        margin-top: 1.1rem;
-    }
-    &__filter-title {
-        @include font(Montserrat, normal, 700, 2.8rem, 120%, 0em, $color_darkgrey);
-        margin-bottom: 3.5rem;
-    }
-    &__filter-cost {
-        margin-bottom: 4.2rem;
-    }
-    &__filter-cost-title {
-        @include font(Montserrat, normal, 700, 1.8rem, 150%, 0em, $color_darkgrey);
-        margin-bottom: 1.4rem;
-    }
-    &__filter-cost-min-max {
-        margin-bottom: 2.9rem;
-    }
-    &__filter-category {
-        margin-top: 5.2rem;
-        margin-bottom: 4.5rem;
-    }
-    &__filter-category-title {
-        @include font(Montserrat, normal, 700, 1.8rem, 150%, 0em, $color_darkgrey);
-        margin-bottom: 2.2rem;
-    }
-    &__filter-additional {
-        margin-bottom: 4.2rem;
-    }
-    &__filter-additional-title {
-        @include font(Montserrat, normal, 700, 1.8rem, 150%, 0em, $color_darkgrey);
-        margin-bottom: 1.2rem;
-    }
-    &__filter-buttons-button1 {
-        display: block;
-        margin-bottom: 2.3rem;
-    }
-    &__products-title {
-        margin-bottom: 3.1rem;
-        margin-left: 1.5rem;
-        display: flex;
-        justify-content: space-between;
-    }
-    &__products {
-        margin-left: 1.5rem;
-        width: 100%;
-        margin-bottom: 0rem;
-    }
-    &__products-quantity {
-        @include font(Montserrat, normal, 700, 1.8rem, 150%, 0em, $color_darkgrey);
-        margin-top: 1.1rem;
-    }
-    &__mobile-buttons {
-        display: none;
-    }
 }
 .container__home {
     margin-right: 2.6rem;
@@ -117,210 +56,9 @@
 .container__catalogs-categories {
     @include font(Montserrat, normal, normal, 1.4rem, 150%, 0em, $color_lightdarkgrey);
 }
-.p-float-label {
-    @include wihi(100%, 5rem);
-}
-.filter-min,
-.filter-max {
-    @include font(Montserrat, normal, 400, 1.6rem, 170%, 0em, $color_grey);
-}
 .item {
     display: block;
     height: 100%;
-}
-:host {
-    ::ng-deep p-inputnumber.p-element.p-inputwrapper {
-        height: 5rem;
-    }
-    ::ng-deep p-inputnumber {
-        justify-content: center;
-    }
-    ::ng-deep #currency-min {
-        width: 12rem;
-        margin-right: 1.5rem;
-    }
-    ::ng-deep #currency-max {
-        width: 12rem;
-    }
-    ::ng-deep .p-inputtext {
-        @include font(Montserrat, normal, 400, 1.6rem, 170%, 0em, $color_darkgrey);
-        padding: 0.5rem;
-        border-radius: 0.4rem;
-        border: 1px solid $color_lightgrey;
-    }
-    ::ng-deep .p-inputtext:enabled:hover {
-        border-color: $color_darkgrey;
-    }
-    ::ng-deep .p-inputtext:enabled:focus {
-        box-shadow: none;
-        border-color: $color_darkgrey;
-    }
-    ::ng-deep .p-float-label label {
-        top: 0.8rem;
-        margin-top: 0.4rem;
-    }
-    ::ng-deep .p-float-label .p-inputwrapper-focus ~ label,
-    ::ng-deep .p-float-label .p-inputwrapper-filled ~ label {
-        top: -0.5rem;
-    }
-    ::ng-deep .p-slider {
-        background-color: $color_lightgrey;
-        width: 25.5rem;
-    }
-    ::ng-deep .p-slider .p-slider-range {
-        background: $color_pink;
-    }
-    ::ng-deep .p-slider.p-slider-horizontal {
-        height: 0.3rem;
-        width: 25.5rem;
-    }
-    ::ng-deep .p-slider .p-slider-handle {
-        @include wihi(2.1rem, 2.1rem);
-        background: $color_pink;
-        border: none;
-        cursor: pointer;
-        transition: box-shadow 0.2s;
-    }
-    ::ng-deep .p-slider .p-slider-handle:focus {
-        box-shadow: 0 0 0 0.2rem $color_lightpink;
-    }
-    ::ng-deep .p-slider:not(.p-disabled) .p-slider-handle:hover {
-        background: $color_pink;
-        box-shadow: 0 0 0 0.2rem $color_lightpink;
-    }
-    ::ng-deep .p-slider.p-slider-horizontal .p-slider-handle {
-        margin-top: -1rem;
-    }
-    ::ng-deep .p-checkbox {
-        @include wihi(2rem, 2rem);
-    }
-    ::ng-deep .p-checkbox .p-checkbox-box {
-        border: 1px solid $color_grey;
-        box-sizing: border-box;
-        border-radius: 0.4rem;
-        @include wihi(2rem, 2rem);
-    }
-    ::ng-deep .p-checkbox .p-checkbox-box.p-highlight {
-        background: $color_green;
-    }
-    ::ng-deep .p-checkbox:not(.p-checkbox-disabled) .p-checkbox-box.p-highlight:hover {
-        border-color: $color_green;
-        background: $color_green;
-    }
-    ::ng-deep .p-checkbox:not(.p-checkbox-disabled) .p-checkbox-box:hover {
-        border-color: $color_green;
-    }
-    ::ng-deep .p-checkbox:not(.p-checkbox-disabled) .p-checkbox-box.p-focus {
-        border-color: $color_green;
-        box-shadow: none;
-    }
-    ::ng-deep .p-checkbox-label {
-        @include font(Montserrat, normal, 400, 1.8rem, 150%, 0em, $color_darkgrey);
-        margin-left: 2.4rem;
-    }
-    ::ng-deep .p-checkbox-label-active {
-        font-weight: 700;
-    }
-    ::ng-deep .p-button {
-        @include wihi(25.5rem, 5.7rem);
-        padding: 2rem 5.6rem;
-        border-radius: 1rem;
-        background: $color_green;
-        border: none;
-        @include font(Montserrat, normal, 600, 1.5rem, 110%, 0.05em, $color_white);
-    }
-    ::ng-deep .container-catalog__filter-buttons-button1 .p-button-label {
-        @include font(Montserrat, normal, 600, 1.5rem, 110%, 0.05em, $color_white);
-        text-transform: uppercase;
-    }
-    ::ng-deep .container-catalog__filter-buttons-button1 .p-button:hover {
-        background: $color_darkgreen;
-    }
-    ::ng-deep .container-catalog__filter-buttons-button1 .p-button:active {
-        padding-top: 2.1rem;
-    }
-    ::ng-deep .container-catalog__filter-buttons-button1 .p-button:focus {
-        box-shadow: none;
-    }
-    ::ng-deep .p-button.p-button-success.p-button-outlined {
-        border: 1px solid $color_green;
-        color: $color_green;
-        background-color: $color_white;
-    }
-    ::ng-deep .p-button-success .p-button-label {
-        @include font(Montserrat, normal, 600, 1.5rem, 110%, 0.05em, $color_green);
-        text-transform: uppercase;
-    }
-    ::ng-deep .p-button-success .p-button-label:hover {
-        color: $color_darkgreen;
-    }
-    ::ng-deep .p-button.p-button-success.p-button-outlined:hover {
-        border-color: $color_darkgreen;
-        background: $color_white;
-    }
-    ::ng-deep .p-button.p-button-success.p-button-outlined:active {
-        padding-top: 2.1rem;
-    }
-    ::ng-deep .p-button.p-button-success.p-button-outlined:focus {
-        box-shadow: none;
-    }
-    ::ng-deep .pi {
-        font-size: 1.3rem;
-    }
-    ::ng-deep .p-button .p-button-icon-left {
-        margin-right: 1rem;
-    }
-    ::ng-deep .p-dropdown {
-        @include wihi(25.5rem, 5rem);
-        border: 1px solid $color_lightgrey;
-        border-radius: 0.4rem;
-    }
-    ::ng-deep .p-dropdown:not(.p-disabled):hover {
-        border-color: $color_darkgrey;
-    }
-    ::ng-deep .p-dropdown:not(.p-disabled).p-focus {
-        border-color: $color_darkgrey;
-        box-shadow: none;
-    }
-    ::ng-deep .p-dropdown .p-dropdown-label.p-placeholder {
-        @include font(Montserrat, normal, 400, 1.8rem, 150%, 0em, $color_darkgrey);
-        padding: 1rem 2.9rem;
-        border: none;
-    }
-    ::ng-deep .p-dropdown .p-dropdown-label.p-inputtext {
-        @include font(Montserrat, normal, 400, 1.8rem, 150%, 0em, $color_darkgrey);
-        padding: 1rem 2.9rem;
-        border: none;
-    }
-    ::ng-deep .p-dropdown .p-dropdown-trigger {
-        width: 5rem;
-        color: $color_darkgrey;
-    }
-    ::ng-deep .p-dropdown .p-dropdown-clear-icon {
-        color: $color_darkgrey;
-        right: 5rem;
-    }
-    ::ng-deep .p-dropdown-panel .p-dropdown-items .p-dropdown-item.p-highlight {
-        color: $color_darkgrey;
-        background: $color_lightpink;
-    }
-    ::ng-deep .p-dropdown-panel .p-dropdown-items .p-dropdown-item {
-        background: $color_white;
-    }
-    ::ng-deep .p-dropdown-panel .p-dropdown-items .p-dropdown-item .ng-star-inserted {
-        @include font(Montserrat, normal, 400, 1.4rem, 150%, 0em, $color_darkgrey);
-    }
-    ::ng-deep .p-dropdown-panel .p-dropdown-items .p-dropdown-item:hover {
-        color: $color_darkgrey;
-        background: $color_pink;
-    }
-    ::ng-deep .p-dropdown-panel .p-dropdown-items .p-dropdown-item.p-highlight:hover {
-        color: $color_darkgrey;
-        background: $color_pink;
-    }
-}
-.field-checkbox {
-    margin-bottom: 2rem;
 }
 .container-banners {
     display: block;
@@ -346,40 +84,7 @@
         margin: 0 7.5% 3.5rem 3%;
     }
 }
-@media (max-width: 840px) {
-    .container-catalog {
-        &__filter {
-            display: none;
-        }
-        &__filter-products {
-            display: block;
-        }
-        &__products-title {
-            display: block;
-            margin-left: 0;
-        }
-        &__products {
-            margin-left: 0;
-        }
-        &__mobile-buttons {
-            display: inline-block;
-            margin-top: $pt_2rem;
-            margin-bottom: 4rem;
-            display: flex;
-            justify-content: space-between;
-        }
-    }
-    .dropdown-button {
-        display: none;
-    }
-}
 @media (max-width: 600px) {
-    :host {
-        ::ng-deep .p-button {
-            width: 15.8rem;
-            padding: 2rem 3.6rem;
-        }
-    }
     .container__home {
         margin-right: 1.6rem;
     }
@@ -415,9 +120,6 @@
         &__text {
             width: 33.5rem;
             margin-bottom: 4rem;
-        }
-        &__filter-products {
-            margin-bottom: 6rem;
         }
     }
     .container-banners {
