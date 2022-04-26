@@ -15,9 +15,12 @@ import { ItemService } from '../../home/items/item.service';
 })
 export class CatalogItemsComponent implements OnInit {
   searchInput: string = '';
+  searchText: {} = {};
+  rangeValues: number[] = [];
 
   cartItem: {}[] = [];
   categoriesFilterName: any;
+  categoriesCheckedName: any;
   itemsLength: any[] = [];
 
   itemsData: Observable<any> = this.http
@@ -42,6 +45,15 @@ export class CatalogItemsComponent implements OnInit {
     });
     this.http.searching.subscribe((value: string) => {
       this.searchInput = value;
+    });
+    this.http.filteringByCategories.subscribe((value: any) => {
+      this.categoriesCheckedName = value;
+    });
+    this.http.filteringByCost.subscribe((value: any) => {
+      this.rangeValues = value;
+    });
+    this.http.sorting.subscribe((value: any) => {
+      this.searchText = value;
     });
   }
   onResize() {

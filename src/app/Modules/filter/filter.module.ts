@@ -13,6 +13,9 @@ import { CatalogItemsComponent } from './catalog-items/catalog-items.component';
 import { FilterCategoryPipe } from './catalog-items/filter.pipe';
 import { ItemService } from '../home/items/item.service';
 import { SearchPipe } from '../search/search.pipe';
+import { FilterCheckboxPipe } from './catalog-items/checkbox.pipe';
+import { CostPipe } from './catalog-items/cost.pipe';
+import { SortPipe } from './catalog-items/sorting.pipe';
 
 @NgModule({
   declarations: [
@@ -20,6 +23,9 @@ import { SearchPipe } from '../search/search.pipe';
     CatalogItemsComponent,
     FilterCategoryPipe,
     SearchPipe,
+    FilterCheckboxPipe,
+    CostPipe,
+    SortPipe,
   ],
   imports: [
     CommonModule,

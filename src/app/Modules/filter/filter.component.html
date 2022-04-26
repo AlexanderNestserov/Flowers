@@ -47,11 +47,10 @@
             name="group2"
             [(ngModel)]="checked"
             value="category"
-            [value]="category"
+            [value]="category.name"
             class="p-label-active"
             [inputId]="category.key"
             [label]="category.name"
-            (onChange)="filterCategories()"
           >
           </p-checkbox>
         </div>
@@ -78,7 +77,7 @@
         class="container-catalog__filter-buttons-button1"
         label="Apply filter"
         icon="pi pi-check"
-        (click)="filterCategoriesButton($event)"
+        (click)="filterCategoriesButton()"
       >
       </p-button>
       <button
@@ -98,7 +97,9 @@
         itemsData
           | async
           | search: searchInput
-          | filter: categoriesFilterName as data
+          | filter: categoriesFilterName
+          | checkbox: categoriesCheckedName
+          | cost: rangeValues as data
       "
     >
       <p class="container-catalog__products-quantity">
@@ -108,10 +109,10 @@
         [options]="categories"
         placeholder="Sort by..."
         optionLabel="name"
-        [editable]="true"
         [showClear]="true"
         [(ngModel)]="searchText"
         class="dropdown-button"
+        (onChange)="handle()"
       >
       </p-dropdown>
       <div class="container-catalog__mobile-buttons">
@@ -121,6 +122,7 @@
           type="button"
           label="Filter"
           class="p-button-outlined p-button-success container-catalog__mobile-buttons-filter"
+          (click)="filterDisplay()"
         ></button>
         <button
           pButton
@@ -133,6 +135,107 @@
     </div>
     <div class="item">
       <app-catalog-items></app-catalog-items>
+    </div>
+  </div>
+  <div class="mobile-container__filter" *ngIf="isShow">
+    <div class="mobile-container__filter-header">
+      <div class="mobile-container__filter-title">Filter</div>
+      <img
+        (click)="filterDisplay()"
+        id="closeImage"
+        src="../../../assets/img-home/x.png"
+        alt="x"
+      />
+    </div>
+    <div class="mobile-container__filter-line"></div>
+    <div class="container-catalog__filter-cost">
+      <div class="container-catalog__filter-cost-title">Cost</div>
+      <div
+        class="container-catalog__filter-cost-min-max flex justify-content-start"
+      >
+        <div class="p-float-label">
+          <p-inputNumber
+            inputId="currency-min"
+            mode="currency"
+            [(ngModel)]="rangeValues[0]"
+            currency="EUR"
+            locale="en-US"
+          >
+          </p-inputNumber>
+          <label for="currency-min" class="filter-min">From</label>
+        </div>
+        <div class="p-float-label">
+          <p-inputNumber
+            inputId="currency-max"
+            [(ngModel)]="rangeValues[1]"
+            mode="currency"
+            currency="EUR"
+            locale="en-US"
+          >
+          </p-inputNumber>
+          <label for="currency-max" class="filter-max">To</label>
+        </div>
+      </div>
+      <p-slider
+        [(ngModel)]="rangeValues"
+        [range]="true"
+        [min]="0"
+        [max]="300"
+      ></p-slider>
+    </div>
+    <div class="container-catalog__filter-category">
+      <div class="container-catalog__filter-category-title">Category</div>
+      <div class="container-catalog__filter-category-checkbox">
+        <div
+          *ngFor="let category of categoriesData | async"
+          class="field-checkbox"
+        >
+          <p-checkbox
+            name="group2"
+            [(ngModel)]="checked"
+            value="category"
+            [value]="category.name"
+            class="p-label-active"
+            [inputId]="category.key"
+            [label]="category.name"
+          >
+          </p-checkbox>
+        </div>
+      </div>
+    </div>
+    <div class="container-catalog__filter-additional">
+      <div class="container-catalog__filter-additional-title">
+        Additional filters
+      </div>
+      <div class="field-checkbox">
+        <p-checkbox
+          name="group1"
+          [(ngModel)]="checked"
+          inputId="st"
+          class="p-label-active"
+          label="In stock"
+          value="In stock"
+        >
+        </p-checkbox>
+      </div>
+    </div>
+    <div class="container-catalog__filter-buttons">
+      <p-button
+        class="container-catalog__filter-buttons-button1"
+        label="Apply filter"
+        icon="pi pi-check"
+        id="but"
+        (click)="filterCategoriesButton()"
+      >
+      </p-button>
+      <button
+        pButton
+        pRipple
+        type="button"
+        (click)="clearFilter()"
+        label="Clear filter"
+        class="p-button-outlined p-button-success container-catalog__filter-buttons-button2"
+      ></button>
     </div>
   </div>
 </div>

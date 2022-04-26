@@ -5,7 +5,10 @@
       let item of itemsData
         | async
         | filter: categoriesFilterName
+        | checkbox: categoriesCheckedName
+        | cost: rangeValues
         | search: searchInput
+        | sort: searchText
         | paginate: { itemsPerPage: pageSize, currentPage: p }
     "
   >
@@ -46,7 +49,12 @@
 <div
   class="container-pagination"
   *ngIf="
-    itemsLength | filter: categoriesFilterName | search: searchInput as data
+    itemsLength
+      | filter: categoriesFilterName
+      | checkbox: categoriesCheckedName
+      | cost: rangeValues
+      | search: searchInput
+      | sort: searchText as data
   "
 >
   <pagination-controls

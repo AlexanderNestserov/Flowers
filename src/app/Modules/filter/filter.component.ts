@@ -11,16 +11,22 @@ import { SwiperListService } from '../home/swiper-list/swiper-list.service';
 })
 export class FilterComponent implements OnInit {
   rangeValues: number[] = [0, 300];
+  isShow = false;
+
+  selectedItems: string[] = [];
 
   categoriesFilterName: string = '';
-  categoriesCheckedName: string = '';
+  categoriesCheckedName: [] = [];
 
-  item: any;
-  checked: any;
-  searchText: string = '';
+  checked: [] = [];
+  searchText: {} = {};
   searchInput: string = '';
 
-  categories: any[] = [{ name: 'Max Price' }, { name: 'Min Price' }];
+  categories: any[] = [
+    { name: 'Max Price' },
+    { name: 'Min Price' },
+    { name: 'By Name' },
+  ];
 
   itemsData: Observable<any> = this.http
     .getItems()
@@ -33,8 +39,7 @@ export class FilterComponent implements OnInit {
   constructor(
     private httpCategories: SwiperListService,
     private http: ItemService,
-    private route: ActivatedRoute,
-    private router: Router
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
@@ -47,37 +52,34 @@ export class FilterComponent implements OnInit {
     });
   }
 
-  filterCategories() {
-    if (this.checked.length != 0) {
-      this.checked[0].name;
-    } else {
-      this.checked[0].name = '';
-    }
-    return this.checked[0].name;
-
-    //  if(event.checked.length===0){
-    // this.router.navigate(['/catalog'])
-    //  }else{
-    //this.item = event.checked[0].name;
-    //  this.router.navigate(['/catalog'],{queryParams:{name:this.item}});
-    // }
-    //if (this.categoriesFilterName == '') {
-    // this.checked = false;
-    //} else {
-    //  this.checked = event.checked;
-    // }
-  }
-
-  filterCategoriesButton(event: any) {
-    this.categoriesFilterName = this.filterCategories();
-
-    this.router.navigate(['/catalog'], {
-      queryParams: { name: this.categoriesFilterName },
-    });
+  filterCategoriesButton() {
+    this.filterDisplay();
+    this.categoriesCheckedName = this.checked;
+    this.http.filteringByCategories.next(this.categoriesCheckedName);
+    this.http.filteringByCost.next(this.rangeValues);
   }
 
   clearFilter() {
-    this.searchText = '';
-    this.checked = false;
+    this.filterDisplay();
+    this.searchText = {};
+    this.checked = [];
+    this.categoriesCheckedName = [];
+    this.rangeValues = [];
+    this.http.filteringByCategories.next(this.categoriesCheckedName);
+    this.http.filteringByCost.next(this.rangeValues);
+    this.http.sorting.next(this.searchText);
+  }
+
+  handle() {
+    this.http.sorting.next(this.searchText);
+  }
+
+  filterDisplay() {
+    this.isShow = !this.isShow;
+    if (this.isShow) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'scroll';
+    }
   }
 }

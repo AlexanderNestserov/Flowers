@@ -16,6 +16,12 @@ export class ItemService {
 
   public searching = new BehaviorSubject<string>('');
 
+  public filteringByCategories = new BehaviorSubject([]);
+
+  public filteringByCost = new BehaviorSubject<Array<number>>([]);
+
+  public sorting = new BehaviorSubject<Object>({});
+
   constructor(private http: HttpClient) {}
 
   getItems(): Observable<any> {
