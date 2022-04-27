@@ -11,7 +11,6 @@ import { ItemService } from './item.service';
 })
 export class ItemsComponent implements OnInit {
   cartItem: { id: number }[] = [];
-  element: any;
   inStock = false;
 
   itemsEight: any;
@@ -28,6 +27,9 @@ export class ItemsComponent implements OnInit {
     this.itemsData.subscribe((res) => {
       this.itemsEight = res.slice(0, 8);
     });
+    this.cartService.getItem().subscribe((res) => {
+      this.cartItem = res;
+    });
   }
 
   getItemImage(item: string): string {
@@ -38,9 +40,6 @@ export class ItemsComponent implements OnInit {
     item.quantity = 1;
     item.total = item.quantity * item.priceDto.price;
     this.cartService.addToCart(item);
-    this.cartService.getItem().subscribe((res) => {
-      this.cartItem = res;
-    });
   }
 
   addToProduct(item: any) {

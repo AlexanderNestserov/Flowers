@@ -11,8 +11,9 @@ import { SwiperListService } from '../home/swiper-list/swiper-list.service';
 })
 export class FilterComponent implements OnInit {
   rangeValues: number[] = [0, 300];
-  isShow = false;
-
+  isFilterShow = false;
+  isSortingShow = false;
+  selectedCategory: {} = {};
   selectedItems: string[] = [];
 
   categoriesFilterName: string = '';
@@ -23,9 +24,10 @@ export class FilterComponent implements OnInit {
   searchInput: string = '';
 
   categories: any[] = [
-    { name: 'Max Price' },
-    { name: 'Min Price' },
-    { name: 'By Name' },
+    { name: 'By cost (ascending)', key: 1 },
+    { name: 'By cost (descending)', key: 2 },
+    { name: 'By name (A - Z)', key: 3 },
+    { name: 'By name (Z - A)', key: 4 },
   ];
 
   itemsData: Observable<any> = this.http
@@ -39,10 +41,12 @@ export class FilterComponent implements OnInit {
   constructor(
     private httpCategories: SwiperListService,
     private http: ItemService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
+    this.selectedCategory = this.categories[0];
     this.categoriesFilterName = this.route.snapshot.queryParams['name'];
     this.route.queryParams.subscribe((params: Params) => {
       this.categoriesFilterName = params['name'];
@@ -53,21 +57,30 @@ export class FilterComponent implements OnInit {
   }
 
   filterCategoriesButton() {
-    this.filterDisplay();
+    this.router.navigate(['/catalog']);
+    this.isFilterShow = false;
+    document.body.style.overflow = 'scroll';
     this.categoriesCheckedName = this.checked;
     this.http.filteringByCategories.next(this.categoriesCheckedName);
     this.http.filteringByCost.next(this.rangeValues);
   }
 
+  sortingCategoriesButton() {
+    this.http.sorting.next(this.selectedCategory);
+    this.isSortingShow = false;
+    document.body.style.overflow = 'scroll';
+  }
+
   clearFilter() {
-    this.filterDisplay();
     this.searchText = {};
+    this.selectedCategory = this.categories[0];
     this.checked = [];
     this.categoriesCheckedName = [];
     this.rangeValues = [];
     this.http.filteringByCategories.next(this.categoriesCheckedName);
     this.http.filteringByCost.next(this.rangeValues);
     this.http.sorting.next(this.searchText);
+    this.http.sorting.next(this.selectedCategory);
   }
 
   handle() {
@@ -75,8 +88,17 @@ export class FilterComponent implements OnInit {
   }
 
   filterDisplay() {
-    this.isShow = !this.isShow;
-    if (this.isShow) {
+    this.isFilterShow = !this.isFilterShow;
+    if (this.isFilterShow) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'scroll';
+    }
+  }
+
+  sortingDisplay() {
+    this.isSortingShow = !this.isSortingShow;
+    if (this.isSortingShow) {
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = 'scroll';

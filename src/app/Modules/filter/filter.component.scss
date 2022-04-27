@@ -185,6 +185,9 @@
     ::ng-deep .container-catalog__filter-buttons-button1 .p-button:hover {
         background: $color_darkgreen;
     }
+    ::ng-deep .container-catalog__filter-buttons-button1 .p-button:not(:hover) {
+        background: $color_green;
+    }
     ::ng-deep .container-catalog__filter-buttons-button1 .p-button:active {
         padding-top: 2.1rem;
     }
@@ -212,6 +215,10 @@
     }
     ::ng-deep .p-button.p-button-success.p-button-outlined:focus {
         box-shadow: none;
+    }
+    ::ng-deep .p-button.p-button-success.p-button-outlined:not(:hover) {
+        background-color: $color_white;
+        border-color: $color_green;
     }
     ::ng-deep .pi {
         font-size: 1.3rem;
@@ -287,11 +294,15 @@
             margin-left: 0;
         }
         &__mobile-buttons {
-            display: inline-block;
             margin-top: $pt_2rem;
             margin-bottom: 4rem;
             display: flex;
-            justify-content: space-between;
+            justify-content: flex-start;
+        }
+        &__sorting-button {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
         }
     }
     .dropdown-button {
@@ -327,6 +338,12 @@
             height: 1px;
             margin-bottom: 4rem;
         }
+        &__sorting-line {
+            background: $color_darkgrey;
+            opacity: 0.2;
+            height: 1px;
+            margin-bottom: 1.9rem;
+        }
     }
     #closeImage {
         cursor: pointer;
@@ -354,10 +371,47 @@
         ::ng-deep #currency-max {
             width: 15.8rem;
         }
-    }
-}
-@media (max-width: 600px) {
-    :host {
+        ::ng-deep .p-radiobutton {
+            @include wihi(2rem, 2rem);
+        }
+        ::ng-deep .p-radiobutton .p-radiobutton-box.p-highlight {
+            border-color: $color_green;
+            background: $color_white;
+        }
+        ::ng-deep .p-radiobutton .p-radiobutton-box {
+            @include wihi(2rem, 2rem);
+            border: 1px solid $color_grey;
+        }
+        ::ng-deep .p-radiobutton .p-radiobutton-box .p-radiobutton-icon {
+            background-color: $color_green;
+        }
+        ::ng-deep .p-radiobutton .p-radiobutton-box.p-highlight:not(.p-disabled):hover {
+            border-color: $color_darkgreen;
+            background: $color_white;
+            color: $color_darkgreen;
+        }
+        ::ng-deep .p-radiobutton .p-radiobutton-box:not(.p-disabled):not(.p-highlight):hover {
+            border-color: $color_green;
+        }
+        ::ng-deep .p-radiobutton .p-radiobutton-box .p-radiobutton-icon:hover {
+            background-color: $color_darkgreen;
+        }
+        ::ng-deep .p-radiobutton .p-radiobutton-box:not(.p-disabled).p-focus {
+            box-shadow: none;
+        }
+        ::ng-deep .p-radiobutton .p-radiobutton-box:hover {
+            border: 1px solid $color_green;
+        }
+        ::ng-deep .p-radiobutton .p-radiobutton-box.p-highlight {
+            border-color: $color_green;
+        }
+        ::ng-deep .p-radiobutton-label {
+            margin-left: 2.4rem;
+            @include font(Montserrat, normal, 400, 1.8rem, 150%, 0em, $color_darkgrey);
+        }
+        ::ng-deep .p-radiobutton-label-active {
+            font-weight: 700;
+        }
         ::ng-deep .p-button {
             width: 33.5rem;
             display: inline;
@@ -365,10 +419,14 @@
         ::ng-deep .p-button.p-button-success.p-button-outlined {
             width: 15.8rem;
             padding: 2rem 3.6rem;
+            margin-right: 2rem;
         }
         ::ng-deep .p-button.p-button-success.p-button-outlined.container-catalog__filter-buttons-button2 {
             width: 33.5rem;
             padding: 2rem 3.6rem;
+        }
+        ::ng-deep .p-button.p-button-success.p-button-outlined.container-catalog__filter-buttons-button2:active {
+            padding-top: 2.1rem;
         }
     }
 }

@@ -1,5 +1,26 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
+
+export interface DataObjectOrders {
+  deliveryAddress: '';
+  deliveryName: '';
+  deliveryTime: Date;
+  email: '';
+  id: 0;
+  orderStatus: '';
+  paymentType: 'CARD';
+  phone: '';
+  productItems: [
+    {
+      id: 0;
+      itemId: 42;
+      priceId: 42;
+      quantity: 3;
+    }
+  ];
+  text: '';
+}
 
 @Injectable()
 export class CartOrderService {
@@ -7,8 +28,13 @@ export class CartOrderService {
   public cartItemProductList: any = [];
   public productList = new BehaviorSubject<any>([]);
   public productDetailsList = new BehaviorSubject<any>([]);
+  public postUrl: string = 'order/checkout';
+  constructor(private http: HttpClient) {}
 
-  constructor() {}
+  postData(form: DataObjectOrders): Observable<any> {
+    let body: any = {};
+    return this.http.post(this.postUrl, body);
+  }
 
   getItem() {
     return this.productList.asObservable();
@@ -24,7 +50,18 @@ export class CartOrderService {
   }
 
   addToCart(product: any) {
-    this.cartItemList.push(product);
+    let exist = false;
+    for (let i = 0; i < this.cartItemList.length; i++) {
+      if (this.cartItemList[i].id == product.id) {
+        this.cartItemList[i].quantity = this.cartItemList[i].quantity + 1;
+        this.cartItemList[i].total =
+          this.cartItemList[i].priceDto.price * this.cartItemList[i].quantity;
+        this.cartItemList[i].total =
+          Math.ceil(this.cartItemList[i].total * 100) / 100;
+        exist = true;
+      }
+    }
+    if (!exist) this.cartItemList.push(product);
     this.productList.next(this.cartItemList);
     this.getTotalPrice();
   }
@@ -37,9 +74,9 @@ export class CartOrderService {
   getTotalPrice(): number {
     let totalPrice = 0;
     this.cartItemList.map((a: any) => {
-      totalPrice += a.priceDto.price;
+      totalPrice += a.total;
     });
-    return +totalPrice;
+    return totalPrice;
   }
 
   removeCartItem(product: any) {
@@ -51,8 +88,10 @@ export class CartOrderService {
     this.productList.next(this.cartItemList);
   }
 
-  removeAllCart() {
-    this.cartItemList = [];
+  removeSelectedCart(productList: any) {
+    this.cartItemList = this.cartItemList.filter(
+      (x: any) => !productList.includes(x)
+    );
     this.productList.next(this.cartItemList);
   }
 }

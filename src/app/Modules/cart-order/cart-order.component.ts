@@ -1,5 +1,7 @@
+import { ThisReceiver } from '@angular/compiler';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import {
+  FormArray,
   FormBuilder,
   FormControl,
   FormGroup,
@@ -9,7 +11,7 @@ import { KeycloakService } from 'keycloak-angular';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { AccountService } from '../account/account.service';
-import { CartOrderService } from './cart-order.service';
+import { CartOrderService, DataObjectOrders } from './cart-order.service';
 
 @Component({
   selector: 'app-cart-order',
@@ -21,10 +23,11 @@ export class CartOrderComponent implements OnInit {
   selected: string = 'cash';
   isDisabled = false;
   isChecked = false;
-  checked = false;
+  checked: any = [];
   isLoggedIn = false;
   getUserData: Observable<any> = this.http.getUserData();
   error: any;
+  x: number = 0;
 
   public product: any = [];
 
@@ -38,8 +41,10 @@ export class CartOrderComponent implements OnInit {
     message: ['', [Validators.maxLength(255)]],
     homeAddress: ['', [Validators.maxLength(255)]],
     additionalInformation: ['', [Validators.maxLength(255)]],
-    payment: [false],
+    payment: [this.selected],
+    productItems: this.formbuilder.array(this.product),
   });
+
   constructor(
     private formbuilder: FormBuilder,
     private cartService: CartOrderService,
@@ -79,6 +84,9 @@ export class CartOrderComponent implements OnInit {
   get additionalInformation() {
     return this.formValue.get('additionalInformation') as FormControl;
   }
+  get productItems() {
+    return this.formValue.controls['productItems'] as FormArray;
+  }
 
   postDataDetails() {
     this.isDisabled = true;
@@ -96,11 +104,17 @@ export class CartOrderComponent implements OnInit {
     if (event.value == 0 || event.value == null) {
       event.value = 1;
     }
+
+    totalPrice = totalPrice - item.total;
     item.quantity = +event.value;
     item.total = item.quantity * item.priceDto.price;
     item.total = Math.ceil(item.total * 100) / 100;
-    totalPrice =
-      this.cartService.getTotalPrice() - item.priceDto.price + item.total;
+    totalPrice = totalPrice + item.total;
     this.totalPrice = Math.ceil(totalPrice * 100) / 100;
+    console.log(this.selected);
+  }
+
+  deleteSelected() {
+    this.cartService.removeSelectedCart(this.checked);
   }
 }

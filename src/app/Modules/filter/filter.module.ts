@@ -16,6 +16,7 @@ import { SearchPipe } from '../search/search.pipe';
 import { FilterCheckboxPipe } from './catalog-items/checkbox.pipe';
 import { CostPipe } from './catalog-items/cost.pipe';
 import { SortPipe } from './catalog-items/sorting.pipe';
+import { RadioButtonModule } from 'primeng/radiobutton';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { SortPipe } from './catalog-items/sorting.pipe';
     SplitButtonModule,
     DropdownModule,
     NgxPaginationModule,
+    RadioButtonModule,
   ],
   exports: [FilterComponent],
   providers: [ItemService],
