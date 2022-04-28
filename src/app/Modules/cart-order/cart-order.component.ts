@@ -20,14 +20,20 @@ import { CartOrderService, DataObjectOrders } from './cart-order.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CartOrderComponent implements OnInit {
-  selected: string = 'cash';
+  selected: string = 'CASH';
   isDisabled = false;
   isChecked = false;
   checked: any = [];
   isLoggedIn = false;
   getUserData: Observable<any> = this.http.getUserData();
+
+  getUserCart: Observable<any> = this.cartService.getShoppingCart();
   error: any;
-  x: number = 0;
+  getTemp: Observable<any> = this.http.getTempId();
+  TEMP_ID: string = '';
+  listModelObj: DataObjectOrders = new DataObjectOrders();
+
+  newArray: [] = [];
 
   public product: any = [];
 
@@ -35,14 +41,14 @@ export class CartOrderComponent implements OnInit {
 
   formValue: FormGroup = this.formbuilder.group({
     firstName: ['', [Validators.required, Validators.maxLength(255)]],
-    lastName: ['', [Validators.required, Validators.maxLength(255)]],
+    deliveryName: ['', [Validators.required, Validators.maxLength(255)]],
     email: ['', [Validators.required, Validators.email]],
     phone: ['', [Validators.required, Validators.pattern(/^[\+\][0-9]{12}$/)]],
-    message: ['', [Validators.maxLength(255)]],
-    homeAddress: ['', [Validators.maxLength(255)]],
+    text: ['', [Validators.maxLength(255)]],
+    deliveryAddress: ['', [Validators.maxLength(255)]],
     additionalInformation: ['', [Validators.maxLength(255)]],
-    payment: [this.selected],
-    productItems: this.formbuilder.array(this.product),
+    paymentType: [this.selected],
+    //productItems: [this.product],
   });
 
   constructor(
@@ -53,6 +59,14 @@ export class CartOrderComponent implements OnInit {
   ) {}
 
   async ngOnInit() {
+    this.getUserCart.subscribe((res) => {
+      if (res == null) {
+        this.cartService.createCart().subscribe((res) => {
+          console.log(res);
+        });
+      }
+    });
+
     this.cartService.getItem().subscribe((res) => {
       this.product = res;
       this.totalPrice = Math.ceil(this.cartService.getTotalPrice() * 100) / 100;
@@ -61,13 +75,17 @@ export class CartOrderComponent implements OnInit {
     this.getUserData.subscribe((error) => {
       this.error = error;
     });
+
+    this.getTemp.subscribe((res) => {
+      this.TEMP_ID = res;
+    });
   }
 
   get firstName() {
     return this.formValue.get('firstName') as FormControl;
   }
-  get lastName() {
-    return this.formValue.get('lastName') as FormControl;
+  get deliveryName() {
+    return this.formValue.get('deliveryName') as FormControl;
   }
   get email() {
     return this.formValue.get('email') as FormControl;
@@ -75,21 +93,46 @@ export class CartOrderComponent implements OnInit {
   get phone() {
     return this.formValue.get('phone') as FormControl;
   }
-  get message() {
-    return this.formValue.get('message') as FormControl;
+  get text() {
+    return this.formValue.get('text') as FormControl;
   }
-  get homeAddress() {
-    return this.formValue.get('homeAddress') as FormControl;
+  get deliveryAddress() {
+    return this.formValue.get('deliveryAddress') as FormControl;
   }
   get additionalInformation() {
     return this.formValue.get('additionalInformation') as FormControl;
   }
-  get productItems() {
-    return this.formValue.controls['productItems'] as FormArray;
+  get paymentType() {
+    return this.formValue.get('paymentType') as FormControl;
   }
 
   postDataDetails() {
-    this.isDisabled = true;
+    this.listModelObj.deliveryName = this.formValue.value.deliveryName;
+    this.listModelObj.deliveryAddress = this.formValue.value.deliveryAddress;
+    this.listModelObj.deliveryTime = new Date();
+    this.listModelObj.email = this.formValue.value.email;
+    this.listModelObj.id = 0;
+    this.listModelObj.orderStatus = '';
+    this.listModelObj.paymentType = this.formValue.value.payment;
+    this.listModelObj.phone = this.formValue.value.phone;
+    this.listModelObj.productItems = [
+      {
+        id: 0,
+        itemId: 42,
+        priceId: 42,
+        quantity: 3,
+      },
+    ];
+    this.listModelObj.text = this.formValue.value.text;
+
+    this.cartService.postData(this.listModelObj).subscribe({
+      next: (res) => {
+        console.log(res);
+      },
+      error: (error) => {
+        console.log(error);
+      },
+    });
   }
 
   getItemImage(item: string): string {

@@ -6,6 +6,7 @@ import { AccountUser, ChangePassword } from './account.model';
 @Injectable()
 export class AccountService {
   public getUserUrl: string = 'users/user';
+  public getTempIdUrl: string = 'users/tempid';
   patchUserUrl: string = 'users';
   postChangepassword: string = 'users/change_password';
   constructor(private http: HttpClient) {}
@@ -22,5 +23,11 @@ export class AccountService {
   postChangePassword(changePassword: ChangePassword): Observable<any> {
     let body: ChangePassword = { ...changePassword };
     return this.http.post(this.postChangepassword, body);
+  }
+
+  getTempId(): Observable<any> {
+    return this.http.get(this.getTempIdUrl, {
+      responseType: 'text',
+    });
   }
 }

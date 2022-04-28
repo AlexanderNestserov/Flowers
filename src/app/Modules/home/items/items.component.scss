@@ -199,4 +199,19 @@
             }
         }
     }
+    .container__incart {
+        @include font(Montserrat, normal, 600, 1.5rem, 110%, 0.05em, $color_green);
+        background: url("../../../../assets/img-home/In\ cart.png") 8rem 2.2rem no-repeat;
+        text-transform: uppercase;
+        position: static;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        @include wihi(29.5rem, 5.7rem);
+        background-color: $color_white;
+        border-radius: 10px;
+        border: 1px solid $color_green;
+        margin: 0 auto;
+    }
 }

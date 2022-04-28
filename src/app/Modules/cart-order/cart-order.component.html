@@ -111,20 +111,20 @@
         <div
           class="container__lastname"
           errorDirective
-          [formControlItem]="lastName"
+          [formControlItem]="deliveryName"
         >
           <input
             type="text"
             id="inputLastName"
             required
-            formControlName="lastName"
+            formControlName="deliveryName"
             [(ngModel)]="user.lastName"
           />
           <label class="container__input-lastname" for="inputLastName"
             >Last name<span class="container__star">*</span>
           </label>
           <app-cart-order-error-form
-            [formControlItem]="lastName"
+            [formControlItem]="deliveryName"
           ></app-cart-order-error-form>
         </div>
         <div class="container__email" errorDirective [formControlItem]="email">
@@ -165,7 +165,7 @@
           <textarea
             type="text"
             id="inputMessage"
-            formControlName="message"
+            formControlName="text"
             placeholder=" "
           ></textarea>
           <label class="container__input-message" for="inputMessage"
@@ -177,7 +177,7 @@
           <input
             type="text"
             id="inputAddress"
-            formControlName="homeAddress"
+            formControlName="deliveryAddress"
             placeholder=" "
             [(ngModel)]="user.homeAddress"
           />
@@ -206,9 +206,9 @@
           </div>
           <div class="field-radiobutton">
             <p-radioButton
-              formControlName="payment"
-              name="payment"
-              value="cash"
+              formControlName="paymentType"
+              name="paymentType"
+              value="CASH"
               [(ngModel)]="selected"
               inputId="cash"
             ></p-radioButton>
@@ -216,9 +216,9 @@
           </div>
           <div class="field-radiobutton">
             <p-radioButton
-              formControlName="payment"
-              name="payment"
-              value="card"
+              formControlName="paymentType"
+              name="paymentType"
+              value="CARD"
               [(ngModel)]="selected"
               inputId="card"
             ></p-radioButton>

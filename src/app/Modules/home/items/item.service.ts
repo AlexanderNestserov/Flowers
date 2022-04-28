@@ -16,7 +16,7 @@ export class ItemService {
 
   public searching = new BehaviorSubject<string>('');
 
-  public filteringByCategories = new BehaviorSubject([]);
+  public filteringByCategories = new BehaviorSubject<Array<string>>([]);
 
   public filteringByCost = new BehaviorSubject<Array<number>>([]);
 

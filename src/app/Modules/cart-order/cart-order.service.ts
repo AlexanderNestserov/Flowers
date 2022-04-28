@@ -2,24 +2,39 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
-export interface DataObjectOrders {
-  deliveryAddress: '';
-  deliveryName: '';
-  deliveryTime: Date;
-  email: '';
-  id: 0;
-  orderStatus: '';
-  paymentType: 'CARD';
-  phone: '';
-  productItems: [
+export class DataObjectOrders {
+  deliveryAddress: string | undefined;
+  deliveryName: '' | undefined;
+  deliveryTime: Date | undefined;
+  email: '' | undefined;
+  id: 0 | undefined;
+  orderStatus: '' | undefined;
+  paymentType: 'CARD' | undefined;
+  phone: '' | undefined;
+  productItems:
+    | [
+        {
+          id: number;
+          itemId: number;
+          priceId: number;
+          quantity: number;
+        }
+      ]
+    | undefined;
+  text: '' | undefined;
+}
+
+export class CreateCart {
+  id = 0;
+  orderItems = [
     {
-      id: 0;
-      itemId: 42;
-      priceId: 42;
-      quantity: 3;
-    }
+      id: 0,
+      itemId: 42,
+      priceId: 42,
+      quantity: 3,
+    },
   ];
-  text: '';
+  text = '';
 }
 
 @Injectable()
@@ -28,12 +43,51 @@ export class CartOrderService {
   public cartItemProductList: any = [];
   public productList = new BehaviorSubject<any>([]);
   public productDetailsList = new BehaviorSubject<any>([]);
+
   public postUrl: string = 'order/checkout';
+  public createCartPostUrl: string = 'cart';
+
   constructor(private http: HttpClient) {}
 
-  postData(form: DataObjectOrders): Observable<any> {
-    let body: any = {};
-    return this.http.post(this.postUrl, body);
+  postData(formValue: DataObjectOrders): Observable<any> {
+    let body: DataObjectOrders = {
+      deliveryAddress: formValue.deliveryAddress,
+      deliveryName: formValue.deliveryName,
+      deliveryTime: new Date(),
+      email: formValue.email,
+      paymentType: formValue.paymentType,
+      phone: formValue.phone,
+      productItems: [
+        {
+          id: 0,
+          itemId: 1050,
+          priceId: 1071,
+          quantity: 1,
+        },
+      ],
+      text: formValue.text,
+      id: 0,
+      orderStatus: '',
+    };
+
+    return this.http.post(this.postUrl, body, {
+      responseType: 'text',
+    });
+  }
+
+  getShoppingCart(): Observable<any> {
+    return this.http.get(this.createCartPostUrl, {
+      responseType: 'text',
+    });
+  }
+
+  createCart(): Observable<any> {
+    let body: CreateCart = {
+      id: 0,
+      orderItems: [],
+      text: '',
+    };
+    return this.http.post(this.createCartPostUrl, body);
   }
 
   getItem() {

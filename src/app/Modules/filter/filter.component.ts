@@ -1,6 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params, Router } from '@angular/router';
-import { map, Observable } from 'rxjs';
+import {
+  ActivatedRoute,
+  NavigationEnd,
+  Params,
+  Router,
+  RouterEvent,
+} from '@angular/router';
+import { filter, map, Observable } from 'rxjs';
 import { ItemService } from '../home/items/item.service';
 import { SwiperListService } from '../home/swiper-list/swiper-list.service';
 
@@ -17,12 +23,11 @@ export class FilterComponent implements OnInit {
   selectedItems: string[] = [];
 
   categoriesFilterName: string = '';
-  categoriesCheckedName: [] = [];
+  categoriesCheckedName: string[] = [];
 
-  checked: [] = [];
+  checked: string[] = [];
   searchText: {} = {};
   searchInput: string = '';
-
   categories: any[] = [
     { name: 'By cost (ascending)', key: 1 },
     { name: 'By cost (descending)', key: 2 },
