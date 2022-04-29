@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, map, Observable } from 'rxjs';
 
 export class DataObjectOrders {
   deliveryAddress: string | undefined;
@@ -37,6 +37,13 @@ export class CreateCart {
   text = '';
 }
 
+export class AddItem {
+  id = 0;
+  itemId = 42;
+  priceId = 42;
+  quantity = 1;
+}
+
 @Injectable()
 export class CartOrderService {
   public cartItemList: any = [];
@@ -44,8 +51,11 @@ export class CartOrderService {
   public productList = new BehaviorSubject<any>([]);
   public productDetailsList = new BehaviorSubject<any>([]);
 
+  public cartLength = new BehaviorSubject<number>(0);
+
   public postUrl: string = 'order/checkout';
   public createCartPostUrl: string = 'cart';
+  public addItemToCartUrl: string = 'cart/item';
 
   constructor(private http: HttpClient) {}
 
@@ -76,9 +86,7 @@ export class CartOrderService {
   }
 
   getShoppingCart(): Observable<any> {
-    return this.http.get(this.createCartPostUrl, {
-      responseType: 'text',
-    });
+    return this.http.get<any>(this.createCartPostUrl);
   }
 
   createCart(): Observable<any> {
@@ -88,6 +96,31 @@ export class CartOrderService {
       text: '',
     };
     return this.http.post(this.createCartPostUrl, body);
+  }
+
+  addItemToCart(product: any): Observable<any> {
+    let body: AddItem = {
+      id: 0,
+      itemId: product.id,
+      priceId: product.priceDto.id,
+      quantity: 1,
+    };
+
+    return this.http.post(this.addItemToCartUrl, body);
+  }
+
+  updateCart(product: AddItem): Observable<any> {
+    let body: AddItem = {
+      id: product.id,
+      itemId: product.itemId,
+      priceId: product.priceId,
+      quantity: product.quantity,
+    };
+    return this.http.put(this.createCartPostUrl, body);
+  }
+
+  deleteItem(id: number): Observable<any> {
+    return this.http.delete(this.addItemToCartUrl + `/${id}`);
   }
 
   getItem() {

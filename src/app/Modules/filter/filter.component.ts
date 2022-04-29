@@ -62,7 +62,12 @@ export class FilterComponent implements OnInit {
   }
 
   filterCategoriesButton() {
-    this.router.navigate(['/catalog']);
+    if (this.searchInput) {
+      this.router.navigate(['/search']);
+    } else {
+      this.router.navigate(['/catalog']);
+    }
+
     this.isFilterShow = false;
     document.body.style.overflow = 'scroll';
     this.categoriesCheckedName = this.checked;

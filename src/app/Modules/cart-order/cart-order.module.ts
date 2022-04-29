@@ -12,6 +12,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MapModule } from '../map/map.module';
 import { CartOrderErrorFormModule } from './cart-order-error-form/cart-order-error-form.module';
 import { AccountService } from '../account/account.service';
+import { ItemService } from '../home/items/item.service';
 
 @NgModule({
   declarations: [CartOrderComponent],
@@ -28,6 +29,6 @@ import { AccountService } from '../account/account.service';
     MapModule,
     CartOrderErrorFormModule,
   ],
-  providers: [AccountService],
+  providers: [AccountService, ItemService],
 })
 export class CartOrderModule {}

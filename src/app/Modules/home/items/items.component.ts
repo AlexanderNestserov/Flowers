@@ -10,7 +10,7 @@ import { ItemService } from './item.service';
   styleUrls: ['./items.component.scss'],
 })
 export class ItemsComponent implements OnInit {
-  cartItem: { id: number }[] = [];
+  cartItem: {}[] = [];
   inStock = false;
 
   itemsEight: any;
@@ -27,8 +27,8 @@ export class ItemsComponent implements OnInit {
     this.itemsData.subscribe((res) => {
       this.itemsEight = res.slice(0, 8);
     });
-    this.cartService.getItem().subscribe((res) => {
-      this.cartItem = res;
+    this.cartService.getShoppingCart().subscribe((res) => {
+      this.cartItem = res.orderItems;
     });
   }
 
@@ -38,8 +38,14 @@ export class ItemsComponent implements OnInit {
 
   addToCart(item: any) {
     item.quantity = 1;
-    item.total = item.quantity * item.priceDto.price;
-    this.cartService.addToCart(item);
+    this.cartService.addItemToCart(item).subscribe({
+      next: (res) => {
+        console.log(res);
+
+        this.cartService.productList.next(res.orderItems);
+      },
+      error: () => {},
+    });
   }
 
   addToProduct(item: any) {

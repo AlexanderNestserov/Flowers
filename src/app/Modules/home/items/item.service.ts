@@ -27,4 +27,8 @@ export class ItemService {
   getItems(): Observable<any> {
     return this.http.get<any>(this.categoriesUrl);
   }
+
+  getItem(id: any): Observable<any> {
+    return this.http.get<any>(this.categoriesUrl + `/${id}`);
+  }
 }

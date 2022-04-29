@@ -8,9 +8,11 @@ import {
   Validators,
 } from '@angular/forms';
 import { KeycloakService } from 'keycloak-angular';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { AccountService } from '../account/account.service';
+import { ItemService } from '../home/items/item.service';
+import { ItemsComponent } from '../home/items/items.component';
 import { CartOrderService, DataObjectOrders } from './cart-order.service';
 
 @Component({
@@ -25,6 +27,11 @@ export class CartOrderComponent implements OnInit {
   isChecked = false;
   checked: any = [];
   isLoggedIn = false;
+
+  itemsData: Observable<any> = this.itemService
+    .getItems()
+    .pipe(map((res: any) => res.content));
+
   getUserData: Observable<any> = this.http.getUserData();
 
   getUserCart: Observable<any> = this.cartService.getShoppingCart();
@@ -36,6 +43,8 @@ export class CartOrderComponent implements OnInit {
   newArray: [] = [];
 
   public product: any = [];
+
+  public cartItem: any = [];
 
   public totalPrice: number = 0;
 
@@ -55,22 +64,35 @@ export class CartOrderComponent implements OnInit {
     private formbuilder: FormBuilder,
     private cartService: CartOrderService,
     public readonly keycloak: KeycloakService,
-    private http: AccountService
+    private http: AccountService,
+    private itemService: ItemService
   ) {}
 
   async ngOnInit() {
     this.getUserCart.subscribe((res) => {
       if (res == null) {
-        this.cartService.createCart().subscribe((res) => {
-          console.log(res);
-        });
+        this.cartService.createCart();
       }
+
+      this.cartItem = res.orderItems;
+
+      this.cartItem.map((a: any) => {
+        this.itemService.getItem(a.itemId).subscribe((res) => {
+          res.quantity = 1;
+          res.deleteId = a.id;
+          res.total = res.priceDto.price * res.quantity;
+          this.totalPrice += res.total;
+          this.totalPrice = Math.ceil(this.totalPrice * 100) / 100;
+          this.product.push(res);
+          console.log(this.product);
+        });
+      });
     });
 
-    this.cartService.getItem().subscribe((res) => {
-      this.product = res;
-      this.totalPrice = Math.ceil(this.cartService.getTotalPrice() * 100) / 100;
-    });
+    // this.cartService.getItem().subscribe((res) => {
+    //  this.product = res;
+    //  this.totalPrice = Math.ceil(this.cartService.getTotalPrice() * 100) / 100;
+    // });
     this.isLoggedIn = await this.keycloak.isLoggedIn();
     this.getUserData.subscribe((error) => {
       this.error = error;
@@ -140,7 +162,22 @@ export class CartOrderComponent implements OnInit {
   }
 
   deleteItem(item: any) {
-    this.cartService.removeCartItem(item);
+    this.cartService.deleteItem(item.deleteId).subscribe({
+      next: (res) => {
+        this.cartItem.map((a: any, i: any) => {
+          if (item.deleteId === a.id) {
+            this.cartItem.splice(i, 1);
+            this.product.splice(i, 1);
+            this.cartService.productList.next(res.orderItems);
+          }
+
+          console.log(res.orderItems);
+        });
+      },
+      error: (error) => {
+        console.log(error);
+      },
+    });
   }
 
   key(event: any, item: any, totalPrice: number) {
@@ -154,7 +191,6 @@ export class CartOrderComponent implements OnInit {
     item.total = Math.ceil(item.total * 100) / 100;
     totalPrice = totalPrice + item.total;
     this.totalPrice = Math.ceil(totalPrice * 100) / 100;
-    console.log(this.selected);
   }
 
   deleteSelected() {

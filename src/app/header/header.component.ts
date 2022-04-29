@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { filter, fromEvent, Subscription } from 'rxjs';
+import { filter, fromEvent, map, Observable, Subscription } from 'rxjs';
 import { NavigationEnd, Router, RouterEvent } from '@angular/router';
 import { KeycloakService } from 'keycloak-angular';
 import { environment } from 'src/environments/environment';
@@ -15,6 +15,8 @@ import { CartOrderService } from '../Modules/cart-order/cart-order.service';
   },
 })
 export class HeaderComponent implements OnInit {
+  quantityItem = this.cartService.productList;
+
   obs!: Subscription;
   isMenu = true;
   isShow = true;
@@ -25,8 +27,10 @@ export class HeaderComponent implements OnInit {
   urlCartOrder = false;
   urlAccount = false;
   urlMyorders = false;
-  public isLoggedIn = false;
-  public quantityItem: number = 0;
+  public isLoggedIn: any;
+
+  quantityItems: Observable<any> = this.cartService.getShoppingCart();
+
   keycloakLogoutOption = environment.keycloakLogoutOption;
 
   constructor(
@@ -70,6 +74,29 @@ export class HeaderComponent implements OnInit {
       });
   }
 
+  ngOnInit(): void {
+    this.isLoggedIn = this.keycloak.isLoggedIn();
+
+    let onScroll = () => {
+      this.obs = fromEvent(window, 'scroll').subscribe(callbackFunction);
+      function callbackFunction() {
+        let y = window.pageYOffset;
+        if (y > 0) {
+          document.querySelector('.header')?.classList.add('scroll');
+        } else {
+          document.querySelector('.header')?.classList.remove('scroll');
+        }
+      }
+    };
+    onScroll();
+
+    this.quantityItem.subscribe((res) => {
+      console.log(res.length);
+
+      this.quantityItem = res.length;
+    });
+  }
+
   toggleDisplay() {
     this.isShow = !this.isShow;
     this.isShown = !this.isShown;
@@ -93,26 +120,6 @@ export class HeaderComponent implements OnInit {
 
   onClick() {
     this.isMenu = true;
-  }
-
-  public async ngOnInit() {
-    this.isLoggedIn = await this.keycloak.isLoggedIn();
-
-    let onScroll = () => {
-      this.obs = fromEvent(window, 'scroll').subscribe(callbackFunction);
-      function callbackFunction() {
-        let y = window.pageYOffset;
-        if (y > 0) {
-          document.querySelector('.header')?.classList.add('scroll');
-        } else {
-          document.querySelector('.header')?.classList.remove('scroll');
-        }
-      }
-    };
-    onScroll();
-    this.cartService.getItem().subscribe((res) => {
-      this.quantityItem = res.length;
-    });
   }
 
   public logout() {
