@@ -163,6 +163,22 @@
         padding-top: 0.2rem;
     }
 }
+.incart {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    @include wihi(35rem, 5.7rem);
+    border-radius: 1rem;
+    padding-left: 4.4rem;
+    background-color: $color_white;
+    border: 1px solid $color_green;
+    @include font(Montserrat, normal, 600, 1.5rem, 110%, 0.05em, $color_green);
+    text-transform: uppercase;
+    background: url("../../../../assets/img-home/In\ cart.png") 10rem 2.1rem no-repeat;
+    margin-bottom: 2rem;
+    padding-left: 2.6rem;
+}
 .container__catalogs {
     @include font(Montserrat, normal, normal, 1.4rem, 150%, 0em, $color_lightdarkgrey);
 }

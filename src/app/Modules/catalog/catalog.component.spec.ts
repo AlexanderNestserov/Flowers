@@ -11,10 +11,9 @@ describe('CatalogComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [CatalogComponent],
-      imports: [RouterTestingModule.withRoutes([])],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA]
-    })
-      .compileComponents();
+      imports: [RouterTestingModule.withRoutes([]), RouterTestingModule],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
+    }).compileComponents();
   });
 
   beforeEach(() => {

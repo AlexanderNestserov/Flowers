@@ -17,7 +17,6 @@ import { ItemService } from '../../home/items/item.service';
     CatalogModule,
     FormsModule,
     ReactiveFormsModule,
-    BannersModule,
   ],
   providers: [ItemService],
 })

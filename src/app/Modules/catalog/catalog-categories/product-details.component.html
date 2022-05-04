@@ -72,7 +72,12 @@
             </div>
           </a>
         </div>
-        <button class="button" (click)="addToCart(item)">
+        <div class="incart" *ngIf="id.includes(item.id)">In the cart</div>
+        <button
+          *ngIf="!id.includes(item.id)"
+          class="button"
+          (click)="addToCart(item)"
+        >
           <img
             id="imageBaggy"
             src="../../../../assets/img-home/button-bag.png"

@@ -4,6 +4,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ItemsComponent } from './items.component';
 
 import { RouterTestingModule } from '@angular/router/testing';
+import { ItemService } from './item.service';
 
 describe('ItemsComponent', () => {
   let component: ItemsComponent;
@@ -13,9 +14,9 @@ describe('ItemsComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ItemsComponent],
       imports: [RouterTestingModule.withRoutes([])],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA]
-    })
-      .compileComponents();
+      providers: [ItemService],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
+    }).compileComponents();
   });
 
   beforeEach(() => {

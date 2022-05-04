@@ -1,6 +1,6 @@
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { filter, map, Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { CartOrderService } from '../../cart-order/cart-order.service';
 import { ItemService } from '../../home/items/item.service';
@@ -22,7 +22,7 @@ export class CatalogItemsComponent implements OnInit {
   categoriesFilterName: any;
   categoriesCheckedName: any;
   itemsLength: any[] = [];
-
+  id: number[] = [];
   itemsData: Observable<any> = this.http
     .getItems()
     .pipe(map((res: any) => res.content));
@@ -32,7 +32,8 @@ export class CatalogItemsComponent implements OnInit {
   constructor(
     private http: ItemService,
     private route: ActivatedRoute,
-    private cartService: CartOrderService
+    private cartService: CartOrderService,
+    private changeDetector: ChangeDetectorRef
   ) {}
   ngOnInit(): void {
     this.onResize();
@@ -55,6 +56,12 @@ export class CatalogItemsComponent implements OnInit {
     this.http.sorting.subscribe((value: any) => {
       this.searchText = value;
     });
+    this.cartService.getShoppingCart().subscribe((res) => {
+      res.orderItems.map((a: any) => {
+        this.id.push(a.itemId);
+        this.changeDetector.detectChanges();
+      });
+    });
   }
   onResize() {
     if (window.innerWidth < 1145) {
@@ -68,14 +75,18 @@ export class CatalogItemsComponent implements OnInit {
     return `${environment.serverUrl}images/${item.replace('.jpg', '')}`;
   }
 
-  filter(categories: string) {}
-
   addToCart(item: any) {
     item.quantity = 1;
-    item.total = item.quantity * item.priceDto.price;
-    this.cartService.addToCart(item);
-    this.cartService.getItem().subscribe((res) => {
-      this.cartItem = res;
+    this.cartService.addItemToCart(item).subscribe({
+      next: (res) => {
+        this.cartItem = res.orderItems;
+        this.cartService.productList.next(this.cartItem);
+        this.cartItem.map((a: any) => {
+          this.id.push(a.itemId);
+          this.changeDetector.detectChanges();
+        });
+      },
+      error: () => {},
     });
   }
   addToProducts(item: any) {

@@ -2,14 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
-export interface Obj {
-  description: string;
-  id: number;
-  name: string;
-  photo: string;
-  thumbnail: string;
-}
-
 @Injectable()
 export class ItemService {
   public categoriesUrl: string = 'items';

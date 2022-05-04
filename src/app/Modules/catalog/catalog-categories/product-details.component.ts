@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  OnInit,
+} from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { CartOrderService } from '../../cart-order/cart-order.service';
@@ -14,10 +19,12 @@ export class ProductDetailsComponent implements OnInit {
   product: any = [];
   categoryName: string = '';
   isActive: boolean = false;
+  id: number[] = [];
 
   constructor(
     private route: ActivatedRoute,
-    private cartService: CartOrderService
+    private cartService: CartOrderService,
+    private changeDetector: ChangeDetectorRef
   ) {}
   ngOnInit() {
     this.categoryName = this.route.snapshot.queryParams['categoryName'];
@@ -29,6 +36,12 @@ export class ProductDetailsComponent implements OnInit {
     this.cartService.getProductDetails().subscribe((res) => {
       this.product = res;
       this.product = [this.product[this.product.length - 1]];
+    });
+    this.cartService.getShoppingCart().subscribe((res) => {
+      res.orderItems.map((a: any) => {
+        this.id.push(a.itemId);
+        this.changeDetector.detectChanges();
+      });
     });
   }
 
@@ -45,8 +58,16 @@ export class ProductDetailsComponent implements OnInit {
 
   addToCart(item: any) {
     item.quantity = 1;
-    item.total = item.quantity * item.priceDto.price;
-    this.cartService.addToCart(item);
-    this.cartItem = item;
+    this.cartService.addItemToCart(item).subscribe({
+      next: (res) => {
+        this.cartItem = res.orderItems;
+        this.cartService.productList.next(this.cartItem);
+        this.cartItem.map((a: any) => {
+          this.id.push(a.itemId);
+          this.changeDetector.detectChanges();
+        });
+      },
+      error: () => {},
+    });
   }
 }

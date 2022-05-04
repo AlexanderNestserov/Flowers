@@ -1,4 +1,9 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+} from '@angular/core';
 import { filter, fromEvent, map, Observable, Subscription } from 'rxjs';
 import { NavigationEnd, Router, RouterEvent } from '@angular/router';
 import { KeycloakService } from 'keycloak-angular';
@@ -15,8 +20,6 @@ import { CartOrderService } from '../Modules/cart-order/cart-order.service';
   },
 })
 export class HeaderComponent implements OnInit {
-  quantityItem = this.cartService.productList;
-
   obs!: Subscription;
   isMenu = true;
   isShow = true;
@@ -29,14 +32,15 @@ export class HeaderComponent implements OnInit {
   urlMyorders = false;
   public isLoggedIn: any;
 
-  quantityItems: Observable<any> = this.cartService.getShoppingCart();
+  quantityItems: any;
 
   keycloakLogoutOption = environment.keycloakLogoutOption;
 
   constructor(
     public router: Router,
     public readonly keycloak: KeycloakService,
-    private cartService: CartOrderService
+    private cartService: CartOrderService,
+    private changeDetector: ChangeDetectorRef
   ) {
     this.router.events
       .pipe(filter((e: any) => e instanceof NavigationEnd))
@@ -74,8 +78,8 @@ export class HeaderComponent implements OnInit {
       });
   }
 
-  ngOnInit(): void {
-    this.isLoggedIn = this.keycloak.isLoggedIn();
+  async ngOnInit() {
+    this.isLoggedIn = await this.keycloak.isLoggedIn();
 
     let onScroll = () => {
       this.obs = fromEvent(window, 'scroll').subscribe(callbackFunction);
@@ -90,10 +94,12 @@ export class HeaderComponent implements OnInit {
     };
     onScroll();
 
-    this.quantityItem.subscribe((res) => {
-      console.log(res.length);
-
-      this.quantityItem = res.length;
+    this.cartService.getShoppingCart().subscribe((res) => {
+      this.quantityItems = res.orderItems.length;
+    });
+    this.cartService.productList.subscribe((res) => {
+      this.quantityItems = res.length;
+      this.changeDetector.detectChanges();
     });
   }
 

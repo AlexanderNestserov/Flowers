@@ -1,4 +1,7 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ItemService } from '../../home/items/item.service';
 
 import { CatalogItemsComponent } from './catalog-items.component';
 
@@ -8,9 +11,11 @@ describe('CatalogItemsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CatalogItemsComponent ]
-    })
-    .compileComponents();
+      declarations: [CatalogItemsComponent],
+      imports: [HttpClientTestingModule],
+      providers: [ItemService],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
+    }).compileComponents();
   });
 
   beforeEach(() => {

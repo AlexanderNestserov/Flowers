@@ -1,14 +1,5 @@
 import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
-import {
-  ActivatedRoute,
-  NavigationEnd,
-  Params,
-  Router,
-  RouterEvent,
-} from '@angular/router';
-import { filter, map, Observable, Subscription } from 'rxjs';
-import { ItemService } from '../home/items/item.service';
-import { SwiperListService } from '../home/swiper-list/swiper-list.service';
+import { ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'app-catalog',
@@ -17,8 +8,6 @@ import { SwiperListService } from '../home/swiper-list/swiper-list.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CatalogComponent implements OnInit {
-  obs!: Subscription;
-
   categoriesFilterName: string = '';
   categoriesFilterId: number = 0;
 
@@ -31,11 +20,5 @@ export class CatalogComponent implements OnInit {
       this.categoriesFilterName = params['name'];
       this.categoriesFilterId = params['id'];
     });
-  }
-
-  ngOnDestroy() {
-    if (this.obs) {
-      this.obs.unsubscribe();
-    }
   }
 }

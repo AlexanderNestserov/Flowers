@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { CartOrderService } from '../../cart-order/cart-order.service';
@@ -12,6 +12,7 @@ import { ItemService } from './item.service';
 export class ItemsComponent implements OnInit {
   cartItem: {}[] = [];
   inStock = false;
+  id: number[] = [];
 
   itemsEight: any;
   itemsData: Observable<any> = this.http
@@ -20,7 +21,8 @@ export class ItemsComponent implements OnInit {
 
   constructor(
     private http: ItemService,
-    private cartService: CartOrderService
+    private cartService: CartOrderService,
+    private changeDetector: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
@@ -28,7 +30,10 @@ export class ItemsComponent implements OnInit {
       this.itemsEight = res.slice(0, 8);
     });
     this.cartService.getShoppingCart().subscribe((res) => {
-      this.cartItem = res.orderItems;
+      res.orderItems.map((a: any) => {
+        this.id.push(a.itemId);
+        this.changeDetector.detectChanges();
+      });
     });
   }
 
@@ -40,9 +45,12 @@ export class ItemsComponent implements OnInit {
     item.quantity = 1;
     this.cartService.addItemToCart(item).subscribe({
       next: (res) => {
-        console.log(res);
-
-        this.cartService.productList.next(res.orderItems);
+        this.cartItem = res.orderItems;
+        this.cartService.productList.next(this.cartItem);
+        this.cartItem.map((a: any) => {
+          this.id.push(a.itemId);
+          this.changeDetector.detectChanges();
+        });
       },
       error: () => {},
     });

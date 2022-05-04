@@ -1,3 +1,4 @@
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CartOrderErrorFormComponent } from './cart-order-error-form.component';
@@ -8,9 +9,9 @@ describe('CartOrderErrorFormComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CartOrderErrorFormComponent ]
-    })
-    .compileComponents();
+      declarations: [CartOrderErrorFormComponent],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
+    }).compileComponents();
   });
 
   beforeEach(() => {

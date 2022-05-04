@@ -1,3 +1,4 @@
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MyordersComponent } from './myorders.component';
@@ -9,6 +10,7 @@ describe('MyordersComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [MyordersComponent],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
   });
 
