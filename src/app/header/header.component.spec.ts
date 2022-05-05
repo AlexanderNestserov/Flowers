@@ -14,6 +14,7 @@ import { HeaderComponent } from './header.component';
 import { RegistrationComponent } from '../Modules/registration/registration.component';
 import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
 import { CartOrderService } from '../Modules/cart-order/cart-order.service';
+import { routes } from '../app.component';
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
@@ -24,7 +25,7 @@ describe('HeaderComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [HeaderComponent, RegistrationComponent],
       imports: [
-        RouterTestingModule,
+        RouterTestingModule.withRoutes(routes),
         RouterModule,
         KeycloakAngularModule,
         HttpClientTestingModule,
@@ -63,6 +64,31 @@ describe('HeaderComponent', () => {
     it('should be created routes registration', fakeAsync(() => {
       router.navigate(['registration']).then(() => {
         expect(location.path()).toBe('/registration');
+      });
+    }));
+    it('should be created routes myorders', fakeAsync(() => {
+      router.navigate(['myorders']).then(() => {
+        expect(location.path()).toBe('/myorders');
+      });
+    }));
+    it('should be created routes catalog', fakeAsync(() => {
+      router.navigate(['catalog']).then(() => {
+        expect(location.path()).toBe('/catalog');
+      });
+    }));
+    it('should be created routes account', fakeAsync(() => {
+      router.navigate(['account']).then(() => {
+        expect(location.path()).toBe('/account');
+      });
+    }));
+    it('should be created routes news', fakeAsync(() => {
+      router.navigate(['news']).then(() => {
+        expect(location.path()).toBe('/news');
+      });
+    }));
+    it('should be created routes cartorder', fakeAsync(() => {
+      router.navigate(['cartorder']).then(() => {
+        expect(location.path()).toBe('/cartorder');
       });
     }));
   });

@@ -18,7 +18,7 @@ import { PopupErrorSuccessModule } from '../popup-success-error/popupErrorSucces
     AccountRoutingModule,
     CartOrderErrorFormModule,
     FormsModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
     SpinnerModule,
     ErrorDirectiveModule,
     MapModule,

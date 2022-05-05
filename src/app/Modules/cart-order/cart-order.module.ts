@@ -24,7 +24,7 @@ import { ItemService } from '../home/items/item.service';
     SpinnerModule,
     ErrorDirectiveModule,
     FormsModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
     RadioButtonModule,
     MapModule,
     CartOrderErrorFormModule,

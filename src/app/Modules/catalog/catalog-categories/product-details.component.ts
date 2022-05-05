@@ -4,9 +4,11 @@ import {
   Component,
   OnInit,
 } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+import { catchError, map, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { CartOrderService } from '../../cart-order/cart-order.service';
+import { ProductType, PRODUCT_TYPE } from './product.config';
 
 @Component({
   selector: 'app-product-details',
@@ -17,6 +19,8 @@ import { CartOrderService } from '../../cart-order/cart-order.service';
 export class ProductDetailsComponent implements OnInit {
   cartItem: any;
   product: any = [];
+  productType: ProductType = PRODUCT_TYPE;
+
   categoryName: string = '';
   isActive: boolean = false;
   id: number[] = [];
@@ -28,14 +32,20 @@ export class ProductDetailsComponent implements OnInit {
   ) {}
   ngOnInit() {
     this.categoryName = this.route.snapshot.queryParams['categoryName'];
-
     this.route.queryParams.subscribe((params: Params) => {
       this.categoryName = params['categoryName'];
     });
 
-    this.cartService.getProductDetails().subscribe((res) => {
-      this.product = res;
-      this.product = [this.product[this.product.length - 1]];
+    this.cartService.getProductDetails().subscribe({
+      next: (res) => {
+        if (res.length == 0) {
+          this.product.push(this.productType);
+        } else {
+          this.product = res;
+          this.product = [this.product[this.product.length - 1]];
+        }
+      },
+      error: () => {},
     });
     this.cartService.getShoppingCart().subscribe((res) => {
       res.orderItems.map((a: any) => {

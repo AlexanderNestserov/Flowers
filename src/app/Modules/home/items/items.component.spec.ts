@@ -5,6 +5,8 @@ import { ItemsComponent } from './items.component';
 
 import { RouterTestingModule } from '@angular/router/testing';
 import { ItemService } from './item.service';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { CartOrderService } from '../../cart-order/cart-order.service';
 
 describe('ItemsComponent', () => {
   let component: ItemsComponent;
@@ -13,8 +15,8 @@ describe('ItemsComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ItemsComponent],
-      imports: [RouterTestingModule.withRoutes([])],
-      providers: [ItemService],
+      imports: [RouterTestingModule.withRoutes([]), HttpClientTestingModule],
+      providers: [ItemService, CartOrderService],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
   });

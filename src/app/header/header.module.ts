@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { ToggleButtonModule } from 'primeng/togglebutton';
 import { HeaderComponent } from './header.component';
@@ -13,6 +13,7 @@ import { CartOrderService } from '../Modules/cart-order/cart-order.service';
     CommonModule,
     ButtonModule,
     FormsModule,
+    ReactiveFormsModule,
     ToggleButtonModule,
     HeaderRoutingModule,
   ],

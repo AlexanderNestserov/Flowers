@@ -6,6 +6,7 @@ import { SwiperListComponent } from './swiper-list.component';
 import { SwiperModule } from 'swiper/angular';
 import { RouterTestingModule } from '@angular/router/testing';
 import { SwiperListService } from './swiper-list.service';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('SwiperListComponent', () => {
   let component: SwiperListComponent;
@@ -14,7 +15,11 @@ describe('SwiperListComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [SwiperListComponent],
-      imports: [RouterTestingModule.withRoutes([]), SwiperModule],
+      imports: [
+        RouterTestingModule.withRoutes([]),
+        SwiperModule,
+        HttpClientTestingModule,
+      ],
       providers: [SwiperListService],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();

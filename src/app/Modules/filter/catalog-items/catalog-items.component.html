@@ -19,7 +19,8 @@
           (click)="addToProducts(item)"
           [routerLink]="['/catalog', item.name]"
           [queryParams]="{
-            categoryName: item.category.name
+            categoryName: item.category.name,
+            id: item.id
           }"
         >
           <img [src]="getItemImage(item.photo)" alt="img1" class="image-item" />

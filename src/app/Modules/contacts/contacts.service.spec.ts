@@ -47,21 +47,12 @@ describe('ContactsService', () => {
       inject([ContactsService], (service: ContactsService) => {
         service
           .getAdress()
-          .subscribe((result) => expect(result).toBe(Address), fail);
-        const req = httpMock.expectOne(environment.serverUrl + service.getUrl);
+          .subscribe((result) => expect(result).toBe('GET'), fail);
+        const req = httpMock.expectOne({ method: 'GET' });
         expect(req.request.method).toEqual('GET');
-        req.flush(Address);
+        req.flush('GET');
       })
     ));
-    it('should add an Url', () => {
-      service.getAdress().subscribe((response) => {
-        expect(response).toBeTruthy();
-      });
-      const httpRequest = httpMock.expectOne(`${environment.serverUrl}contact`);
-      expect(httpRequest.request.url).toEqual(
-        'http://172.16.16.41:15000/contact'
-      );
-    });
   });
   it('should add an user and return it', () => {
     const newEmp: ContactMeDto = {
@@ -72,9 +63,9 @@ describe('ContactsService', () => {
     service
       .postData(newEmp)
       .subscribe((data) => expect(data).toEqual(''), fail);
-    const req = httpMock.expectOne(environment.serverUrl + service.postUrl);
+    const req = httpMock.expectOne(service.postUrl);
     expect(req.request.method).toEqual('POST');
-    expect(req.request.body).toEqual(newEmp);
+    expect(req.request.url).toEqual('mail');
     const expectedResponse = '';
     req.flush(expectedResponse);
   });

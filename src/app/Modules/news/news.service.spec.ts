@@ -1,4 +1,4 @@
-import { fakeAsync, inject, TestBed } from '@angular/core/testing';
+import { fakeAsync, inject, TestBed, tick } from '@angular/core/testing';
 import { NewsService } from './news.service';
 import {
   HttpClientTestingModule,
@@ -6,7 +6,7 @@ import {
 } from '@angular/common/http/testing';
 import { environment } from '../../../environments/environment';
 
-describe('ContactsService', () => {
+describe('NewsService', () => {
   let service: NewsService;
   let httpMock: HttpTestingController;
   beforeEach(async () => {
@@ -20,7 +20,7 @@ describe('ContactsService', () => {
   afterEach(() => {
     httpMock.verify();
   });
-  describe('#getAddress', () => {
+  describe('#getNews', () => {
     let News: any;
 
     beforeEach(() => {
@@ -56,23 +56,26 @@ describe('ContactsService', () => {
       expect(service).toBeTruthy();
     }));
 
-    it('should return getAdress ', fakeAsync(
+    it('should return getNews ', fakeAsync(
       inject([NewsService], (service: NewsService) => {
         service
           .getNews()
-          .subscribe((result) => expect(result).toBe(News), fail);
-        const req = httpMock.expectOne(environment.serverUrl + service.getUrl);
+          .subscribe((result) => expect(result).toBe('Get'), fail);
+        const req = httpMock.expectOne({ method: 'GET' });
         expect(req.request.method).toEqual('GET');
-        req.flush(News);
+        req.flush('Get');
       })
     ));
 
-    it('should add an Url', () => {
+    it('should add an Url with news', fakeAsync(() => {
       service.getNews().subscribe((response) => {
         expect(response).toBeTruthy();
       });
-      const httpRequest = httpMock.expectOne(`${environment.serverUrl}news`);
-      expect(httpRequest.request.url).toEqual('http://172.16.16.41:15000/news');
-    });
+      const httpRequest = httpMock.expectOne(service.getUrl);
+
+      expect(httpRequest.request.url).toEqual('news');
+      httpRequest.flush({});
+      tick();
+    }));
   });
 });
