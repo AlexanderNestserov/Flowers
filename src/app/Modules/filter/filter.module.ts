@@ -42,6 +42,6 @@ import { RadioButtonModule } from 'primeng/radiobutton';
     RadioButtonModule,
   ],
   exports: [FilterComponent],
-  providers: [ItemService],
+  providers: [Location, ItemService],
 })
 export class FilterModule {}

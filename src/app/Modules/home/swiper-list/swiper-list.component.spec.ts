@@ -34,4 +34,9 @@ describe('SwiperListComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+  it('should be created getItemImage', () => {
+    let item = 'photo.jpg';
+    const toggle = component.getImage(item);
+    expect(toggle).toBe('http://172.16.16.41:15000/images/photo');
+  });
 });

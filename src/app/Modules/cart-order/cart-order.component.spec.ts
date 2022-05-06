@@ -143,12 +143,35 @@ describe('CartOrderComponent', () => {
     expect(toggle).toBe('http://172.16.16.41:15000/images/photo');
   });
   it('should be created deleteItem', () => {
-    let item = null;
-    const toggle = component.deleteItem(item);
-    expect(toggle).toBeFalsy();
+    let item = { deleteId: 1000 };
+    component.cartItem = [{ id: 1 }, { id: 2 }];
+    const toggle = component.deleteItem(item.deleteId);
+    expect(toggle).toBe();
   });
-  it('should be created deleteSelected', () => {
+  it('should be created deleteSelected and filter', () => {
+    component.cartItem = [{ id: 1 }, { id: 2 }];
+
     const toggle = component.deleteSelected();
+
+    expect(component.cartItem).toEqual([{ id: 1 }, { id: 2 }]);
+    component.deleteSelected();
+    expect(toggle).toBe();
+    expect(component.cartItem).toEqual([{ id: 1 }, { id: 2 }]);
+  });
+  it('should be created key', () => {
+    let item = {
+      deleteId: 1000,
+      quantity: 2,
+      priceDto: { price: 100 },
+      total: 150,
+    };
+    component.cartItem = [
+      { id: 1, quantity: 2 },
+      { id: 2, quantity: 3 },
+    ];
+    let event = { value: 2 };
+    let totalPrice = 33;
+    const toggle = component.key(event, item, totalPrice);
     expect(toggle).toBe();
   });
 });

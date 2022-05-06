@@ -39,5 +39,13 @@ describe('ContactsService', () => {
     it('should be createed', inject([ItemService], (service: ItemService) => {
       expect(service).toBeTruthy();
     }));
+    it('should add getItem', () => {
+      service.getItem(3).subscribe((data) => {
+        expect(data).toBeTruthy();
+      });
+      const req = httpMock.expectOne(service.categoriesUrl + '/3');
+      expect(req.request.method).toEqual('GET');
+      expect(req.request.url).toEqual('items/3');
+    });
   });
 });

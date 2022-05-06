@@ -7,22 +7,25 @@ import {
 import { SpinnerService } from './spinner.service';
 import { LoaderInterceptor } from '../../interceptors/spinner.interceptor';
 import { RouterTestingModule } from '@angular/router/testing';
+import { UrlInterceptor } from 'src/app/interceptors/url.interceptor';
 
 describe('SpinnerComponent', () => {
   let service: SpinnerService;
   let httpMock: HttpTestingController;
   let interceptor: LoaderInterceptor;
+  let interceptorUrl: UrlInterceptor;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [RouterTestingModule.withRoutes([]), HttpClientTestingModule],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
 
-      providers: [SpinnerService, LoaderInterceptor],
+      providers: [SpinnerService, LoaderInterceptor, UrlInterceptor],
     });
     service = TestBed.inject(SpinnerService);
     httpMock = TestBed.inject(HttpTestingController);
     interceptor = TestBed.inject(LoaderInterceptor);
+    interceptorUrl = TestBed.inject(UrlInterceptor);
   });
 
   afterEach(() => {
@@ -53,5 +56,8 @@ describe('SpinnerComponent', () => {
 
   it('should be create interceptor', fakeAsync(() => {
     expect(interceptor).toBeDefined();
+  }));
+  it('should be create interceptor', fakeAsync(() => {
+    expect(interceptorUrl).toBeDefined();
   }));
 });

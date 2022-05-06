@@ -1,6 +1,7 @@
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { APP_INITIALIZER, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
 import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
@@ -16,6 +17,7 @@ describe('AppComponent', () => {
         RouterTestingModule.withRoutes([]),
         BrowserModule,
         KeycloakAngularModule,
+        FormsModule,
       ],
       declarations: [AppComponent],
       providers: [

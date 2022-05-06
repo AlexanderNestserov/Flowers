@@ -2,6 +2,7 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { map, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { AddItem } from '../../cart-order/cart-order.config';
 import { CartOrderService } from '../../cart-order/cart-order.service';
 import { ItemService } from '../../home/items/item.service';
 
@@ -77,7 +78,13 @@ export class CatalogItemsComponent implements OnInit {
 
   addToCart(item: any) {
     item.quantity = 1;
-    this.cartService.addItemToCart(item).subscribe({
+    let product: AddItem = {
+      id: 0,
+      itemId: item.id,
+      priceId: item.priceDto.id,
+      quantity: item.quantity,
+    };
+    this.cartService.addItemToCart(product).subscribe({
       next: (res) => {
         this.cartItem = res.orderItems;
         this.cartService.productList.next(this.cartItem);

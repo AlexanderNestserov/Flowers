@@ -36,4 +36,21 @@ describe('ProductDetailsComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+  it('should be created getFirstElement', () => {
+    const toggle = component.getFirstElement();
+    expect(toggle).toBe();
+  });
+  it('should be created getSecondElement', () => {
+    const toggle = component.getSecondElement();
+    expect(toggle).toBe();
+  });
+  it('should be created addToCart', () => {
+    let item = {
+      id: 1050,
+      priceDto: { id: 1056 },
+      quantity: 2,
+    };
+    const toggle = component.addToCart(item);
+    expect(toggle).toBe();
+  });
 });

@@ -30,4 +30,23 @@ describe('ItemsComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+  it('should be created getItemImage', () => {
+    let item = 'photo.jpg';
+    const toggle = component.getItemImage(item);
+    expect(toggle).toBe('http://172.16.16.41:15000/images/photo');
+  });
+  it('should be created addToProducts', () => {
+    let item = { itemId: 2 };
+    const toggle = component.addToProduct(item);
+    expect(toggle).toBe();
+  });
+  it('should be created addToCart', () => {
+    let item = {
+      id: 1050,
+      priceDto: { id: 1056 },
+      quantity: 2,
+    };
+    const toggle = component.addToCart(item);
+    expect(toggle).toBe();
+  });
 });

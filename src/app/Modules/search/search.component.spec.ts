@@ -6,6 +6,7 @@ import { SearchComponent } from './search.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ItemService } from '../home/items/item.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { SearchPipe } from './search.pipe';
 
 describe('SearchComponent', () => {
   let component: SearchComponent;
@@ -13,7 +14,7 @@ describe('SearchComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [SearchComponent],
+      declarations: [SearchComponent, SearchPipe],
       imports: [RouterTestingModule.withRoutes([]), HttpClientTestingModule],
       providers: [ItemService],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -28,5 +29,19 @@ describe('SearchComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+  it('should be created searchItem', () => {
+    let event = { target: { value: 'A' } };
+    const result = component.searchItem(event);
+    expect(result).toBe();
+  });
+});
+describe('create Pipes', () => {
+  let search = new SearchPipe();
+
+  it('search pipe', () => {
+    let items = [{ name: 'ALEX' }, { name: 'BOB' }, { name: 'JOHN' }];
+    let value = 'alex';
+    expect(search.transform(items, value)).toEqual([{ name: 'ALEX' }]);
   });
 });

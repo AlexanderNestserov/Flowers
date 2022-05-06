@@ -7,6 +7,7 @@ import { HomeComponent } from './Modules/home/home.component';
 import { MyordersComponent } from './Modules/myorders/myorders.component';
 import { NewsComponent } from './Modules/news/news.component';
 import { RegistrationComponent } from './Modules/registration/registration.component';
+import { SearchComponent } from './Modules/search/search.component';
 
 @Component({
   selector: 'app-root',
@@ -24,4 +25,5 @@ export const routes: Routes = [
   { path: 'account', component: AccountComponent },
   { path: 'news', component: NewsComponent },
   { path: 'cartorder', component: CartOrderComponent },
+  { path: 'search', component: SearchComponent },
 ];

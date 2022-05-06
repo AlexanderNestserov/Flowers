@@ -1,4 +1,4 @@
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, inject } from '@angular/core';
 import {
   ComponentFixture,
   fakeAsync,
@@ -15,11 +15,21 @@ import { RegistrationComponent } from '../Modules/registration/registration.comp
 import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
 import { CartOrderService } from '../Modules/cart-order/cart-order.service';
 import { routes } from '../app.component';
+import { Observable, of } from 'rxjs';
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
   let fixture: ComponentFixture<HeaderComponent>;
   let keycloakService = jasmine.createSpyObj(['login', 'logout', 'isLoggedIn']);
+  let MockCartOrderService = jasmine.createSpyObj('fakeCartOrderService', [
+    'getShoppingCart',
+    'createCart',
+    'addItemToCart',
+    'updateCart',
+    'deleteItem',
+    'getProductDetails',
+    'addToProductDetails',
+  ]);
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -33,7 +43,32 @@ describe('HeaderComponent', () => {
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       providers: [
         { provide: KeycloakService, useValue: keycloakService },
-        CartOrderService,
+        {
+          provide: CartOrderService,
+          useClass: class MockCartOrderService {
+            getShoppingCart(): Observable<any> {
+              return of({});
+            }
+            createCart(): Observable<any> {
+              return of({});
+            }
+            addItemToCart(product: any): Observable<any> {
+              return of({});
+            }
+            updateCart(product: any): Observable<any> {
+              return of({});
+            }
+            deleteItem(id: number): Observable<any> {
+              return of({});
+            }
+            getProductDetails() {
+              return of({});
+            }
+            addToProductDetails() {
+              return of({});
+            }
+          },
+        },
       ],
     }).compileComponents();
   });
@@ -44,6 +79,9 @@ describe('HeaderComponent', () => {
     keycloakService.login();
     keycloakService.logout();
     keycloakService.isLoggedIn();
+
+    MockCartOrderService.productList;
+
     fixture.detectChanges();
   });
 
@@ -172,5 +210,11 @@ describe('HeaderComponent', () => {
   it('should be created ngOnDestroy', () => {
     let spy = component.ngOnDestroy();
     expect(spy).toBeUndefined();
+  });
+  it('should return productList ', () => {
+    const service = fixture.debugElement.injector.get(CartOrderService);
+    service.productList;
+    component.ngOnInit();
+    expect(component.quantityItems).toBeUndefined();
   });
 });

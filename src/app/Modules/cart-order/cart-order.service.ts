@@ -31,14 +31,8 @@ export class CartOrderService {
     return this.http.post(this.createCartPostUrl, body);
   }
 
-  addItemToCart(product: any): Observable<any> {
-    let body: AddItem = {
-      id: 0,
-      itemId: product.id,
-      priceId: product.priceDto.id,
-      quantity: product.quantity,
-    };
-    return this.http.post(this.addItemToCartUrl, body);
+  addItemToCart(product: AddItem): Observable<any> {
+    return this.http.post(this.addItemToCartUrl, product);
   }
 
   updateCart(product: any): Observable<any> {
