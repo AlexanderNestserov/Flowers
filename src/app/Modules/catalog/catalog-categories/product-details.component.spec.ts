@@ -4,6 +4,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { CartOrderService } from '../../cart-order/cart-order.service';
 import { ItemService } from '../../home/items/item.service';
 
@@ -22,7 +23,7 @@ describe('ProductDetailsComponent', () => {
         HttpClientTestingModule,
         CommonModule,
       ],
-      providers: [CartOrderService, ItemService],
+      providers: [ItemService, CartOrderService],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
   });
@@ -44,11 +45,17 @@ describe('ProductDetailsComponent', () => {
     const toggle = component.getSecondElement();
     expect(toggle).toBe();
   });
+  it('should be created getItemImage', () => {
+    let item = 'photo.jpg';
+    const toggle = component.getPhoto(item);
+    expect(toggle).toBe('http://172.16.16.41:15000/images/photo');
+  });
   it('should be created addToCart', () => {
     let item = {
       id: 1050,
       priceDto: { id: 1056 },
       quantity: 2,
+      category: { name: 'Alex' },
     };
     const toggle = component.addToCart(item);
     expect(toggle).toBe();

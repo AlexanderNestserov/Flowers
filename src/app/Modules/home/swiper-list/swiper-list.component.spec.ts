@@ -7,10 +7,12 @@ import { SwiperModule } from 'swiper/angular';
 import { RouterTestingModule } from '@angular/router/testing';
 import { SwiperListService } from './swiper-list.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { map } from 'rxjs';
 
 describe('SwiperListComponent', () => {
   let component: SwiperListComponent;
   let fixture: ComponentFixture<SwiperListComponent>;
+  let service: SwiperListService;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -28,6 +30,7 @@ describe('SwiperListComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(SwiperListComponent);
     component = fixture.componentInstance;
+    service = TestBed.inject(SwiperListService);
     fixture.detectChanges();
   });
 

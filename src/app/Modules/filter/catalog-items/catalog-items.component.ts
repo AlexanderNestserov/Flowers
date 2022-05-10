@@ -1,6 +1,6 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { map, Observable } from 'rxjs';
+import { forkJoin, map, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { AddItem } from '../../cart-order/cart-order.config';
 import { CartOrderService } from '../../cart-order/cart-order.service';
@@ -45,6 +45,7 @@ export class CatalogItemsComponent implements OnInit {
     this.itemsData.subscribe((res) => {
       this.itemsLength = res;
     });
+
     this.http.searching.subscribe((value: string) => {
       this.searchInput = value;
     });

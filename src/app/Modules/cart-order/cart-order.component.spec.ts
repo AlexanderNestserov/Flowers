@@ -4,7 +4,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
 import { RadioButtonModule } from 'primeng/radiobutton';
-import { Observable, of } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { ErrorDirectiveModule } from 'src/app/directives/error-form/error-directive.module';
 import { AccountService } from '../account/account.service';
 import { ItemService } from '../home/items/item.service';
@@ -36,8 +36,8 @@ describe('CartOrderComponent', () => {
     'deleteItem',
     'getProductDetails',
     'addToProductDetails',
+    'productList',
   ]);
-
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [CartOrderComponent],
@@ -67,7 +67,7 @@ describe('CartOrderComponent', () => {
               return of({});
             }
             deleteItem(id: number): Observable<any> {
-              return of({});
+              return of({ orderItems: [{ id: 1 }] });
             }
             getProductDetails() {
               return of({});
@@ -75,6 +75,7 @@ describe('CartOrderComponent', () => {
             addToProductDetails() {
               return of({});
             }
+            productList = new BehaviorSubject([{ id: 1 }, { id: 2 }]);
           },
         },
         { provide: KeycloakService, useValue: KeycloakService },
@@ -82,7 +83,7 @@ describe('CartOrderComponent', () => {
           provide: AccountService,
           useClass: class MockAccountService {
             getUserData(formValue: any): Observable<any> {
-              return of({});
+              return of({ id: 1 });
             }
             patchData() {
               return of({});
@@ -91,7 +92,7 @@ describe('CartOrderComponent', () => {
               return of({});
             }
             getTempId(): Observable<any> {
-              return of({});
+              return of({ id: 1 });
             }
           },
         },
@@ -99,7 +100,7 @@ describe('CartOrderComponent', () => {
           provide: ItemService,
           useClass: class MockItemService {
             getItems(): Observable<any> {
-              return of({});
+              return of({ content: [{ id: 1 }] });
             }
             getItem() {
               return of({});
@@ -110,13 +111,11 @@ describe('CartOrderComponent', () => {
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
   });
-
   beforeEach(() => {
     fixture = TestBed.createComponent(CartOrderComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
-
   it('should create', () => {
     expect(component).toBeTruthy();
   });
@@ -132,7 +131,6 @@ describe('CartOrderComponent', () => {
     const result = component.additionalInformation;
     expect(result).toBeTruthy();
   });
-
   it('should be created postDataDetails', () => {
     const toggle = component.postDataDetails();
     expect(toggle).toBe();
@@ -150,14 +148,38 @@ describe('CartOrderComponent', () => {
   });
   it('should be created deleteSelected and filter', () => {
     component.cartItem = [{ id: 1 }, { id: 2 }];
-
     const toggle = component.deleteSelected();
-
     expect(component.cartItem).toEqual([{ id: 1 }, { id: 2 }]);
     component.deleteSelected();
     expect(toggle).toBe();
     expect(component.cartItem).toEqual([{ id: 1 }, { id: 2 }]);
   });
+
+  it('should be created deleteSelected and filter', () => {
+    component.checked = [{ deleteId: 1 }, { deleteId: 2 }];
+    let yFilter = component.checked.map((item: any) => {
+      return item.deleteId;
+    });
+    component.cartItem = [{ id: 1 }, { id: 2 }];
+    let filteredX = component.cartItem.map((itemX: any) => {
+      yFilter.includes(itemX.id);
+    });
+    component.newArray = [];
+    let xFilter = component.newArray.map((item: any) => {
+      return item.id;
+    });
+    component.product = [{ deleteId: 1 }, { deleteId: 2 }];
+    let zFilter = component.product.filter((item: any) => {
+      xFilter.includes(item.deleteId);
+    });
+    fixture.detectChanges();
+    component.deleteSelected();
+    expect(yFilter).toEqual([1, 2]);
+    expect(filteredX).toEqual([undefined, undefined]);
+    expect(xFilter).toEqual([]);
+    expect(zFilter).toEqual([]);
+  });
+
   it('should be created key', () => {
     let item = {
       deleteId: 1000,
@@ -169,9 +191,27 @@ describe('CartOrderComponent', () => {
       { id: 1, quantity: 2 },
       { id: 2, quantity: 3 },
     ];
-    let event = { value: 2 };
+    let event = { value: 0 };
+    component.cartItem.map((a: any) => {
+      item.deleteId = a.id;
+    });
     let totalPrice = 33;
     const toggle = component.key(event, item, totalPrice);
     expect(toggle).toBe();
+  });
+  it('should be created deleteItem and map', async () => {
+    let item = { id: 1, deleteId: 2 };
+    component.cartItem = [{ id: 1 }, { id: 2 }];
+    let filteredY = component.cartItem.map((itemX: any) => {
+      item.deleteId = itemX.id;
+    });
+    component.product = [{ id: 1 }, { id: 2 }];
+    let filteredX = component.product.map((a: any) => {
+      item.id = a.id;
+    });
+    fixture.detectChanges();
+    component.deleteItem(item);
+    expect(filteredX).toEqual([undefined, undefined]);
+    expect(filteredY).toEqual([undefined, undefined]);
   });
 });

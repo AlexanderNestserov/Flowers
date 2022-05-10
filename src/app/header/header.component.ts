@@ -4,7 +4,14 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
 } from '@angular/core';
-import { filter, fromEvent, map, Observable, Subscription } from 'rxjs';
+import {
+  filter,
+  forkJoin,
+  fromEvent,
+  map,
+  Observable,
+  Subscription,
+} from 'rxjs';
 import { NavigationEnd, Router, RouterEvent } from '@angular/router';
 import { KeycloakService } from 'keycloak-angular';
 import { environment } from 'src/environments/environment';
@@ -31,6 +38,8 @@ export class HeaderComponent implements OnInit {
   urlAccount = false;
   urlMyorders = false;
   public isLoggedIn: any;
+
+  productList: Observable<any> = this.cartService.productList;
 
   quantityItems: any;
 
@@ -97,7 +106,7 @@ export class HeaderComponent implements OnInit {
     this.cartService.getShoppingCart().subscribe((res) => {
       this.quantityItems = res.orderItems.length;
     });
-    this.cartService.productList.subscribe((res) => {
+    this.productList.subscribe((res) => {
       this.quantityItems = res.length;
       this.changeDetector.detectChanges();
     });

@@ -15,11 +15,12 @@ import { RegistrationComponent } from '../Modules/registration/registration.comp
 import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
 import { CartOrderService } from '../Modules/cart-order/cart-order.service';
 import { routes } from '../app.component';
-import { Observable, of } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
   let fixture: ComponentFixture<HeaderComponent>;
+  let productList: BehaviorSubject<any>;
   let keycloakService = jasmine.createSpyObj(['login', 'logout', 'isLoggedIn']);
   let MockCartOrderService = jasmine.createSpyObj('fakeCartOrderService', [
     'getShoppingCart',
@@ -29,6 +30,7 @@ describe('HeaderComponent', () => {
     'deleteItem',
     'getProductDetails',
     'addToProductDetails',
+    'productList',
   ]);
 
   beforeEach(async () => {
@@ -47,7 +49,7 @@ describe('HeaderComponent', () => {
           provide: CartOrderService,
           useClass: class MockCartOrderService {
             getShoppingCart(): Observable<any> {
-              return of({});
+              return of({ orderItems: [{ id: 1 }] });
             }
             createCart(): Observable<any> {
               return of({});
@@ -67,6 +69,7 @@ describe('HeaderComponent', () => {
             addToProductDetails() {
               return of({});
             }
+            productList = new BehaviorSubject([{ id: 1 }, { id: 2 }]);
           },
         },
       ],
@@ -79,9 +82,7 @@ describe('HeaderComponent', () => {
     keycloakService.login();
     keycloakService.logout();
     keycloakService.isLoggedIn();
-
-    MockCartOrderService.productList;
-
+    productList = new BehaviorSubject([{ id: 1 }, { id: 2 }]);
     fixture.detectChanges();
   });
 
@@ -211,10 +212,9 @@ describe('HeaderComponent', () => {
     let spy = component.ngOnDestroy();
     expect(spy).toBeUndefined();
   });
-  it('should return productList ', () => {
-    const service = fixture.debugElement.injector.get(CartOrderService);
-    service.productList;
-    component.ngOnInit();
-    expect(component.quantityItems).toBeUndefined();
+
+  it('should return productList subscribe', () => {
+    productList.next([{ id: 3 }]);
+    expect(component).toBeTruthy();
   });
 });

@@ -15,6 +15,7 @@ export class CartOrderService {
   public postUrl: string = 'order/checkout';
   public createCartPostUrl: string = 'cart';
   public addItemToCartUrl: string = 'cart/item';
+  static productList: any;
 
   constructor(private http: HttpClient) {}
 

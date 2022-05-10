@@ -7,6 +7,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { ItemService } from './item.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { CartOrderService } from '../../cart-order/cart-order.service';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 
 describe('ItemsComponent', () => {
   let component: ItemsComponent;
@@ -16,7 +17,7 @@ describe('ItemsComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ItemsComponent],
       imports: [RouterTestingModule.withRoutes([]), HttpClientTestingModule],
-      providers: [ItemService, CartOrderService],
+      providers: [CartOrderService, ItemService],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
   });
@@ -36,7 +37,7 @@ describe('ItemsComponent', () => {
     expect(toggle).toBe('http://172.16.16.41:15000/images/photo');
   });
   it('should be created addToProducts', () => {
-    let item = { itemId: 2 };
+    let item = { itemId: 2, name: 'Alex' };
     const toggle = component.addToProduct(item);
     expect(toggle).toBe();
   });
@@ -45,6 +46,7 @@ describe('ItemsComponent', () => {
       id: 1050,
       priceDto: { id: 1056 },
       quantity: 2,
+      name: 'Alex',
     };
     const toggle = component.addToCart(item);
     expect(toggle).toBe();
