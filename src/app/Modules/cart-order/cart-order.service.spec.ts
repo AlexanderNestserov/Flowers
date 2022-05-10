@@ -1,4 +1,4 @@
-import { fakeAsync, inject, TestBed } from '@angular/core/testing';
+import { inject, TestBed } from '@angular/core/testing';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CartOrderService } from './cart-order.service';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -6,10 +6,9 @@ import {
   HttpClientTestingModule,
   HttpTestingController,
 } from '@angular/common/http/testing';
-import { environment } from '../../../environments/environment';
 
 import { CommonModule } from '@angular/common';
-import { AddItem, CreateCart } from './cart-order.config';
+import { AddItem } from './cart-order.config';
 
 describe('ContactsService', () => {
   let service: CartOrderService;

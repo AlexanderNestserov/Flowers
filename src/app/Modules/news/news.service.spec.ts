@@ -4,7 +4,6 @@ import {
   HttpClientTestingModule,
   HttpTestingController,
 } from '@angular/common/http/testing';
-import { environment } from '../../../environments/environment';
 
 describe('NewsService', () => {
   let service: NewsService;

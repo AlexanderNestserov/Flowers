@@ -1,6 +1,6 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { forkJoin, map, Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { AddItem } from '../../cart-order/cart-order.config';
 import { CartOrderService } from '../../cart-order/cart-order.service';

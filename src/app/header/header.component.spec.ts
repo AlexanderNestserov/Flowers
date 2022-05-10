@@ -1,10 +1,5 @@
-import { CUSTOM_ELEMENTS_SCHEMA, inject } from '@angular/core';
-import {
-  ComponentFixture,
-  fakeAsync,
-  TestBed,
-  async,
-} from '@angular/core/testing';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Location } from '@angular/common';

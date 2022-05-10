@@ -4,14 +4,7 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
 } from '@angular/core';
-import {
-  filter,
-  forkJoin,
-  fromEvent,
-  map,
-  Observable,
-  Subscription,
-} from 'rxjs';
+import { filter, forkJoin, fromEvent, Observable, Subscription } from 'rxjs';
 import { NavigationEnd, Router, RouterEvent } from '@angular/router';
 import { KeycloakService } from 'keycloak-angular';
 import { environment } from 'src/environments/environment';

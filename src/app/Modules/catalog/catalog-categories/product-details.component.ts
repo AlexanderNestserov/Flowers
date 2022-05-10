@@ -4,8 +4,7 @@ import {
   Component,
   OnInit,
 } from '@angular/core';
-import { ActivatedRoute, Params, Router } from '@angular/router';
-import { catchError, map, throwError } from 'rxjs';
+import { ActivatedRoute, Params } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { AddItem } from '../../cart-order/cart-order.config';
 import { CartOrderService } from '../../cart-order/cart-order.service';

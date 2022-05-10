@@ -2,9 +2,8 @@ import { CommonModule } from '@angular/common';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ActivatedRoute, RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-import { BehaviorSubject, Observable, of } from 'rxjs';
 import { CartOrderService } from '../../cart-order/cart-order.service';
 import { ItemService } from '../../home/items/item.service';
 

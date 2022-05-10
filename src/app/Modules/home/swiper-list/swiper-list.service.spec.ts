@@ -1,4 +1,4 @@
-import { fakeAsync, inject, TestBed } from '@angular/core/testing';
+import { inject, TestBed } from '@angular/core/testing';
 import { SwiperListService } from './swiper-list.service';
 import {
   HttpClientTestingModule,

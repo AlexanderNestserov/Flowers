@@ -7,7 +7,6 @@ import { SwiperModule } from 'swiper/angular';
 import { RouterTestingModule } from '@angular/router/testing';
 import { SwiperListService } from './swiper-list.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { map } from 'rxjs';
 
 describe('SwiperListComponent', () => {
   let component: SwiperListComponent;

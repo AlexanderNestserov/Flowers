@@ -7,7 +7,6 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { ItemService } from './item.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { CartOrderService } from '../../cart-order/cart-order.service';
-import { BehaviorSubject, Observable, of } from 'rxjs';
 
 describe('ItemsComponent', () => {
   let component: ItemsComponent;
