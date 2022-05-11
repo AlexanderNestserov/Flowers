@@ -14,6 +14,7 @@ import {
 } from '../popup-success-error/popupSuccessError.animations';
 import { KeycloakService } from 'keycloak-angular';
 import { environment } from 'src/environments/environment';
+import { AccountUser } from './account.model';
 
 enum ClickedDivState {
   hide = 'hide',
@@ -34,7 +35,7 @@ export class AccountComponent implements OnInit {
   isDisabledPassword = false;
   isFormShow = false;
   getUserData: Observable<any> = this.http.getUserData();
-  error: any;
+
   errorPassword: any;
   keycloakLogoutOption = environment.keycloakLogoutOption;
   isLoggedIn = false;
@@ -55,9 +56,7 @@ export class AccountComponent implements OnInit {
         [
           Validators.required,
           Validators.minLength(8),
-          Validators.pattern(
-            /(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}/g
-          ),
+          Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,}$/),
         ],
       ],
       newPassword: [
@@ -65,9 +64,7 @@ export class AccountComponent implements OnInit {
         [
           Validators.required,
           Validators.minLength(8),
-          Validators.pattern(
-            /(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}/g
-          ),
+          Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,}$/),
         ],
       ],
       confirmPassword: ['', [Validators.required, Validators.minLength(8)]],
@@ -84,17 +81,12 @@ export class AccountComponent implements OnInit {
 
   async ngOnInit() {
     this.isLoggedIn = await this.keycloak.isLoggedIn();
-    this.getUserData.subscribe((error) => {
-      this.error = error;
+    this.getUserData.subscribe({
+      next: (user: AccountUser) => {
+        this.formValue.patchValue({ ...user });
+      },
+      error: () => {},
     });
-  }
-
-  showError() {
-    const { touched, invalid, errors } = this.confirmPassword;
-    return (
-      (touched && invalid && errors) ||
-      this.formChangePassword.errors?.['noMatchingPassword']
-    );
   }
 
   get firstName() {
@@ -115,6 +107,23 @@ export class AccountComponent implements OnInit {
   get additionalInformation() {
     return this.formValue.get('additionalInformation') as FormControl;
   }
+  get oldPassword() {
+    return this.formChangePassword.get('oldPassword') as FormControl;
+  }
+  get newPassword() {
+    return this.formChangePassword.get('newPassword') as FormControl;
+  }
+  get confirmPassword() {
+    return this.formChangePassword.get('confirmPassword') as FormControl;
+  }
+
+  showError() {
+    const { touched, invalid, errors } = this.confirmPassword;
+    return (
+      (touched && invalid && errors) ||
+      this.formChangePassword.errors?.['noMatchingPassword']
+    );
+  }
 
   postUserDetails() {
     this.isDisabled = true;
@@ -129,16 +138,6 @@ export class AccountComponent implements OnInit {
     this.isDisabled = false;
     this.clickedDivState = ClickedDivState.hide;
     this.clickedDivStateError = ClickedDivState.hide;
-  }
-
-  get oldPassword() {
-    return this.formChangePassword.get('oldPassword') as FormControl;
-  }
-  get newPassword() {
-    return this.formChangePassword.get('newPassword') as FormControl;
-  }
-  get confirmPassword() {
-    return this.formChangePassword.get('confirmPassword') as FormControl;
   }
 
   postChangePassword() {

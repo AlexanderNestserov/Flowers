@@ -8,6 +8,7 @@ import {
 import { KeycloakService } from 'keycloak-angular';
 import { map, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { AccountUser } from '../account/account.model';
 import { AccountService } from '../account/account.service';
 import { ItemService } from '../home/items/item.service';
 import { CartOrderService } from './cart-order.service';
@@ -46,11 +47,11 @@ export class CartOrderComponent implements OnInit {
 
   formValue: FormGroup = this.formbuilder.group({
     firstName: ['', [Validators.required, Validators.maxLength(255)]],
-    deliveryName: ['', [Validators.required, Validators.maxLength(255)]],
+    lastName: ['', [Validators.required, Validators.maxLength(255)]],
     email: ['', [Validators.required, Validators.email]],
     phone: ['', [Validators.required, Validators.pattern(/^[\+\][0-9]{12}$/)]],
     text: ['', [Validators.maxLength(255)]],
-    deliveryAddress: ['', [Validators.maxLength(255)]],
+    homeAddress: ['', [Validators.maxLength(255)]],
     additionalInformation: ['', [Validators.maxLength(255)]],
     paymentType: [this.selected],
   });
@@ -58,9 +59,9 @@ export class CartOrderComponent implements OnInit {
   constructor(
     private formbuilder: FormBuilder,
     private cartService: CartOrderService,
-    public readonly keycloak: KeycloakService,
     private http: AccountService,
-    private itemService: ItemService
+    private itemService: ItemService,
+    public readonly keycloak: KeycloakService
   ) {}
 
   async ngOnInit() {
@@ -83,8 +84,11 @@ export class CartOrderComponent implements OnInit {
     });
 
     this.isLoggedIn = await this.keycloak.isLoggedIn();
-    this.getUserData.subscribe((error) => {
-      this.error = error;
+    this.getUserData.subscribe({
+      next: (user: AccountUser) => {
+        this.formValue.patchValue({ ...user });
+      },
+      error: () => {},
     });
 
     this.getTemp.subscribe((res) => {
@@ -95,8 +99,8 @@ export class CartOrderComponent implements OnInit {
   get firstName() {
     return this.formValue.get('firstName') as FormControl;
   }
-  get deliveryName() {
-    return this.formValue.get('deliveryName') as FormControl;
+  get lastName() {
+    return this.formValue.get('lastName') as FormControl;
   }
   get email() {
     return this.formValue.get('email') as FormControl;
@@ -107,8 +111,8 @@ export class CartOrderComponent implements OnInit {
   get text() {
     return this.formValue.get('text') as FormControl;
   }
-  get deliveryAddress() {
-    return this.formValue.get('deliveryAddress') as FormControl;
+  get homeAddress() {
+    return this.formValue.get('homeAddress') as FormControl;
   }
   get additionalInformation() {
     return this.formValue.get('additionalInformation') as FormControl;

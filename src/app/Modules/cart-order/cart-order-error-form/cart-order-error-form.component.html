@@ -16,7 +16,7 @@
   </span>
   <span
     class="container__error"
-    *ngIf="!formControlItem.errors?.['minlength'] && formControlItem.errors?.['pattern']?['/(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}/g']:null"
+    *ngIf="!formControlItem.errors?.['minlength'] && formControlItem.errors?.['pattern']?['/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]){8,}$/']:null"
     >This field is invalid.
   </span>
 </span>

@@ -1,4 +1,4 @@
-import { fakeAsync, inject, TestBed } from '@angular/core/testing';
+import { inject, TestBed } from '@angular/core/testing';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { AccountService } from './account.service';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -6,7 +6,6 @@ import {
   HttpClientTestingModule,
   HttpTestingController,
 } from '@angular/common/http/testing';
-import { environment } from '../../../environments/environment';
 
 import { CommonModule } from '@angular/common';
 
@@ -61,5 +60,19 @@ describe('AccountService', () => {
       });
     const httpRequest = httpMock.expectOne(service.postChangepassword);
     expect(httpRequest.request.url).toEqual('users/change_password');
+  });
+  it('should add an Url getUserData', () => {
+    service.getUserData().subscribe((response) => {
+      expect(response).toBeTruthy();
+    });
+    const httpRequest = httpMock.expectOne(service.getUserUrl);
+    expect(httpRequest.request.url).toEqual('users/user');
+  });
+  it('should add an Url getTempId', () => {
+    service.getTempId().subscribe((response) => {
+      expect(response).toBeTruthy();
+    });
+    const httpRequest = httpMock.expectOne(service.getTempIdUrl);
+    expect(httpRequest.request.url).toEqual('users/tempid');
   });
 });

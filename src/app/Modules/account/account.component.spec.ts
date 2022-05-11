@@ -1,7 +1,8 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { By } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
 import { Observable, of, throwError } from 'rxjs';
@@ -80,63 +81,71 @@ describe('AccountComponent', () => {
     ctrl.setValue(true);
     expect(component.showError()).toBeTruthy();
   }));
-  it('should be created firstName', () => {
-    const result = component.firstName;
-    expect(result).toBeTruthy();
+  it('should update the control with homeAddress', () => {
+    const el = fixture.debugElement.query(
+      By.css('.container__address #inputAddress')
+    );
+    const ctrl = component.formValue.get('homeAddress');
+    const text = fixture.debugElement.query(
+      By.css('.container__info #inputInfo')
+    );
+    const ctrlText = component.formValue.get('additionalInformation');
+    const dValue = 'Alex';
+    ctrl?.setValue(dValue);
+    const tValue = 'hello';
+    ctrlText?.setValue(tValue);
+    fixture.detectChanges();
+    expect(el.nativeElement.value).toEqual(dValue);
+    expect((el.nativeElement as HTMLInputElement).value).toEqual(dValue);
+    expect(text.nativeElement.value).toEqual(tValue);
+    expect((text.nativeElement as HTMLInputElement).value).toEqual(tValue);
   });
-  it('should be created lastName', () => {
-    const result = component.lastName;
-    expect(result).toBeTruthy();
-  });
-  it('should be created email', () => {
-    const result = component.email;
-    expect(result).toBeTruthy();
-  });
-  it('should be created phone', () => {
-    const result = component.phone;
-    expect(result).toBeTruthy();
+  it('should update the control with homeAddress', () => {
+    const ctrl = component.formValue.get('homeAddress');
+    ctrl?.setValue(null);
+    fixture.detectChanges();
+    expect(ctrl?.invalid).toBeFalsy();
   });
   it('should be created homeAddress', () => {
-    const result = component.homeAddress;
-    expect(result).toBeTruthy();
+    const ctrl = component.formValue.get('homeAddress');
+    ctrl?.setValue('Alex');
+    const result = component.homeAddress.value;
+    expect(result).toEqual('Alex');
   });
   it('should be created additionalInformation', () => {
-    const result = component.additionalInformation;
-    expect(result).toBeTruthy();
+    const ctrl = component.formValue.get('additionalInformation');
+    ctrl?.setValue('Alex');
+    const result = component.additionalInformation.value;
+    expect(result).toEqual('Alex');
   });
   it('should be created postUserDetails', () => {
     const result = component.postUserDetails();
-    expect(result).toBe();
-  });
-  it('should call api.postData and reset form. Error branch', () => {
-    component.formValue.patchValue({ firstName: null });
-    const spy = MockAccountService.patchData.and.returnValue(
-      throwError(() => new Error('error'))
-    );
-    expect(component.firstName.value).toBe(null);
-    component.postUserDetails();
-    expect(spy).toBeTruthy();
-    expect(component.firstName.value).toBe(null);
+    expect(result).toBeUndefined();
   });
   it('should be created oldPassword', () => {
-    const result = component.oldPassword;
-    expect(result).toBeTruthy();
+    const ctrl = component.formValue.get('oldPassword');
+    ctrl?.setValue('Alex');
+    const result = component.oldPassword.value;
+    expect(result).toEqual('');
   });
   it('should be created newPassword', () => {
-    const result = component.newPassword;
-    expect(result).toBeTruthy();
+    const ctrl = component.formValue.get('newPassword');
+    ctrl?.setValue('Alex');
+    const result = component.newPassword.value;
+    expect(result).toEqual('');
   });
   it('should be created postChangePassword', () => {
     const result = component.postChangePassword();
-    expect(result).toBe();
+    expect(result).toBeUndefined();
   });
   it('should be created isChangePasswordShow', () => {
-    const toggle = component.isChangePasswordShow();
-    expect(toggle).toBe();
+    component.isFormShow = false;
+    component.isChangePasswordShow();
+    expect(component.isFormShow).toBeTruthy();
   });
   it('should be created closeMenu', () => {
     const toggle = component.closeMenu();
-    expect(toggle).toBe();
+    expect(toggle).toBeUndefined();
   });
   it('should be created signOut', fakeAsync(() => {
     component.signOut();

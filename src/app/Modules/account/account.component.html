@@ -12,7 +12,7 @@
     </div>
     <div class="container-account__account-title">My account</div>
     <div class="container-account__form">
-      <div class="error-get-user" *ngIf="!this.error">
+      <div class="error-get-user" *ngIf="!isLoggedIn">
         Error! You are not registered in the system. Try to register or sign in!
       </div>
       <form
@@ -30,7 +30,6 @@
             id="inputFirstName"
             required
             formControlName="firstName"
-            [(ngModel)]="user.firstName"
           />
           <label class="container__input-firstname" for="inputFirstName"
             >First name<span class="container__star">*</span>
@@ -49,7 +48,6 @@
             id="inputLastName"
             required
             formControlName="lastName"
-            [(ngModel)]="user.lastName"
           />
           <label class="container__input-lastname" for="inputLastName"
             >Last name<span class="container__star">*</span>
@@ -59,13 +57,7 @@
           ></app-cart-order-error-form>
         </div>
         <div class="container__email" errorDirective [formControlItem]="email">
-          <input
-            type="text"
-            id="inputEmail"
-            required
-            formControlName="email"
-            [(ngModel)]="user.email"
-          />
+          <input type="text" id="inputEmail" required formControlName="email" />
           <label class="container__input-email" for="inputEmail"
             >Email<span class="container__star">*</span></label
           >
@@ -83,7 +75,6 @@
             id="inputPhone"
             required
             formControlName="phone"
-            [(ngModel)]="user.phone"
           />
           <label class="container__input-phone" for="inputPhone"
             >Phone number<span class="container__star">*</span></label
@@ -99,7 +90,6 @@
             id="inputAddress"
             formControlName="homeAddress"
             placeholder=" "
-            [(ngModel)]="user.homeAddress"
           />
           <label class="container__input-address" for="inputAddress"
             >Address
@@ -114,7 +104,6 @@
             id="inputInfo"
             formControlName="additionalInformation"
             placeholder=" "
-            [(ngModel)]="user.additionalInformation"
           ></textarea>
           <label class="container__input-info" for="inputInfo"
             >Additional information</label
