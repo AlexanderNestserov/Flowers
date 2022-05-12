@@ -8,7 +8,7 @@ import {
 } from '@angular/common/http/testing';
 
 import { CommonModule } from '@angular/common';
-import { AddItem } from './cart-order.config';
+import { AddItem, CreateCart } from './cart-order.config';
 
 describe('ContactsService', () => {
   let service: CartOrderService;
@@ -45,7 +45,12 @@ describe('ContactsService', () => {
     ));
 
     it('should add createCart', () => {
-      service.createCart().subscribe((data) => expect(data).toEqual(''), fail);
+      let cart: CreateCart = {
+        id: 0,
+        orderItems: [],
+        text: '',
+      };
+      service.createCart().subscribe((data) => expect(data).toBeFalsy(), fail);
       const req = httpMock.expectOne(service.createCartPostUrl);
       expect(req.request.method).toEqual('POST');
       expect(req.request.url).toEqual('cart');

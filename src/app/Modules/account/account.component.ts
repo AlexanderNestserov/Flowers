@@ -24,7 +24,7 @@ enum ClickedDivState {
 @Component({
   selector: 'app-account',
   templateUrl: './account.component.html',
-  styleUrls: ['./account.component.scss'],
+  styleUrls: ['./account.component.scss', './input-form-style.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [divTrigger, divTriggerError],
 })
@@ -36,7 +36,7 @@ export class AccountComponent implements OnInit {
   isFormShow = false;
   getUserData: Observable<any> = this.http.getUserData();
 
-  errorPassword: any;
+  errorPassword: string = '';
   keycloakLogoutOption = environment.keycloakLogoutOption;
   isLoggedIn = false;
 
@@ -79,13 +79,12 @@ export class AccountComponent implements OnInit {
     private readonly keycloak: KeycloakService
   ) {}
 
-  async ngOnInit() {
+  async ngOnInit(): Promise<void> {
     this.isLoggedIn = await this.keycloak.isLoggedIn();
     this.getUserData.subscribe({
       next: (user: AccountUser) => {
         this.formValue.patchValue({ ...user });
       },
-      error: () => {},
     });
   }
 
@@ -117,7 +116,7 @@ export class AccountComponent implements OnInit {
     return this.formChangePassword.get('confirmPassword') as FormControl;
   }
 
-  showError() {
+  showError(): boolean {
     const { touched, invalid, errors } = this.confirmPassword;
     return (
       (touched && invalid && errors) ||
@@ -125,7 +124,7 @@ export class AccountComponent implements OnInit {
     );
   }
 
-  postUserDetails() {
+  postUserDetails(): void {
     this.isDisabled = true;
     this.http.patchData({ ...this.formValue.value }).subscribe({
       next: () => {
@@ -140,7 +139,7 @@ export class AccountComponent implements OnInit {
     this.clickedDivStateError = ClickedDivState.hide;
   }
 
-  postChangePassword() {
+  postChangePassword(): void {
     this.isDisabledPassword = true;
     this.http
       .postChangePassword({ ...this.formChangePassword.value })
@@ -160,16 +159,16 @@ export class AccountComponent implements OnInit {
     this.clickedDivStateError = ClickedDivState.hide;
   }
 
-  isChangePasswordShow() {
+  isChangePasswordShow(): void {
     this.isFormShow = !this.isFormShow;
   }
 
-  closeMenu() {
+  closeMenu(): void {
     this.clickedDivState = ClickedDivState.hide;
     this.clickedDivStateError = ClickedDivState.hide;
   }
 
-  signOut() {
+  signOut(): void {
     if (this.isLoggedIn) {
       this.keycloak.logout(this.keycloakLogoutOption);
     }

@@ -33,7 +33,7 @@ describe('SearchComponent', () => {
   it('should be created searchItem', () => {
     let event = { target: { value: 'A' } };
     const result = component.searchItem(event);
-    expect(result).toBe();
+    expect(result).toBeUndefined();
   });
 });
 describe('create Pipes', () => {

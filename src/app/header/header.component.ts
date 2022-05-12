@@ -30,11 +30,11 @@ export class HeaderComponent implements OnInit {
   urlCartOrder = false;
   urlAccount = false;
   urlMyorders = false;
-  public isLoggedIn: any;
+  public isLoggedIn = false;
 
   productList: Observable<any> = this.cartService.productList;
 
-  quantityItems: any;
+  quantityItems!: number;
 
   keycloakLogoutOption = environment.keycloakLogoutOption;
 

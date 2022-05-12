@@ -43,14 +43,14 @@ describe('SpinnerComponent', () => {
     [SpinnerService],
     (service: SpinnerService) => {
       const show = service.show();
-      expect(show).toBe();
+      expect(show).toBeUndefined();
     }
   ));
   it('should be created hide', inject(
     [SpinnerService],
     (service: SpinnerService) => {
       const hide = service.hide();
-      expect(hide).toBe();
+      expect(hide).toBeUndefined();
     }
   ));
 

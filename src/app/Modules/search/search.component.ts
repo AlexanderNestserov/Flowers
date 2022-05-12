@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ItemService } from '../home/items/item.service';
 
 @Component({
@@ -7,14 +7,12 @@ import { ItemService } from '../home/items/item.service';
   styleUrls: ['./search.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SearchComponent implements OnInit {
+export class SearchComponent {
   public searchValue: string = '';
 
   constructor(private search: ItemService) {}
 
-  ngOnInit(): void {}
-
-  searchItem(event: any) {
+  searchItem(event: any): void {
     this.searchValue = (event.target as HTMLInputElement).value;
     this.search.searching.next(this.searchValue);
   }

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { Item, Items } from './items.config';
 
 @Injectable()
 export class ItemService {
@@ -16,8 +17,8 @@ export class ItemService {
 
   constructor(private http: HttpClient) {}
 
-  getItems(): Observable<any> {
-    return this.http.get<any>(this.categoriesUrl);
+  getItems(): Observable<Items> {
+    return this.http.get<Items>(this.categoriesUrl);
   }
 
   getItem(id: any): Observable<any> {

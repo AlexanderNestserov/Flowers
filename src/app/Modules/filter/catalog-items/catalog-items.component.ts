@@ -20,8 +20,8 @@ export class CatalogItemsComponent implements OnInit {
   rangeValues: number[] = [];
 
   cartItem: {}[] = [];
-  categoriesFilterName: any;
-  categoriesCheckedName: any;
+  categoriesFilterName!: string;
+  categoriesCheckedName!: [];
   itemsLength: any[] = [];
   id: number[] = [];
   itemsData: Observable<any> = this.http
@@ -65,7 +65,7 @@ export class CatalogItemsComponent implements OnInit {
       });
     });
   }
-  onResize() {
+  onResize(): void {
     if (window.innerWidth < 1145) {
       this.pageSize = 5;
     } else {
@@ -77,7 +77,7 @@ export class CatalogItemsComponent implements OnInit {
     return `${environment.serverUrl}images/${item.replace('.jpg', '')}`;
   }
 
-  addToCart(item: any) {
+  addToCart(item: any): void {
     item.quantity = 1;
     let product: AddItem = {
       id: 0,
@@ -94,10 +94,9 @@ export class CatalogItemsComponent implements OnInit {
           this.changeDetector.detectChanges();
         });
       },
-      error: () => {},
     });
   }
-  addToProducts(item: any) {
+  addToProducts(item: any): void {
     this.cartService.addToProductDetails(item);
   }
 }

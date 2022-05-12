@@ -121,23 +121,13 @@ describe('CartOrderComponent', () => {
     expect(component).toBeTruthy();
   });
   it('should update the control with homeAddress', () => {
-    const el = fixture.debugElement.query(
-      By.css('.container__address #inputAddress')
-    );
+    const el = fixture.debugElement.query(By.css(' #inputAddress'));
     const ctrl = component.formValue.get('homeAddress');
-    const text = fixture.debugElement.query(
-      By.css('.container__info #inputInfo')
-    );
-    const ctrlText = component.formValue.get('additionalInformation');
     const dValue = 'Alex';
     ctrl?.setValue(dValue);
-    const tValue = 'hello';
-    ctrlText?.setValue(tValue);
     fixture.detectChanges();
     expect(el.nativeElement.value).toEqual(dValue);
     expect((el.nativeElement as HTMLInputElement).value).toEqual(dValue);
-    expect(text.nativeElement.value).toEqual(tValue);
-    expect((text.nativeElement as HTMLInputElement).value).toEqual(tValue);
   });
   it('should update the control with homeAddress', () => {
     const ctrl = component.formValue.get('homeAddress');
@@ -164,12 +154,10 @@ describe('CartOrderComponent', () => {
     expect(result).toEqual('Alex');
   });
   it('should update the control with paymentType', () => {
-    const cash = fixture.debugElement.query(
-      By.css('.container__checkbox .field-radiobutton #cash')
-    ).nativeElement as HTMLInputElement;
-    const card = fixture.debugElement.query(
-      By.css('.container__checkbox .field-radiobutton #card')
-    ).nativeElement as HTMLInputElement;
+    const cash = fixture.debugElement.query(By.css(' #cash'))
+      .nativeElement as HTMLInputElement;
+    const card = fixture.debugElement.query(By.css(' #card'))
+      .nativeElement as HTMLInputElement;
     const ctrl = component.formValue.get('paymentType');
     const dValue = 'CASH';
     ctrl?.setValue(dValue);
@@ -217,8 +205,8 @@ describe('CartOrderComponent', () => {
     let filteredX = component.cartItem.map((itemX: any) => {
       yFilter.includes(itemX.id);
     });
-    component.newArray = [];
-    let xFilter = component.newArray.map((item: any) => {
+    component.deleteSelectedItems = [];
+    let xFilter = component.deleteSelectedItems.map((item: any) => {
       return item.id;
     });
     component.product = [{ deleteId: 1 }, { deleteId: 2 }];
@@ -235,6 +223,7 @@ describe('CartOrderComponent', () => {
 
   it('should be created key', () => {
     let item = {
+      id: 1,
       deleteId: 1000,
       quantity: 2,
       priceDto: { price: 100 },

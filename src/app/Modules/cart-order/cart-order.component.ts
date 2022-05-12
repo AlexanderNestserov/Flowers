@@ -11,33 +11,37 @@ import { environment } from 'src/environments/environment';
 import { AccountUser } from '../account/account.model';
 import { AccountService } from '../account/account.service';
 import { ItemService } from '../home/items/item.service';
+import { KeyItem } from './cart-order.config';
 import { CartOrderService } from './cart-order.service';
 
 @Component({
   selector: 'app-cart-order',
   templateUrl: './cart-order.component.html',
-  styleUrls: ['./cart-order.component.scss'],
+  styleUrls: [
+    './cart-order.component.scss',
+    '../../Modules/account/input-form-style.scss',
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CartOrderComponent implements OnInit {
   selected: string = 'CASH';
   isDisabled = false;
   isChecked = false;
-  checked: any = [];
+  checked: {}[] = [];
   isLoggedIn = false;
 
   itemsData: Observable<any> = this.itemService
     .getItems()
     .pipe(map((res: any) => res.content));
 
-  getUserData: Observable<any> = this.http.getUserData();
+  getUserData: Observable<AccountUser> = this.http.getUserData();
 
   getUserCart: Observable<any> = this.cartService.getShoppingCart();
-  error: any;
-  getTemp: Observable<any> = this.http.getTempId();
+
+  getTemp: Observable<string> = this.http.getTempId();
   TEMP_ID: string = '';
 
-  newArray: [] = [];
+  deleteSelectedItems: [] = [];
 
   public product: any = [];
 
@@ -64,7 +68,7 @@ export class CartOrderComponent implements OnInit {
     public readonly keycloak: KeycloakService
   ) {}
 
-  async ngOnInit() {
+  async ngOnInit(): Promise<void> {
     this.getUserCart.subscribe((res) => {
       if (res == null) {
         this.cartService.createCart();
@@ -88,10 +92,9 @@ export class CartOrderComponent implements OnInit {
       next: (user: AccountUser) => {
         this.formValue.patchValue({ ...user });
       },
-      error: () => {},
     });
 
-    this.getTemp.subscribe((res) => {
+    this.getTemp.subscribe((res: string) => {
       this.TEMP_ID = res;
     });
   }
@@ -121,22 +124,22 @@ export class CartOrderComponent implements OnInit {
     return this.formValue.get('paymentType') as FormControl;
   }
 
-  postDataDetails() {}
+  postDataDetails(): void {}
 
   getItemImage(item: string): string {
     return `${environment.serverUrl}images/${item.replace('.jpg', '')}`;
   }
 
-  deleteItem(item: any) {
+  deleteItem(item: any): void {
     this.cartService.deleteItem(item.deleteId).subscribe({
       next: () => {
-        this.cartItem.map((a: any, i: any) => {
+        this.cartItem.map((a: any, i: number) => {
           if (item.deleteId === a.id) {
             this.cartItem.splice(i, 1);
             this.cartService.productList.next(this.cartItem);
           }
         });
-        this.product.map((a: any, i: any) => {
+        this.product.map((a: any, i: number) => {
           if (item.id === a.id) {
             this.product.splice(i, 1);
             this.totalPrice = this.totalPrice - a.total;
@@ -144,13 +147,10 @@ export class CartOrderComponent implements OnInit {
           }
         });
       },
-      error: (error) => {
-        console.log(error);
-      },
     });
   }
 
-  key(event: any, item: any, totalPrice: number) {
+  key(event: any, item: KeyItem, totalPrice: number): void {
     if (event.value == 0 || event.value == null) {
       event.value = 1;
     }
@@ -161,19 +161,16 @@ export class CartOrderComponent implements OnInit {
     totalPrice = totalPrice + item.total;
     this.totalPrice = Math.ceil(totalPrice * 100) / 100;
 
-    this.cartItem.map((a: any, i: any) => {
+    this.cartItem.map((a: any) => {
       if (item.deleteId === a.id) {
         a.quantity = item.quantity;
         this.cartService.productList.next(this.cartItem);
-        this.cartService.updateCart(this.cartItem).subscribe({
-          next: () => {},
-          error: () => {},
-        });
+        this.cartService.updateCart(this.cartItem).subscribe();
       }
     });
   }
 
-  deleteSelected() {
+  deleteSelected(): void {
     let yFilter = this.checked.map((item: any) => {
       return item.deleteId;
     });
@@ -184,8 +181,8 @@ export class CartOrderComponent implements OnInit {
     filteredX.map((a: any) => {
       this.cartService.deleteItem(a.id).subscribe({
         next: (res: any) => {
-          this.newArray = res.orderItems;
-          let yFilter = this.newArray.map((item: any) => {
+          this.deleteSelectedItems = res.orderItems;
+          let yFilter = this.deleteSelectedItems.map((item: any) => {
             return item.id;
           });
           this.cartItem = this.cartItem.filter((itemX: any) =>
@@ -200,9 +197,6 @@ export class CartOrderComponent implements OnInit {
           });
           this.totalPrice = Math.ceil(this.totalPrice * 100) / 100;
           this.cartService.productList.next(this.cartItem);
-        },
-        error: (error: any) => {
-          console.log(error);
         },
       });
     });

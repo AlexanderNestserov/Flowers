@@ -52,4 +52,12 @@ export interface ProductType {
   };
   shortDescription: string;
   thumbnail: string;
+  quantity?: number;
+}
+
+export interface AddItem {
+  id: number;
+  quantity: number;
+  priceDto: { id: number };
+  category: { name: string };
 }

@@ -6,7 +6,6 @@ import { PrintErrorDirective } from './error-form.directive';
 @NgModule({
   declarations: [PrintErrorDirective],
   imports: [CommonModule, FormsModule, ReactiveFormsModule],
-  providers: [],
   exports: [PrintErrorDirective],
 })
 export class ErrorDirectiveModule {}

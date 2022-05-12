@@ -41,7 +41,7 @@
           <app-field-error [formControlItem]="name"></app-field-error>
         </div>
         <div
-          class="container__phone-number"
+          class="container__phone-number-contacts"
           errorDirective
           [formControlItem]="phone"
         >
@@ -56,14 +56,20 @@
           >
           <app-field-error [formControlItem]="phone"></app-field-error>
         </div>
-        <div class="container__message" errorDirective [formControlItem]="text">
+        <div
+          class="container__message-contacts"
+          errorDirective
+          [formControlItem]="text"
+        >
           <textarea
             type="text"
-            id="inputMessage"
+            id="inputMessageContacts"
             required
             formControlName="text"
           ></textarea>
-          <label class="container__input-message" for="inputMessage"
+          <label
+            class="container__input-message-contacts"
+            for="inputMessageContacts"
             >Text message</label
           >
           <span

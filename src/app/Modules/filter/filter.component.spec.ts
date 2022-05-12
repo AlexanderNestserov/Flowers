@@ -68,7 +68,7 @@ describe('FilterComponent', () => {
   });
   it('should be created filterCategoriesButton', () => {
     const toggle = component.filterCategoriesButton();
-    expect(toggle).toBe();
+    expect(toggle).toBeUndefined();
   });
   it('should be created filterCategoriesButton', () => {
     component.searchInput = 'Text';
@@ -77,22 +77,34 @@ describe('FilterComponent', () => {
   });
   it('should be created sortingCategoriesButton', () => {
     const toggle = component.sortingCategoriesButton();
-    expect(toggle).toBe();
+    expect(toggle).toBeUndefined();
   });
   it('should be created clearFilter', () => {
-    const toggle = component.clearFilter();
-    expect(toggle).toBe();
+    component.clearFilter();
+    expect(component.checked).toEqual([]);
   });
   it('should be created handle', () => {
     const toggle = component.handle();
-    expect(toggle).toBe();
+    expect(toggle).toBeUndefined();
   });
   it('should be created filterDisplay', () => {
-    const toggle = component.filterDisplay();
-    expect(toggle).toBe();
+    component.isFilterShow = true;
+    component.filterDisplay();
+    expect(component.isFilterShow).toBe(false);
+  });
+  it('should be created filterDisplay', () => {
+    component.isFilterShow = false;
+    component.filterDisplay();
+    expect(component.isFilterShow).toBe(true);
   });
   it('should be created sortingDisplay', () => {
-    const toggle = component.sortingDisplay();
-    expect(toggle).toBe();
+    component.isSortingShow = false;
+    component.sortingDisplay();
+    expect(component.isSortingShow).toBe(true);
+  });
+  it('should be created sortingDisplay', () => {
+    component.isSortingShow = true;
+    component.sortingDisplay();
+    expect(component.isSortingShow).toBe(false);
   });
 });

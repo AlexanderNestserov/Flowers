@@ -104,7 +104,7 @@
         <p class="container__point">
           You can enter the address manually or specify a point on the map
         </p>
-        <div class="container__info">
+        <div class="container__info-registration">
           <textarea
             type="text"
             id="inputInfo"
@@ -136,7 +136,10 @@
             [formControlItem]="password"
           ></app-field-error-registration>
         </div>
-        <div class="container__confirm" [class.has-error]="showError()">
+        <div
+          class="container__confirm-registration"
+          [class.has-error]="showError()"
+        >
           <input
             type="password"
             id="inputConfirm"

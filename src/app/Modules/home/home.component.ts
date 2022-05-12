@@ -1,5 +1,9 @@
-import { Component, ViewEncapsulation, ChangeDetectionStrategy } from "@angular/core";
-import SwiperCore, { Autoplay, Pagination, Navigation } from "swiper";
+import {
+  Component,
+  ViewEncapsulation,
+  ChangeDetectionStrategy,
+} from '@angular/core';
+import SwiperCore, { Autoplay, Pagination, Navigation } from 'swiper';
 
 SwiperCore.use([Autoplay, Pagination, Navigation]);
 
@@ -8,8 +12,6 @@ SwiperCore.use([Autoplay, Pagination, Navigation]);
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HomeComponent {
-
-}
+export class HomeComponent {}

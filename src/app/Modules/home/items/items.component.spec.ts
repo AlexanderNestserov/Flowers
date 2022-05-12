@@ -38,7 +38,7 @@ describe('ItemsComponent', () => {
   it('should be created addToProducts', () => {
     let item = { itemId: 2, name: 'Alex' };
     const toggle = component.addToProduct(item);
-    expect(toggle).toBe();
+    expect(toggle).toBeUndefined();
   });
   it('should be created addToCart', () => {
     let item = {
@@ -48,6 +48,6 @@ describe('ItemsComponent', () => {
       name: 'Alex',
     };
     const toggle = component.addToCart(item);
-    expect(toggle).toBe();
+    expect(toggle).toBeUndefined();
   });
 });

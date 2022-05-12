@@ -1,60 +1,56 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { ProductType } from '../catalog/catalog-categories/product.config';
 import { AddItem, CreateCart } from './cart-order.config';
 
 @Injectable()
 export class CartOrderService {
-  public cartItemList: any = [];
-  public cartItemProductList: any = [];
+  public cartItemProductList: {}[] = [];
   public productList = new BehaviorSubject<any>([]);
   public productDetailsList = new BehaviorSubject<any>([]);
-
-  public cartLength = new BehaviorSubject<number>(0);
 
   public postUrl: string = 'order/checkout';
   public createCartPostUrl: string = 'cart';
   public addItemToCartUrl: string = 'cart/item';
-  static productList: any;
 
   constructor(private http: HttpClient) {}
 
-  getShoppingCart(): Observable<any> {
-    return this.http.get<any>(this.createCartPostUrl);
+  getShoppingCart(): Observable<CreateCart> {
+    return this.http.get<CreateCart>(this.createCartPostUrl);
   }
 
-  createCart(): Observable<any> {
+  createCart(): Observable<CreateCart> {
     let body: CreateCart = {
       id: 0,
       orderItems: [],
       text: '',
     };
-    return this.http.post(this.createCartPostUrl, body);
+    return this.http.post<CreateCart>(this.createCartPostUrl, body);
   }
 
-  addItemToCart(product: AddItem): Observable<any> {
-    return this.http.post(this.addItemToCartUrl, product);
+  addItemToCart(product: AddItem): Observable<CreateCart> {
+    return this.http.post<CreateCart>(this.addItemToCartUrl, product);
   }
 
-  updateCart(product: any): Observable<any> {
+  updateCart(product: any): Observable<CreateCart> {
     let body: CreateCart = {
       id: 0,
       orderItems: product,
       text: '',
     };
-
-    return this.http.put(this.createCartPostUrl, body);
+    return this.http.put<CreateCart>(this.createCartPostUrl, body);
   }
 
-  deleteItem(id: number): Observable<any> {
-    return this.http.delete(this.addItemToCartUrl + `/${id}`);
+  deleteItem(id: number): Observable<CreateCart> {
+    return this.http.delete<CreateCart>(this.addItemToCartUrl + `/${id}`);
   }
 
-  getProductDetails() {
+  getProductDetails(): Observable<ProductType[]> {
     return this.productDetailsList.asObservable();
   }
 
-  addToProductDetails(product: any) {
+  addToProductDetails(product: any): void {
     this.cartItemProductList.push(product);
     this.productDetailsList.next(this.cartItemProductList);
   }

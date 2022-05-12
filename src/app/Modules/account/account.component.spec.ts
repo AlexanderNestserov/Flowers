@@ -82,13 +82,9 @@ describe('AccountComponent', () => {
     expect(component.showError()).toBeTruthy();
   }));
   it('should update the control with homeAddress', () => {
-    const el = fixture.debugElement.query(
-      By.css('.container__address #inputAddress')
-    );
+    const el = fixture.debugElement.query(By.css(' #inputAddress'));
     const ctrl = component.formValue.get('homeAddress');
-    const text = fixture.debugElement.query(
-      By.css('.container__info #inputInfo')
-    );
+    const text = fixture.debugElement.query(By.css(' #inputInfo'));
     const ctrlText = component.formValue.get('additionalInformation');
     const dValue = 'Alex';
     ctrl?.setValue(dValue);

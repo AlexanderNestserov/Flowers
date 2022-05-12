@@ -1,67 +1,82 @@
-export interface Item {
-    id: number,
-    imageUrl: string,
-    title: string,
-    subTitle: string,
-    price: string
+export interface Items {
+  content: [
+    {
+      category: {
+        description: 'The best flowers';
+        id: 0;
+        name: 'Flowers';
+        photo: 'images/categories/Flowers-photo';
+        thumbnail: 'images/categories/Flowers-thumbnail';
+      };
+      description: 'A beautiful collection of Spray Carnations in shades of pink accompanied by Alstroemeria and delicately complemented by Gypsophila.';
+      id: 0;
+      name: 'Birthday Flowers';
+      photo: 'image-photo';
+      priceDto: {
+        date: '2021-07-12 14:22';
+        id: 0;
+        itemId: 42;
+        price: 99.99;
+      };
+      promotion: {
+        id: 0;
+        itemId: 42;
+        promotion: 50;
+      };
+      shortDescription: 'Pink and cream flowers';
+      thumbnail: 'image-thumbnail';
+    }
+  ];
+  empty: true;
+  first: true;
+  last: true;
+  number: 0;
+  numberOfElements: 0;
+  pageable: {
+    offset: 0;
+    pageNumber: 0;
+    pageSize: 0;
+    paged: true;
+    sort: {
+      empty: true;
+      sorted: true;
+      unsorted: true;
+    };
+    unpaged: true;
+  };
+  size: 0;
+  sort: {
+    empty: true;
+    sorted: true;
+    unsorted: true;
+  };
+  totalElements: 0;
+  totalPages: 0;
 }
 
-export const ITEMS = [
-    {
-        id: 1,
-        imageUrl: '../../../../assets/img-home/image 1.png',
-        title: 'Bouquet 117 (21 gerberas)',
-        subTitle: 'Fresh flowers',
-        price: 'Not in stock'
-    },
-    {
-        id: 2,
-        imageUrl: '../../../../assets/img-home/image 2.png',
-        title: 'You’re Precious Bonquet',
-        subTitle: 'Fresh flowers',
-        price: '€83.49 EUR'
-    },
-    {
-        id: 3,
-        imageUrl: '../../../../assets/img-home/image 3.png',
-        title: 'Smiles and Sunshine',
-        subTitle: 'Fresh flowers',
-        price: '€22.47 EUR'
-    },
-    {
-        id: 4,
-        imageUrl: '../../../../assets/img-home/image 4 .png',
-        title: 'Light of my Life',
-        subTitle: 'Fresh flowers',
-        price: '€62.17 EUR'
-    },
-    {
-        id: 5,
-        imageUrl: '../../../../assets/img-home/image 5.png',
-        title: 'Summer in the Cape',
-        subTitle: 'Fresh flowers',
-        price: '€65.56 EUR'
-    },
-    {
-        id: 6,
-        imageUrl: '../../../../assets/img-home/image 6.png',
-        title: 'Smooth Sailing',
-        subTitle: 'Fresh flowers',
-        price: '€83.49 EUR'
-    },
-    {
-        id: 7,
-        imageUrl: '../../../../assets/img-home/image 7.png',
-        title: 'Life’s Peach',
-        subTitle: 'Fresh flowers',
-        price: '€110.13 EUR'
-    },
-    {
-        id: 8,
-        imageUrl: '../../../../assets/img-home/image 8.png',
-        title: 'Bouquet 117 (21 gerberas)',
-        subTitle: 'Fresh flowers',
-        price: '€60.04 EUR'
-    }
-]
-
+export interface Item {
+  category: {
+    description: 'The best flowers';
+    id: 0;
+    name: 'Flowers';
+    photo: 'images/categories/Flowers-photo';
+    thumbnail: 'images/categories/Flowers-thumbnail';
+  };
+  description: 'A beautiful collection of Spray Carnations in shades of pink accompanied by Alstroemeria and delicately complemented by Gypsophila.';
+  id: 0;
+  name: 'Birthday Flowers';
+  photo: 'image-photo';
+  priceDto: {
+    date: '2021-07-12 14:22';
+    id: 0;
+    itemId: 42;
+    price: 99.99;
+  };
+  promotion: {
+    id: 0;
+    itemId: 42;
+    promotion: 50;
+  };
+  shortDescription: 'Pink and cream flowers';
+  thumbnail: 'image-thumbnail';
+}

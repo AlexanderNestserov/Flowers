@@ -22,7 +22,10 @@ enum ClickedDivState {
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
-  styleUrls: ['./registration.component.scss'],
+  styleUrls: [
+    './registration.component.scss',
+    '../../Modules/account/input-form-style.scss',
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [divTrigger, divTriggerError],
 })
@@ -65,16 +68,8 @@ export class RegistrationComponent implements OnInit {
     private readonly keycloak: KeycloakService
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.formValue.reset();
-  }
-
-  showError() {
-    const { touched, invalid, errors } = this.confirmPassword;
-    return (
-      (touched && invalid && errors) ||
-      this.formValue.errors?.['noMatchingPassword']
-    );
   }
 
   get firstName() {
@@ -104,21 +99,30 @@ export class RegistrationComponent implements OnInit {
   get myCheckbox() {
     return this.formValue.get('myCheckbox') as FormControl;
   }
-  dialogTitle() {
+
+  dialogTitle(): void {
     this.isDialog = false;
   }
 
-  postDataDetails() {
+  showError(): void {
+    const { touched, invalid, errors } = this.confirmPassword;
+    return (
+      (touched && invalid && errors) ||
+      this.formValue.errors?.['noMatchingPassword']
+    );
+  }
+
+  postDataDetails(): void {
     this.isDisabled = true;
     this.api.postData({ ...this.formValue.value }).subscribe({
-      next: (res) => {
+      next: () => {
         setTimeout(() => {
           this.keycloak.login(this.keycloakLoginOption);
         }, 5000);
         this.clickedDivState = ClickedDivState.show;
         this.formValue.reset();
       },
-      error: (error) => {
+      error: () => {
         this.clickedDivStateError = ClickedDivState.show;
         this.formValue.reset();
       },
@@ -128,11 +132,11 @@ export class RegistrationComponent implements OnInit {
     this.clickedDivStateError = ClickedDivState.hide;
   }
 
-  signIn() {
+  signIn(): void {
     this.keycloak.login(this.keycloakLoginOption);
   }
 
-  closeMenu() {
+  closeMenu(): void {
     this.clickedDivState = ClickedDivState.hide;
     this.clickedDivStateError = ClickedDivState.hide;
   }

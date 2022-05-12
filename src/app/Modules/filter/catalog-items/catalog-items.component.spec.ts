@@ -53,7 +53,7 @@ describe('CatalogItemsComponent', () => {
       quantity: 2,
     };
     const toggle = component.addToCart(item);
-    expect(toggle).toBe();
+    expect(toggle).toBeUndefined();
   });
   it('should be created getItemImage', () => {
     let item = 'photo.jpg';
@@ -63,7 +63,7 @@ describe('CatalogItemsComponent', () => {
   it('should be created addToProducts', () => {
     let item = { itemId: 2 };
     const toggle = component.addToProducts(item);
-    expect(toggle).toBe();
+    expect(toggle).toBeUndefined();
   });
 });
 describe('create Pipes', () => {

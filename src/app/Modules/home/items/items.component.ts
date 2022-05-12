@@ -3,6 +3,7 @@ import { map, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { AddItem } from '../../cart-order/cart-order.config';
 import { CartOrderService } from '../../cart-order/cart-order.service';
+import { ProductType } from '../../catalog/catalog-categories/product.config';
 import { ItemService } from './item.service';
 
 @Component({
@@ -15,7 +16,7 @@ export class ItemsComponent implements OnInit {
   inStock = false;
   id: number[] = [];
 
-  itemsEight: any;
+  itemsEight: ProductType[] = [];
   itemsData: Observable<any> = this.http
     .getItems()
     .pipe(map((res: any) => res.content));
@@ -28,6 +29,8 @@ export class ItemsComponent implements OnInit {
 
   ngOnInit(): void {
     this.itemsData.subscribe((res) => {
+      console.log(res);
+
       this.itemsEight = res.slice(0, 8);
     });
     this.cartService.getShoppingCart().subscribe((res) => {
@@ -42,7 +45,7 @@ export class ItemsComponent implements OnInit {
     return `${environment.serverUrl}images/${item.replace('.jpg', '')}`;
   }
 
-  addToCart(item: any) {
+  addToCart(item: any): void {
     item.quantity = 1;
     let product: AddItem = {
       id: 0,
@@ -59,11 +62,10 @@ export class ItemsComponent implements OnInit {
           this.changeDetector.detectChanges();
         });
       },
-      error: () => {},
     });
   }
 
-  addToProduct(item: any) {
+  addToProduct(item: any): void {
     this.cartService.addToProductDetails(item);
   }
 }

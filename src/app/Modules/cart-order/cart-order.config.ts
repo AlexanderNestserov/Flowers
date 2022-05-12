@@ -17,3 +17,11 @@ export class AddItem {
   priceId = 42;
   quantity = 1;
 }
+
+export interface KeyItem {
+  id: number;
+  deleteId: number;
+  total: number;
+  quantity: number;
+  priceDto: { price: number };
+}

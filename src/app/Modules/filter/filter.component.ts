@@ -55,7 +55,7 @@ export class FilterComponent implements OnInit {
     });
   }
 
-  filterCategoriesButton() {
+  filterCategoriesButton(): void {
     if (this.searchInput) {
       this.router.navigate(['/search']);
     } else {
@@ -69,13 +69,13 @@ export class FilterComponent implements OnInit {
     this.http.filteringByCost.next(this.rangeValues);
   }
 
-  sortingCategoriesButton() {
+  sortingCategoriesButton(): void {
     this.http.sorting.next(this.selectedCategory);
     this.isSortingShow = false;
     document.body.style.overflow = 'scroll';
   }
 
-  clearFilter() {
+  clearFilter(): void {
     this.searchText = {};
     this.selectedCategory = this.categories[0];
     this.checked = [];
@@ -87,11 +87,11 @@ export class FilterComponent implements OnInit {
     this.http.sorting.next(this.selectedCategory);
   }
 
-  handle() {
+  handle(): void {
     this.http.sorting.next(this.searchText);
   }
 
-  filterDisplay() {
+  filterDisplay(): void {
     this.isFilterShow = !this.isFilterShow;
     if (this.isFilterShow) {
       document.body.style.overflow = 'hidden';
@@ -100,7 +100,7 @@ export class FilterComponent implements OnInit {
     }
   }
 
-  sortingDisplay() {
+  sortingDisplay(): void {
     this.isSortingShow = !this.isSortingShow;
     if (this.isSortingShow) {
       document.body.style.overflow = 'hidden';

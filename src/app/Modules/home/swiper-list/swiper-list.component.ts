@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import {
   SWIPER_CONFIG,
   ADAPTIVE_SWIPER,
@@ -15,7 +15,7 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./swiper-list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SwiperListComponent implements OnInit {
+export class SwiperListComponent {
   categoriesData: Observable<any> = this.http
     .getCategories()
     .pipe(map((res: any) => res.content));
@@ -24,8 +24,6 @@ export class SwiperListComponent implements OnInit {
   adaptiveSwiper: Adaptive = ADAPTIVE_SWIPER;
 
   constructor(private http: SwiperListService) {}
-
-  ngOnInit(): void {}
 
   getImage(item: string): string {
     return `${environment.serverUrl}images/${item.replace('.jpg', '')}`;

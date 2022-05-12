@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ContactsService } from './contacts.service';
 import {
   FormBuilder,
@@ -20,11 +20,14 @@ enum ClickedDivState {
 @Component({
   selector: 'app-contacts',
   templateUrl: './contacts.component.html',
-  styleUrls: ['./contacts.component.scss'],
+  styleUrls: [
+    './contacts.component.scss',
+    '../../Modules/account/input-form-style.scss',
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [divTrigger, divTriggerError],
 })
-export class ContactsComponent implements OnInit {
+export class ContactsComponent {
   clickedDivState: ClickedDivState = ClickedDivState.hide;
   clickedDivStateError: ClickedDivState = ClickedDivState.hide;
   isDisabled = false;
@@ -37,21 +40,17 @@ export class ContactsComponent implements OnInit {
 
   constructor(private api: ContactsService, private formbuilder: FormBuilder) {}
 
-  ngOnInit(): void {}
-
   get name() {
     return this.formValue.get('name') as FormControl;
   }
-
   get phone() {
     return this.formValue.get('phone') as FormControl;
   }
-
   get text() {
     return this.formValue.get('text') as FormControl;
   }
 
-  postDataDetails() {
+  postDataDetails(): void {
     this.isDisabled = true;
     this.api.postData({ ...this.formValue.value }).subscribe({
       next: () => {
@@ -68,7 +67,7 @@ export class ContactsComponent implements OnInit {
     this.clickedDivStateError = ClickedDivState.hide;
   }
 
-  closeMenu() {
+  closeMenu(): void {
     this.clickedDivState = ClickedDivState.hide;
     this.clickedDivStateError = ClickedDivState.hide;
   }

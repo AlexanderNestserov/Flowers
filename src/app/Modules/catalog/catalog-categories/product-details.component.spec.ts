@@ -37,12 +37,14 @@ describe('ProductDetailsComponent', () => {
     expect(component).toBeTruthy();
   });
   it('should be created getFirstElement', () => {
-    const toggle = component.getFirstElement();
-    expect(toggle).toBe();
+    component.isActive;
+    component.getFirstElement();
+    expect(component.isActive).toBe(false);
   });
   it('should be created getSecondElement', () => {
-    const toggle = component.getSecondElement();
-    expect(toggle).toBe();
+    component.isActive;
+    component.getSecondElement();
+    expect(component.isActive).toBe(true);
   });
   it('should be created getItemImage', () => {
     let item = 'photo.jpg';
@@ -57,6 +59,6 @@ describe('ProductDetailsComponent', () => {
       category: { name: 'Alex' },
     };
     const toggle = component.addToCart(item);
-    expect(toggle).toBe();
+    expect(toggle).toBeUndefined();
   });
 });

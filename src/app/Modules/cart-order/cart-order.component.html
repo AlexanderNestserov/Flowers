@@ -11,7 +11,7 @@
       <div class="container__cartorder">Cart and order placement</div>
     </div>
     <div class="container-cartorder__cart-title">Cart</div>
-    <div class="container-cartorder__empty" *ngIf="product.length == 0">
+    <div class="container-cartorder__empty" *ngIf="!product.length">
       Your cart is empty! Add items in the cart to confirm order!
     </div>
     <div
@@ -62,10 +62,7 @@
         alt="x"
       />
     </div>
-    <div
-      class="container-cartorder__cart-total"
-      *ngIf="this.product.length != 0"
-    >
+    <div class="container-cartorder__cart-total" *ngIf="this.product.length">
       <button class="button-delete" (click)="deleteSelected()">
         Delete selected
       </button>
@@ -152,7 +149,7 @@
             [formControlItem]="phone"
           ></app-cart-order-error-form>
         </div>
-        <div class="container__message">
+        <div class="container__message-cartorder">
           <textarea
             type="text"
             id="inputMessage"
@@ -178,7 +175,7 @@
         <p class="container__point">
           You can enter the address manually or specify a point on the map
         </p>
-        <div class="container__info">
+        <div class="container__info-cartorder">
           <textarea
             type="text"
             id="inputInfo"
@@ -198,7 +195,6 @@
               formControlName="paymentType"
               name="paymentType"
               value="CASH"
-              [(ngModel)]="selected"
               inputId="cash"
             ></p-radioButton>
             <label for="cash">In cash to the courier</label>
@@ -208,7 +204,6 @@
               formControlName="paymentType"
               name="paymentType"
               value="CARD"
-              [(ngModel)]="selected"
               inputId="card"
             ></p-radioButton>
             <label for="card">By bank card on the website</label>

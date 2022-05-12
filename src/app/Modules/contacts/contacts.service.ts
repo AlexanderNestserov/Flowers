@@ -12,7 +12,7 @@ export class ContactsService {
   getAdress(): Observable<string | number | object> {
     return this.http.get<string | number | object>(this.getUrl);
   }
-  postData(formValue: ContactMeDto): Observable<any> {
+  postData(formValue: ContactMeDto): Observable<string> {
     let body: ContactMeDto = { ...formValue };
     return this.http.post(this.postUrl, body, {
       responseType: 'text',

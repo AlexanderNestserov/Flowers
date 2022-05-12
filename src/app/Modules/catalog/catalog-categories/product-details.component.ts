@@ -17,8 +17,8 @@ import { ProductType, PRODUCT_TYPE } from './product.config';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductDetailsComponent implements OnInit {
-  cartItem: any;
-  product: any = [];
+  cartItem: {}[] = [];
+  product: ProductType[] = [];
   productType: ProductType = PRODUCT_TYPE;
 
   categoryName: string = '';
@@ -30,7 +30,7 @@ export class ProductDetailsComponent implements OnInit {
     private cartService: CartOrderService,
     private changeDetector: ChangeDetectorRef
   ) {}
-  ngOnInit() {
+  ngOnInit(): void {
     this.categoryName = this.route.snapshot.queryParams['categoryName'];
     this.route.queryParams.subscribe((params: Params) => {
       this.categoryName = params['categoryName'];
@@ -45,7 +45,6 @@ export class ProductDetailsComponent implements OnInit {
           this.product = [this.product[this.product.length - 1]];
         }
       },
-      error: () => {},
     });
     this.cartService.getShoppingCart().subscribe((res) => {
       res.orderItems.map((a: any) => {
@@ -55,10 +54,10 @@ export class ProductDetailsComponent implements OnInit {
     });
   }
 
-  getSecondElement() {
+  getSecondElement(): void {
     this.isActive = true;
   }
-  getFirstElement() {
+  getFirstElement(): void {
     this.isActive = false;
   }
 
@@ -66,7 +65,7 @@ export class ProductDetailsComponent implements OnInit {
     return `${environment.serverUrl}images/${photo.replace('.jpg', '')}`;
   }
 
-  addToCart(item: any) {
+  addToCart(item: any): void {
     item.quantity = 1;
     let product: AddItem = {
       id: 0,
@@ -83,7 +82,6 @@ export class ProductDetailsComponent implements OnInit {
           this.changeDetector.detectChanges();
         });
       },
-      error: () => {},
     });
   }
 }
