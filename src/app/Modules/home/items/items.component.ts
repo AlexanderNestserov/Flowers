@@ -29,8 +29,6 @@ export class ItemsComponent implements OnInit {
 
   ngOnInit(): void {
     this.itemsData.subscribe((res) => {
-      console.log(res);
-
       this.itemsEight = res.slice(0, 8);
     });
     this.cartService.getShoppingCart().subscribe((res) => {

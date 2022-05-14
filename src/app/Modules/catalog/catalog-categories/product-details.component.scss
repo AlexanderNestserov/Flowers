@@ -185,6 +185,70 @@
 .container-banners {
     margin-left: 11%;
 }
+
+.container__price-changes {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(40px);
+}
+.container__price-changes-details {
+    @include wihi(79rem, 46.6rem);
+    margin: 14.7rem auto 0 auto;
+    background: $color_white;
+    box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.1);
+    border-radius: 1.2rem;
+}
+.container__price-changes-details-header {
+    display: flex;
+    justify-content: flex-start;
+}
+.container__price-changes-details-header-title {
+    @include font(Montserrat, normal, 700, 2.8rem, 120%, 0em, $color_darkgrey);
+    margin: 4rem 21.7rem 2.7rem 5.4rem;
+}
+.container__price-changes-details-header-time {
+    display: flex;
+    justify-content: flex-start;
+}
+.container__price-changes-details-header-time-onemonth,
+.container__price-changes-details-header-time-sixmonth {
+    @include font(Montserrat, normal, 600, 1.5rem, 110%, 0.05em, $color_darkgrey);
+    margin-right: 3.7rem;
+    text-transform: uppercase;
+    margin-top: 4.8rem;
+}
+.container__price-changes-details-header-close {
+    @include wihi(2.4rem, 2.4rem);
+    background: $color_white;
+    margin-top: 4.3rem;
+}
+
+.container__price-changes-details-line {
+    background: $color_darkgrey;
+    opacity: 0.2;
+    @include wihi(100%, 1px);
+    margin-bottom: 2.3rem;
+}
+.container__price-changes-details-changes {
+    margin-left: 3.4rem;
+}
+.container__price-changes-details-changes-title {
+    margin-bottom: 1.6rem;
+    margin-left: 2rem;
+}
+.container__price-changes-details-changes-title-current {
+    @include font(Montserrat, normal, 400, 1.4rem, 150%, 0em, $color_darkgrey);
+    margin-right: 1.2rem;
+}
+.container__price-changes-details-changes-title-number {
+    @include font(Montserrat, normal, 700, 1.4rem, 150%, 0em, $color_darkgrey);
+}
+
 @media (max-width: 1460px) {
     .wrapper-product {
         width: 100%;

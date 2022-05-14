@@ -66,7 +66,10 @@
           <div class="container-product__descriptoin-price-euro">
             €{{ item.priceDto.price }} EUR
           </div>
-          <a class="container-product__descriptoin-price-changes-link">
+          <a
+            class="container-product__descriptoin-price-changes-link"
+            (click)="priceChangesShow()"
+          >
             <div class="container-product__descriptoin-price-changes">
               Price changes
             </div>
@@ -131,5 +134,51 @@
   </div>
   <div class="container-banners">
     <app-banners></app-banners>
+  </div>
+  <div class="container__price-changes" *ngIf="priceChangesIsShow">
+    <div class="container__price-changes-details">
+      <div class="container__price-changes-details-header">
+        <div class="container__price-changes-details-header-title">
+          Price changes
+        </div>
+        <div class="container__price-changes-details-header-time">
+          <div class="container__price-changes-details-header-time-onemonth">
+            1 month
+          </div>
+          <div class="container__price-changes-details-header-time-sixmonth">
+            6 month
+          </div>
+        </div>
+        <button
+          class="container__price-changes-details-header-close"
+          (click)="closePriseChanges()"
+        >
+          <img
+            src="../../../../assets/img-registration/close.png"
+            alt="close"
+            id="closeImgPriceChanges"
+          />
+        </button>
+      </div>
+      <div class="container__price-changes-details-line"></div>
+      <div class="container__price-changes-details-changes">
+        <div class="container__price-changes-details-changes-title">
+          <span class="container__price-changes-details-changes-title-current"
+            >Current price:</span
+          >
+          <span class="container__price-changes-details-changes-title-number"
+            >€90.87 EUR</span
+          >
+        </div>
+        <p-chart
+          type="line"
+          [data]="lineStylesData"
+          [options]="basicOptions"
+          [responsive]="true"
+          width="67.9rem"
+          height="23.3rem"
+        ></p-chart>
+      </div>
+    </div>
   </div>
 </div>

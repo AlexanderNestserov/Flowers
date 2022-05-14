@@ -4,7 +4,7 @@ import { Pipe, PipeTransform } from '@angular/core';
   name: 'checkbox',
 })
 export class FilterCheckboxPipe implements PipeTransform {
-  transform(items: any[], value: any) {
+  transform(items: any[], value: any[]) {
     if (!items || value.length == 0) {
       return items;
     } else {

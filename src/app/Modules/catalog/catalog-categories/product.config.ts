@@ -61,3 +61,98 @@ export interface AddItem {
   priceDto: { id: number };
   category: { name: string };
 }
+
+export const LINE_STYLES_DATA = {
+  labels: ['04.07', '09.07', '14.07', '19.07', '24.07', '29.07'],
+  datasets: [
+    {
+      label: '',
+      data: [92, 90, 91, 80, 87, 95],
+      fill: true,
+      borderColor: '#5e9e5e',
+      tension: 0.4,
+      background:
+        'linear-gradient(180deg, rgba(94, 158, 94, 0.15) 0%, rgba(94, 158, 94, 0) 100%);',
+    },
+  ],
+};
+export interface LineStylesData {
+  labels: string[];
+  datasets: {
+    label: string;
+    data: number[];
+    fill: boolean;
+    borderColor: string;
+    tension: number;
+    background: string;
+  }[];
+}
+
+export const OPTIONS = {
+  title: {
+    display: true,
+    text: 'My Title',
+    fontSize: 16,
+  },
+
+  plugins: {
+    legend: {
+      labels: {
+        color: '#495057',
+      },
+    },
+  },
+  scales: {
+    x: {
+      position: 'bottom',
+      ticks: {
+        color: '#495057',
+      },
+      grid: {
+        color: '',
+      },
+    },
+    y: {
+      position: ' ',
+      ticks: {
+        color: '#495057',
+      },
+      grid: {
+        color: '',
+      },
+    },
+  },
+};
+
+export interface Options {
+  title: {
+    display: boolean;
+    text: string;
+    fontSize: number;
+  };
+  plugins: {
+    legend: {
+      labels: {
+        color: '#495057';
+      };
+    };
+  };
+  scales: {
+    x: {
+      ticks: {
+        color: '#495057';
+      };
+      grid: {
+        color: '#ebedef';
+      };
+    };
+    y: {
+      ticks: {
+        color: '#495057';
+      };
+      grid: {
+        color: '#ebedef';
+      };
+    };
+  };
+}

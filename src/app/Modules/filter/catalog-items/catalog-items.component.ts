@@ -41,11 +41,8 @@ export class CatalogItemsComponent implements OnInit {
     this.categoriesFilterName = this.route.snapshot.queryParams['name'];
     this.route.queryParams.subscribe((params: Params) => {
       this.categoriesFilterName = params['name'];
+      this.changeDetector.detectChanges();
     });
-    this.itemsData.subscribe((res) => {
-      this.itemsLength = res;
-    });
-
     this.http.searching.subscribe((value: string) => {
       this.searchInput = value;
     });

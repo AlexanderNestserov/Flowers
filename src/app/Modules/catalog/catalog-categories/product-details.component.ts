@@ -8,7 +8,14 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { AddItem } from '../../cart-order/cart-order.config';
 import { CartOrderService } from '../../cart-order/cart-order.service';
-import { ProductType, PRODUCT_TYPE } from './product.config';
+import {
+  LineStylesData,
+  LINE_STYLES_DATA,
+  OPTIONS,
+  Options,
+  ProductType,
+  PRODUCT_TYPE,
+} from './product.config';
 
 @Component({
   selector: 'app-product-details',
@@ -24,6 +31,9 @@ export class ProductDetailsComponent implements OnInit {
   categoryName: string = '';
   isActive: boolean = false;
   id: number[] = [];
+  lineStylesData: LineStylesData = LINE_STYLES_DATA;
+  basicOptions = OPTIONS;
+  priceChangesIsShow = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -59,6 +69,20 @@ export class ProductDetailsComponent implements OnInit {
   }
   getFirstElement(): void {
     this.isActive = false;
+  }
+
+  priceChangesShow() {
+    this.priceChangesIsShow = true;
+    if (this.priceChangesIsShow) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'scroll';
+    }
+  }
+
+  closePriseChanges() {
+    this.priceChangesIsShow = false;
+    document.body.style.overflow = 'scroll';
   }
 
   getPhoto(photo: string): string {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { map, Observable } from 'rxjs';
 import { ItemService } from '../home/items/item.service';
@@ -41,7 +41,8 @@ export class FilterComponent implements OnInit {
     private httpCategories: SwiperListService,
     private http: ItemService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private changeDetector: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
@@ -49,6 +50,7 @@ export class FilterComponent implements OnInit {
     this.categoriesFilterName = this.route.snapshot.queryParams['name'];
     this.route.queryParams.subscribe((params: Params) => {
       this.categoriesFilterName = params['name'];
+      this.changeDetector.detectChanges();
     });
     this.http.searching.subscribe((value: string) => {
       this.searchInput = value;

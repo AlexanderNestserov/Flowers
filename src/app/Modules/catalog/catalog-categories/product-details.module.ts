@@ -7,7 +7,7 @@ import { BannersModule } from '../../banners/banners.module';
 import { ProductDetailsRoutingModule } from './product-details-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ItemService } from '../../home/items/item.service';
-import { CartOrderService } from '../../cart-order/cart-order.service';
+import { ChartModule } from 'primeng/chart';
 
 @NgModule({
   declarations: [ProductDetailsComponent],
@@ -18,6 +18,7 @@ import { CartOrderService } from '../../cart-order/cart-order.service';
     CatalogModule,
     FormsModule,
     ReactiveFormsModule,
+    ChartModule,
   ],
   providers: [ItemService],
 })
