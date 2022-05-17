@@ -1,5 +1,10 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
+import {
+  ComponentFixture,
+  fakeAsync,
+  TestBed,
+  waitForAsync,
+} from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Location } from '@angular/common';
@@ -28,8 +33,8 @@ describe('HeaderComponent', () => {
     'productList',
   ]);
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
       declarations: [HeaderComponent, RegistrationComponent],
       imports: [
         RouterTestingModule.withRoutes(routes),
@@ -69,7 +74,7 @@ describe('HeaderComponent', () => {
         },
       ],
     }).compileComponents();
-  });
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(HeaderComponent);

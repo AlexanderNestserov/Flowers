@@ -1,5 +1,10 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { fakeAsync, inject, TestBed } from '@angular/core/testing';
+import {
+  fakeAsync,
+  inject,
+  TestBed,
+  waitForAsync,
+} from '@angular/core/testing';
 import {
   HttpClientTestingModule,
   HttpTestingController,
@@ -15,8 +20,8 @@ describe('SpinnerComponent', () => {
   let interceptor: LoaderInterceptor;
   let interceptorUrl: UrlInterceptor;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
       imports: [RouterTestingModule.withRoutes([]), HttpClientTestingModule],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
 
@@ -26,7 +31,7 @@ describe('SpinnerComponent', () => {
     httpMock = TestBed.inject(HttpTestingController);
     interceptor = TestBed.inject(LoaderInterceptor);
     interceptorUrl = TestBed.inject(UrlInterceptor);
-  });
+  }));
 
   afterEach(() => {
     httpMock.verify();

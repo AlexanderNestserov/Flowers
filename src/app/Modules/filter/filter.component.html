@@ -49,7 +49,7 @@
             value="category"
             [value]="category.name"
             class="p-label-active"
-            [inputId]="category.key"
+            inputId="category.id"
             [label]="category.name"
           >
           </p-checkbox>
@@ -94,8 +94,7 @@
     <div
       class="container-catalog__products-title"
       *ngIf="
-        itemsData
-          | async
+        (itemsData | async)!
           | search: searchInput
           | filter: categoriesFilterName
           | checkbox: categoriesCheckedName
@@ -197,7 +196,7 @@
             value="category"
             [value]="category.name"
             class="p-label-active"
-            [inputId]="category.key"
+            inputId="category.id"
             [label]="category.name"
           >
           </p-checkbox>
@@ -253,7 +252,7 @@
     <div class="container-catalog__filter-category-title">Sort by</div>
     <div *ngFor="let category of categories" class="field-checkbox">
       <p-radioButton
-        [inputId]="category.key"
+        inputId="category.key"
         name="category"
         [value]="category"
         [(ngModel)]="selectedCategory"

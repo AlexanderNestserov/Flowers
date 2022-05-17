@@ -1,4 +1,4 @@
-import { inject, TestBed } from '@angular/core/testing';
+import { inject, TestBed, waitForAsync } from '@angular/core/testing';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { AccountService } from './account.service';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -12,7 +12,7 @@ import { CommonModule } from '@angular/common';
 describe('AccountService', () => {
   let service: AccountService;
   let httpMock: HttpTestingController;
-  beforeEach(async () => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule, ReactiveFormsModule, CommonModule],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -20,7 +20,7 @@ describe('AccountService', () => {
     });
     service = TestBed.inject(AccountService);
     httpMock = TestBed.inject(HttpTestingController);
-  });
+  }));
 
   afterEach(() => {
     httpMock.verify();

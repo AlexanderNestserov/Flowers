@@ -1,5 +1,6 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Observable } from 'rxjs';
+import { GetAllNews } from './news.config';
 import { NewsService } from './news.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { NewsService } from './news.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NewsComponent {
-  newsData: Observable<any> = this.api.getNews();
+  newsData: Observable<GetAllNews[]> = this.api.getNews();
   p: number = 1;
 
   constructor(private api: NewsService) {}

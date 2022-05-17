@@ -1,6 +1,6 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
@@ -9,9 +9,11 @@ import { BehaviorSubject, Observable, of } from 'rxjs';
 import { ErrorDirectiveModule } from 'src/app/directives/error-form/error-directive.module';
 import { AccountService } from '../account/account.service';
 import { ItemService } from '../home/items/item.service';
+import { Item } from '../home/items/items.config';
 import { CartOrderErrorFormModule } from './cart-order-error-form/cart-order-error-form.module';
 
 import { CartOrderComponent } from './cart-order.component';
+import { AddItem } from './cart-order.config';
 import { CartOrderService } from './cart-order.service';
 
 describe('CartOrderComponent', () => {
@@ -39,8 +41,8 @@ describe('CartOrderComponent', () => {
     'addToProductDetails',
     'productList',
   ]);
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
       declarations: [CartOrderComponent],
       imports: [
         FormsModule,
@@ -111,11 +113,229 @@ describe('CartOrderComponent', () => {
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
-  });
+  }));
   beforeEach(() => {
     fixture = TestBed.createComponent(CartOrderComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+  });
+  describe('items manipulation', () => {
+    let item: Item;
+    beforeEach(() => {
+      item = {
+        category: {
+          description: '',
+          id: 0,
+          name: '',
+          photo: '',
+          thumbnail: '',
+        },
+        description: '',
+        id: 0,
+        name: '',
+        photo: '',
+        priceDto: {
+          date: '',
+          id: 0,
+          itemId: 0,
+          price: 0,
+        },
+        promotion: {
+          id: 0,
+          itemId: 0,
+          promotion: 0,
+        },
+        shortDescription: '',
+        thumbnail: '',
+        quantity: 0,
+        total: 0,
+        deleteId: 1000,
+      };
+      component.cartItem = [
+        { id: 1, itemId: 1, priceId: 1, quantity: 1 },
+        { id: 2, itemId: 2, priceId: 2, quantity: 1 },
+      ];
+      component.checked = [
+        {
+          category: {
+            description: '',
+            id: 0,
+            name: '',
+            photo: '',
+            thumbnail: '',
+          },
+          description: '',
+          id: 1,
+          name: '',
+          photo: '',
+          priceDto: {
+            date: '',
+            id: 0,
+            itemId: 0,
+            price: 0,
+          },
+          promotion: {
+            id: 0,
+            itemId: 0,
+            promotion: 0,
+          },
+          shortDescription: '',
+          thumbnail: '',
+          quantity: 0,
+          total: 0,
+          deleteId: 1000,
+        },
+        {
+          category: {
+            description: '',
+            id: 0,
+            name: '',
+            photo: '',
+            thumbnail: '',
+          },
+          description: '',
+          id: 2,
+          name: '',
+          photo: '',
+          priceDto: {
+            date: '',
+            id: 0,
+            itemId: 0,
+            price: 0,
+          },
+          promotion: {
+            id: 0,
+            itemId: 0,
+            promotion: 0,
+          },
+          shortDescription: '',
+          thumbnail: '',
+          quantity: 0,
+          total: 0,
+          deleteId: 1000,
+        },
+      ];
+      component.product = [
+        {
+          category: {
+            description: '',
+            id: 0,
+            name: '',
+            photo: '',
+            thumbnail: '',
+          },
+          description: '',
+          id: 1,
+          name: '',
+          photo: '',
+          priceDto: {
+            date: '',
+            id: 0,
+            itemId: 0,
+            price: 0,
+          },
+          promotion: {
+            id: 0,
+            itemId: 0,
+            promotion: 0,
+          },
+          shortDescription: '',
+          thumbnail: '',
+          quantity: 0,
+          total: 0,
+          deleteId: 1000,
+        },
+        {
+          category: {
+            description: '',
+            id: 0,
+            name: '',
+            photo: '',
+            thumbnail: '',
+          },
+          description: '',
+          id: 2,
+          name: '',
+          photo: '',
+          priceDto: {
+            date: '',
+            id: 0,
+            itemId: 0,
+            price: 0,
+          },
+          promotion: {
+            id: 0,
+            itemId: 0,
+            promotion: 0,
+          },
+          shortDescription: '',
+          thumbnail: '',
+          quantity: 0,
+          total: 0,
+          deleteId: 1000,
+        },
+      ];
+      fixture.detectChanges();
+    });
+    it('should be created deleteItem', () => {
+      const toggle = component.deleteItem(item);
+      expect(toggle).toBe();
+    });
+    it('should be created deleteSelected and filter', () => {
+      const toggle = component.deleteSelected();
+      expect(component.cartItem).toEqual([
+        { id: 1, itemId: 1, priceId: 1, quantity: 1 },
+        { id: 2, itemId: 2, priceId: 2, quantity: 1 },
+      ]);
+      component.deleteSelected();
+      expect(toggle).toBe();
+      expect(component.cartItem).toEqual([
+        { id: 1, itemId: 1, priceId: 1, quantity: 1 },
+        { id: 2, itemId: 2, priceId: 2, quantity: 1 },
+      ]);
+    });
+    it('should be created deleteSelected and filter', () => {
+      let yFilter = component.checked.map((item: Item) => {
+        return item.deleteId;
+      });
+      let filteredX = component.cartItem.map((itemX: AddItem) => {
+        yFilter.includes(itemX.id);
+      });
+      component.deleteSelectedItems = [];
+      let xFilter = component.deleteSelectedItems.map((item: AddItem) => {
+        return item.id;
+      });
+      let zFilter = component.product.filter((item: Item) => {
+        xFilter.includes(item.deleteId!);
+      });
+      fixture.detectChanges();
+      component.deleteSelected();
+      expect(yFilter).toEqual([1000, 1000]);
+      expect(filteredX).toEqual([undefined, undefined]);
+      expect(xFilter).toEqual([]);
+      expect(zFilter).toEqual([]);
+    });
+    it('should be created key', () => {
+      let event = { value: 0 };
+      component.cartItem.map((a: AddItem) => {
+        item.deleteId = a.id;
+      });
+      let totalPrice = 33;
+      const toggle = component.key(event, item, totalPrice);
+      expect(toggle).toBe();
+    });
+    it('should be created deleteItem and map', async () => {
+      let filteredY = component.cartItem.map((itemX: any) => {
+        item.deleteId = itemX.id;
+      });
+      let filteredX = component.product.map((a: any) => {
+        item.id = a.id;
+      });
+      fixture.detectChanges();
+      component.deleteItem(item);
+      expect(filteredX).toEqual([undefined, undefined]);
+      expect(filteredY).toEqual([undefined, undefined]);
+    });
   });
   it('should create', () => {
     expect(component).toBeTruthy();
@@ -171,7 +391,6 @@ describe('CartOrderComponent', () => {
     const result = component.paymentType.value;
     expect(result).toEqual('CASH');
   });
-
   it('should be created postDataDetails', () => {
     const toggle = component.postDataDetails();
     expect(toggle).toBeUndefined();
@@ -180,80 +399,5 @@ describe('CartOrderComponent', () => {
     let item = 'photo.jpg';
     const toggle = component.getItemImage(item);
     expect(toggle).toBe('http://172.16.16.41:15000/images/photo');
-  });
-  it('should be created deleteItem', () => {
-    let item = { deleteId: 1000 };
-    component.cartItem = [{ id: 1 }, { id: 2 }];
-    const toggle = component.deleteItem(item.deleteId);
-    expect(toggle).toBe();
-  });
-  it('should be created deleteSelected and filter', () => {
-    component.cartItem = [{ id: 1 }, { id: 2 }];
-    const toggle = component.deleteSelected();
-    expect(component.cartItem).toEqual([{ id: 1 }, { id: 2 }]);
-    component.deleteSelected();
-    expect(toggle).toBe();
-    expect(component.cartItem).toEqual([{ id: 1 }, { id: 2 }]);
-  });
-
-  it('should be created deleteSelected and filter', () => {
-    component.checked = [{ deleteId: 1 }, { deleteId: 2 }];
-    let yFilter = component.checked.map((item: any) => {
-      return item.deleteId;
-    });
-    component.cartItem = [{ id: 1 }, { id: 2 }];
-    let filteredX = component.cartItem.map((itemX: any) => {
-      yFilter.includes(itemX.id);
-    });
-    component.deleteSelectedItems = [];
-    let xFilter = component.deleteSelectedItems.map((item: any) => {
-      return item.id;
-    });
-    component.product = [{ deleteId: 1 }, { deleteId: 2 }];
-    let zFilter = component.product.filter((item: any) => {
-      xFilter.includes(item.deleteId);
-    });
-    fixture.detectChanges();
-    component.deleteSelected();
-    expect(yFilter).toEqual([1, 2]);
-    expect(filteredX).toEqual([undefined, undefined]);
-    expect(xFilter).toEqual([]);
-    expect(zFilter).toEqual([]);
-  });
-
-  it('should be created key', () => {
-    let item = {
-      id: 1,
-      deleteId: 1000,
-      quantity: 2,
-      priceDto: { price: 100 },
-      total: 150,
-    };
-    component.cartItem = [
-      { id: 1, quantity: 2 },
-      { id: 2, quantity: 3 },
-    ];
-    let event = { value: 0 };
-    component.cartItem.map((a: any) => {
-      item.deleteId = a.id;
-    });
-    let totalPrice = 33;
-    const toggle = component.key(event, item, totalPrice);
-    expect(toggle).toBe();
-  });
-  it('should be created deleteItem and map', async () => {
-    let item = { id: 1, deleteId: 2 };
-    component.cartItem = [{ id: 1 }, { id: 2 }];
-    let filteredY = component.cartItem.map((itemX: any) => {
-      item.deleteId = itemX.id;
-    });
-    component.product = [{ id: 1 }, { id: 2 }];
-    let filteredX = component.product.map((a: any) => {
-      item.id = a.id;
-    });
-    fixture.detectChanges();
-    component.deleteItem(item);
-    expect(filteredX).toEqual([undefined, undefined]);
-    expect(filteredY).toEqual([undefined, undefined]);
   });
 });

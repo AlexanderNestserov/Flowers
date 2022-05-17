@@ -156,3 +156,15 @@ export interface Options {
     };
   };
 }
+
+export const CATEGORIES = [
+  { name: 'By cost (ascending)', key: 1 },
+  { name: 'By cost (descending)', key: 2 },
+  { name: 'By name (A - Z)', key: 3 },
+  { name: 'By name (Z - A)', key: 4 },
+];
+
+export interface CategoriesSort {
+  name: string;
+  key: number;
+}

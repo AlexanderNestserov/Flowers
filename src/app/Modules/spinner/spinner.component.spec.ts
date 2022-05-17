@@ -1,6 +1,14 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { TestBed, ComponentFixture, async } from '@angular/core/testing';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import {
+  TestBed,
+  ComponentFixture,
+  async,
+  waitForAsync,
+} from '@angular/core/testing';
+import {
+  HttpClientTestingModule,
+  HttpTestingController,
+} from '@angular/common/http/testing';
 import { SpinnerComponent } from './spinner.component';
 import { SpinnerService } from './spinner.service';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -12,17 +20,20 @@ describe('SpinnerComponent', () => {
   let component: SpinnerComponent;
   let fixture: ComponentFixture<SpinnerComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
       declarations: [SpinnerComponent],
-      imports: [RouterTestingModule.withRoutes([]), HttpClientTestingModule, CommonModule],
+      imports: [
+        RouterTestingModule.withRoutes([]),
+        HttpClientTestingModule,
+        CommonModule,
+      ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      providers: [SpinnerService]
-    })
-      .compileComponents();
+      providers: [SpinnerService],
+    }).compileComponents();
     service = TestBed.inject(SpinnerService);
     httpMock = TestBed.inject(HttpTestingController);
-  });
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(SpinnerComponent);
@@ -34,5 +45,3 @@ describe('SpinnerComponent', () => {
     expect(component).toBeTruthy();
   });
 });
-
-

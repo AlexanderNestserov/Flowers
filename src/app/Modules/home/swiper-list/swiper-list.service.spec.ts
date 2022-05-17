@@ -1,4 +1,4 @@
-import { inject, TestBed } from '@angular/core/testing';
+import { inject, TestBed, waitForAsync } from '@angular/core/testing';
 import { SwiperListService } from './swiper-list.service';
 import {
   HttpClientTestingModule,
@@ -8,14 +8,14 @@ import {
 describe('ContactsService', () => {
   let service: SwiperListService;
   let httpMock: HttpTestingController;
-  beforeEach(async () => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
       providers: [SwiperListService],
     });
     service = TestBed.inject(SwiperListService);
     httpMock = TestBed.inject(HttpTestingController);
-  });
+  }));
   afterEach(() => {
     httpMock.verify();
   });

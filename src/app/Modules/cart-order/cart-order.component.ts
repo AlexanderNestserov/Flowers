@@ -1,3 +1,4 @@
+import { Content } from '@angular/compiler/src/render3/r3_ast';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
@@ -11,7 +12,8 @@ import { environment } from 'src/environments/environment';
 import { AccountUser } from '../account/account.model';
 import { AccountService } from '../account/account.service';
 import { ItemService } from '../home/items/item.service';
-import { KeyItem } from './cart-order.config';
+import { Items, Item } from '../home/items/items.config';
+import { AddItem, CreateCart, EventInput, KeyItem } from './cart-order.config';
 import { CartOrderService } from './cart-order.service';
 
 @Component({
@@ -27,25 +29,25 @@ export class CartOrderComponent implements OnInit {
   selected: string = 'CASH';
   isDisabled = false;
   isChecked = false;
-  checked: {}[] = [];
+  checked: Item[] = [];
   isLoggedIn = false;
 
-  itemsData: Observable<any> = this.itemService
+  itemsData: Observable<Item[]> = this.itemService
     .getItems()
-    .pipe(map((res: any) => res.content));
+    .pipe(map((res: Items) => res.content));
 
   getUserData: Observable<AccountUser> = this.http.getUserData();
 
-  getUserCart: Observable<any> = this.cartService.getShoppingCart();
+  getUserCart: Observable<CreateCart> = this.cartService.getShoppingCart();
 
   getTemp: Observable<string> = this.http.getTempId();
   TEMP_ID: string = '';
 
-  deleteSelectedItems: [] = [];
+  deleteSelectedItems: AddItem[] = [];
 
-  public product: any = [];
+  public product: Item[] = [];
 
-  public cartItem: any = [];
+  public cartItem: AddItem[] = [];
 
   public totalPrice: number = 0;
 
@@ -69,13 +71,13 @@ export class CartOrderComponent implements OnInit {
   ) {}
 
   async ngOnInit(): Promise<void> {
-    this.getUserCart.subscribe((res) => {
-      if (res == null) {
+    this.getUserCart.subscribe((res: CreateCart) => {
+      if (!res) {
         this.cartService.createCart();
       }
       this.cartItem = res.orderItems;
-      this.cartItem.map((a: any) => {
-        this.itemService.getItem(a.itemId).subscribe((res) => {
+      this.cartItem.map((a: AddItem) => {
+        this.itemService.getItem(a.itemId).subscribe((res: Item) => {
           res.quantity = a.quantity;
           res.deleteId = a.id;
           res.total = res.priceDto.price * res.quantity;
@@ -130,19 +132,19 @@ export class CartOrderComponent implements OnInit {
     return `${environment.serverUrl}images/${item.replace('.jpg', '')}`;
   }
 
-  deleteItem(item: any): void {
-    this.cartService.deleteItem(item.deleteId).subscribe({
+  deleteItem(item: Item): void {
+    this.cartService.deleteItem(item.deleteId!).subscribe({
       next: () => {
-        this.cartItem.map((a: any, i: number) => {
+        this.cartItem.map((a: AddItem, i: number) => {
           if (item.deleteId === a.id) {
             this.cartItem.splice(i, 1);
             this.cartService.productList.next(this.cartItem);
           }
         });
-        this.product.map((a: any, i: number) => {
+        this.product.map((a: Item, i: number) => {
           if (item.id === a.id) {
             this.product.splice(i, 1);
-            this.totalPrice = this.totalPrice - a.total;
+            this.totalPrice = this.totalPrice - a.total!;
             this.totalPrice = Math.ceil(this.totalPrice * 100) / 100;
           }
         });
@@ -150,20 +152,21 @@ export class CartOrderComponent implements OnInit {
     });
   }
 
-  key(event: any, item: KeyItem, totalPrice: number): void {
-    if (event.value == 0 || event.value == null) {
-      event.value = 1;
+  key(event: EventInput, item: Item, totalPrice: number): void {
+    let itemQuantity = event.value;
+    if (!event.value) {
+      itemQuantity = 1;
     }
-    totalPrice = totalPrice - item.total;
-    item.quantity = +event.value;
+    totalPrice = totalPrice - item.total!;
+    item.quantity = +itemQuantity;
     item.total = item.quantity * item.priceDto.price;
     item.total = Math.ceil(item.total * 100) / 100;
     totalPrice = totalPrice + item.total;
     this.totalPrice = Math.ceil(totalPrice * 100) / 100;
 
-    this.cartItem.map((a: any) => {
+    this.cartItem.map((a: AddItem) => {
       if (item.deleteId === a.id) {
-        a.quantity = item.quantity;
+        a.quantity = item.quantity!;
         this.cartService.productList.next(this.cartItem);
         this.cartService.updateCart(this.cartItem).subscribe();
       }
@@ -171,29 +174,29 @@ export class CartOrderComponent implements OnInit {
   }
 
   deleteSelected(): void {
-    let yFilter = this.checked.map((item: any) => {
+    let yFilter = this.checked.map((item: Item) => {
       return item.deleteId;
     });
-    let filteredX = this.cartItem.filter((itemX: any) =>
+    let filteredX = this.cartItem.filter((itemX: AddItem) =>
       yFilter.includes(itemX.id)
     );
 
-    filteredX.map((a: any) => {
+    filteredX.map((a: AddItem) => {
       this.cartService.deleteItem(a.id).subscribe({
-        next: (res: any) => {
+        next: (res: CreateCart) => {
           this.deleteSelectedItems = res.orderItems;
-          let yFilter = this.deleteSelectedItems.map((item: any) => {
+          let yFilter = this.deleteSelectedItems.map((item: AddItem) => {
             return item.id;
           });
-          this.cartItem = this.cartItem.filter((itemX: any) =>
+          this.cartItem = this.cartItem.filter((itemX: AddItem) =>
             yFilter.includes(itemX.id)
           );
-          this.product = this.product.filter((itemX: any) =>
-            yFilter.includes(itemX.deleteId)
+          this.product = this.product.filter((itemX: Item) =>
+            yFilter.includes(itemX.deleteId!)
           );
           this.totalPrice = 0;
-          this.product.map((a: any) => {
-            this.totalPrice += a.total;
+          this.product.map((a: Item) => {
+            this.totalPrice += a.total!;
           });
           this.totalPrice = Math.ceil(this.totalPrice * 100) / 100;
           this.cartService.productList.next(this.cartItem);

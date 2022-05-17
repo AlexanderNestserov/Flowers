@@ -2,8 +2,7 @@
   <div
     class="container__wrap"
     *ngFor="
-      let item of itemsData
-        | async
+      let item of (itemsData | async)!
         | filter: categoriesFilterName
         | checkbox: categoriesCheckedName
         | cost: rangeValues
@@ -52,8 +51,7 @@
 <div
   class="container-pagination"
   *ngIf="
-    itemsData
-      | async
+    (itemsData | async)!
       | filter: categoriesFilterName
       | checkbox: categoriesCheckedName
       | cost: rangeValues
@@ -62,7 +60,7 @@
   "
 >
   <pagination-controls
-    *ngIf="data.length != 0"
+    *ngIf="data.length"
     class="my-pag"
     (pageChange)="p = $event"
     [directionLinks]="false"

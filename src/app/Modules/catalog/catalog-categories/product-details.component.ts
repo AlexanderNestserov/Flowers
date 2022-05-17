@@ -6,13 +6,13 @@ import {
 } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { environment } from 'src/environments/environment';
-import { AddItem } from '../../cart-order/cart-order.config';
+import { AddItem, CreateCart } from '../../cart-order/cart-order.config';
 import { CartOrderService } from '../../cart-order/cart-order.service';
+import { Item } from '../../home/items/items.config';
 import {
   LineStylesData,
   LINE_STYLES_DATA,
   OPTIONS,
-  Options,
   ProductType,
   PRODUCT_TYPE,
 } from './product.config';
@@ -24,8 +24,8 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductDetailsComponent implements OnInit {
-  cartItem: {}[] = [];
-  product: ProductType[] = [];
+  cartItem: AddItem[] = [];
+  product: Item[] = [];
   productType: ProductType = PRODUCT_TYPE;
 
   categoryName: string = '';
@@ -47,8 +47,8 @@ export class ProductDetailsComponent implements OnInit {
     });
 
     this.cartService.getProductDetails().subscribe({
-      next: (res) => {
-        if (res.length == 0) {
+      next: (res: Item[]) => {
+        if (!res.length) {
           this.product.push(this.productType);
         } else {
           this.product = res;
@@ -56,8 +56,8 @@ export class ProductDetailsComponent implements OnInit {
         }
       },
     });
-    this.cartService.getShoppingCart().subscribe((res) => {
-      res.orderItems.map((a: any) => {
+    this.cartService.getShoppingCart().subscribe((res: CreateCart) => {
+      res.orderItems.map((a: AddItem) => {
         this.id.push(a.itemId);
         this.changeDetector.detectChanges();
       });
@@ -71,16 +71,12 @@ export class ProductDetailsComponent implements OnInit {
     this.isActive = false;
   }
 
-  priceChangesShow() {
+  priceChangesShow(): void {
     this.priceChangesIsShow = true;
-    if (this.priceChangesIsShow) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'scroll';
-    }
+    document.body.style.overflow = 'hidden';
   }
 
-  closePriseChanges() {
+  closePriseChanges(): void {
     this.priceChangesIsShow = false;
     document.body.style.overflow = 'scroll';
   }
@@ -89,19 +85,18 @@ export class ProductDetailsComponent implements OnInit {
     return `${environment.serverUrl}images/${photo.replace('.jpg', '')}`;
   }
 
-  addToCart(item: any): void {
-    item.quantity = 1;
+  addToCart(item: Item): void {
     let product: AddItem = {
       id: 0,
       itemId: item.id,
       priceId: item.priceDto.id,
-      quantity: item.quantity,
+      quantity: 1,
     };
     this.cartService.addItemToCart(product).subscribe({
-      next: (res) => {
+      next: (res: CreateCart) => {
         this.cartItem = res.orderItems;
         this.cartService.productList.next(this.cartItem);
-        this.cartItem.map((a: any) => {
+        this.cartItem.map((a: AddItem) => {
           this.id.push(a.itemId);
           this.changeDetector.detectChanges();
         });

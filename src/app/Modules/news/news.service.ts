@@ -1,14 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { GetAllNews } from './news.config';
 
 @Injectable()
 export class NewsService {
-    public getUrl: string = 'news'
+  public getUrl: string = 'news';
 
-    constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
-    getNews(): Observable<string | number> {
-        return this.http.get<string | number>(this.getUrl)
-    }
+  getNews(): Observable<GetAllNews[]> {
+    return this.http.get<GetAllNews[]>(this.getUrl);
+  }
 }

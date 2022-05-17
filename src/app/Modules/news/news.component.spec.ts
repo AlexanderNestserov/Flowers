@@ -1,5 +1,10 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { ComponentFixture, TestBed, async } from '@angular/core/testing';
+import {
+  ComponentFixture,
+  TestBed,
+  async,
+  waitForAsync,
+} from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { NewsComponent } from './news.component';
@@ -10,7 +15,7 @@ describe('NewsComponent', () => {
   let component: NewsComponent;
   let fixture: ComponentFixture<NewsComponent>;
 
-  beforeEach(async () => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [NewsComponent],
       imports: [
@@ -21,7 +26,7 @@ describe('NewsComponent', () => {
       providers: [NewsService],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
-  });
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(NewsComponent);

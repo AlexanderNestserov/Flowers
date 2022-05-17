@@ -1,4 +1,4 @@
-import { inject, TestBed } from '@angular/core/testing';
+import { inject, TestBed, waitForAsync } from '@angular/core/testing';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CartOrderService } from './cart-order.service';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -10,10 +10,10 @@ import {
 import { CommonModule } from '@angular/common';
 import { AddItem, CreateCart } from './cart-order.config';
 
-describe('ContactsService', () => {
+describe('CartOrderService', () => {
   let service: CartOrderService;
   let httpMock: HttpTestingController;
-  beforeEach(async () => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule, ReactiveFormsModule, CommonModule],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -21,7 +21,7 @@ describe('ContactsService', () => {
     });
     service = TestBed.inject(CartOrderService);
     httpMock = TestBed.inject(HttpTestingController);
-  });
+  }));
 
   afterEach(() => {
     httpMock.verify();
@@ -47,7 +47,14 @@ describe('ContactsService', () => {
     it('should add createCart', () => {
       let cart: CreateCart = {
         id: 0,
-        orderItems: [],
+        orderItems: [
+          {
+            id: 0,
+            itemId: 0,
+            priceId: 0,
+            quantity: 0,
+          },
+        ],
         text: '',
       };
       service.createCart().subscribe((data) => expect(data).toBeFalsy(), fail);
@@ -66,13 +73,48 @@ describe('ContactsService', () => {
       expect(req.request.url).toEqual('cart/item/3');
     });
     it('should add addToProductDetails', () => {
-      let a = service.addToProductDetails({ id: 1 });
+      let a = service.addToProductDetails({
+        category: {
+          description: '',
+          id: 0,
+          name: '',
+          photo: '',
+          thumbnail: '',
+        },
+        description: '',
+        id: 0,
+        name: '',
+        photo: '',
+        priceDto: {
+          date: '',
+          id: 0,
+          itemId: 0,
+          price: 0,
+        },
+        promotion: {
+          id: 0,
+          itemId: 0,
+          promotion: 0,
+        },
+        shortDescription: '',
+        thumbnail: '',
+        quantity: 1,
+      });
       expect(a).toBe();
     });
     it('should add updateCart', () => {
-      service.updateCart(3).subscribe((data) => {
-        expect(data).toBeTruthy();
-      });
+      service
+        .updateCart([
+          {
+            id: 0,
+            itemId: 1000,
+            priceId: 2000,
+            quantity: 3,
+          },
+        ])
+        .subscribe((data) => {
+          expect(data).toBeTruthy();
+        });
       const req = httpMock.expectOne(service.createCartPostUrl);
       expect(req.request.method).toEqual('PUT');
       expect(req.request.url).toEqual('cart');

@@ -5,10 +5,16 @@ import {
   ChangeDetectorRef,
 } from '@angular/core';
 import { filter, fromEvent, Observable, Subscription } from 'rxjs';
-import { NavigationEnd, Router, RouterEvent } from '@angular/router';
+import {
+  NavigationEnd,
+  Router,
+  RouterEvent,
+  Event as RouterEventTarget,
+} from '@angular/router';
 import { KeycloakService } from 'keycloak-angular';
 import { environment } from 'src/environments/environment';
 import { CartOrderService } from '../Modules/cart-order/cart-order.service';
+import { AddItem, CreateCart } from '../Modules/cart-order/cart-order.config';
 
 @Component({
   selector: 'app-header',
@@ -32,9 +38,9 @@ export class HeaderComponent implements OnInit {
   urlMyorders = false;
   public isLoggedIn = false;
 
-  productList: Observable<any> = this.cartService.productList;
+  productList: Observable<AddItem[]> = this.cartService.productList;
 
-  quantityItems!: number;
+  quantityItems: number = 0;
 
   keycloakLogoutOption = environment.keycloakLogoutOption;
 
@@ -44,8 +50,13 @@ export class HeaderComponent implements OnInit {
     private cartService: CartOrderService,
     private changeDetector: ChangeDetectorRef
   ) {
-    this.router.events
-      .pipe(filter((e: any) => e instanceof NavigationEnd))
+    router.events
+      .pipe(
+        filter(
+          (e: RouterEventTarget): e is NavigationEnd =>
+            e instanceof NavigationEnd
+        )
+      )
       .subscribe((e: RouterEvent) => {
         if (e.url === '/myorders') {
           this.urlMyorders = true;
@@ -80,7 +91,7 @@ export class HeaderComponent implements OnInit {
       });
   }
 
-  async ngOnInit() {
+  async ngOnInit(): Promise<void> {
     this.isLoggedIn = await this.keycloak.isLoggedIn();
 
     let onScroll = () => {
@@ -96,16 +107,16 @@ export class HeaderComponent implements OnInit {
     };
     onScroll();
 
-    this.cartService.getShoppingCart().subscribe((res) => {
+    this.cartService.getShoppingCart().subscribe((res: CreateCart) => {
       this.quantityItems = res.orderItems.length;
     });
-    this.productList.subscribe((res) => {
+    this.productList.subscribe((res: AddItem[]) => {
       this.quantityItems = res.length;
       this.changeDetector.detectChanges();
     });
   }
 
-  toggleDisplay() {
+  toggleDisplay(): void {
     this.isShow = !this.isShow;
     this.isShown = !this.isShown;
     if (!this.isShow) {
@@ -115,28 +126,28 @@ export class HeaderComponent implements OnInit {
     }
   }
 
-  toggleDisplays() {
+  toggleDisplays(): void {
     if (!this.isShow) {
       this.toggleDisplay();
     }
   }
 
-  toggleUser(event: Event) {
+  toggleUser(event: Event): void {
     event.stopPropagation();
     this.isMenu = !this.isMenu;
   }
 
-  onClick() {
+  onClick(): void {
     this.isMenu = true;
   }
 
-  public logout() {
+  public logout(): void {
     if (this.isLoggedIn) {
       this.keycloak.logout(this.keycloakLogoutOption);
     }
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     if (this.obs) {
       this.obs.unsubscribe();
     }

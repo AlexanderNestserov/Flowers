@@ -1,10 +1,11 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { AddItem } from '../../cart-order/cart-order.config';
+import { AddItem, CreateCart } from '../../cart-order/cart-order.config';
 import { CartOrderService } from '../../cart-order/cart-order.service';
 import { ProductType } from '../../catalog/catalog-categories/product.config';
 import { ItemService } from './item.service';
+import { Item, Items } from './items.config';
 
 @Component({
   selector: 'app-home-items',
@@ -12,14 +13,14 @@ import { ItemService } from './item.service';
   styleUrls: ['./items.component.scss'],
 })
 export class ItemsComponent implements OnInit {
-  cartItem: {}[] = [];
+  cartItem: AddItem[] = [];
   inStock = false;
   id: number[] = [];
 
-  itemsEight: ProductType[] = [];
-  itemsData: Observable<any> = this.http
+  itemsEight: Item[] = [];
+  itemsData: Observable<Item[]> = this.http
     .getItems()
-    .pipe(map((res: any) => res.content));
+    .pipe(map((res: Items) => res.content));
 
   constructor(
     private http: ItemService,
@@ -28,11 +29,11 @@ export class ItemsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.itemsData.subscribe((res) => {
+    this.itemsData.subscribe((res: Item[]) => {
       this.itemsEight = res.slice(0, 8);
     });
-    this.cartService.getShoppingCart().subscribe((res) => {
-      res.orderItems.map((a: any) => {
+    this.cartService.getShoppingCart().subscribe((res: CreateCart) => {
+      res.orderItems.map((a: AddItem) => {
         this.id.push(a.itemId);
         this.changeDetector.detectChanges();
       });
@@ -43,19 +44,18 @@ export class ItemsComponent implements OnInit {
     return `${environment.serverUrl}images/${item.replace('.jpg', '')}`;
   }
 
-  addToCart(item: any): void {
-    item.quantity = 1;
+  addToCart(item: Item): void {
     let product: AddItem = {
       id: 0,
       itemId: item.id,
       priceId: item.priceDto.id,
-      quantity: item.quantity,
+      quantity: 1,
     };
     this.cartService.addItemToCart(product).subscribe({
-      next: (res) => {
+      next: (res: CreateCart) => {
         this.cartItem = res.orderItems;
         this.cartService.productList.next(this.cartItem);
-        this.cartItem.map((a: any) => {
+        this.cartItem.map((a: AddItem) => {
           this.id.push(a.itemId);
           this.changeDetector.detectChanges();
         });
@@ -63,7 +63,7 @@ export class ItemsComponent implements OnInit {
     });
   }
 
-  addToProduct(item: any): void {
+  addToProduct(item: Item): void {
     this.cartService.addToProductDetails(item);
   }
 }

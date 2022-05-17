@@ -1,6 +1,6 @@
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { APP_INITIALIZER, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { TestBed } from '@angular/core/testing';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { TestBed, waitForAsync } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -8,11 +8,10 @@ import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
 import { AppComponent } from './app.component';
 import { LoaderInterceptor } from './interceptors/spinner.interceptor';
 import { UrlInterceptor } from './interceptors/url.interceptor';
-import { initializeKeycloak } from './utility/app.init';
 
 describe('AppComponent', () => {
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
       imports: [
         RouterTestingModule.withRoutes([]),
         BrowserModule,
@@ -31,7 +30,7 @@ describe('AppComponent', () => {
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
-  });
+  }));
 
   it('should create the app', () => {
     const fixture = TestBed.createComponent(AppComponent);

@@ -5,15 +5,14 @@ import { ActivatedRoute } from '@angular/router';
   selector: 'app-newsarticle',
   templateUrl: './newsarticle.component.html',
   styleUrls: ['./newsarticle.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NewsarticleComponent implements OnInit {
-  text: any;
+  text: string = '';
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.text = this.route.snapshot.queryParams['text'];
   }
 }
-

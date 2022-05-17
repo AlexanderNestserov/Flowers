@@ -1,21 +1,14 @@
-export class CreateCart {
-  id = 0;
-  orderItems = [
-    {
-      id: 0,
-      itemId: 42,
-      priceId: 42,
-      quantity: 3,
-    },
-  ];
-  text = '';
+export interface CreateCart {
+  id: number;
+  orderItems: AddItem[];
+  text: string;
 }
 
-export class AddItem {
-  id = 0;
-  itemId = 42;
-  priceId = 42;
-  quantity = 1;
+export interface AddItem {
+  id: number;
+  itemId: number;
+  priceId: number;
+  quantity: number;
 }
 
 export interface KeyItem {
@@ -24,4 +17,9 @@ export interface KeyItem {
   total: number;
   quantity: number;
   priceDto: { price: number };
+}
+
+export interface EventInput {
+  originalEvent?: KeyboardEvent;
+  value: number;
 }

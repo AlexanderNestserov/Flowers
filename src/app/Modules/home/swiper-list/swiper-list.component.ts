@@ -8,6 +8,7 @@ import {
 import { Observable, map } from 'rxjs';
 import { SwiperListService } from './swiper-list.service';
 import { environment } from 'src/environments/environment';
+import { Categories, Category } from '../items/items.config';
 
 @Component({
   selector: 'app-home-swiper-list',
@@ -16,9 +17,9 @@ import { environment } from 'src/environments/environment';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SwiperListComponent {
-  categoriesData: Observable<any> = this.http
+  categoriesData: Observable<Category[]> = this.http
     .getCategories()
-    .pipe(map((res: any) => res.content));
+    .pipe(map((res: Categories) => res.content));
 
   swiperConfig: Config = SWIPER_CONFIG;
   adaptiveSwiper: Adaptive = ADAPTIVE_SWIPER;

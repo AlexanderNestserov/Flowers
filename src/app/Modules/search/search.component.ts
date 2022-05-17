@@ -12,7 +12,7 @@ export class SearchComponent {
 
   constructor(private search: ItemService) {}
 
-  searchItem(event: any): void {
+  searchItem(event: KeyboardEvent): void {
     this.searchValue = (event.target as HTMLInputElement).value;
     this.search.searching.next(this.searchValue);
   }

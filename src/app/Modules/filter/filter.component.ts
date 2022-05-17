@@ -1,7 +1,12 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { map, Observable } from 'rxjs';
+import {
+  CATEGORIES,
+  CategoriesSort,
+} from '../catalog/catalog-categories/product.config';
 import { ItemService } from '../home/items/item.service';
+import { Items, Item, Category, Categories } from '../home/items/items.config';
 import { SwiperListService } from '../home/swiper-list/swiper-list.service';
 
 @Component({
@@ -13,29 +18,30 @@ export class FilterComponent implements OnInit {
   rangeValues: number[] = [0, 300];
   isFilterShow = false;
   isSortingShow = false;
-  selectedCategory: {} = {};
+  selectedCategory: CategoriesSort = {
+    name: '',
+    key: 0,
+  };
   selectedItems: string[] = [];
 
   categoriesFilterName: string = '';
   categoriesCheckedName: string[] = [];
 
   checked: string[] = [];
-  searchText: {} = {};
+  searchText: CategoriesSort = {
+    name: '',
+    key: 0,
+  };
   searchInput: string = '';
-  categories: any[] = [
-    { name: 'By cost (ascending)', key: 1 },
-    { name: 'By cost (descending)', key: 2 },
-    { name: 'By name (A - Z)', key: 3 },
-    { name: 'By name (Z - A)', key: 4 },
-  ];
+  categories: CategoriesSort[] = CATEGORIES;
 
-  itemsData: Observable<any> = this.http
+  itemsData: Observable<Item[]> = this.http
     .getItems()
-    .pipe(map((res: any) => res.content));
+    .pipe(map((res: Items) => res.content));
 
-  categoriesData: Observable<any> = this.httpCategories
+  categoriesData: Observable<Category[]> = this.httpCategories
     .getCategories()
-    .pipe(map((res: any) => res.content));
+    .pipe(map((res: Categories) => res.content));
 
   constructor(
     private httpCategories: SwiperListService,
@@ -78,7 +84,10 @@ export class FilterComponent implements OnInit {
   }
 
   clearFilter(): void {
-    this.searchText = {};
+    this.searchText = {
+      name: '',
+      key: 0,
+    };
     this.selectedCategory = this.categories[0];
     this.checked = [];
     this.categoriesCheckedName = [];

@@ -1,17 +1,18 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { Item } from '../../home/items/items.config';
 
 @Pipe({
   name: 'checkbox',
 })
 export class FilterCheckboxPipe implements PipeTransform {
-  transform(items: any[], value: any[]) {
-    if (!items || value.length == 0) {
+  transform(items: Item[], value: string[]) {
+    if (!items || !value.length) {
       return items;
     } else {
-      let yFilter = value.map((item: any) => {
+      let yFilter = value.map((item: string) => {
         return item;
       });
-      let filteredX = items.filter((itemX) =>
+      let filteredX = items.filter((itemX: Item) =>
         yFilter.includes(itemX.category.name)
       );
       return filteredX;

@@ -1,5 +1,5 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { BannersModule } from '../../banners/banners.module';
 import { RouterTestingModule } from '@angular/router/testing';
 
@@ -9,14 +9,13 @@ describe('NewsarticleComponent', () => {
   let component: NewsarticleComponent;
   let fixture: ComponentFixture<NewsarticleComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
       declarations: [NewsarticleComponent],
       imports: [RouterTestingModule.withRoutes([]), BannersModule],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA]
-    })
-      .compileComponents();
-  });
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(NewsarticleComponent);

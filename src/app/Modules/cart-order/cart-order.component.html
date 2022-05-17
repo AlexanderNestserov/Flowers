@@ -22,7 +22,7 @@
         <p-checkbox
           name="group1"
           [(ngModel)]="checked"
-          [inputId]="item.id"
+          inputId="item.id"
           [value]="item"
         ></p-checkbox>
       </div>
@@ -44,7 +44,7 @@
           <div class="field-number">
             <p-inputNumber
               (onInput)="key($event, item, totalPrice)"
-              [inputId]="item.id"
+              inputId="item.id"
               placeholder="{{ item.quantity }}"
               [min]="1"
               [max]="99"
