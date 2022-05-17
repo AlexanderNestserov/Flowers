@@ -36,7 +36,6 @@ export class FilterComponent implements OnInit {
   categories: CategoriesSort[] = CATEGORIES;
 
   itemsData: Observable<Item[]> = this.http.getItems();
-  // .pipe(map((res: Items) => res.content));
 
   categoriesData: Observable<Category[]> = this.httpCategories
     .getCategories()
@@ -68,7 +67,6 @@ export class FilterComponent implements OnInit {
     } else {
       this.router.navigate(['/catalog']);
     }
-
     this.isFilterShow = false;
     document.body.style.overflow = 'scroll';
     this.categoriesCheckedName = this.checked;

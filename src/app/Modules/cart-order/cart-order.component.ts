@@ -33,20 +33,15 @@ export class CartOrderComponent implements OnInit {
   isLoggedIn = false;
 
   itemsData: Observable<Item[]> = this.itemService.getItems();
-
   getUserData: Observable<AccountUser> = this.http.getUserData();
-
   getUserCart: Observable<CreateCart> = this.cartService.getShoppingCart();
-
   getTemp: Observable<string> = this.http.getTempId();
-  TEMP_ID: string = '';
 
+  TEMP_ID: string = '';
   deleteSelectedItems: AddItem[] = [];
 
   public product: Item[] = [];
-
   public cartItem: AddItem[] = [];
-
   public totalPrice: number = 0;
 
   formValue: FormGroup = this.formbuilder.group({

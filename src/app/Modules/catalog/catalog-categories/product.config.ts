@@ -72,7 +72,7 @@ export const LINE_STYLES_DATA = {
       borderColor: '#5e9e5e',
       tension: 0.4,
       background:
-        'linear-gradient(180deg, rgba(94, 158, 94, 0.15) 0%, rgba(94, 158, 94, 0) 100%);',
+        'linear-gradient(180deg, rgba(94, 158, 94, 0.15) 0%, rgba(94, 158, 94, 0) 100%)',
     },
   ],
 };
@@ -94,12 +94,16 @@ export const OPTIONS = {
     text: 'My Title',
     fontSize: 16,
   },
-
+  interaction: {
+    intersect: false,
+  },
   plugins: {
+    tooltip: {},
     legend: {
       labels: {
         color: '#495057',
       },
+      display: false,
     },
   },
   scales: {
@@ -114,12 +118,24 @@ export const OPTIONS = {
     },
     y: {
       position: ' ',
+      min: 70,
+      max: 102,
       ticks: {
         color: '#495057',
       },
       grid: {
         color: '',
       },
+    },
+  },
+  elements: {
+    point: {
+      radius: 5,
+      borderWidth: 2,
+      backgroundColor: '#fff',
+      hoverRadius: 6,
+      hoverBorderWidth: 2,
+      hoverBackgroundColor: '#fff',
     },
   },
 };
@@ -131,10 +147,12 @@ export interface Options {
     fontSize: number;
   };
   plugins: {
+    tooltip: false;
     legend: {
       labels: {
         color: '#495057';
       };
+      display: boolean;
     };
   };
   scales: {
@@ -147,12 +165,25 @@ export interface Options {
       };
     };
     y: {
+      position: 'left';
+      min: 50;
+      max: 100;
       ticks: {
         color: '#495057';
       };
       grid: {
         color: '#ebedef';
       };
+    };
+  };
+  elements: {
+    point: {
+      radius: number;
+      borderWidth: number;
+      backgroundColor: '#fff';
+      hoverRadius: number;
+      hoverBorderWidth: 2;
+      hoverBackgroundColor: '#fff';
     };
   };
 }

@@ -119,8 +119,9 @@
 #itemImageMini:hover {
     border: 1px solid $color_pink;
 }
-.active {
-    border: 3px solid $color_pink;
+#itemImageMini1.active,
+#itemImageMini.active {
+    border: 1px solid $color_pink;
     box-sizing: border-box;
 }
 .container__home {
@@ -185,7 +186,6 @@
 .container-banners {
     margin-left: 11%;
 }
-
 .container__price-changes {
     position: fixed;
     top: 0;
@@ -227,7 +227,6 @@
     background: $color_white;
     margin-top: 4.3rem;
 }
-
 .container__price-changes-details-line {
     background: $color_darkgrey;
     opacity: 0.2;
@@ -248,13 +247,11 @@
 .container__price-changes-details-changes-title-number {
     @include font(Montserrat, normal, 700, 1.4rem, 150%, 0em, $color_darkgrey);
 }
-
 @media (max-width: 1460px) {
     .wrapper-product {
         width: 100%;
     }
 }
-
 @media (max-width: 1390px) {
     .container-product {
         &__flowers {

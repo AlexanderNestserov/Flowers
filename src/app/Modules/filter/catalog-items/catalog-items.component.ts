@@ -34,7 +34,11 @@ export class CatalogItemsComponent implements OnInit {
   itemsData: Observable<Item[]> = this.http.getItems();
 
   p: number = 1;
-  pageSize = 12;
+  criticalSizeOfItems: number = 1145;
+  mobilePageSize: number = 5;
+  pcPageSize: number = 12;
+  pageSize: number = this.pcPageSize;
+
   constructor(
     private http: ItemService,
     private route: ActivatedRoute,
@@ -68,10 +72,10 @@ export class CatalogItemsComponent implements OnInit {
     });
   }
   onResize(): void {
-    if (window.innerWidth < 1145) {
-      this.pageSize = 5;
+    if (window.innerWidth < this.criticalSizeOfItems) {
+      this.pageSize = this.mobilePageSize;
     } else {
-      this.pageSize = 12;
+      this.pageSize = this.pcPageSize;
     }
   }
 

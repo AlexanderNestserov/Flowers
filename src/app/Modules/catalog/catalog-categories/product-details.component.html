@@ -46,12 +46,14 @@
             [src]="getPhoto(item.photo)"
             alt="itemImage"
             (click)="getFirstElement()"
+            [ngClass]="{ active: !isActive }"
           />
           <img
             id="itemImageMini"
             src="../../../../assets/img-home/itemImageRepeat.png"
             alt="itemImage"
             (click)="getSecondElement()"
+            [ngClass]="{ active: isActive }"
           />
         </div>
       </div>

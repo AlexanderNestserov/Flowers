@@ -16,7 +16,7 @@ export class ItemsComponent implements OnInit {
   cartItem: AddItem[] = [];
   inStock = false;
   id: number[] = [];
-
+  quantityItemsOnPage: number = 8;
   itemsEight: Item[] = [];
   itemsData: Observable<Item[]> = this.http.getItems();
 
@@ -28,7 +28,7 @@ export class ItemsComponent implements OnInit {
 
   ngOnInit(): void {
     this.itemsData.subscribe((res: Item[]) => {
-      this.itemsEight = res.slice(0, 8);
+      this.itemsEight = res.slice(0, this.quantityItemsOnPage);
     });
     this.cartService.getShoppingCart().subscribe((res: CreateCart) => {
       res.orderItems.map((a: AddItem) => {
