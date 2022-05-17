@@ -18,9 +18,7 @@ export class ItemsComponent implements OnInit {
   id: number[] = [];
 
   itemsEight: Item[] = [];
-  itemsData: Observable<Item[]> = this.http
-    .getItems()
-    .pipe(map((res: Items) => res.content));
+  itemsData: Observable<Item[]> = this.http.getItems();
 
   constructor(
     private http: ItemService,

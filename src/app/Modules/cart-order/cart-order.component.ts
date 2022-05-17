@@ -32,9 +32,7 @@ export class CartOrderComponent implements OnInit {
   checked: Item[] = [];
   isLoggedIn = false;
 
-  itemsData: Observable<Item[]> = this.itemService
-    .getItems()
-    .pipe(map((res: Items) => res.content));
+  itemsData: Observable<Item[]> = this.itemService.getItems();
 
   getUserData: Observable<AccountUser> = this.http.getUserData();
 

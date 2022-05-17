@@ -35,9 +35,8 @@ export class FilterComponent implements OnInit {
   searchInput: string = '';
   categories: CategoriesSort[] = CATEGORIES;
 
-  itemsData: Observable<Item[]> = this.http
-    .getItems()
-    .pipe(map((res: Items) => res.content));
+  itemsData: Observable<Item[]> = this.http.getItems();
+  // .pipe(map((res: Items) => res.content));
 
   categoriesData: Observable<Category[]> = this.httpCategories
     .getCategories()

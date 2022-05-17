@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { AddItem } from '../../cart-order/cart-order.config';
+import { BehaviorSubject, map, Observable } from 'rxjs';
 import { CategoriesSort } from '../../catalog/catalog-categories/product.config';
 import { Item, Items } from './items.config';
 
@@ -19,8 +18,10 @@ export class ItemService {
 
   constructor(private http: HttpClient) {}
 
-  getItems(): Observable<Items> {
-    return this.http.get<Items>(this.categoriesUrl);
+  getItems(): Observable<Item[]> {
+    return this.http
+      .get<Items>(this.categoriesUrl)
+      .pipe(map((res: Items) => res.content));
   }
 
   getItem(id: number): Observable<Item> {

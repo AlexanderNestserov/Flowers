@@ -31,9 +31,7 @@ export class CatalogItemsComponent implements OnInit {
   categoriesFilterName!: string;
   categoriesCheckedName!: string[];
   id: number[] = [];
-  itemsData: Observable<Item[]> = this.http
-    .getItems()
-    .pipe(map((res: Items) => res.content));
+  itemsData: Observable<Item[]> = this.http.getItems();
 
   p: number = 1;
   pageSize = 12;
