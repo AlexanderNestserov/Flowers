@@ -63,46 +63,75 @@ export interface AddItem {
 }
 
 export const LINE_STYLES_DATA = {
-  labels: ['04.07', '09.07', '14.07', '19.07', '24.07', '29.07'],
+  type: 'line',
+  labels: [],
   datasets: [
     {
+      gradient: {
+        backgroundColor: {
+          axis: 'y',
+          colors: {
+            0: 'rgba(94, 158, 94, 0)',
+            100: 'rgba(94, 158, 94, 0.15)',
+          },
+        },
+      },
       label: '',
-      data: [92, 90, 91, 80, 87, 95],
+      data: [],
       fill: true,
       borderColor: '#5e9e5e',
+      pointHoverBorderColor: '#5e9e5e',
       tension: 0.4,
-      background:
-        'linear-gradient(180deg, rgba(94, 158, 94, 0.15) 0%, rgba(94, 158, 94, 0) 100%)',
     },
   ],
 };
+
 export interface LineStylesData {
+  type: string;
   labels: string[];
   datasets: {
+    gradient: {
+      backgroundColor: {
+        axis: string;
+        colors: {
+          0: string;
+          100: string;
+        };
+      };
+    };
     label: string;
     data: number[];
     fill: boolean;
     borderColor: string;
+    pointHoverBorderColor: string;
     tension: number;
-    background: string;
   }[];
 }
 
 export const OPTIONS = {
   title: {
-    display: true,
-    text: 'My Title',
-    fontSize: 16,
-  },
-  interaction: {
-    intersect: false,
+    display: false,
   },
   plugins: {
-    tooltip: {},
-    legend: {
-      labels: {
-        color: '#495057',
+    datalabels: {
+      display: true,
+      align: 'end',
+      anchor: 'end',
+      offset: 10,
+      clamp: true,
+      padding: { top: 10 },
+      backgroundColor: 'transparent',
+      borderRadius: 30,
+      color: '#404040',
+      font: {
+        weight: 400,
+        size: 14,
+        family: 'Montserrat',
+        lineHeight: '150%',
       },
+    },
+    tooltip: false,
+    legend: {
       display: false,
     },
   },
@@ -110,18 +139,25 @@ export const OPTIONS = {
     x: {
       position: 'bottom',
       ticks: {
-        color: '#495057',
+        color: '#404040',
+        font: {
+          size: 14,
+          weight: 400,
+          family: 'Montserrat',
+          lineHeight: '150%',
+        },
       },
       grid: {
         color: '',
+        tickColor: '#e5e5e5',
       },
     },
     y: {
       position: ' ',
       min: 70,
-      max: 102,
+      max: 110,
       ticks: {
-        color: '#495057',
+        color: '',
       },
       grid: {
         color: '',
@@ -132,10 +168,11 @@ export const OPTIONS = {
     point: {
       radius: 5,
       borderWidth: 2,
-      backgroundColor: '#fff',
-      hoverRadius: 6,
-      hoverBorderWidth: 2,
-      hoverBackgroundColor: '#fff',
+      pointBackgroundColor: '#fff',
+      pointBorderColor: '#5e9e5e',
+      pointHoverRadius: 6,
+      pointHoverBorderWidth: 2,
+      pointHoverBackgroundColor: '#fff',
     },
   },
 };
@@ -143,36 +180,51 @@ export const OPTIONS = {
 export interface Options {
   title: {
     display: boolean;
-    text: string;
-    fontSize: number;
   };
   plugins: {
-    tooltip: false;
-    legend: {
-      labels: {
-        color: '#495057';
+    datalabels: {
+      display: boolean;
+      align: string;
+      anchor: string;
+      backgroundColor: string;
+      color: string;
+      font: {
+        weight: number;
+        size: number;
+        family: string;
+        lineHeight: string;
       };
+    };
+    tooltip: boolean;
+    legend: {
       display: boolean;
     };
   };
   scales: {
     x: {
+      position: string;
       ticks: {
-        color: '#495057';
+        color: string;
+        font: {
+          size: number;
+          weight: number;
+          family: string;
+          lineHeight: string;
+        };
       };
       grid: {
-        color: '#ebedef';
+        color: string;
       };
     };
     y: {
-      position: 'left';
-      min: 50;
-      max: 100;
+      position: string;
+      min: number;
+      max: number;
       ticks: {
-        color: '#495057';
+        color: string;
       };
       grid: {
-        color: '#ebedef';
+        color: string;
       };
     };
   };
@@ -180,10 +232,11 @@ export interface Options {
     point: {
       radius: number;
       borderWidth: number;
-      backgroundColor: '#fff';
-      hoverRadius: number;
-      hoverBorderWidth: 2;
-      hoverBackgroundColor: '#fff';
+      pointBackgroundColor: string;
+      pointBorderColor: string;
+      pointHoverRadius: number;
+      pointHoverBorderWidth: number;
+      pointHoverBackgroundColor: string;
     };
   };
 }

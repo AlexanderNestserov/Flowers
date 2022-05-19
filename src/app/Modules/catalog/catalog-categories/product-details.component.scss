@@ -215,12 +215,23 @@
     display: flex;
     justify-content: flex-start;
 }
-.container__price-changes-details-header-time-onemonth,
-.container__price-changes-details-header-time-sixmonth {
+.menu-link {
     @include font(Montserrat, normal, 600, 1.5rem, 110%, 0.05em, $color_darkgrey);
     margin-right: 3.7rem;
     text-transform: uppercase;
     margin-top: 4.8rem;
+    &.active {
+        color: $color_pink;
+        background: url("../../../../assets/img-home/Rectangle2.png") center 3rem no-repeat;
+        background-size: 3.2rem 0.4rem;
+        padding-bottom: 1.6rem;
+    }
+    &:hover {
+        color: $color_pink;
+        background: url("../../../../assets/img-home/Rectangle2.png") center 3rem no-repeat;
+        background-size: 3.2rem 0.4rem;
+        padding-bottom: 1.6rem;
+    }
 }
 .container__price-changes-details-header-close {
     @include wihi(2.4rem, 2.4rem);
@@ -246,6 +257,9 @@
 }
 .container__price-changes-details-changes-title-number {
     @include font(Montserrat, normal, 700, 1.4rem, 150%, 0em, $color_darkgrey);
+}
+.container__p-chart {
+    @include wihi(71rem, 24rem);
 }
 @media (max-width: 1460px) {
     .wrapper-product {
@@ -329,6 +343,17 @@
     .container-banners {
         margin-left: 3%;
     }
+    .container__price-changes-details {
+        @include wihi(100%, 100%);
+        margin-top: 0;
+        box-shadow: none;
+    }
+    .container__p-chart {
+        width: 90%;
+    }
+    .container__price-changes-details-header-title {
+        margin-right: 5.7rem;
+    }
 }
 
 @media (max-width: 600px) {
@@ -355,6 +380,40 @@
     }
     .container-banners {
         margin-left: 0;
+    }
+    .container__price-changes-details-header {
+        display: block;
+    }
+    .container__price-changes-details-header-title {
+        @include font(Montserrat, normal, 700, 2.2rem, 120%, 0em, $color_darkgrey);
+        margin: 1.9rem 0 1.9rem 2rem;
+    }
+    .container__price-changes-details-line-mobile {
+        background: $color_darkgrey;
+        opacity: 0.2;
+        @include wihi(100%, 1px);
+        margin-bottom: 2.4rem;
+    }
+    .container__price-changes-details-line {
+        margin: 0 auto 2.4rem auto;
+        width: 90%;
+    }
+    .menu-link {
+        margin-top: 0;
+    }
+    .container__price-changes-details-header-time {
+        justify-content: center;
+    }
+    .container__price-changes-details-header-close {
+        position: absolute;
+        top: -2.6rem;
+        right: 2.6rem;
+    }
+    .container__price-changes-details-changes {
+        margin-left: 0;
+    }
+    .container__p-chart {
+        @include wihi(100%, 40rem);
     }
 }
 @media (max-width: 450px) {

@@ -23,3 +23,10 @@ export interface EventInput {
   originalEvent?: KeyboardEvent;
   value: number;
 }
+
+export interface PriceChanges {
+  date: string;
+  id: number;
+  itemId: number;
+  price: number;
+}

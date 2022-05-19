@@ -6,16 +6,27 @@ import {
 } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { environment } from 'src/environments/environment';
-import { AddItem, CreateCart } from '../../cart-order/cart-order.config';
+import {
+  AddItem,
+  CreateCart,
+  PriceChanges,
+} from '../../cart-order/cart-order.config';
 import { CartOrderService } from '../../cart-order/cart-order.service';
 import { Item } from '../../home/items/items.config';
 import {
   LineStylesData,
   LINE_STYLES_DATA,
+  Options,
   OPTIONS,
   ProductType,
   PRODUCT_TYPE,
 } from './product.config';
+
+import { Chart } from 'chart.js';
+
+import ChartDataLabels from 'chartjs-plugin-datalabels';
+import gradient from 'chartjs-plugin-gradient';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-product-details',
@@ -24,26 +35,38 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductDetailsComponent implements OnInit {
+  itemId: number = this.route.snapshot.queryParams['id'];
+  getPrice: Observable<PriceChanges[]> = this.cartService.getPriceChanges(
+    this.itemId
+  );
   cartItem: AddItem[] = [];
   product: Item[] = [];
   productType: ProductType = PRODUCT_TYPE;
-
   categoryName: string = '';
   isActive: boolean = false;
   id: number[] = [];
+
   lineStylesData: LineStylesData = LINE_STYLES_DATA;
-  basicOptions = OPTIONS;
+  basicOptions: Options = OPTIONS;
+  priceChangesOfItem: number = 0;
+  changingPriceItem: number[] = [];
+  changingDateItem: string[] = [];
+
   priceChangesIsShow = false;
+  isShowActiveMonth = false;
 
   constructor(
     private route: ActivatedRoute,
     private cartService: CartOrderService,
     private changeDetector: ChangeDetectorRef
   ) {}
+
   ngOnInit(): void {
     this.categoryName = this.route.snapshot.queryParams['categoryName'];
+    this.itemId = this.route.snapshot.queryParams['id'];
     this.route.queryParams.subscribe((params: Params) => {
       this.categoryName = params['categoryName'];
+      this.itemId = params['id'];
     });
 
     this.cartService.getProductDetails().subscribe({
@@ -62,18 +85,45 @@ export class ProductDetailsComponent implements OnInit {
         this.changeDetector.detectChanges();
       });
     });
+    Chart.register(ChartDataLabels);
+    Chart.register(gradient);
+
+    this.getPrice.subscribe((res: PriceChanges[]) => {
+      res.map((res: PriceChanges) => {
+        let realChangesDate = new Date(res.date);
+        let realGetDate = realChangesDate.getDate().toString();
+        let realGetMonth = realChangesDate.getMonth().toString();
+        let realChanges;
+        if (+realGetDate < 10) {
+          realGetDate = '0' + realGetDate;
+        } else if (+realGetMonth < 9) {
+          realGetMonth = '0' + (+realGetMonth + 1);
+        }
+        realChanges = realGetDate + '.' + realGetMonth;
+        this.changingDateItem.push(realChanges);
+        this.priceChangesOfItem = res.price;
+        this.changingPriceItem.push(this.priceChangesOfItem);
+      });
+    });
   }
 
   getSecondElement(): void {
     this.isActive = true;
   }
+
   getFirstElement(): void {
     this.isActive = false;
+  }
+
+  isShowMonth(): void {
+    this.isShowActiveMonth = !this.isShowActiveMonth;
   }
 
   priceChangesShow(): void {
     this.priceChangesIsShow = true;
     document.body.style.overflow = 'hidden';
+    this.lineStylesData.labels = this.changingDateItem;
+    this.lineStylesData.datasets[0].data = this.changingPriceItem;
   }
 
   closePriseChanges(): void {

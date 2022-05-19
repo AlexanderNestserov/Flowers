@@ -143,13 +143,22 @@
         <div class="container__price-changes-details-header-title">
           Price changes
         </div>
+        <div class="container__price-changes-details-line-mobile"></div>
         <div class="container__price-changes-details-header-time">
-          <div class="container__price-changes-details-header-time-onemonth">
+          <a
+            class="menu-link"
+            [ngClass]="{ active: !isShowActiveMonth }"
+            (click)="isShowMonth()"
+          >
             1 month
-          </div>
-          <div class="container__price-changes-details-header-time-sixmonth">
+          </a>
+          <a
+            class="menu-link"
+            [ngClass]="{ active: isShowActiveMonth }"
+            (click)="isShowMonth()"
+          >
             6 month
-          </div>
+          </a>
         </div>
         <button
           class="container__price-changes-details-header-close"
@@ -164,22 +173,29 @@
       </div>
       <div class="container__price-changes-details-line"></div>
       <div class="container__price-changes-details-changes">
-        <div class="container__price-changes-details-changes-title">
+        <div
+          class="container__price-changes-details-changes-title"
+          *ngFor="let item of product"
+        >
           <span class="container__price-changes-details-changes-title-current"
             >Current price:</span
           >
           <span class="container__price-changes-details-changes-title-number"
-            >€90.87 EUR</span
+            >€{{ item.priceDto.price }} EUR</span
           >
         </div>
-        <p-chart
-          type="line"
-          [data]="lineStylesData"
-          [options]="basicOptions"
-          [responsive]="true"
-          width="67.9rem"
-          height="23.3rem"
-        ></p-chart>
+        <div class="container__p-chart">
+          <p-chart
+            id="myChart"
+            type="line"
+            [data]="lineStylesData"
+            [options]="basicOptions"
+            [responsive]="true"
+            width="100%"
+            height="100%"
+          >
+          </p-chart>
+        </div>
       </div>
     </div>
   </div>

@@ -128,4 +128,9 @@ describe('ProductDetailsComponent', () => {
     component.closePriseChanges();
     expect(component.priceChangesIsShow).toBe(false);
   });
+  it('should be created priceChangesShow', () => {
+    component.isShowActiveMonth = false;
+    component.isShowMonth();
+    expect(component.isShowActiveMonth).toBe(true);
+  });
 });

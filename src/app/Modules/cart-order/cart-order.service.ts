@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { ProductType } from '../catalog/catalog-categories/product.config';
 import { Item } from '../home/items/items.config';
-import { AddItem, CreateCart } from './cart-order.config';
+import { AddItem, CreateCart, PriceChanges } from './cart-order.config';
 
 @Injectable()
 export class CartOrderService {
@@ -14,11 +14,16 @@ export class CartOrderService {
   public postUrl: string = 'order/checkout';
   public createCartPostUrl: string = 'cart';
   public addItemToCartUrl: string = 'cart/item';
+  public priceChangesItemUrl: string = 'price';
 
   constructor(private http: HttpClient) {}
 
   getShoppingCart(): Observable<CreateCart> {
     return this.http.get<CreateCart>(this.createCartPostUrl);
+  }
+
+  getPriceChanges(id: number): Observable<PriceChanges[]> {
+    return this.http.get<PriceChanges[]>(this.priceChangesItemUrl + `/${id}`);
   }
 
   createCart(): Observable<CreateCart> {
