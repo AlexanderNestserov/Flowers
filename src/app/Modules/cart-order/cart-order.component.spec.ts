@@ -1,5 +1,4 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { isExpressionFactoryMetadata } from '@angular/compiler/src/render3/r3_factory';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -8,7 +7,6 @@ import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { ErrorDirectiveModule } from 'src/app/directives/error-form/error-directive.module';
-import { AccountUser } from '../account/account.model';
 import { AccountService } from '../account/account.service';
 import { ItemService } from '../home/items/item.service';
 import { Item } from '../home/items/items.config';

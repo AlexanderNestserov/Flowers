@@ -202,6 +202,9 @@
     background: $color_white;
     box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.1);
     border-radius: 1.2rem;
+    animation-duration: 0.55s;
+    animation-fill-mode: both;
+    animation-name: fadeInDown;
 }
 .container__price-changes-details-header {
     display: flex;
@@ -260,6 +263,16 @@
 }
 .container__p-chart {
     @include wihi(71rem, 24rem);
+}
+@keyframes fadeInDown {
+    0% {
+        opacity: 0;
+        transform: scale(2);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 @media (max-width: 1460px) {
     .wrapper-product {
@@ -353,6 +366,9 @@
     }
     .container__price-changes-details-header-title {
         margin-right: 5.7rem;
+    }
+    .container__price-changes {
+        background: $color_white;
     }
 }
 

@@ -4,6 +4,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { RouterModule } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
+import { from } from 'rxjs';
 import { CartOrderService } from '../../cart-order/cart-order.service';
 import { ItemService } from '../../home/items/item.service';
 
@@ -12,7 +13,7 @@ import { ProductDetailsComponent } from './product-details.component';
 describe('ProductDetailsComponent', () => {
   let component: ProductDetailsComponent;
   let fixture: ComponentFixture<ProductDetailsComponent>;
-
+  let service: CartOrderService;
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ProductDetailsComponent],
@@ -30,6 +31,7 @@ describe('ProductDetailsComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ProductDetailsComponent);
     component = fixture.componentInstance;
+    service = TestBed.inject(CartOrderService);
     fixture.detectChanges();
   });
 
@@ -115,8 +117,11 @@ describe('ProductDetailsComponent', () => {
         thumbnail: 'flower-7-thumbnail.jpg',
       },
     ];
+    const spy = spyOn(service, 'getProductDetails').and.callFake(() => {
+      return from([item]);
+    });
     component.ngOnInit();
-    expect(component.product.length - 1).toEqual(item.length);
+    expect(spy).toHaveBeenCalled();
   });
   it('should be created priceChangesShow', () => {
     component.priceChangesIsShow;
@@ -132,5 +137,86 @@ describe('ProductDetailsComponent', () => {
     component.isShowActiveMonth = false;
     component.isShowMonth();
     expect(component.isShowActiveMonth).toBe(true);
+  });
+  it('should create an instance popstateListener', () => {
+    const event = new PopStateEvent('$event');
+    component.onPopState(event);
+    expect(document.body.style.overflow).toEqual('scroll');
+  });
+  it('should be created realGEtDate', () => {
+    let real = '5';
+    let addingZero = 10;
+    if (+real < addingZero) {
+      real = '0' + real;
+    }
+    component.ngOnInit();
+    expect(real).toEqual('05');
+  });
+  it('should be created getShoppingCart', () => {
+    let item = {
+      id: 1,
+      orderItems: [
+        {
+          id: 1,
+          itemId: 100,
+          priceId: 100,
+          quantity: 2,
+        },
+      ],
+      text: '',
+    };
+    const spy = spyOn(service, 'getShoppingCart').and.callFake(() => {
+      return from([item]);
+    });
+    component.ngOnInit();
+    expect(spy).toHaveBeenCalled();
+  });
+  it('should be created addItemtoCArt', () => {
+    let item = {
+      id: 1,
+      orderItems: [
+        {
+          id: 1,
+          itemId: 100,
+          priceId: 100,
+          quantity: 2,
+        },
+      ],
+      text: '',
+    };
+    let items = {
+      category: {
+        description:
+          'For several years now, our company has been delighting customers with the delivery of flowers and congratulations. We are really proud of the clear and well-coordinated work of our employees and are always confident that your order will be delivered at the right time to the right place.',
+        id: 1050,
+        name: 'Fresh flowers',
+        photo: '"fresh-flowers-photo.jpg"',
+        thumbnail: 'images/categories/Flowers-thumbnail',
+      },
+      description:
+        'Perfect for floral enthusiasts of every persuasion, there’s always room for this beauty on a window sill or dining table.',
+      id: 1056,
+      name: 'LEMON AND LIME',
+      photo: 'flower-7-photo.jpg',
+      priceDto: {
+        date: '2021-08-10 14:10',
+        id: 1056,
+        itemId: 1056,
+        price: 86.99,
+      },
+      promotion: {
+        id: 1056,
+        itemId: 1056,
+        promotion: 70,
+      },
+      shortDescription: 'This bouquet is the epitome of affordable luxury',
+      thumbnail: 'flower-7-thumbnail.jpg',
+      quantity: 2,
+    };
+    const spy = spyOn(service, 'addItemToCart').and.callFake(() => {
+      return from([item]);
+    });
+    component.addToCart(items);
+    expect(spy).toHaveBeenCalled();
   });
 });

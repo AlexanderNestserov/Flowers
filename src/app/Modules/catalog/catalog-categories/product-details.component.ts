@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
+  HostListener,
   OnInit,
 } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
@@ -49,6 +50,8 @@ export class ProductDetailsComponent implements OnInit {
   lineStylesData: LineStylesData = LINE_STYLES_DATA;
   basicOptions: Options = OPTIONS;
   priceChangesOfItem: number = 0;
+  addingZeroDate: number = 10;
+  addingZeroMonth: number = 9;
   changingPriceItem: number[] = [];
   changingDateItem: string[] = [];
 
@@ -60,6 +63,13 @@ export class ProductDetailsComponent implements OnInit {
     private cartService: CartOrderService,
     private changeDetector: ChangeDetectorRef
   ) {}
+
+  @HostListener('window:popstate', ['$event'])
+  onPopState(event: PopStateEvent) {
+    if (event) {
+      document.body.style.overflow = 'scroll';
+    }
+  }
 
   ngOnInit(): void {
     this.categoryName = this.route.snapshot.queryParams['categoryName'];
@@ -94,9 +104,9 @@ export class ProductDetailsComponent implements OnInit {
         let realGetDate = realChangesDate.getDate().toString();
         let realGetMonth = realChangesDate.getMonth().toString();
         let realChanges;
-        if (+realGetDate < 10) {
+        if (+realGetDate < this.addingZeroDate) {
           realGetDate = '0' + realGetDate;
-        } else if (+realGetMonth < 9) {
+        } else if (+realGetMonth < this.addingZeroMonth) {
           realGetMonth = '0' + (+realGetMonth + 1);
         }
         realChanges = realGetDate + '.' + realGetMonth;
