@@ -11,7 +11,14 @@ SwiperCore.use([Autoplay, Pagination, Navigation]);
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
-  encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HomeComponent {}
+export class HomeComponent {
+  isChartShow = false;
+  chartShow(): void {
+    this.isChartShow = !this.isChartShow;
+  }
+  closeChart(): void {
+    this.isChartShow = false;
+  }
+}

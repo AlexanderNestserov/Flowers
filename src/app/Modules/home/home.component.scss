@@ -14,12 +14,12 @@
     &__button {
         display: block;
         @include wihi(24.4rem, 5.7rem);
-        margin: 1rem auto 10rem;
+        margin: $pb_1rem auto 10rem;
         border: 1px solid $color_green;
         border-radius: 10px;
         background-color: $color_white;
         .container__parag {
-            @include font(Montserrat, normal, 600, 1.5rem, 110%, 0.05em, $color_green);
+            @include font(Montserrat, normal, 600, $pw_1-5rem, 110%, 0.05em, $color_green);
             text-transform: uppercase;
             margin: 0 auto;
         }
@@ -39,7 +39,7 @@
         margin: 0 8% 0 12%;
         .container__paragraph {
             @include font(Montserrat, normal, normal, 1.6rem, 170%, 0em, $color_darkgrey);
-            margin: 1.5rem 2rem 1.5rem 0.5rem;
+            margin: $pw_1-5rem 2rem $pw_1-5rem 0.5rem;
         }
     }
 }
@@ -60,6 +60,159 @@
 }
 .container-banners {
     margin-left: 12%;
+}
+.container__chart-button {
+    @include wihi(5.5rem, 5.5rem);
+    border-radius: 50%;
+    border: none;
+    background-color: $color_green;
+    position: fixed;
+    bottom: 2.4rem;
+    right: 2.4rem;
+    z-index: 9;
+}
+.container__chart-button:hover {
+    bottom: 2.3rem;
+    right: 2.3rem;
+}
+.container__chart {
+    @include wihi(53.8rem, 73.2rem);
+    border-radius: $pb_1rem;
+    box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    bottom: 2.4rem;
+    right: 10.2rem;
+    z-index: 9;
+    animation: chart;
+    animation-duration: 0.7s;
+    animation-fill-mode: both;
+}
+.container__chart-header {
+    @include wihi(100%, 6.5rem);
+    display: flex;
+    justify-content: flex-start;
+    background-color: $color_green;
+    border-top-right-radius: $pb_1rem;
+    border-top-left-radius: $pb_1rem;
+}
+.container__chart-header-title {
+    @include font(Montserrat, normal, 600, $pw_1-5rem, 110%, 0.05em, $color_white);
+    text-transform: uppercase;
+    margin: 2.4rem 19.3rem 0 3.4rem;
+}
+.close-chart-button {
+    background-color: $color_green;
+    @include wihi(2.4rem, 2.4rem);
+    margin-top: 2.1rem;
+}
+.container__chart-body {
+    background-color: $color_white;
+    @include wihi(100%, 91%);
+    padding: 3rem 3.4rem 4rem 2.4rem;
+    border-bottom-right-radius: $pb_1rem;
+    border-bottom-left-radius: $pb_1rem;
+}
+.container__chart-body-messages {
+    margin-bottom: 3rem;
+    position: absolute;
+    bottom: 12rem;
+}
+.your-message {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 3rem;
+}
+.container__chart-body-yourmessage {
+    @include font(Montserrat, normal, 400, 1.6rem, 170%, 0em, $color_white);
+    background-color: $color_green;
+    border-bottom-right-radius: $pb_1rem;
+    border-top-left-radius: $pb_1rem;
+    border-bottom-left-radius: $pb_1rem;
+    border: 0;
+    outline: none;
+    padding: 0.7rem 1.9rem 0.8rem $pw_1-5rem;
+    max-width: 50%;
+}
+#yourMessage {
+    @include wihi($pb_1rem, $pb_1rem);
+    border: 0;
+    outline: none;
+}
+.server-message {
+    display: flex;
+    justify-content: flex-start;
+}
+.container__chart-body-servermessage {
+    @include font(Montserrat, normal, 400, 1.6rem, 170%, 0em, $color_darkgrey);
+    background-color: $color_darkwhite;
+    border-bottom-right-radius: $pb_1rem;
+    border-top-right-radius: $pb_1rem;
+    border-bottom-left-radius: $pb_1rem;
+    border: 0;
+    outline: none;
+    padding: 0.7rem 1.9rem 0.8rem $pw_1-5rem;
+    max-width: 50%;
+}
+#serverMessage {
+    @include wihi($pb_1rem, $pb_1rem);
+    border: 0;
+    outline: none;
+}
+.container__input {
+    @include wihi(47rem, 7.6rem);
+    position: absolute;
+    bottom: 4rem;
+    .input-text {
+        display: inline-block;
+        text-align: left;
+        width: 100%;
+        padding-right: 8rem;
+        border: 1px solid $color_lightgrey;
+        background: $color_white;
+        border-radius: 4px;
+        height: 7.6rem;
+        @include font(Montserrat, normal, normal, 1.8rem, 150%, 0em, $color_darkgrey);
+        padding-left: 2.9rem;
+        &:focus {
+            box-shadow: 1px 2px 1px $color_grey;
+            border: 1px solid $color_darkgrey;
+        }
+    }
+    input::placeholder {
+        color: $color_lightgrey;
+    }
+    .button {
+        position: absolute;
+        top: 2.4rem;
+        right: 3.6rem;
+        z-index: 2;
+        background: $color_white;
+        &:hover {
+            top: 2.5rem;
+            right: 3.7rem;
+            z-index: 3;
+        }
+        &:active {
+            top: 2.6rem;
+            right: 3.8rem;
+            z-index: 3;
+        }
+        #imgSend {
+            @include wihi(2.5rem, 2.5rem);
+        }
+    }
+}
+@keyframes chart {
+    0% {
+        opacity: 0;
+        right: -60rem;
+        bottom: -80rem;
+    }
+    100% {
+        opacity: 1;
+        bottom: 2.4rem;
+        right: 10.2rem;
+    }
 }
 @media (max-width: 500px) {
     .container-banners {
