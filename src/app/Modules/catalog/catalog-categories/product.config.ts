@@ -112,14 +112,22 @@ export const OPTIONS = {
   title: {
     display: false,
   },
+  layout: {
+    padding: {
+      left: 20,
+    },
+  },
   plugins: {
     datalabels: {
       display: true,
       align: 'end',
       anchor: 'end',
-      offset: 10,
+      offset: 7,
       clamp: true,
-      padding: { top: 10 },
+      padding: {
+        top: 10,
+        left: 20,
+      },
       backgroundColor: 'transparent',
       borderRadius: 30,
       color: '#404040',
@@ -186,6 +194,11 @@ export interface Options {
       display: boolean;
       align: string;
       anchor: string;
+      offset?: number;
+      clamp?: boolean;
+      padding?: {
+        top: number;
+      };
       backgroundColor: string;
       color: string;
       font: {

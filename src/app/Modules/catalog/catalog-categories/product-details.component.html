@@ -147,15 +147,17 @@
         <div class="container__price-changes-details-header-time">
           <a
             class="menu-link"
+            id="oneMonth"
             [ngClass]="{ active: !isShowActiveMonth }"
-            (click)="isShowMonth()"
+            (click)="isShowOneMonth()"
           >
             1 month
           </a>
           <a
             class="menu-link"
+            id="sixMonth"
             [ngClass]="{ active: isShowActiveMonth }"
-            (click)="isShowMonth()"
+            (click)="isShowSixMonth()"
           >
             6 month
           </a>
@@ -184,12 +186,24 @@
             >€{{ item.priceDto.price }} EUR</span
           >
         </div>
-        <div class="container__p-chart">
+        <div class="container__p-chart" *ngIf="!isShowActiveMonth">
           <p-chart
             id="myChart"
             type="line"
             [data]="lineStylesData"
             [options]="basicOptions"
+            [responsive]="true"
+            width="100%"
+            height="100%"
+          >
+          </p-chart>
+        </div>
+        <div class="container__p-chart" *ngIf="isShowActiveMonth">
+          <p-chart
+            id="myChart"
+            type="line"
+            [data]="lineStylesDataSix"
+            [options]="basicOptionsSix"
             [responsive]="true"
             width="100%"
             height="100%"
