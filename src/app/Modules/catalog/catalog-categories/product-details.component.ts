@@ -54,7 +54,7 @@ export class ProductDetailsComponent implements OnInit {
   lineStylesDataSix: LineStylesData = LINE_STYLES_DATA;
   basicOptionsSix: Options = OPTIONS;
   priceChangesOfItem: number = 0;
-
+  backendPriceChanges: number[] = [];
   changingPriceItem: number[] = [];
   changingDateItem: string[] = [];
 
@@ -112,152 +112,105 @@ export class ProductDetailsComponent implements OnInit {
 
     this.getPrice.subscribe((res: PriceChanges[]) => {
       res.map((res: PriceChanges) => {
-        realChangesDateMoment = moment(res.date);
+        realChangesDateMoment = moment(new Date(res.date));
         backendChanges.push(realChangesDateMoment);
         this.priceChangesOfItem = res.price;
+        this.backendPriceChanges.push(this.priceChangesOfItem);
       });
 
       if (momentoMoment >= realChangesDateMoment) {
         this.showChartChanges(momentoMoment, nowMoment);
-        /*  while (momentoMoment.isSameOrBefore(nowMoment, 'day')) {
-          this.changingDateItem.push(momentoMoment.format('DD.MM'));
-          this.changingPriceItem.push(this.priceChangesOfItem);
-          momentoMoment.add(5, 'days');
-        }*/
       } else if (
         momentoMoment < realChangesDateMoment &&
         nowMoment >= realChangesDateMoment &&
         backendChanges[0] < momentoMoment
       ) {
         this.showChartChangesOneDay(momentoMoment, realChangesDateMoment);
-        /* while (momentoMoment.isSameOrBefore(realChangesDateMoment, 'day')) {
-          this.changingDateItem.push(momentoMoment.format('DD.MM'));
-          this.changingPriceItem.push(this.priceChangesOfItem);
-          momentoMoment.add(1, 'days');
-        }*/
         this.showChartChanges(realChangesDateMoment, nowMoment);
-        /* while (realChangesDateMoment.isSameOrBefore(nowMoment, 'day')) {
-          this.changingDateItem.push(realChangesDateMoment.format('DD.MM'));
-          this.changingPriceItem.push(this.priceChangesOfItem);
-          realChangesDateMoment.add(5, 'days');
-        }*/
       } else {
         this.showChartChangesWithoutPrice(momentoMoment, backendChanges[0]);
-        /* while (momentoMoment.isSameOrBefore(backendChanges[0], 'day')) {
-          this.changingDateItem.push(momentoMoment.format('DD.MM'));
-          momentoMoment.add(5, 'days');
-        }*/
         this.showChartChangesOneDay(backendChanges[0], realChangesDateMoment);
-        /* while (backendChanges[0].isSameOrBefore(realChangesDateMoment, 'day')) {
-          this.changingDateItem.push(backendChanges[0].format('DD.MM'));
-          this.changingPriceItem.push(this.priceChangesOfItem);
-          backendChanges[0].add(1, 'days');
-        }*/
         this.showChartChanges(realChangesDateMoment, nowMoment);
-        /*while (realChangesDateMoment.isSameOrBefore(nowMoment, 'day')) {
-          this.changingDateItem.push(realChangesDateMoment.format('DD.MM'));
-          this.changingPriceItem.push(this.priceChangesOfItem);
-          realChangesDateMoment.add(5, 'days');
-        }*/
       }
+
       if (momentoSixMoment >= realChangesDateMoment) {
-        // this.showChartChanges(momentoSixMoment, nowMoment);
-        while (momentoSixMoment.isSameOrBefore(nowMoment, 'month')) {
-          this.changingDateItemSixMonth.push(momentoSixMoment.format('MM.YY'));
-          this.changingPriceItem.push(this.priceChangesOfItem);
-          momentoSixMoment.add(1, 'month');
-        }
+        this.showChartChangesPrices(momentoSixMoment, nowMoment);
       } else if (
         momentoSixMoment < realChangesDateMoment &&
         nowMoment >= realChangesDateMoment &&
         backendChanges[0] < momentoSixMoment
       ) {
-        // this.showChartChanges(momentoSixMoment, realChangesDateMoment);
-        while (
-          momentoSixMoment.isSameOrBefore(realChangesDateMoment, 'month')
-        ) {
-          this.changingDateItemSixMonth.push(momentoSixMoment.format('MM.YY'));
-          this.changingPriceItem.push(this.priceChangesOfItem);
-          momentoSixMoment.add(1, 'month');
-        }
-        // this.showChartChanges(realChangesDateMoment, nowMoment);
-        while (realChangesDateMoment.isSameOrBefore(nowMoment, 'month')) {
-          this.changingDateItemSixMonth.push(
-            realChangesDateMoment.format('MM.YY')
-          );
-          this.changingPriceItem.push(this.priceChangesOfItem);
-          realChangesDateMoment.add(1, 'month');
-        }
+        this.showChartChangesPricesBackend(
+          momentoSixMoment,
+          realChangesDateMoment
+        );
+        this.showChartChangesPrices(realChangesDateMoment, nowMoment);
       } else {
-        // this.showChartChangesWithoutPrice(momentoSixMoment, backendChanges[0]);
-        while (momentoSixMoment.isSameOrBefore(backendChanges[0], 'month')) {
-          this.changingDateItemSixMonth.push(momentoSixMoment.format('MM.YY'));
-          momentoSixMoment.add(1, 'month');
-        }
-        //this.showChartChanges(backendChanges[0], realChangesDateMoment);
-        while (
-          backendChanges[0].isSameOrBefore(realChangesDateMoment, 'month')
-        ) {
-          this.changingDateItemSixMonth.push(backendChanges[0].format('MM.YY'));
-          this.changingPriceItem.push(this.priceChangesOfItem);
-          backendChanges[0].add(1, 'month');
-        }
-        //this.showChartChanges(realChangesDateMoment, nowMoment);
-        while (realChangesDateMoment.isSameOrBefore(nowMoment, 'month')) {
-          this.changingDateItemSixMonth.push(
-            realChangesDateMoment.format('MM.YY')
-          );
-          this.changingPriceItem.push(this.priceChangesOfItem);
-          realChangesDateMoment.add(1, 'month');
-        }
+        this.showChartChangesWithoutPriceMonth(
+          momentoSixMoment,
+          backendChanges[0]
+        );
+        this.showChartChangesPricesBackend(
+          backendChanges[0],
+          realChangesDateMoment
+        );
+        this.showChartChangesPrices(realChangesDateMoment, nowMoment);
       }
     });
   }
 
   showChartChanges(a: Moment, b: Moment) {
-    while (a.isSameOrBefore(b, this.isShowActiveMonth ? 'month' : 'day')) {
-      (this.isShowActiveMonth
-        ? this.changingDateItemSixMonth
-        : this.changingDateItem
-      ).push(a.format(this.isShowActiveMonth ? 'MM.YY' : 'DD.MM'));
+    while (a.isSameOrBefore(b, 'day')) {
+      this.changingDateItem.push(a.format('DD.MM'));
       this.pushFromFormatPriceItem();
-      a.add(
-        this.isShowActiveMonth ? 1 : 5,
-        this.isShowActiveMonth ? 'month' : 'days'
-      );
+      a.add(5, 'days');
     }
   }
 
-  showChartChangesWithoutPrice(a: Moment, b: Moment) {
-    while (a.isSameOrBefore(b, this.isShowActiveMonth ? 'month' : 'day')) {
-      (this.isShowActiveMonth
-        ? this.changingDateItemSixMonth
-        : this.changingDateItem
-      ).push(a.format(this.isShowActiveMonth ? 'MM.YY' : 'DD.MM'));
-      a.add(
-        this.isShowActiveMonth ? 1 : 5,
-        this.isShowActiveMonth ? 'month' : 'days'
-      );
+  showChartChangesPrices(a: Moment, b: Moment) {
+    while (a.isSameOrBefore(b, 'month')) {
+      this.changingDateItemSixMonth.push(a.format('MM.YY'));
+      this.pushFromFormatPriceItem();
+      a.add(1, 'month');
     }
   }
 
   showChartChangesOneDay(a: Moment, b: Moment) {
     while (a.isSameOrBefore(b, 'day')) {
-      (this.isShowActiveMonth
-        ? this.changingDateItemSixMonth
-        : this.changingDateItem
-      ).push(a.format(this.isShowActiveMonth ? 'MM.YY' : 'DD.MM'));
-      this.pushFromFormatPriceItem();
+      this.changingDateItem.push(a.format('DD.MM'));
+      this.pushFromBackendChanges();
       a.add(1, 'days');
     }
   }
 
-  pushFromFormat(a: Moment, c: string[]) {
-    c.push(a.format(this.isShowActiveMonth ? 'MM.YY' : 'DD.MM'));
+  showChartChangesPricesBackend(a: Moment, b: Moment) {
+    while (a.isSameOrBefore(b, 'month')) {
+      this.changingDateItemSixMonth.push(a.format('MM.YY'));
+      this.pushFromBackendChanges();
+      a.add(1, 'month');
+    }
+  }
+
+  showChartChangesWithoutPrice(a: Moment, b: Moment) {
+    while (a.isSameOrBefore(b, 'day')) {
+      this.changingDateItem.push(a.format('DD.MM'));
+      a.add(5, 'days');
+    }
+  }
+
+  showChartChangesWithoutPriceMonth(a: Moment, b: Moment) {
+    while (a.isSameOrBefore(b, 'month')) {
+      this.changingDateItemSixMonth.push(a.format('MM.YY'));
+      a.add(1, 'month');
+    }
   }
 
   pushFromFormatPriceItem() {
     this.changingPriceItem.push(this.priceChangesOfItem);
+  }
+
+  pushFromBackendChanges() {
+    this.changingPriceItem = this.backendPriceChanges;
   }
 
   getSecondElement(): void {

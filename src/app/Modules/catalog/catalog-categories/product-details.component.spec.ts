@@ -1,10 +1,18 @@
 import { CommonModule } from '@angular/common';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import {
+  ComponentFixture,
+  fakeAsync,
+  TestBed,
+  tick,
+  waitForAsync,
+} from '@angular/core/testing';
 import { RouterModule } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-import { from } from 'rxjs';
+import moment, { Moment } from 'moment';
+import { from, of } from 'rxjs';
+import { PriceChanges } from '../../cart-order/cart-order.config';
 import { CartOrderService } from '../../cart-order/cart-order.service';
 import { ItemService } from '../../home/items/item.service';
 
@@ -133,11 +141,99 @@ describe('ProductDetailsComponent', () => {
     component.closePriseChanges();
     expect(component.priceChangesIsShow).toBe(false);
   });
-  it('should be created priceChangesShow', () => {
+  it('should be created isShowOneMonth', () => {
     component.isShowActiveMonth = false;
-    component.isShowMonth();
+    component.isShowOneMonth();
+    expect(component.isShowActiveMonth).toBe(false);
+  });
+  it('should be created isShowSixMonth', () => {
+    component.isShowActiveMonth = true;
+    component.isShowSixMonth();
     expect(component.isShowActiveMonth).toBe(true);
   });
+  it('should be created pushFromBackendChanges', () => {
+    component.backendPriceChanges = [];
+    component.pushFromBackendChanges();
+    expect(component.changingPriceItem).toEqual([]);
+  });
+  it('should be created pushFromFormatPriceItem', () => {
+    component.priceChangesOfItem = 2;
+    component.pushFromFormatPriceItem();
+    expect(component.changingPriceItem).toEqual([2]);
+  });
+  it('should be created showChartChangesWithoutPriceMonth', () => {
+    let a = moment(new Date('04.11.2022'));
+    let b = moment(new Date('05.11.2022'));
+    component.showChartChangesWithoutPriceMonth(a, b);
+    expect(component.changingDateItemSixMonth.length).toEqual(2);
+  });
+  it('should be created showChartChangesWithoutPrice', () => {
+    let a = moment(new Date('05.01.2022'));
+    let b = moment(new Date('05.11.2022'));
+    component.showChartChangesWithoutPrice(a, b);
+    expect(component.changingDateItem.length).toEqual(3);
+  });
+  it('should be created showChartChangesPricesBackend', () => {
+    let a = moment(new Date('04.01.2022'));
+    let b = moment(new Date('05.11.2022'));
+    component.showChartChangesPricesBackend(a, b);
+    expect(component.changingDateItemSixMonth.length).toEqual(2);
+  });
+  it('should be created showChartChangesOneDay', () => {
+    let a = moment(new Date('04.01.2022'));
+    let b = moment(new Date('04.03.2022'));
+    component.showChartChangesOneDay(a, b);
+    expect(component.changingDateItem.length).toEqual(3);
+  });
+  it('should be created showChartChangesPrices', () => {
+    let a = moment(new Date('04.01.2022'));
+    let b = moment(new Date('05.11.2022'));
+    component.showChartChangesPrices(a, b);
+    expect(component.changingDateItemSixMonth.length).toEqual(2);
+  });
+  it('should be created showChartChanges', () => {
+    let a = moment(new Date('04.01.2022'));
+    let b = moment(new Date('04.11.2022'));
+    component.showChartChanges(a, b);
+    expect(component.changingDateItem.length).toEqual(3);
+  });
+  it('should be created showChartChanges', fakeAsync(() => {
+    const spy = spyOn(component, 'showChartChanges');
+    const membersToEmit = [
+      {
+        date: '11.06.2021',
+        id: 1,
+        itemId: 1,
+        price: 90,
+      },
+    ];
+    component.getPrice = of(membersToEmit);
+    component.ngOnInit();
+    tick();
+    expect(spy).toHaveBeenCalled();
+  }));
+  it('should be created showChartChangesOneDay', fakeAsync(() => {
+    const spy = spyOn(component, 'showChartChangesOneDay');
+    const membersToEmit = [
+      {
+        date: '11.06.2021',
+        id: 1,
+        itemId: 1,
+        price: 90,
+      },
+      {
+        date: '11.05.2022',
+        id: 1,
+        itemId: 1,
+        price: 90,
+      },
+    ];
+    component.getPrice = of(membersToEmit);
+    fixture.detectChanges();
+    component.ngOnInit();
+    tick();
+    expect(spy).toHaveBeenCalled();
+  }));
   it('should create an instance popstateListener', () => {
     const event = new PopStateEvent('$event');
     component.onPopState(event);
