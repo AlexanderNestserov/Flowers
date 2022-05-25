@@ -34,7 +34,7 @@ export class AccountComponent implements OnInit {
   isDisabled = false;
   isDisabledPassword = false;
   isFormShow = false;
-  getUserData: Observable<any> = this.http.getUserData();
+  getUserData: Observable<AccountUser> = this.http.getUserData();
 
   errorPassword: string = '';
   keycloakLogoutOption = environment.keycloakLogoutOption;

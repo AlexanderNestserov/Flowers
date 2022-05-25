@@ -59,9 +59,9 @@
       </div>
       <div class="container__chart-body">
         <div class="container__chart-body-messages">
-          <div class="your-message">
+          <div class="your-message" *ngFor="let greeting of greetings">
             <div class="container__chart-body-yourmessage">
-              How to get to you?
+              {{ greeting }}
             </div>
             <img
               id="yourMessage"
@@ -81,19 +81,22 @@
           </div>
         </div>
         <div class="container__input">
-          <input
-            type="text"
-            class="input-text"
-            pInputText
-            placeholder="Write a message..."
-          />
-          <button class="button">
-            <img
-              id="imgSend"
-              src="../../../assets/img-home/send.png"
-              alt="send"
+          <form [formGroup]="form" (ngSubmit)="sendText()">
+            <input
+              type="text"
+              class="input-text"
+              formControlName="text"
+              pInputText
+              placeholder="Write a message..."
             />
-          </button>
+            <button class="button" type="submit">
+              <img
+                id="imgSend"
+                src="../../../assets/img-home/send.png"
+                alt="send"
+              />
+            </button>
+          </form>
         </div>
       </div>
     </div>

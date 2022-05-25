@@ -105,7 +105,6 @@ export class ProductDetailsComponent implements OnInit {
 
     let backendChanges: Moment[] = [];
     let realChangesDateMoment: Moment;
-
     const nowMoment = moment();
     let momentoMoment = moment().subtract(1, 'month');
     let momentoSixMoment = moment().subtract(6, 'months');
@@ -233,8 +232,6 @@ export class ProductDetailsComponent implements OnInit {
   priceChangesShow(): void {
     this.priceChangesIsShow = true;
     document.body.style.overflow = 'hidden';
-    this.lineStylesData.labels = [];
-    this.lineStylesData.datasets[0].data = [];
     if (!this.isShowActiveMonth) {
       this.lineStylesData.labels = this.changingDateItem;
       this.lineStylesData.datasets[0].data = this.changingPriceItem;

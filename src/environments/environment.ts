@@ -1,4 +1,4 @@
-import { KeycloakLoginOptions, KeycloakLogoutOptions } from 'keycloak-js';
+import { KeycloakLoginOptions } from 'keycloak-js';
 export interface Env {
   production?: boolean;
   serverUrl: string;
