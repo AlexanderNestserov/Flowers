@@ -34,14 +34,4 @@ describe('HomeComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-  it('should be created chartShow', () => {
-    component.isChartShow = false;
-    component.chartShow();
-    expect(component.isChartShow).toBe(true);
-  });
-  it('should be created closeChart', () => {
-    component.isChartShow = true;
-    component.closeChart();
-    expect(component.isChartShow).toBe(false);
-  });
 });

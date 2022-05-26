@@ -1,0 +1,53 @@
+<button class="container__chart-button" (click)="chartShow()">
+  <img id="chartImage" src="../../assets/img-home/chart.png" alt="chartImage" />
+</button>
+<div class="container__chart" *ngIf="isChartShow">
+  <div class="container__chart-header">
+    <div class="container__chart-header-title">Chat with the consultant</div>
+    <button class="close-chart-button" (click)="closeChart()">
+      <img
+        id="closeChart"
+        src="../../assets/img-home/x white.png"
+        alt="close"
+      />
+    </button>
+  </div>
+  <div class="container__chart-body">
+    <div class="container__chart-body-messages">
+      <div class="your-message" *ngFor="let greeting of greetings">
+        <div class="container__chart-body-yourmessage">
+          {{ greeting }}
+        </div>
+        <img
+          id="yourMessage"
+          src="../../assets/img-home/yormessage.png"
+          alt="yourMessage"
+        />
+      </div>
+      <div class="server-message">
+        <img
+          id="serverMessage"
+          src="../../assets/img-home/servermessage.png"
+          alt="yourMessage"
+        />
+        <div class="container__chart-body-servermessage">
+          Hello! We are located at 255 Nezavisimosti Avenue.
+        </div>
+      </div>
+    </div>
+    <div class="container__input">
+      <form [formGroup]="form" (ngSubmit)="sendText()">
+        <input
+          type="text"
+          class="input-text"
+          formControlName="text"
+          pInputText
+          placeholder="Write a message..."
+        />
+        <button class="button" type="submit">
+          <img id="imgSend" src="../../assets/img-home/send.png" alt="send" />
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

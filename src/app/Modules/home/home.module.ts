@@ -16,7 +16,7 @@ import { SwiperListComponent } from './swiper-list/swiper-list.component';
 import { ItemsComponent } from './items/items.component';
 import { SwiperListService } from './swiper-list/swiper-list.service';
 import { ItemService } from './items/item.service';
-import { WebsocketService } from './websocket/websocket.service';
+import { WebsocketService } from '../../livechart/websocket/websocket.service';
 import { AccountService } from '../account/account.service';
 
 @NgModule({

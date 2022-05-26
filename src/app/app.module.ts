@@ -16,9 +16,15 @@ import { UrlInterceptor } from './interceptors/url.interceptor';
 import { LoaderInterceptor } from './interceptors/spinner.interceptor';
 import { SpinnerService } from './Modules/spinner/spinner.service';
 import { CartOrderService } from './Modules/cart-order/cart-order.service';
+import { LiveChatComponent } from './livechart/livechat.component';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, FooterComponent],
+  declarations: [
+    AppComponent,
+    HeaderComponent,
+    FooterComponent,
+    LiveChatComponent,
+  ],
   imports: [
     BrowserModule,
     HttpClientModule,
