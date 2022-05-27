@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { ProductType } from '../catalog/catalog-categories/product.config';
 import { Item } from '../home/items/items.config';
 import { AddItem, CreateCart, PriceChanges } from './cart-order.config';
 

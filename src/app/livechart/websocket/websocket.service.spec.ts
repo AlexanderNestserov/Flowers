@@ -27,7 +27,7 @@ describe('WebSocketService', () => {
     httpMock.verify();
   });
 
-  describe('#getAddress', () => {
+  describe('getchat', () => {
     let Address: Object;
 
     beforeEach(() => {
@@ -43,5 +43,27 @@ describe('WebSocketService', () => {
         expect(service).toBeTruthy();
       }
     ));
+    it('should add an Url getChat', () => {
+      service.getChat().subscribe((response) => {
+        expect(response).toBeTruthy();
+      });
+      const httpRequest = httpMock.expectOne(service.getUrl);
+      expect(httpRequest.request.url).toEqual('chats/user');
+    });
+    it('should add an Url getChatById', () => {
+      service.getChatById(2).subscribe((response) => {
+        expect(response).toBeTruthy();
+      });
+      const httpRequest = httpMock.expectOne(service.getUrlById + '/2');
+      expect(httpRequest.request.url).toEqual('chats/2');
+    });
+    it('should add connect', () => {
+      let a = service.connect(2);
+      expect(a).toBeUndefined();
+    });
+    it('should add connect', () => {
+      let a = service.showGreeting('hello');
+      expect(a).toBeUndefined();
+    });
   });
 });
