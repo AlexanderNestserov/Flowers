@@ -18,3 +18,33 @@
     <span class="container__minsk">Delivery area - Minsk</span>
   </div>
 </div>
+<div class="googlemap">
+  <agm-map
+    [latitude]="latMap"
+    [longitude]="lngMap"
+    [zoom]="zoom"
+    backgroundColor="grey"
+  >
+    <agm-polygon
+      [paths]="paths"
+      fillColor="rgb(255,158,177)"
+      strokeColor="#ff5d7d"
+    >
+    </agm-polygon>
+    <agm-marker
+      [latitude]="lat"
+      [longitude]="lng"
+      iconUrl="../../../assets/img-registration/arrow.png"
+      [zIndex]="99999999999999"
+    >
+    </agm-marker>
+  </agm-map>
+  <div class="container__area">
+    <img
+      id="image-square"
+      src="../../../assets/img-registration/square.png"
+      alt="square"
+    />
+    <span class="container__minsk">Delivery area - Minsk</span>
+  </div>
+</div>

@@ -1,6 +1,29 @@
 @import "../../styles/_variables.scss";
 @import "../../styles/_mixins.scss";
 
+.googlemap {
+    @include wihi(81.6rem, 39.6rem);
+    border-radius: $pb_1rem;
+    margin-bottom: 0.8rem;
+}
+agm-map {
+    @include wihi(100%, 100%);
+}
+:host {
+    ::ng-deep .gm-svpc {
+        display: none;
+    }
+    ::ng-deep .gm-control-active {
+        display: none;
+    }
+    ::ng-deep .gmnoprint {
+        display: none;
+    }
+    ::ng-deep .gm-style:nth-child(15)a {
+        display: none;
+    }
+}
+
 .container__map {
     @include wihi(81.6rem, 39.6rem);
     background: url("../../../assets/img-registration/Minsk\ cart.jpg") 0 0 no-repeat;
@@ -19,12 +42,13 @@
     left: 39rem;
 }
 .container__area {
-    position: absolute;
-    bottom: $pt_2rem;
+    position: relative;
+    bottom: 7rem;
     left: $pt_2rem;
     background: $color_white;
     opacity: 0.95;
     border-radius: 8px;
+    z-index: 999999999;
     @include wihi(18.2rem, 3.8rem);
 }
 #image-square {
@@ -39,6 +63,9 @@
 }
 
 @media (max-width: 920px) {
+    .googlemap {
+        @include wihi(33.5rem, 39.6rem);
+    }
     .container__map {
         @include wihi(33.5rem, 39.6rem);
         background: url("../../../assets/img-registration/Minsk\ mini.jpg") 0 0 no-repeat;
