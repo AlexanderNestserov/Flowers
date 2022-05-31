@@ -9,6 +9,7 @@ import { AgmCoreModule } from '@agm/core';
     CommonModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyBxPvTvkvXjsq5hJg-V6r7lHXo6RV2EudM',
+      libraries: ['places'],
     }),
   ],
   exports: [MapComponent],

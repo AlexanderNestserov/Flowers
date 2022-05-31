@@ -3,7 +3,6 @@
 
 .googlemap {
     @include wihi(81.6rem, 39.6rem);
-    border-radius: $pb_1rem;
     margin-bottom: 0.8rem;
 }
 agm-map {
@@ -19,11 +18,14 @@ agm-map {
     ::ng-deep .gmnoprint {
         display: none;
     }
-    ::ng-deep .gm-style:nth-child(15)a {
-        display: none;
+    ::ng-deep .agm-map-container-inner {
+        border-radius: 1rem;
+    }
+    ::ng-deep a[href="https://maps.google.com/maps?ll=53.9,27.5667&z=11&t=m&hl=ru-RU&gl=US&mapclient=apiv3"]
+    {
+        display: none !important;
     }
 }
-
 .container__map {
     @include wihi(81.6rem, 39.6rem);
     background: url("../../../assets/img-registration/Minsk\ cart.jpg") 0 0 no-repeat;
@@ -61,7 +63,46 @@ agm-map {
     padding-left: 0.9rem;
     padding-top: $pb_1rem;
 }
-
+.popup {
+    @include wihi(36rem, 16rem);
+    box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.1);
+    border-radius: 16px;
+    background: $color_white;
+    position: fixed;
+    top: 9rem;
+    right: 2rem;
+    animation: chart;
+    animation-duration: 0.7s;
+    animation-fill-mode: both;
+}
+.container__popup-exit {
+    position: relative;
+    top: 1.3rem;
+    left: 33.3rem;
+}
+.container__popup-exit:active {
+    top: 1.4rem;
+    left: 33.4rem;
+}
+.container__popup-text11 {
+    @include font(Montserrat, normal, 700, 2.2rem, 120%, 0em, $color_pink);
+    width: 32.5rem;
+    text-align: center;
+    padding-top: 3.5rem;
+    margin-left: 2rem;
+}
+@keyframes chart {
+    0% {
+        opacity: 0;
+        right: 2rem;
+        top: -20rem;
+    }
+    100% {
+        opacity: 1;
+        top: 9rem;
+        right: 2rem;
+    }
+}
 @media (max-width: 920px) {
     .googlemap {
         @include wihi(33.5rem, 39.6rem);
