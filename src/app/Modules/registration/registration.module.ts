@@ -9,6 +9,8 @@ import { SpinnerModule } from '../spinner/spinner.module';
 import { PopupErrorSuccessModule } from '../popup-success-error/popupErrorSuccess.module';
 import { ErrorDirectiveModule } from 'src/app/directives/error-form/error-directive.module';
 import { ErrorFormRegistrationModule } from './error-form/error-form.module';
+import { AccountService } from '../account/account.service';
+import { MapModule } from '../map/map.module';
 
 @NgModule({
   declarations: [RegistrationComponent],
@@ -21,7 +23,8 @@ import { ErrorFormRegistrationModule } from './error-form/error-form.module';
     PopupErrorSuccessModule,
     ErrorDirectiveModule,
     ErrorFormRegistrationModule,
+    MapModule,
   ],
-  providers: [RegistrationService],
+  providers: [RegistrationService, AccountService],
 })
 export class RegistrationModule {}

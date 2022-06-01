@@ -106,6 +106,10 @@
     left: 46rem;
     bottom: 5rem;
 }
+.googlemap {
+    @include wihi(81.6rem, 39.6rem);
+    margin-bottom: 0.8rem;
+}
 @media (max-width: 1460px) {
     .wrapper-account {
         width: 100%;
@@ -125,6 +129,9 @@
     }
     .alert-confirmpassword {
         left: 15rem;
+    }
+    .googlemap {
+        @include wihi(33.5rem, 39.6rem);
     }
 }
 @media (max-width: 570px) {

@@ -1,5 +1,11 @@
 import { Content } from '@angular/compiler/src/render3/r3_ast';
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -26,11 +32,13 @@ import { CartOrderService } from './cart-order.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CartOrderComponent implements OnInit {
+  @ViewChild('search') input!: ElementRef;
   selected: string = 'CASH';
   isDisabled = false;
   isChecked = false;
   checked: Item[] = [];
   isLoggedIn = false;
+  addressValue: string = '';
 
   itemsData: Observable<Item[]> = this.itemService.getItems();
   getUserData: Observable<AccountUser> = this.http.getUserData();
@@ -87,6 +95,10 @@ export class CartOrderComponent implements OnInit {
       next: (user: AccountUser) => {
         this.formValue.patchValue({ ...user });
       },
+    });
+
+    this.http.mapAddress.subscribe((res: string) => {
+      this.formValue.patchValue({ homeAddress: res });
     });
 
     this.getTemp.subscribe((res: string) => {
@@ -196,5 +208,10 @@ export class CartOrderComponent implements OnInit {
         },
       });
     });
+  }
+  searchMapAdress(event: KeyboardEvent) {
+    this.addressValue = (event.target as HTMLInputElement).value;
+    this.http.addressHTML.next(this.input);
+    this.http.address.next(this.addressValue);
   }
 }

@@ -58,42 +58,6 @@
     color: $color_red;
     padding-top: 1.6rem;
 }
-.container__map {
-    @include wihi(54rem, 39.6rem);
-    background: url("../../../assets/img-registration/Minsk.jpg") 0 0 no-repeat;
-    background-size: 100% 100%;
-    position: relative;
-    margin-bottom: 0.8rem;
-}
-#image-area {
-    position: absolute;
-    top: 5.3rem;
-    left: 9.2rem;
-}
-#image-arrow {
-    position: absolute;
-    top: 16.2rem;
-    left: 25.5rem;
-}
-.container__area {
-    position: absolute;
-    bottom: $pt_2rem;
-    left: $pt_2rem;
-    background: $color_white;
-    opacity: 0.95;
-    border-radius: 8px;
-    @include wihi(18.2rem, 3.8rem);
-}
-#image-square {
-    padding-left: 1.1rem;
-    padding-top: 0.7rem;
-}
-.container__minsk {
-    display: inline-block;
-    @include font(Montserrat, normal, 400, 1.2rem, 150%, 0em, $color_darkgrey);
-    padding-left: 0.9rem;
-    padding-top: $pb_1rem;
-}
 #inputCheckbox {
     position: absolute;
     z-index: -1;
@@ -290,6 +254,10 @@
         padding-top: 0.2rem;
     }
 }
+.googlemap {
+    @include wihi(54rem, 39.6rem);
+    margin-bottom: 0.8rem;
+}
 @media (max-width: 1800px) {
     .container__lineb {
         margin: 1.6rem 0 5.1rem 12%;
@@ -393,22 +361,6 @@
         margin-bottom: 1.9rem;
         @include font(Montserrat, normal, 700, 2.8rem, 120%, 0em, $color_darkgrey);
     }
-    .container__map {
-        @include wihi(33.5rem, 39.6rem);
-        background: url("../../../assets/img-registration/Minsk\ mini.jpg") 0 0 no-repeat;
-        background-position: center;
-        border-radius: $pb_1rem;
-        background-size: 100% 100%;
-    }
-    #image-area {
-        @include wihi(29rem, 21rem);
-        top: 9rem;
-        left: 3.8rem;
-    }
-    #image-arrow {
-        top: 17rem;
-        left: 15.5rem;
-    }
     .container__button {
         @include wihi(33.5rem, 5.7rem);
         margin: 3rem 0 5rem 0;
@@ -428,6 +380,9 @@
     }
     .alert-confirmpassword {
         left: -1.2rem;
+    }
+    .googlemap {
+        @include wihi(33.5rem, 39.6rem);
     }
 }
 @media (max-width: 530px) {

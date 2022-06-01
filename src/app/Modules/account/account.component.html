@@ -83,13 +83,17 @@
             [formControlItem]="phone"
           ></app-cart-order-error-form>
         </div>
-        <app-map></app-map>
+        <div class="googlemap">
+          <app-map></app-map>
+        </div>
         <div class="container__address">
           <input
+            #search
             type="text"
             id="inputAddress"
             formControlName="homeAddress"
             placeholder=" "
+            (keyup)="searchMapAdress($event)"
           />
           <label class="container__input-address" for="inputAddress"
             >Address

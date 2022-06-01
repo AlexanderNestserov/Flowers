@@ -284,6 +284,10 @@
 .disabled:active {
     padding-top: 0;
 }
+.googlemap {
+    @include wihi(81.6rem, 39.6rem);
+    margin-bottom: 0.8rem;
+}
 @media (max-width: 1460px) {
     .wrapper-cartorder {
         width: 100%;
@@ -316,6 +320,9 @@
     }
     .container__button {
         margin: 4.4rem 0 0 0;
+    }
+    .googlemap {
+        @include wihi(33.5rem, 39.6rem);
     }
 }
 @media (max-width: 820px) {

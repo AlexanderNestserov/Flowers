@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { ElementRef, Injectable } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { AccountUser, ChangePassword, PatchUser } from './account.model';
 
 @Injectable()
@@ -9,6 +9,10 @@ export class AccountService {
   public getTempIdUrl: string = 'users/tempid';
   patchUserUrl: string = 'users';
   postChangepassword: string = 'users/change_password';
+
+  public addressHTML = new BehaviorSubject<ElementRef>({} as ElementRef);
+  public address = new BehaviorSubject<string>('');
+  public mapAddress = new BehaviorSubject<string>('');
   constructor(private http: HttpClient) {}
 
   getUserData(): Observable<AccountUser> {

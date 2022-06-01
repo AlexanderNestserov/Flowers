@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -29,13 +35,15 @@ enum ClickedDivState {
   animations: [divTrigger, divTriggerError],
 })
 export class AccountComponent implements OnInit {
+  @ViewChild('search') input!: ElementRef;
   clickedDivState: ClickedDivState = ClickedDivState.hide;
   clickedDivStateError: ClickedDivState = ClickedDivState.hide;
   isDisabled = false;
   isDisabledPassword = false;
   isFormShow = false;
   getUserData: Observable<AccountUser> = this.http.getUserData();
-
+  addressValueHTML!: HTMLInputElement;
+  addressValue: string = '';
   errorPassword: string = '';
   keycloakLogoutOption = environment.keycloakLogoutOption;
   isLoggedIn = false;
@@ -85,6 +93,9 @@ export class AccountComponent implements OnInit {
       next: (user: AccountUser) => {
         this.formValue.patchValue({ ...user });
       },
+    });
+    this.http.mapAddress.subscribe((res: string) => {
+      this.formValue.patchValue({ homeAddress: res });
     });
   }
 
@@ -166,6 +177,13 @@ export class AccountComponent implements OnInit {
   closeMenu(): void {
     this.clickedDivState = ClickedDivState.hide;
     this.clickedDivStateError = ClickedDivState.hide;
+  }
+
+  searchMapAdress(event: KeyboardEvent) {
+    this.addressValueHTML = event.target as HTMLInputElement;
+    this.addressValue = (event.target as HTMLInputElement).value;
+    this.http.addressHTML.next(this.input);
+    this.http.address.next(this.addressValue);
   }
 
   signOut(): void {

@@ -6,7 +6,7 @@ import {
   CategoriesSort,
 } from '../catalog/catalog-categories/product.config';
 import { ItemService } from '../home/items/item.service';
-import { Items, Item, Category, Categories } from '../home/items/items.config';
+import { Item, Category, Categories } from '../home/items/items.config';
 import { SwiperListService } from '../home/swiper-list/swiper-list.service';
 
 @Component({

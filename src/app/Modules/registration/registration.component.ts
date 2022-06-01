@@ -1,4 +1,10 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ChangeDetectionStrategy,
+  ViewChild,
+  ElementRef,
+} from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -13,6 +19,7 @@ import {
 import { PasswordMatchVaildator } from './error-form/passwordmatch';
 import { KeycloakService } from 'keycloak-angular';
 import { environment } from 'src/environments/environment';
+import { AccountService } from '../account/account.service';
 
 enum ClickedDivState {
   hide = 'hide',
@@ -30,8 +37,10 @@ enum ClickedDivState {
   animations: [divTrigger, divTriggerError],
 })
 export class RegistrationComponent implements OnInit {
+  @ViewChild('search') input!: ElementRef;
   clickedDivState: ClickedDivState = ClickedDivState.hide;
   clickedDivStateError: ClickedDivState = ClickedDivState.hide;
+  addressValue: string = '';
   formValue: FormGroup = this.formbuilder.group(
     {
       firstName: ['', [Validators.required, Validators.maxLength(255)]],
@@ -65,11 +74,15 @@ export class RegistrationComponent implements OnInit {
     private api: RegistrationService,
     private formbuilder: FormBuilder,
     private passwordMatchValidator: PasswordMatchVaildator,
-    private readonly keycloak: KeycloakService
+    private readonly keycloak: KeycloakService,
+    private http: AccountService
   ) {}
 
   ngOnInit(): void {
     this.formValue.reset();
+    this.http.mapAddress.subscribe((res: string) => {
+      this.formValue.patchValue({ homeAddress: res });
+    });
   }
 
   get firstName() {
@@ -134,6 +147,11 @@ export class RegistrationComponent implements OnInit {
 
   signIn(): void {
     this.keycloak.login(this.keycloakLoginOption);
+  }
+  searchMapAdress(event: KeyboardEvent) {
+    this.addressValue = (event.target as HTMLInputElement).value;
+    this.http.addressHTML.next(this.input);
+    this.http.address.next(this.addressValue);
   }
 
   closeMenu(): void {
