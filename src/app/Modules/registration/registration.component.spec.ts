@@ -1,4 +1,4 @@
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, ElementRef } from '@angular/core';
 import {
   waitForAsync,
   async,
@@ -17,8 +17,9 @@ import { By } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { ErrorDirectiveModule } from 'src/app/directives/error-form/error-directive.module';
 import { RegisterUserDto } from './registration.model';
-import { Observable, of, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, of, throwError } from 'rxjs';
 import { KeycloakService } from 'keycloak-angular';
+import { AccountService } from '../account/account.service';
 
 describe('RegistrationComponent', () => {
   let component: RegistrationComponent;
@@ -27,6 +28,14 @@ describe('RegistrationComponent', () => {
   let service: RegistrationService;
   let MockRegistrationService = jasmine.createSpyObj('fakeService', [
     'postData',
+  ]);
+  let MockAccountService = jasmine.createSpyObj('fakeAccountService', [
+    'getUserData',
+    'patchData',
+    'postChangePassword',
+    'mapAddress',
+    'addressHTML',
+    'address',
   ]);
 
   beforeEach(waitForAsync(() => {
@@ -47,6 +56,23 @@ describe('RegistrationComponent', () => {
             postData(formValue: RegisterUserDto): Observable<any> {
               return of({});
             }
+          },
+        },
+        {
+          provide: AccountService,
+          useClass: class MockAccountService {
+            getUserData(formValue: any): Observable<any> {
+              return of({});
+            }
+            patchData() {
+              return of({});
+            }
+            postChangePassword(formChangePassword: any) {
+              return of({});
+            }
+            mapAddress = new BehaviorSubject('Minsk');
+            addressHTML = new BehaviorSubject<ElementRef>({} as ElementRef);
+            address = new BehaviorSubject<string>('Brest');
           },
         },
         { provide: KeycloakService, useValue: keycloak },
@@ -141,5 +167,91 @@ describe('RegistrationComponent', () => {
     component.postDataDetails();
     expect(spy).toBeTruthy();
     expect(component.firstName.value).toBe(null);
+  });
+  it('should create an searchMapAdress', () => {
+    let event: KeyboardEvent = {
+      target: { value: 'A' } as HTMLInputElement,
+      altKey: false,
+      charCode: 0,
+      code: '',
+      ctrlKey: false,
+      isComposing: false,
+      key: '',
+      keyCode: 0,
+      location: 0,
+      metaKey: false,
+      repeat: false,
+      shiftKey: false,
+      getModifierState: function (keyArg: string): boolean {
+        throw new Error('Function not implemented.');
+      },
+      initKeyboardEvent: function (
+        typeArg: string,
+        bubblesArg?: boolean,
+        cancelableArg?: boolean,
+        viewArg?: Window | null,
+        keyArg?: string,
+        locationArg?: number,
+        ctrlKey?: boolean,
+        altKey?: boolean,
+        shiftKey?: boolean,
+        metaKey?: boolean
+      ): void {
+        throw new Error('Function not implemented.');
+      },
+      DOM_KEY_LOCATION_LEFT: 0,
+      DOM_KEY_LOCATION_NUMPAD: 0,
+      DOM_KEY_LOCATION_RIGHT: 0,
+      DOM_KEY_LOCATION_STANDARD: 0,
+      detail: 0,
+      view: null,
+      which: 0,
+      initUIEvent: function (
+        typeArg: string,
+        bubblesArg?: boolean,
+        cancelableArg?: boolean,
+        viewArg?: Window | null,
+        detailArg?: number
+      ): void {
+        throw new Error('Function not implemented.');
+      },
+      bubbles: false,
+      cancelBubble: false,
+      cancelable: false,
+      composed: false,
+      currentTarget: null,
+      defaultPrevented: false,
+      eventPhase: 0,
+      isTrusted: false,
+      returnValue: false,
+      srcElement: null,
+      timeStamp: 0,
+      type: '',
+      composedPath: function (): EventTarget[] {
+        throw new Error('Function not implemented.');
+      },
+      initEvent: function (
+        type: string,
+        bubbles?: boolean,
+        cancelable?: boolean
+      ): void {
+        throw new Error('Function not implemented.');
+      },
+      preventDefault: function (): void {
+        throw new Error('Function not implemented.');
+      },
+      stopImmediatePropagation: function (): void {
+        throw new Error('Function not implemented.');
+      },
+      stopPropagation: function (): void {
+        throw new Error('Function not implemented.');
+      },
+      AT_TARGET: 0,
+      BUBBLING_PHASE: 0,
+      CAPTURING_PHASE: 0,
+      NONE: 0,
+    };
+    const result = component.searchMapAdress(event);
+    expect(result).toBeUndefined();
   });
 });

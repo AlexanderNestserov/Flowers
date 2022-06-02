@@ -1,5 +1,5 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, ElementRef } from '@angular/core';
 import {
   ComponentFixture,
   fakeAsync,
@@ -10,7 +10,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
-import { Observable, of } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { ErrorDirectiveModule } from 'src/app/directives/error-form/error-directive.module';
 
 import { AccountComponent } from './account.component';
@@ -25,6 +25,9 @@ describe('AccountComponent', () => {
     'getUserData',
     'patchData',
     'postChangePassword',
+    'mapAddress',
+    'addressHTML',
+    'address',
   ]);
 
   beforeEach(waitForAsync(() => {
@@ -52,6 +55,9 @@ describe('AccountComponent', () => {
             postChangePassword(formChangePassword: any) {
               return of({});
             }
+            mapAddress = new BehaviorSubject('Minsk');
+            addressHTML = new BehaviorSubject<ElementRef>({} as ElementRef);
+            address = new BehaviorSubject<string>('Brest');
           },
         },
         { provide: KeycloakService, useValue: keycloakService },
@@ -157,4 +163,90 @@ describe('AccountComponent', () => {
     component.signOut();
     expect(keycloakService.logout).toHaveBeenCalled();
   }));
+  it('should create an searchMapAdress', () => {
+    let event: KeyboardEvent = {
+      target: { value: 'A' } as HTMLInputElement,
+      altKey: false,
+      charCode: 0,
+      code: '',
+      ctrlKey: false,
+      isComposing: false,
+      key: '',
+      keyCode: 0,
+      location: 0,
+      metaKey: false,
+      repeat: false,
+      shiftKey: false,
+      getModifierState: function (keyArg: string): boolean {
+        throw new Error('Function not implemented.');
+      },
+      initKeyboardEvent: function (
+        typeArg: string,
+        bubblesArg?: boolean,
+        cancelableArg?: boolean,
+        viewArg?: Window | null,
+        keyArg?: string,
+        locationArg?: number,
+        ctrlKey?: boolean,
+        altKey?: boolean,
+        shiftKey?: boolean,
+        metaKey?: boolean
+      ): void {
+        throw new Error('Function not implemented.');
+      },
+      DOM_KEY_LOCATION_LEFT: 0,
+      DOM_KEY_LOCATION_NUMPAD: 0,
+      DOM_KEY_LOCATION_RIGHT: 0,
+      DOM_KEY_LOCATION_STANDARD: 0,
+      detail: 0,
+      view: null,
+      which: 0,
+      initUIEvent: function (
+        typeArg: string,
+        bubblesArg?: boolean,
+        cancelableArg?: boolean,
+        viewArg?: Window | null,
+        detailArg?: number
+      ): void {
+        throw new Error('Function not implemented.');
+      },
+      bubbles: false,
+      cancelBubble: false,
+      cancelable: false,
+      composed: false,
+      currentTarget: null,
+      defaultPrevented: false,
+      eventPhase: 0,
+      isTrusted: false,
+      returnValue: false,
+      srcElement: null,
+      timeStamp: 0,
+      type: '',
+      composedPath: function (): EventTarget[] {
+        throw new Error('Function not implemented.');
+      },
+      initEvent: function (
+        type: string,
+        bubbles?: boolean,
+        cancelable?: boolean
+      ): void {
+        throw new Error('Function not implemented.');
+      },
+      preventDefault: function (): void {
+        throw new Error('Function not implemented.');
+      },
+      stopImmediatePropagation: function (): void {
+        throw new Error('Function not implemented.');
+      },
+      stopPropagation: function (): void {
+        throw new Error('Function not implemented.');
+      },
+      AT_TARGET: 0,
+      BUBBLING_PHASE: 0,
+      CAPTURING_PHASE: 0,
+      NONE: 0,
+    };
+    const result = component.searchMapAdress(event);
+    expect(result).toBeUndefined();
+  });
 });

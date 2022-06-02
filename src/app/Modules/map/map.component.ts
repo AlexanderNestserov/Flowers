@@ -15,6 +15,9 @@ import { BORDER_MAP, STYLES_MAP } from './map.config';
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    '(window:resize)': 'onResizeChangeZoom($event)',
+  },
 })
 export class MapComponent implements OnInit {
   alertShow = false;
@@ -30,7 +33,8 @@ export class MapComponent implements OnInit {
   lng = 27.55;
   latMap = 53.9;
   lngMap = 27.5667;
-  zoom = 10.75;
+  normalZoom = 10.75;
+  zoom = this.normalZoom;
   mobileZoom = 10.2;
   loopZoom = 14;
   delayPopup = 5000;
@@ -107,9 +111,17 @@ export class MapComponent implements OnInit {
     });
   }
 
-  onResize() {
+  onResize(): void {
     if (window.innerWidth < this.mobileTransition) {
       this.zoom = this.mobileZoom;
+    }
+  }
+  onResizeChangeZoom(event: Event): void {
+    const mainEvent = event.target as Window;
+    if (mainEvent.innerWidth < this.mobileTransition) {
+      this.zoom = this.mobileZoom;
+    } else {
+      this.zoom = this.normalZoom;
     }
   }
 
@@ -121,17 +133,17 @@ export class MapComponent implements OnInit {
     }, this.delayPopup);
   }
 
-  closeAlert() {
+  closeAlert(): void {
     this.alertShow = false;
   }
 
-  getCoords(event: google.maps.MouseEvent) {
+  getCoords(event: google.maps.MouseEvent): void {
     this.lat = event.latLng.lat();
     this.lng = event.latLng.lng();
     this.getAddress(this.lat, this.lng);
   }
 
-  markerDragEnd(event: google.maps.MouseEvent) {
+  markerDragEnd(event: google.maps.MouseEvent): void {
     let lngAndLat = new google.maps.LatLng(
       event.latLng.lat(),
       event.latLng.lng()
@@ -148,7 +160,7 @@ export class MapComponent implements OnInit {
     }
   }
 
-  getAddress(latitude: number, longitude: number) {
+  getAddress(latitude: number, longitude: number): void {
     this.geoCoder.geocode(
       { location: { lat: latitude, lng: longitude } },
       (results, status) => {

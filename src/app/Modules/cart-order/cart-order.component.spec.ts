@@ -1,5 +1,9 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import {
+  CUSTOM_ELEMENTS_SCHEMA,
+  DebugElement,
+  ElementRef,
+} from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
@@ -19,6 +23,7 @@ import { CartOrderService } from './cart-order.service';
 describe('CartOrderComponent', () => {
   let component: CartOrderComponent;
   let fixture: ComponentFixture<CartOrderComponent>;
+  let hostElement: DebugElement;
   let accountService = AccountService;
   let itemService = ItemService;
   let cartOrderService = CartOrderService;
@@ -26,6 +31,9 @@ describe('CartOrderComponent', () => {
     'getUserData',
     'patchData',
     'postChangePassword',
+    'mapAddress',
+    'addressHTML',
+    'address',
   ]);
   let MockItemService = jasmine.createSpyObj('fakeItemService', [
     'getItems',
@@ -97,6 +105,9 @@ describe('CartOrderComponent', () => {
             getTempId(): Observable<any> {
               return of({ id: 1 });
             }
+            mapAddress = new BehaviorSubject('Minsk');
+            addressHTML = new BehaviorSubject<ElementRef>({} as ElementRef);
+            address = new BehaviorSubject<string>('Brest');
           },
         },
         {
@@ -117,6 +128,7 @@ describe('CartOrderComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(CartOrderComponent);
     component = fixture.componentInstance;
+    hostElement = fixture.debugElement.query(By.css('#inputAddress'));
     fixture.detectChanges();
   });
   describe('items manipulation', () => {
@@ -399,5 +411,91 @@ describe('CartOrderComponent', () => {
     let item = 'photo.jpg';
     const toggle = component.getItemImage(item);
     expect(toggle).toBe('http://172.16.16.41:15000/images/photo');
+  });
+  it('should create an searchMapAdress', () => {
+    let event: KeyboardEvent = {
+      target: { value: 'A' } as HTMLInputElement,
+      altKey: false,
+      charCode: 0,
+      code: '',
+      ctrlKey: false,
+      isComposing: false,
+      key: '',
+      keyCode: 0,
+      location: 0,
+      metaKey: false,
+      repeat: false,
+      shiftKey: false,
+      getModifierState: function (keyArg: string): boolean {
+        throw new Error('Function not implemented.');
+      },
+      initKeyboardEvent: function (
+        typeArg: string,
+        bubblesArg?: boolean,
+        cancelableArg?: boolean,
+        viewArg?: Window | null,
+        keyArg?: string,
+        locationArg?: number,
+        ctrlKey?: boolean,
+        altKey?: boolean,
+        shiftKey?: boolean,
+        metaKey?: boolean
+      ): void {
+        throw new Error('Function not implemented.');
+      },
+      DOM_KEY_LOCATION_LEFT: 0,
+      DOM_KEY_LOCATION_NUMPAD: 0,
+      DOM_KEY_LOCATION_RIGHT: 0,
+      DOM_KEY_LOCATION_STANDARD: 0,
+      detail: 0,
+      view: null,
+      which: 0,
+      initUIEvent: function (
+        typeArg: string,
+        bubblesArg?: boolean,
+        cancelableArg?: boolean,
+        viewArg?: Window | null,
+        detailArg?: number
+      ): void {
+        throw new Error('Function not implemented.');
+      },
+      bubbles: false,
+      cancelBubble: false,
+      cancelable: false,
+      composed: false,
+      currentTarget: null,
+      defaultPrevented: false,
+      eventPhase: 0,
+      isTrusted: false,
+      returnValue: false,
+      srcElement: null,
+      timeStamp: 0,
+      type: '',
+      composedPath: function (): EventTarget[] {
+        throw new Error('Function not implemented.');
+      },
+      initEvent: function (
+        type: string,
+        bubbles?: boolean,
+        cancelable?: boolean
+      ): void {
+        throw new Error('Function not implemented.');
+      },
+      preventDefault: function (): void {
+        throw new Error('Function not implemented.');
+      },
+      stopImmediatePropagation: function (): void {
+        throw new Error('Function not implemented.');
+      },
+      stopPropagation: function (): void {
+        throw new Error('Function not implemented.');
+      },
+      AT_TARGET: 0,
+      BUBBLING_PHASE: 0,
+      CAPTURING_PHASE: 0,
+      NONE: 0,
+    };
+    const result = component.searchMapAdress(event);
+    expect(result).toBeUndefined();
   });
 });

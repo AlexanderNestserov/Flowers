@@ -42,7 +42,6 @@ export class AccountComponent implements OnInit {
   isDisabledPassword = false;
   isFormShow = false;
   getUserData: Observable<AccountUser> = this.http.getUserData();
-  addressValueHTML!: HTMLInputElement;
   addressValue: string = '';
   errorPassword: string = '';
   keycloakLogoutOption = environment.keycloakLogoutOption;
@@ -179,8 +178,7 @@ export class AccountComponent implements OnInit {
     this.clickedDivStateError = ClickedDivState.hide;
   }
 
-  searchMapAdress(event: KeyboardEvent) {
-    this.addressValueHTML = event.target as HTMLInputElement;
+  searchMapAdress(event: KeyboardEvent): void {
     this.addressValue = (event.target as HTMLInputElement).value;
     this.http.addressHTML.next(this.input);
     this.http.address.next(this.addressValue);

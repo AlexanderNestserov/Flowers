@@ -4,27 +4,29 @@ import {
   ComponentFixture,
   async,
   waitForAsync,
+  getTestBed,
 } from '@angular/core/testing';
 import {
   HttpClientTestingModule,
   HttpTestingController,
 } from '@angular/common/http/testing';
-import { SpinnerComponent } from './spinner.component';
-import { SpinnerService } from './spinner.service';
+
 import { RouterTestingModule } from '@angular/router/testing';
 import { CommonModule } from '@angular/common';
 import { LoaderInterceptor } from 'src/app/interceptors/spinner.interceptor';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AccountService } from '../Modules/account/account.service';
+import { UrlInterceptor } from './url.interceptor';
+import { SpinnerService } from '../Modules/spinner/spinner.service';
 
-describe('SpinnerComponent', () => {
-  let service: SpinnerService;
+describe('Interceptor', () => {
+  let service: AccountService;
   let httpMock: HttpTestingController;
-  let component: SpinnerComponent;
-  let fixture: ComponentFixture<SpinnerComponent>;
+  let injector: TestBed;
+  const Api_URl = 'http://172.16.16.41:15000/users/user';
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [SpinnerComponent],
       imports: [
         RouterTestingModule.withRoutes([]),
         HttpClientTestingModule,
@@ -32,7 +34,13 @@ describe('SpinnerComponent', () => {
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       providers: [
+        AccountService,
         SpinnerService,
+        {
+          provide: HTTP_INTERCEPTORS,
+          useClass: UrlInterceptor,
+          multi: true,
+        },
         {
           provide: HTTP_INTERCEPTORS,
           useClass: LoaderInterceptor,
@@ -40,20 +48,20 @@ describe('SpinnerComponent', () => {
         },
       ],
     }).compileComponents();
-    service = TestBed.inject(SpinnerService);
+    injector = getTestBed();
+    service = TestBed.inject(AccountService);
     httpMock = TestBed.inject(HttpTestingController);
   }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(SpinnerComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
   afterEach(() => {
     httpMock.verify();
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    service.getUserData().subscribe((res) => {
+      expect(res).toBeTruthy();
+    });
+    const httpReq = httpMock.expectOne(Api_URl);
+    expect(httpReq.request.url).toEqual('http://172.16.16.41:15000/users/user');
   });
 });

@@ -148,7 +148,7 @@ export class RegistrationComponent implements OnInit {
   signIn(): void {
     this.keycloak.login(this.keycloakLoginOption);
   }
-  searchMapAdress(event: KeyboardEvent) {
+  searchMapAdress(event: KeyboardEvent): void {
     this.addressValue = (event.target as HTMLInputElement).value;
     this.http.addressHTML.next(this.input);
     this.http.address.next(this.addressValue);
