@@ -1,5 +1,10 @@
 import { CUSTOM_ELEMENTS_SCHEMA, DebugElement } from '@angular/core';
-import { async, ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import {
+  async,
+  ComponentFixture,
+  TestBed,
+  waitForAsync,
+} from '@angular/core/testing';
 import { ContactsComponent } from './contacts.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -10,34 +15,46 @@ import { CommonModule } from '@angular/common';
 import { ErrorDirectiveModule } from 'src/app/directives/error-form/error-directive.module';
 import { ContactsService } from './contacts.service';
 import { ContactMeDto } from './contacts.model';
-import { Observable, of } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
 import { PrintErrorDirective } from 'src/app/directives/error-form/error-form.directive';
+import { ClickedDivState } from '../account/account.component';
 
 describe('ContactsComponent', () => {
   let component: ContactsComponent;
   let fixture: ComponentFixture<ContactsComponent>;
   let hostElement: DebugElement;
-  let directive = jasmine.createSpyObj('PrintErrorDirective', ['keyup', 'focusout']);
+  let directive = jasmine.createSpyObj('PrintErrorDirective', [
+    'keyup',
+    'focusout',
+  ]);
   let service: ContactsService;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ContactsComponent, PrintErrorDirective],
-      imports: [RouterTestingModule.withRoutes([]), HttpClientTestingModule, ReactiveFormsModule, BrowserAnimationsModule, CommonModule, ErrorDirectiveModule],
-      providers: [{
-        provide: ContactsService, useClass: class MockContactsPService {
-          postData(formValue: ContactMeDto): Observable<any> {
-            return of({})
-          }
-          getAdress(): Observable<string | number | object> {
-            return of({})
-          }
-        }
-      }
+      imports: [
+        RouterTestingModule.withRoutes([]),
+        HttpClientTestingModule,
+        ReactiveFormsModule,
+        BrowserAnimationsModule,
+        CommonModule,
+        ErrorDirectiveModule,
       ],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA]
-    })
-      .compileComponents();
+      providers: [
+        {
+          provide: ContactsService,
+          useClass: class MockContactsPService {
+            postData(formValue: ContactMeDto): Observable<any> {
+              return of({});
+            }
+            getAdress(): Observable<string | number | object> {
+              return of({});
+            }
+          },
+        },
+      ],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -55,12 +72,12 @@ describe('ContactsComponent', () => {
   it('should be created closeMenu', () => {
     const link = fixture.debugElement.query(By.css('app-popup'));
     link.nativeElement.click();
-    expect(component.closeMenu).toBeTruthy()
+    expect(component.closeMenu).toBeTruthy();
   });
   it('should be created closeMenu error', () => {
     const link = fixture.debugElement.query(By.css('app-popup-error'));
     link.nativeElement.click();
-    expect(component.closeMenu).toBeTruthy()
+    expect(component.closeMenu).toBeTruthy();
   });
   it('should create an instance directive', () => {
     expect(directive).toBeTruthy();
@@ -87,13 +104,12 @@ describe('ContactsComponent', () => {
       expect(component.name.value).toBe('test');
       component.postDataDetails();
       expect(component.name.value).toBe(null);
-    })
+    });
 
-    it('should call api.postData and reset form. Error branch', async () => {
-      component.formValue.patchValue({ name: 'test' });
-      expect(component.name.value).toBe('test');
+    it('should be created postDataDetails', () => {
+      component['api'].postData = () => throwError({ error: true });
       component.postDataDetails();
-      expect(component.name.value).toBe(null);
-    })
-  })
+      expect(component.clickedDivStateError).toEqual(ClickedDivState.hide);
+    });
+  });
 });

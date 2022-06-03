@@ -20,6 +20,7 @@ import { RegisterUserDto } from './registration.model';
 import { BehaviorSubject, Observable, of, throwError } from 'rxjs';
 import { KeycloakService } from 'keycloak-angular';
 import { AccountService } from '../account/account.service';
+import { ClickedDivState } from '../account/account.component';
 
 describe('RegistrationComponent', () => {
   let component: RegistrationComponent;
@@ -158,15 +159,10 @@ describe('RegistrationComponent', () => {
     expect(keycloak.login()).toBeUndefined();
     jasmine.clock().uninstall();
   });
-  it('should call api.postData and reset form. Error branch', () => {
-    component.formValue.patchValue({ firstName: null });
-    const spy = MockRegistrationService.postData.and.returnValue(
-      throwError(() => new Error('error'))
-    );
-    expect(component.firstName.value).toBe(null);
+  it('should be created postDataDetails', () => {
+    component['api'].postData = () => throwError({ error: true });
     component.postDataDetails();
-    expect(spy).toBeTruthy();
-    expect(component.firstName.value).toBe(null);
+    expect(component.clickedDivStateError).toEqual(ClickedDivState.hide);
   });
   it('should create an searchMapAdress', () => {
     let event: KeyboardEvent = {

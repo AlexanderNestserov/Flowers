@@ -22,7 +22,7 @@ import { KeycloakService } from 'keycloak-angular';
 import { environment } from 'src/environments/environment';
 import { AccountUser } from './account.model';
 
-enum ClickedDivState {
+export enum ClickedDivState {
   hide = 'hide',
   show = 'show',
 }

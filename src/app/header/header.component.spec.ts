@@ -179,25 +179,27 @@ describe('HeaderComponent', () => {
     const toggle = component.toggleUser.bind(click);
     expect(toggle).toBeTruthy(click);
   });
-  it('should be created onScroll', () => {
-    let scroll = component.ngOnInit.bind(onscroll);
-    expect(scroll).toBeTruthy();
+
+  it('should be created onScroll add scroll', () => {
+    window.dispatchEvent(new Event('scroll'));
+    window.scrollTo(0, 5);
+    let sticky = (window.pageYOffset = 5);
+    fixture.detectChanges();
+    expect(sticky).toBe(5);
   });
   it('should be created onScroll add scroll', () => {
     window.dispatchEvent(new Event('scroll'));
-    window.scrollTo(0, 50);
+    window.scrollTo(5, 50);
+    let sticky = (window.pageYOffset = 5);
+    fixture.detectChanges();
+    expect(sticky).toBe(5);
+  });
+  it('should be created onScroll add scroll', () => {
+    window.dispatchEvent(new Event('scroll'));
+    window.scrollTo(0, 0);
     let sticky = (window.pageYOffset = 0);
     fixture.detectChanges();
     expect(sticky).toBe(0);
-  });
-  it('should be created onScroll function', async () => {
-    const link = fixture.debugElement.query(By.css('header.scroll'));
-    window.dispatchEvent(new Event('scroll'));
-    window.scrollTo(5, 50);
-    window.pageYOffset = 5;
-    fixture.detectChanges();
-    component.ngOnInit();
-    expect(link).toBeNull();
   });
   it('should be created logout', fakeAsync(() => {
     component.logout();

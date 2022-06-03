@@ -10,10 +10,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
-import { BehaviorSubject, Observable, of } from 'rxjs';
+import { BehaviorSubject, from, Observable, of, throwError } from 'rxjs';
 import { ErrorDirectiveModule } from 'src/app/directives/error-form/error-directive.module';
 
-import { AccountComponent } from './account.component';
+import { AccountComponent, ClickedDivState } from './account.component';
 import { AccountService } from './account.service';
 
 describe('AccountComponent', () => {
@@ -89,7 +89,8 @@ describe('AccountComponent', () => {
   it('should be created showError true', fakeAsync(async () => {
     let ctrl = component.confirmPassword;
     component.formValue.errors?.['noMatchingPassword'];
-    ctrl.setValue(true);
+    ctrl.setValue(false);
+    fixture.detectChanges();
     expect(component.showError()).toBeTruthy();
   }));
   it('should update the control with homeAddress', () => {
@@ -128,6 +129,16 @@ describe('AccountComponent', () => {
   it('should be created postUserDetails', () => {
     const result = component.postUserDetails();
     expect(result).toBeUndefined();
+  });
+  it('should be created postChangePassword', () => {
+    component['http'].postChangePassword = () => throwError({ error: true });
+    component.postChangePassword();
+    expect(component.clickedDivStateError).toEqual(ClickedDivState.hide);
+  });
+  it('should be created postUserDetails', () => {
+    component['http'].patchData = () => throwError({ error: true });
+    component.postUserDetails();
+    expect(component.clickedDivStateError).toEqual(ClickedDivState.hide);
   });
   it('should be created oldPassword', () => {
     const ctrl = component.formValue.get('oldPassword');

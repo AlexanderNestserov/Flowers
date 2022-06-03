@@ -28,15 +28,7 @@ describe('WebSocketService', () => {
   });
 
   describe('getchat', () => {
-    let Address: Object;
-
-    beforeEach(() => {
-      Address = {
-        address: ' some street city Minsk 44 ,11',
-        email: 'angular@mail.ru',
-        phone: '+34534523542355',
-      };
-    });
+    beforeEach(() => {});
     it('should be createed', inject(
       [WebsocketService],
       (service: WebsocketService) => {

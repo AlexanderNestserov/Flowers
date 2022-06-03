@@ -14,7 +14,7 @@ import { Client } from 'stompjs';
 export class WebsocketService {
   public getUrl: string = 'chats/user';
   public getUrlById: string = 'chats';
-  private stompClient!: Client;
+  public stompClient!: Client;
   public sendMessagesFromBackend: string[] = [];
   public greetings = new BehaviorSubject<Array<string>>([]);
 

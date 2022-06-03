@@ -186,6 +186,14 @@ describe('CatalogItemsComponent', () => {
     component.ngOnInit();
     expect(spy).toHaveBeenCalled();
   });
+  it('should be created onResize add resize', () => {
+    window.dispatchEvent(new Event('resize'));
+    let sticky = (window.innerWidth = 1200);
+    window.resizeTo(1300, 50);
+    fixture.detectChanges();
+    component.onResize();
+    expect(sticky).toBe(1200);
+  });
 });
 describe('create Pipes', () => {
   let cost = new CostPipe();
@@ -421,7 +429,11 @@ describe('create Pipes', () => {
   });
   it('sortPipe By name (A - Z) -1  pipe', () => {
     let valueFilter = { name: 'By name (A - Z)', key: 3 };
-    expect(sortPipe.transform(items, valueFilter)).toEqual(items);
+    expect(sortPipe.transform(items, valueFilter)).toEqual([
+      items[0],
+      items[1],
+      items[2],
+    ]);
   });
   it('sortPipe By name (A - Z) 0  pipe', () => {
     let valueFilter = { name: 'By name (A - Z)', key: 3 };

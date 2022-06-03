@@ -12,7 +12,6 @@ import { RouterModule } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import moment, { Moment } from 'moment';
 import { from, of } from 'rxjs';
-import { PriceChanges } from '../../cart-order/cart-order.config';
 import { CartOrderService } from '../../cart-order/cart-order.service';
 import { ItemService } from '../../home/items/item.service';
 
