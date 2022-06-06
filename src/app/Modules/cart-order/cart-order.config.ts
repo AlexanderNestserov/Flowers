@@ -30,3 +30,16 @@ export interface PriceChanges {
   itemId: number;
   price: number;
 }
+
+export interface OrderCheckout {
+  deliveryAddress: string;
+  deliveryName: string;
+  deliveryTime: string;
+  email: string;
+  // id: number;
+  // orderStatus: string;
+  paymentType: string;
+  phone: string;
+  productItems: AddItem[];
+  text: string;
+}

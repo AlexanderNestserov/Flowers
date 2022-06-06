@@ -215,6 +215,7 @@
         </div>
         <button
           type="submit"
+          (click)="checkout(totalPrice)"
           class="container__button"
           [ngClass]="{
             disabled: formValue.invalid || isDisabled || product.length == 0

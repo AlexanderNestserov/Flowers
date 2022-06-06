@@ -2,7 +2,12 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Item } from '../home/items/items.config';
-import { AddItem, CreateCart, PriceChanges } from './cart-order.config';
+import {
+  AddItem,
+  CreateCart,
+  OrderCheckout,
+  PriceChanges,
+} from './cart-order.config';
 
 @Injectable()
 export class CartOrderService {
@@ -13,6 +18,7 @@ export class CartOrderService {
   public postUrl: string = 'order/checkout';
   public createCartPostUrl: string = 'cart';
   public addItemToCartUrl: string = 'cart/item';
+  public orderCheckoutUrl: string = 'order/checkout';
   public priceChangesItemUrl: string = 'price';
 
   constructor(private http: HttpClient) {}
@@ -65,5 +71,9 @@ export class CartOrderService {
   addToProductDetails(product: Item): void {
     this.cartItemProductList.push(product);
     this.productDetailsList.next(this.cartItemProductList);
+  }
+
+  postOrder(product: OrderCheckout): Observable<any> {
+    return this.http.post<any>(this.orderCheckoutUrl, product);
   }
 }

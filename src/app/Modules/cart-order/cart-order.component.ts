@@ -1,4 +1,3 @@
-import { Content } from '@angular/compiler/src/render3/r3_ast';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -13,14 +12,21 @@ import {
   Validators,
 } from '@angular/forms';
 import { KeycloakService } from 'keycloak-angular';
-import { map, Observable } from 'rxjs';
+import moment from 'moment';
+import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { AccountUser } from '../account/account.model';
 import { AccountService } from '../account/account.service';
 import { ItemService } from '../home/items/item.service';
-import { Items, Item } from '../home/items/items.config';
-import { AddItem, CreateCart, EventInput, KeyItem } from './cart-order.config';
+import { Item } from '../home/items/items.config';
+import {
+  AddItem,
+  CreateCart,
+  EventInput,
+  OrderCheckout,
+} from './cart-order.config';
 import { CartOrderService } from './cart-order.service';
+//import { AngularFireFunctions } from '@angular/fire/functions';
 
 @Component({
   selector: 'app-cart-order',
@@ -32,6 +38,8 @@ import { CartOrderService } from './cart-order.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CartOrderComponent implements OnInit {
+  strikeCheckout: any = null;
+
   @ViewChild('search') input!: ElementRef;
   selected: string = 'CASH';
   isDisabled = false;
@@ -51,6 +59,9 @@ export class CartOrderComponent implements OnInit {
   public product: Item[] = [];
   public cartItem: AddItem[] = [];
   public totalPrice: number = 0;
+
+  user!: AccountUser;
+  productOrder!: OrderCheckout;
 
   formValue: FormGroup = this.formbuilder.group({
     firstName: ['', [Validators.required, Validators.maxLength(255)]],
@@ -93,6 +104,7 @@ export class CartOrderComponent implements OnInit {
     this.isLoggedIn = await this.keycloak.isLoggedIn();
     this.getUserData.subscribe({
       next: (user: AccountUser) => {
+        this.user = user;
         this.formValue.patchValue({ ...user });
       },
     });
@@ -104,6 +116,7 @@ export class CartOrderComponent implements OnInit {
     this.getTemp.subscribe((res: string) => {
       this.TEMP_ID = res;
     });
+    this.stripePaymentGateway();
   }
 
   get firstName() {
@@ -131,7 +144,25 @@ export class CartOrderComponent implements OnInit {
     return this.formValue.get('paymentType') as FormControl;
   }
 
-  postDataDetails(): void {}
+  postDataDetails(): void {
+    this.productOrder = {
+      deliveryAddress: this.user.homeAddress,
+      deliveryName: this.user.firstName + ' ' + this.user.lastName,
+      deliveryTime: moment().format(),
+      email: this.user.email,
+      //  id: 0,
+      // orderStatus: 'DELIVERY',
+      paymentType: this.formValue.value.paymentType,
+      phone: this.formValue.value.phone,
+      productItems: this.cartItem,
+      text: this.formValue.value.text,
+    };
+    console.log(this.productOrder);
+
+    this.cartService.postOrder(this.productOrder).subscribe((res: any) => {
+      console.log(res);
+    });
+  }
 
   getItemImage(item: string): string {
     return `${environment.serverUrl}images/${item.replace('.jpg', '')}`;
@@ -213,5 +244,45 @@ export class CartOrderComponent implements OnInit {
     this.addressValue = (event.target as HTMLInputElement).value;
     this.http.addressHTML.next(this.input);
     this.http.address.next(this.addressValue);
+  }
+
+  checkout(amount: number) {
+    const strikeCheckout = (<any>window).StripeCheckout.configure({
+      key: 'pk_test_51L7a9QFFOvoTuYogmeIBEmSAR8HJly6tEQy3mwsfwNH3uGznMwOIhPoLiqI5VeVeDcwWazYbn8ssbAciuEuQp9tu00uUM9YEto',
+      locale: 'auto',
+      token: function (stripeToken: any) {
+        console.log(stripeToken);
+        alert('Stripe token generated!');
+      },
+    });
+
+    strikeCheckout.open({
+      name: 'Confirm order with payment',
+      description: 'Payment widgets',
+      email: this.formValue.value.email,
+      amount: amount * 100,
+    });
+  }
+
+  stripePaymentGateway() {
+    if (!window.document.getElementById('stripe-script')) {
+      const scr = window.document.createElement('script');
+      scr.id = 'stripe-script';
+      scr.type = 'text/javascript';
+      scr.src = 'https://checkout.stripe.com/checkout.js';
+
+      scr.onload = () => {
+        this.strikeCheckout = (<any>window).StripeCheckout.configure({
+          key: 'pk_test_51L7a9QFFOvoTuYogmeIBEmSAR8HJly6tEQy3mwsfwNH3uGznMwOIhPoLiqI5VeVeDcwWazYbn8ssbAciuEuQp9tu00uUM9YEto',
+          locale: 'auto',
+          token: function (token: any) {
+            console.log(token);
+            alert('Payment via stripe successfull!');
+          },
+        });
+      };
+
+      window.document.body.appendChild(scr);
+    }
   }
 }
