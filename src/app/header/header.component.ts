@@ -14,7 +14,11 @@ import {
 import { KeycloakService } from 'keycloak-angular';
 import { environment } from 'src/environments/environment';
 import { CartOrderService } from '../Modules/cart-order/cart-order.service';
-import { AddItem, CreateCart } from '../Modules/cart-order/cart-order.config';
+import {
+  AddItem,
+  CreateCart,
+  GetAllOrders,
+} from '../Modules/cart-order/cart-order.config';
 
 @Component({
   selector: 'app-header',
@@ -41,6 +45,7 @@ export class HeaderComponent implements OnInit {
   productList: Observable<AddItem[]> = this.cartService.productList;
 
   quantityItems: number = 0;
+  quantityOrders: number = 0;
 
   keycloakLogoutOption = environment.keycloakLogoutOption;
 
@@ -112,6 +117,10 @@ export class HeaderComponent implements OnInit {
     });
     this.productList.subscribe((res: AddItem[]) => {
       this.quantityItems = res.length;
+      this.changeDetector.detectChanges();
+    });
+    this.cartService.getOrders().subscribe((res: GetAllOrders[]) => {
+      this.quantityOrders = res.length;
       this.changeDetector.detectChanges();
     });
   }

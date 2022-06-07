@@ -5,8 +5,10 @@ import { Item } from '../home/items/items.config';
 import {
   AddItem,
   CreateCart,
+  GetAllOrders,
   OrderCheckout,
   PriceChanges,
+  StripePostOrders,
 } from './cart-order.config';
 
 @Injectable()
@@ -15,10 +17,11 @@ export class CartOrderService {
   public productList = new BehaviorSubject<AddItem[]>([]);
   public productDetailsList = new BehaviorSubject<Item[]>([]);
 
-  public postUrl: string = 'order/checkout';
+  public orderUrl: string = 'order';
   public createCartPostUrl: string = 'cart';
   public addItemToCartUrl: string = 'cart/item';
   public orderCheckoutUrl: string = 'order/checkout';
+  public orderStripeUrl: string = 'payments/charge';
   public priceChangesItemUrl: string = 'price';
 
   constructor(private http: HttpClient) {}
@@ -73,7 +76,15 @@ export class CartOrderService {
     this.productDetailsList.next(this.cartItemProductList);
   }
 
-  postOrder(product: OrderCheckout): Observable<any> {
-    return this.http.post<any>(this.orderCheckoutUrl, product);
+  postOrder(product: OrderCheckout): Observable<GetAllOrders> {
+    return this.http.post<GetAllOrders>(this.orderCheckoutUrl, product);
+  }
+
+  getOrders(): Observable<GetAllOrders[]> {
+    return this.http.get<GetAllOrders[]>(this.orderUrl);
+  }
+
+  postPaymentCharge(product: StripePostOrders): Observable<GetAllOrders> {
+    return this.http.post<GetAllOrders>(this.orderStripeUrl, product);
   }
 }

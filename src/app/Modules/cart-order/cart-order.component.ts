@@ -23,7 +23,9 @@ import {
   AddItem,
   CreateCart,
   EventInput,
+  GetAllOrders,
   OrderCheckout,
+  StripePostOrders,
 } from './cart-order.config';
 import { CartOrderService } from './cart-order.service';
 //import { AngularFireFunctions } from '@angular/fire/functions';
@@ -39,7 +41,7 @@ import { CartOrderService } from './cart-order.service';
 })
 export class CartOrderComponent implements OnInit {
   strikeCheckout: any = null;
-
+  productOrderIdAndDescription!: GetAllOrders;
   @ViewChild('search') input!: ElementRef;
   selected: string = 'CASH';
   isDisabled = false;
@@ -148,20 +150,22 @@ export class CartOrderComponent implements OnInit {
     this.productOrder = {
       deliveryAddress: this.user.homeAddress,
       deliveryName: this.user.firstName + ' ' + this.user.lastName,
-      deliveryTime: moment().format(),
+      deliveryTime: moment().format('YYYY-MM-DD HH:mm'),
       email: this.user.email,
-      //  id: 0,
-      // orderStatus: 'DELIVERY',
+      id: 0,
+      orderStatus: 'PENDING_PAYMENT',
       paymentType: this.formValue.value.paymentType,
       phone: this.formValue.value.phone,
       productItems: this.cartItem,
       text: this.formValue.value.text,
     };
-    console.log(this.productOrder);
-
-    this.cartService.postOrder(this.productOrder).subscribe((res: any) => {
-      console.log(res);
-    });
+    if (this.productOrder.paymentType == 'CARD') {
+      this.cartService
+        .postOrder(this.productOrder)
+        .subscribe((res: GetAllOrders) => {
+          this.productOrderIdAndDescription = res;
+        });
+    }
   }
 
   getItemImage(item: string): string {
@@ -250,18 +254,33 @@ export class CartOrderComponent implements OnInit {
     const strikeCheckout = (<any>window).StripeCheckout.configure({
       key: 'pk_test_51L7a9QFFOvoTuYogmeIBEmSAR8HJly6tEQy3mwsfwNH3uGznMwOIhPoLiqI5VeVeDcwWazYbn8ssbAciuEuQp9tu00uUM9YEto',
       locale: 'auto',
-      token: function (stripeToken: any) {
+      token: (stripeToken: any) => {
         console.log(stripeToken);
+
         alert('Stripe token generated!');
+        let productStripe: StripePostOrders = {
+          amount: amount * 100,
+          currency: 'EUR',
+          description: 'Hello world',
+          productOrderId: this.productOrderIdAndDescription.id,
+          stripeEmail: stripeToken.email,
+          stripeToken: stripeToken.id,
+        };
+        this.cartService
+          .postPaymentCharge(productStripe)
+          .subscribe((res: GetAllOrders) => {
+            console.log(res);
+          });
       },
     });
-
-    strikeCheckout.open({
-      name: 'Confirm order with payment',
-      description: 'Payment widgets',
-      email: this.formValue.value.email,
-      amount: amount * 100,
-    });
+    if (this.formValue.value.paymentType == 'CARD') {
+      strikeCheckout.open({
+        name: 'Confirm order with payment',
+        description: 'Payment widgets',
+        email: this.formValue.value.email,
+        amount: amount * 100,
+      });
+    }
   }
 
   stripePaymentGateway() {

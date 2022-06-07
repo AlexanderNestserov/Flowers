@@ -11,77 +11,89 @@
       <div class="container__myorders">My orders</div>
     </div>
     <div class="container-myorders__cart-title">My orders</div>
-    <p-accordion
-      expandIcon="pi pi-fw pi-chevron-down"
-      collapseIcon="pi pi-fw pi-chevron-up"
-    >
-      <p-accordionTab>
-        <ng-template pTemplate="header"
-          ><div class="container-order">
-            <div class="container-order__dot"></div>
-            <div class="container-order__mobile-cart">
-              <div class="container-order__number-date">
-                <p class="container-order__number">Order #879455565123</p>
-                <p class="container-order__date">Julu 27, 2021 15:45</p>
+    <ng-container *ngFor="let order of orders">
+      <p-accordion
+        expandIcon="pi pi-fw pi-chevron-down"
+        collapseIcon="pi pi-fw pi-chevron-up"
+      >
+        <p-accordionTab>
+          <ng-template pTemplate="header"
+            ><div class="container-order">
+              <div class="container-order__dot"></div>
+              <div class="container-order__mobile-cart">
+                <div class="container-order__number-date">
+                  <p class="container-order__number">Order #{{ order.id }}</p>
+                  <p class="container-order__date">
+                    {{ order.deliveryTime | date: "LLLL dd, YYYY HH:mm" }}
+                  </p>
+                </div>
+                <div class="container-order__adress">
+                  {{ order.deliveryAddress }}
+                </div>
               </div>
-              <div class="container-order__adress">Kolas str, 15, ap. 43</div>
-            </div>
-            <div class="container-order__total-price">€96.15 EUR</div>
-          </div></ng-template
-        >
-        <div class="container-order__title">Order Details</div>
-        <div class="container-order__cart-item">
-          <img
-            id="miniItemImage"
-            src="../../../assets/img-home/image 1.png"
-            alt="itemImage"
-          />
-          <div class="container-order__cart-item-container">
-            <div class="container-order__mobile-container">
-              <div class="container-order__cart-item-description">
-                <p class="item-name">Bouquet 117 (21 gerberas)</p>
-                <p class="item-category">Fresh flowers</p>
-              </div>
-              <div class="container-order__cart-item-price-container">
-                <div class="container-order__cart-item-price-one">
+              <div class="container-order__total-price">€96.15 EUR</div>
+            </div></ng-template
+          >
+          <div class="container-order__title">Order Details</div>
+          <ng-container *ngFor="let item of order.productItems">
+            <div class="container-order__cart-item">
+              <img
+                id="miniItemImage"
+                src="../../../assets/img-home/image 1.png"
+                alt="itemImage"
+              />
+              <div class="container-order__cart-item-container">
+                <div class="container-order__mobile-container">
+                  <div class="container-order__cart-item-description">
+                    <p class="item-name">Bouquet 117 (21 gerberas)</p>
+                    <p class="item-category">Fresh flowers</p>
+                  </div>
+                  <div class="container-order__cart-item-price-container">
+                    <div class="container-order__cart-item-price-one">
+                      €62.17 EUR
+                    </div>
+                    <div class="container-order__cart-item-x">x</div>
+                    <div class="container-order__cart-item-number">1</div>
+                  </div>
+                </div>
+                <div class="container-order__cart-item-price-total">
                   €62.17 EUR
                 </div>
-                <div class="container-order__cart-item-x">x</div>
-                <div class="container-order__cart-item-number">1</div>
               </div>
             </div>
-            <div class="container-order__cart-item-price-total">€62.17 EUR</div>
+          </ng-container>
+          <div class="container-order__line"></div>
+          <div class="container-order__contact-information">
+            <div class="container-order__contact-title">Contact person</div>
+            <div class="container-order__contact-name">Ivanov Konstantin</div>
+            <div class="container-order__contact-email">
+              konstantin.ivanov@mail.ru
+            </div>
+            <div class="container-order__contact-phone">+375 29 122-45-78</div>
+            <div class="container-order__contact-additional-info-title">
+              Additional information
+            </div>
+            <p class="container-order__contact-additional-info-text">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. At nullam
+              pulvinar aliquet est. Pretium sit volutpat sem amet rhoncus.
+            </p>
+            <div class="container-order__contact-message-title">
+              Congratulation message
+            </div>
+            <p class="container-order__contact-message-text">
+              At nullam pulvinar aliquet est. Pretium sit volutpat sem amet
+              rhoncus.
+            </p>
           </div>
-        </div>
-        <div class="container-order__line"></div>
-        <div class="container-order__contact-information">
-          <div class="container-order__contact-title">Contact person</div>
-          <div class="container-order__contact-name">Ivanov Konstantin</div>
-          <div class="container-order__contact-email">
-            konstantin.ivanov@mail.ru
+          <div class="container-order__line"></div>
+          <div class="container-order__payment-mathod-title">
+            Payment method
           </div>
-          <div class="container-order__contact-phone">+375 29 122-45-78</div>
-          <div class="container-order__contact-additional-info-title">
-            Additional information
+          <div class="container-order__payment-mathod-text">
+            In cash to the courier
           </div>
-          <p class="container-order__contact-additional-info-text">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. At nullam
-            pulvinar aliquet est. Pretium sit volutpat sem amet rhoncus.
-          </p>
-          <div class="container-order__contact-message-title">
-            Congratulation message
-          </div>
-          <p class="container-order__contact-message-text">
-            At nullam pulvinar aliquet est. Pretium sit volutpat sem amet
-            rhoncus.
-          </p>
-        </div>
-        <div class="container-order__line"></div>
-        <div class="container-order__payment-mathod-title">Payment method</div>
-        <div class="container-order__payment-mathod-text">
-          In cash to the courier
-        </div>
-      </p-accordionTab>
-    </p-accordion>
+        </p-accordionTab>
+      </p-accordion>
+    </ng-container>
   </div>
 </div>

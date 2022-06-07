@@ -93,7 +93,8 @@
         margin-right: 2.9rem;
     }
     &__number-date {
-        margin-right: 6.7rem;
+        width: 18rem;
+        margin-right: 5rem;
     }
     &__number {
         @include font(Montserrat, normal, 500, 1.4rem, 150%, 0em, $color_darkgrey);
@@ -104,7 +105,9 @@
     }
     &__adress {
         @include font(Montserrat, normal, 500, 1.4rem, 150%, 0em, $color_darkgrey);
-        margin-right: 23.7rem;
+        width: 30rem;
+        text-align: left;
+        margin-right: 3rem;
     }
     &__total-price {
         @include font(Montserrat, normal, 700, 1.4rem, 150%, 0em, $color_darkgrey);
@@ -236,9 +239,11 @@
             width: 1.1rem;
         }
         &__number-date {
+            width: 10rem;
             margin-right: 2rem;
         }
         &__adress {
+            width: 15rem;
             margin-right: 0;
         }
         &__total-price {

@@ -36,10 +36,33 @@ export interface OrderCheckout {
   deliveryName: string;
   deliveryTime: string;
   email: string;
-  // id: number;
-  // orderStatus: string;
+  id: number;
+  orderStatus?: string;
   paymentType: string;
   phone: string;
   productItems: AddItem[];
   text: string;
+}
+
+export interface GetAllOrders {
+  creationDate: string;
+  deliveryAddress: string;
+  deliveryName: string;
+  deliveryTime: string;
+  email: string;
+  id: number;
+  orderStatus?: string;
+  paymentType: string;
+  phone: string;
+  productItems: AddItem[];
+  text: string;
+}
+
+export interface StripePostOrders {
+  amount: number;
+  currency: 'EUR';
+  description: string;
+  productOrderId: number;
+  stripeEmail: string;
+  stripeToken: string;
 }
