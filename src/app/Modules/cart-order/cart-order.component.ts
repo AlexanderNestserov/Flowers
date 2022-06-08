@@ -1,5 +1,6 @@
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   ElementRef,
   OnInit,
@@ -20,6 +21,10 @@ import { AccountService } from '../account/account.service';
 import { ItemService } from '../home/items/item.service';
 import { Item } from '../home/items/items.config';
 import {
+  divTrigger,
+  divTriggerError,
+} from '../popup-success-error/popupSuccessError.animations';
+import {
   AddItem,
   CreateCart,
   EventInput,
@@ -28,7 +33,11 @@ import {
   StripePostOrders,
 } from './cart-order.config';
 import { CartOrderService } from './cart-order.service';
-//import { AngularFireFunctions } from '@angular/fire/functions';
+
+enum ClickedDivState {
+  hide = 'hide',
+  show = 'show',
+}
 
 @Component({
   selector: 'app-cart-order',
@@ -38,17 +47,21 @@ import { CartOrderService } from './cart-order.service';
     '../../Modules/account/input-form-style.scss',
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  animations: [divTrigger, divTriggerError],
 })
 export class CartOrderComponent implements OnInit {
   strikeCheckout: any = null;
   productOrderIdAndDescription!: GetAllOrders;
   @ViewChild('search') input!: ElementRef;
+  clickedDivState: ClickedDivState = ClickedDivState.hide;
+  clickedDivStateError: ClickedDivState = ClickedDivState.hide;
   selected: string = 'CASH';
   isDisabled = false;
   isChecked = false;
   checked: Item[] = [];
   isLoggedIn = false;
   addressValue: string = '';
+  quantityOrders: number = 0;
 
   itemsData: Observable<Item[]> = this.itemService.getItems();
   getUserData: Observable<AccountUser> = this.http.getUserData();
@@ -81,7 +94,8 @@ export class CartOrderComponent implements OnInit {
     private cartService: CartOrderService,
     private http: AccountService,
     private itemService: ItemService,
-    public readonly keycloak: KeycloakService
+    public readonly keycloak: KeycloakService,
+    private changeDetector: ChangeDetectorRef
   ) {}
 
   async ngOnInit(): Promise<void> {
@@ -114,7 +128,6 @@ export class CartOrderComponent implements OnInit {
     this.http.mapAddress.subscribe((res: string) => {
       this.formValue.patchValue({ homeAddress: res });
     });
-
     this.getTemp.subscribe((res: string) => {
       this.TEMP_ID = res;
     });
@@ -147,6 +160,7 @@ export class CartOrderComponent implements OnInit {
   }
 
   postDataDetails(): void {
+    this.isDisabled = true;
     this.productOrder = {
       deliveryAddress: this.user.homeAddress,
       deliveryName: this.user.firstName + ' ' + this.user.lastName,
@@ -159,13 +173,29 @@ export class CartOrderComponent implements OnInit {
       productItems: this.cartItem,
       text: this.formValue.value.text,
     };
-    if (this.productOrder.paymentType == 'CARD') {
-      this.cartService
-        .postOrder(this.productOrder)
-        .subscribe((res: GetAllOrders) => {
-          this.productOrderIdAndDescription = res;
+    this.cartService.postOrder(this.productOrder).subscribe({
+      next: (res: GetAllOrders) => {
+        this.productOrderIdAndDescription = res;
+        this.clickedDivState = ClickedDivState.show;
+        this.product = [];
+        this.cartItem = [];
+        this.cartService.productList.next(this.cartItem);
+        this.cartService.getOrders().subscribe((res: GetAllOrders[]) => {
+          this.quantityOrders = res.length;
+          this.cartService.productOrderList.next(this.quantityOrders);
         });
+        this.changeDetector.detectChanges();
+      },
+      error: () => {
+        this.clickedDivStateError = ClickedDivState.show;
+      },
+    });
+    if (this.formValue.value.paymentType == 'ONLINE') {
+      this.checkout(this.totalPrice);
     }
+    this.isDisabled = false;
+    this.clickedDivState = ClickedDivState.hide;
+    this.clickedDivStateError = ClickedDivState.hide;
   }
 
   getItemImage(item: string): string {
@@ -203,7 +233,6 @@ export class CartOrderComponent implements OnInit {
     item.total = Math.ceil(item.total * 100) / 100;
     totalPrice = totalPrice + item.total;
     this.totalPrice = Math.ceil(totalPrice * 100) / 100;
-
     this.cartItem.map((a: AddItem) => {
       if (item.deleteId === a.id) {
         a.quantity = item.quantity!;
@@ -252,11 +281,10 @@ export class CartOrderComponent implements OnInit {
 
   checkout(amount: number) {
     const strikeCheckout = (<any>window).StripeCheckout.configure({
-      key: 'pk_test_51L7a9QFFOvoTuYogmeIBEmSAR8HJly6tEQy3mwsfwNH3uGznMwOIhPoLiqI5VeVeDcwWazYbn8ssbAciuEuQp9tu00uUM9YEto',
+      key: 'pk_test_51JCHjNDOmUi0GX61HsV9ISkpXLZ0F0iAf9KjJhyhf3RlsdCf062Vf5jpOD4bUwrbnV246xpekRjSScfe8lPNV7eF00YKMa72sG',
       locale: 'auto',
       token: (stripeToken: any) => {
         console.log(stripeToken);
-
         alert('Stripe token generated!');
         let productStripe: StripePostOrders = {
           amount: amount * 100,
@@ -266,21 +294,24 @@ export class CartOrderComponent implements OnInit {
           stripeEmail: stripeToken.email,
           stripeToken: stripeToken.id,
         };
-        this.cartService
-          .postPaymentCharge(productStripe)
-          .subscribe((res: GetAllOrders) => {
-            console.log(res);
-          });
+        this.cartService.postPaymentCharge(productStripe).subscribe({
+          next: (res: GetAllOrders) => {
+            this.clickedDivState = ClickedDivState.show;
+          },
+          error: () => {
+            this.clickedDivStateError = ClickedDivState.show;
+          },
+        });
+        this.clickedDivState = ClickedDivState.hide;
+        this.clickedDivStateError = ClickedDivState.hide;
       },
     });
-    if (this.formValue.value.paymentType == 'CARD') {
-      strikeCheckout.open({
-        name: 'Confirm order with payment',
-        description: 'Payment widgets',
-        email: this.formValue.value.email,
-        amount: amount * 100,
-      });
-    }
+    strikeCheckout.open({
+      name: 'Confirm order with payment',
+      description: 'Payment widgets',
+      email: this.formValue.value.email,
+      amount: amount * 100,
+    });
   }
 
   stripePaymentGateway() {
@@ -289,10 +320,9 @@ export class CartOrderComponent implements OnInit {
       scr.id = 'stripe-script';
       scr.type = 'text/javascript';
       scr.src = 'https://checkout.stripe.com/checkout.js';
-
       scr.onload = () => {
         this.strikeCheckout = (<any>window).StripeCheckout.configure({
-          key: 'pk_test_51L7a9QFFOvoTuYogmeIBEmSAR8HJly6tEQy3mwsfwNH3uGznMwOIhPoLiqI5VeVeDcwWazYbn8ssbAciuEuQp9tu00uUM9YEto',
+          key: 'pk_test_51JCHjNDOmUi0GX61HsV9ISkpXLZ0F0iAf9KjJhyhf3RlsdCf062Vf5jpOD4bUwrbnV246xpekRjSScfe8lPNV7eF00YKMa72sG',
           locale: 'auto',
           token: function (token: any) {
             console.log(token);
@@ -300,8 +330,11 @@ export class CartOrderComponent implements OnInit {
           },
         });
       };
-
       window.document.body.appendChild(scr);
     }
+  }
+  closePopup(): void {
+    this.clickedDivState = ClickedDivState.hide;
+    this.clickedDivStateError = ClickedDivState.hide;
   }
 }

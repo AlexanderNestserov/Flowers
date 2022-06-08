@@ -207,7 +207,7 @@
             <p-radioButton
               formControlName="paymentType"
               name="paymentType"
-              value="CARD"
+              value="ONLINE"
               inputId="card"
             ></p-radioButton>
             <label for="card">By bank card on the website</label>
@@ -215,7 +215,6 @@
         </div>
         <button
           type="submit"
-          (click)="checkout(totalPrice)"
           class="container__button"
           [ngClass]="{
             disabled: formValue.invalid || isDisabled || product.length == 0
@@ -229,5 +228,13 @@
         </button>
       </form>
     </div>
+    <app-popup
+      [@divTrigger]="clickedDivState"
+      (click)="closePopup()"
+    ></app-popup>
+    <app-popup-error
+      [@divTriggerError]="clickedDivStateError"
+      (click)="closePopup()"
+    ></app-popup-error>
   </div>
 </div>

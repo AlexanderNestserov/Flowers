@@ -31,7 +31,9 @@
                   {{ order.deliveryAddress }}
                 </div>
               </div>
-              <div class="container-order__total-price">€96.15 EUR</div>
+              <div class="container-order__total-price">
+                €{{ order.totalPrice }} EUR
+              </div>
             </div></ng-template
           >
           <div class="container-order__title">Order Details</div>
@@ -39,7 +41,7 @@
             <div class="container-order__cart-item">
               <img
                 id="miniItemImage"
-                src="../../../assets/img-home/image 1.png"
+                [src]="getItemImage(item.photo)"
                 alt="itemImage"
               />
               <div class="container-order__cart-item-container">

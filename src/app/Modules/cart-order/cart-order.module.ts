@@ -13,6 +13,7 @@ import { MapModule } from '../map/map.module';
 import { CartOrderErrorFormModule } from './cart-order-error-form/cart-order-error-form.module';
 import { AccountService } from '../account/account.service';
 import { ItemService } from '../home/items/item.service';
+import { PopupErrorSuccessModule } from '../popup-success-error/popupErrorSuccess.module';
 
 @NgModule({
   declarations: [CartOrderComponent],
@@ -28,6 +29,7 @@ import { ItemService } from '../home/items/item.service';
     RadioButtonModule,
     MapModule,
     CartOrderErrorFormModule,
+    PopupErrorSuccessModule,
   ],
   providers: [AccountService, ItemService],
 })

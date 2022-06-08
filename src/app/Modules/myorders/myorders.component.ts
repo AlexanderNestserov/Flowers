@@ -1,5 +1,10 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { AddItem, GetAllOrders } from '../cart-order/cart-order.config';
+import { environment } from 'src/environments/environment';
+import {
+  AddItem,
+  GetAllOrders,
+  GetPayments,
+} from '../cart-order/cart-order.config';
 import { CartOrderService } from '../cart-order/cart-order.service';
 import { ItemService } from '../home/items/item.service';
 import { Item } from '../home/items/items.config';
@@ -11,6 +16,8 @@ import { Item } from '../home/items/items.config';
 })
 export class MyordersComponent implements OnInit {
   orders!: GetAllOrders[];
+  quantity: number = 0;
+  total: number = 0;
   constructor(
     private orderService: CartOrderService,
     private changeDetector: ChangeDetectorRef,
@@ -19,11 +26,20 @@ export class MyordersComponent implements OnInit {
   ngOnInit(): void {
     this.orderService.getOrders().subscribe((res: GetAllOrders[]) => {
       this.orders = res;
+      console.log(res);
 
       this.orders.map((a: GetAllOrders) => {
-        a.productItems.map((res: AddItem) => {
-          this.itemService.getItem(res.itemId).subscribe((res: Item) => {
-            /*       
+        a.totalPrice = 0;
+        a.productItems.map((item: AddItem) => {
+          this.quantity = item.quantity;
+          this.itemService.getItem(item.itemId).subscribe((res: Item) => {
+            console.log(res);
+            a.totalPrice += res.priceDto.price * this.quantity;
+
+            item.photo = res.photo;
+
+            this.changeDetector.detectChanges();
+            /*         
         res.quantity = a.quantity;
         res.deleteId = a.id;
         res.total = res.priceDto.price * res.quantity;
@@ -34,9 +50,9 @@ export class MyordersComponent implements OnInit {
           });
         });
       });
-
-      this.changeDetector.detectChanges();
     });
-    this.orderService;
+  }
+  getItemImage(item: string): string {
+    return ''; //return `${environment.serverUrl}images/${item.replace('.jpg', '')}`;
   }
 }

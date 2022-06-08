@@ -6,6 +6,7 @@ import {
   AddItem,
   CreateCart,
   GetAllOrders,
+  GetPayments,
   OrderCheckout,
   PriceChanges,
   StripePostOrders,
@@ -15,6 +16,7 @@ import {
 export class CartOrderService {
   public cartItemProductList: Item[] = [];
   public productList = new BehaviorSubject<AddItem[]>([]);
+  public productOrderList = new BehaviorSubject<number>(0);
   public productDetailsList = new BehaviorSubject<Item[]>([]);
 
   public orderUrl: string = 'order';
@@ -22,6 +24,7 @@ export class CartOrderService {
   public addItemToCartUrl: string = 'cart/item';
   public orderCheckoutUrl: string = 'order/checkout';
   public orderStripeUrl: string = 'payments/charge';
+  public paymentsUrl: string = 'payments';
   public priceChangesItemUrl: string = 'price';
 
   constructor(private http: HttpClient) {}
@@ -86,5 +89,9 @@ export class CartOrderService {
 
   postPaymentCharge(product: StripePostOrders): Observable<GetAllOrders> {
     return this.http.post<GetAllOrders>(this.orderStripeUrl, product);
+  }
+
+  getPayments(): Observable<any> {
+    return this.http.get<any>(this.paymentsUrl);
   }
 }

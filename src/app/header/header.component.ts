@@ -43,6 +43,7 @@ export class HeaderComponent implements OnInit {
   public isLoggedIn = false;
 
   productList: Observable<AddItem[]> = this.cartService.productList;
+  productOrderList: Observable<number> = this.cartService.productOrderList;
 
   quantityItems: number = 0;
   quantityOrders: number = 0;
@@ -121,6 +122,9 @@ export class HeaderComponent implements OnInit {
     });
     this.cartService.getOrders().subscribe((res: GetAllOrders[]) => {
       this.quantityOrders = res.length;
+    });
+    this.productOrderList.subscribe((res: number) => {
+      this.quantityOrders = res;
       this.changeDetector.detectChanges();
     });
   }

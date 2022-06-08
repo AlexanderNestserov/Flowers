@@ -9,6 +9,7 @@ export interface AddItem {
   itemId: number;
   priceId: number;
   quantity: number;
+  photo?: any;
 }
 
 export interface KeyItem {
@@ -56,6 +57,7 @@ export interface GetAllOrders {
   phone: string;
   productItems: AddItem[];
   text: string;
+  totalPrice?: any;
 }
 
 export interface StripePostOrders {
@@ -66,3 +68,12 @@ export interface StripePostOrders {
   stripeEmail: string;
   stripeToken: string;
 }
+export interface GetPayments {
+  amount: number;
+  details: string;
+  id: number;
+  paymentStatus: string;
+  productOrder: GetAllOrders;
+  stripeId: string;
+}
+[];
