@@ -39,27 +39,25 @@
           <div class="container-order__title">Order Details</div>
           <ng-container *ngFor="let item of order.productItems">
             <div class="container-order__cart-item">
-              <img
-                id="miniItemImage"
-                [src]="getItemImage(item.photo)"
-                alt="itemImage"
-              />
+              <img id="miniItemImage" [src]="item.photo" alt="itemImage" />
               <div class="container-order__cart-item-container">
                 <div class="container-order__mobile-container">
                   <div class="container-order__cart-item-description">
-                    <p class="item-name">Bouquet 117 (21 gerberas)</p>
-                    <p class="item-category">Fresh flowers</p>
+                    <p class="item-name">{{ item.name }}</p>
+                    <p class="item-category">{{ item.category }}</p>
                   </div>
                   <div class="container-order__cart-item-price-container">
                     <div class="container-order__cart-item-price-one">
-                      €62.17 EUR
+                      €{{ item.price }} EUR
                     </div>
                     <div class="container-order__cart-item-x">x</div>
-                    <div class="container-order__cart-item-number">1</div>
+                    <div class="container-order__cart-item-number">
+                      {{ item.quantity }}
+                    </div>
                   </div>
                 </div>
                 <div class="container-order__cart-item-price-total">
-                  €62.17 EUR
+                  €{{ item.total }} EUR
                 </div>
               </div>
             </div>
@@ -67,24 +65,24 @@
           <div class="container-order__line"></div>
           <div class="container-order__contact-information">
             <div class="container-order__contact-title">Contact person</div>
-            <div class="container-order__contact-name">Ivanov Konstantin</div>
-            <div class="container-order__contact-email">
-              konstantin.ivanov@mail.ru
+            <div class="container-order__contact-name">
+              {{ order.deliveryName }}
             </div>
-            <div class="container-order__contact-phone">+375 29 122-45-78</div>
+            <div class="container-order__contact-email">
+              {{ order.email }}
+            </div>
+            <div class="container-order__contact-phone">{{ order.phone }}</div>
             <div class="container-order__contact-additional-info-title">
               Additional information
             </div>
             <p class="container-order__contact-additional-info-text">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. At nullam
-              pulvinar aliquet est. Pretium sit volutpat sem amet rhoncus.
+              {{ order.orderStatus }}
             </p>
             <div class="container-order__contact-message-title">
               Congratulation message
             </div>
             <p class="container-order__contact-message-text">
-              At nullam pulvinar aliquet est. Pretium sit volutpat sem amet
-              rhoncus.
+              {{ order.text }}
             </p>
           </div>
           <div class="container-order__line"></div>
@@ -92,7 +90,7 @@
             Payment method
           </div>
           <div class="container-order__payment-mathod-text">
-            In cash to the courier
+            {{ order.paymentType }}
           </div>
         </p-accordionTab>
       </p-accordion>

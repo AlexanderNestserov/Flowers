@@ -116,7 +116,6 @@ export class CartOrderComponent implements OnInit {
         });
       });
     });
-
     this.isLoggedIn = await this.keycloak.isLoggedIn();
     this.getUserData.subscribe({
       next: (user: AccountUser) => {
@@ -124,7 +123,6 @@ export class CartOrderComponent implements OnInit {
         this.formValue.patchValue({ ...user });
       },
     });
-
     this.http.mapAddress.subscribe((res: string) => {
       this.formValue.patchValue({ homeAddress: res });
     });
@@ -284,8 +282,6 @@ export class CartOrderComponent implements OnInit {
       key: 'pk_test_51JCHjNDOmUi0GX61HsV9ISkpXLZ0F0iAf9KjJhyhf3RlsdCf062Vf5jpOD4bUwrbnV246xpekRjSScfe8lPNV7eF00YKMa72sG',
       locale: 'auto',
       token: (stripeToken: any) => {
-        console.log(stripeToken);
-        alert('Stripe token generated!');
         let productStripe: StripePostOrders = {
           amount: amount * 100,
           currency: 'EUR',
@@ -295,7 +291,7 @@ export class CartOrderComponent implements OnInit {
           stripeToken: stripeToken.id,
         };
         this.cartService.postPaymentCharge(productStripe).subscribe({
-          next: (res: GetAllOrders) => {
+          next: () => {
             this.clickedDivState = ClickedDivState.show;
           },
           error: () => {

@@ -9,7 +9,11 @@ export interface AddItem {
   itemId: number;
   priceId: number;
   quantity: number;
-  photo?: any;
+  photo?: string;
+  category?: string;
+  name?: string;
+  price?: number;
+  total?: number;
 }
 
 export interface KeyItem {
