@@ -16,11 +16,17 @@ import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
 import { CartOrderService } from '../Modules/cart-order/cart-order.service';
 import { routes } from '../app.component';
 import { BehaviorSubject, Observable, of } from 'rxjs';
+import {
+  GetAllOrders,
+  OrderCheckout,
+  StripePostOrders,
+} from '../Modules/cart-order/cart-order.config';
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
   let fixture: ComponentFixture<HeaderComponent>;
   let productList: BehaviorSubject<any>;
+  let productOrderList: BehaviorSubject<number>;
   let keycloakService = jasmine.createSpyObj(['login', 'logout', 'isLoggedIn']);
   let MockCartOrderService = jasmine.createSpyObj('fakeCartOrderService', [
     'getShoppingCart',
@@ -31,6 +37,10 @@ describe('HeaderComponent', () => {
     'getProductDetails',
     'addToProductDetails',
     'productList',
+    'productOrderList',
+    'postOrder',
+    'getOrders',
+    'postPaymentCharge',
   ]);
 
   beforeEach(waitForAsync(() => {
@@ -70,6 +80,33 @@ describe('HeaderComponent', () => {
               return of({});
             }
             productList = new BehaviorSubject([{ id: 1 }, { id: 2 }]);
+            productOrderList = new BehaviorSubject(10);
+            postOrder(product: OrderCheckout): Observable<GetAllOrders> {
+              return of();
+            }
+            getOrders(): Observable<GetAllOrders[]> {
+              return of([
+                {
+                  creationDate: '11.01',
+                  deliveryAddress: 'Minsk',
+                  deliveryName: 'Al Ne',
+                  deliveryTime: '11:20',
+                  email: 'a@a.com',
+                  id: 222,
+                  orderStatus: 'OK',
+                  paymentType: 'Type',
+                  phone: '11111111',
+                  productItems: [],
+                  text: 'hell',
+                  totalPrice: 222,
+                },
+              ]);
+            }
+            postPaymentCharge(
+              product: StripePostOrders
+            ): Observable<GetAllOrders> {
+              return of();
+            }
           },
         },
       ],
@@ -83,6 +120,7 @@ describe('HeaderComponent', () => {
     keycloakService.logout();
     keycloakService.isLoggedIn();
     productList = new BehaviorSubject([{ id: 1 }, { id: 2 }]);
+    productOrderList = new BehaviorSubject(10);
     fixture.detectChanges();
   });
 
@@ -217,6 +255,10 @@ describe('HeaderComponent', () => {
 
   it('should return productList subscribe', () => {
     productList.next([{ id: 3 }]);
+    expect(component).toBeTruthy();
+  });
+  it('should return productOrderList subscribe', () => {
+    productOrderList.next(10);
     expect(component).toBeTruthy();
   });
 });

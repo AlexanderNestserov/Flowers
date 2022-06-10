@@ -7,17 +7,25 @@ import {
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
 import { RadioButtonModule } from 'primeng/radiobutton';
-import { BehaviorSubject, Observable, of } from 'rxjs';
+import { BehaviorSubject, Observable, of, throwError } from 'rxjs';
 import { ErrorDirectiveModule } from 'src/app/directives/error-form/error-directive.module';
+import { ClickedDivState } from '../account/account.component';
 import { AccountService } from '../account/account.service';
 import { ItemService } from '../home/items/item.service';
 import { Item } from '../home/items/items.config';
 import { CartOrderErrorFormModule } from './cart-order-error-form/cart-order-error-form.module';
 
 import { CartOrderComponent } from './cart-order.component';
-import { AddItem } from './cart-order.config';
+import {
+  AddItem,
+  CreateCart,
+  GetAllOrders,
+  OrderCheckout,
+  StripePostOrders,
+} from './cart-order.config';
 import { CartOrderService } from './cart-order.service';
 
 describe('CartOrderComponent', () => {
@@ -48,6 +56,10 @@ describe('CartOrderComponent', () => {
     'getProductDetails',
     'addToProductDetails',
     'productList',
+    'productOrderList',
+    'postOrder',
+    'getOrders',
+    'postPaymentCharge',
   ]);
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -58,6 +70,7 @@ describe('CartOrderComponent', () => {
         HttpClientTestingModule,
         KeycloakAngularModule,
         CartOrderErrorFormModule,
+        BrowserAnimationsModule,
         ErrorDirectiveModule,
         RadioButtonModule,
       ],
@@ -77,8 +90,12 @@ describe('CartOrderComponent', () => {
             updateCart(product: any): Observable<any> {
               return of({});
             }
-            deleteItem(id: number): Observable<any> {
-              return of({ orderItems: [{ id: 1 }] });
+            deleteItem(id: number): Observable<CreateCart> {
+              return of({
+                id: 333,
+                orderItems: [],
+                text: 'string',
+              });
             }
             getProductDetails() {
               return of({});
@@ -87,14 +104,52 @@ describe('CartOrderComponent', () => {
               return of({});
             }
             productList = new BehaviorSubject([{ id: 1 }, { id: 2 }]);
+            productOrderList = new BehaviorSubject(10);
+            postOrder(product: OrderCheckout): Observable<GetAllOrders> {
+              return of({
+                creationDate: 'string',
+                deliveryAddress: 'Sloboda',
+                deliveryName: 'Jack Dan',
+                deliveryTime: '10.10.10',
+                email: 'a@a.com',
+                id: 394,
+                orderStatus: 'PENDING_PAYMENT',
+                paymentType: 'CARD',
+                phone: '1111111111111',
+                productItems: [],
+                text: 'hello',
+                totalPrice: 222,
+              });
+            }
+            getOrders(): Observable<GetAllOrders[]> {
+              return of([]);
+            }
+            postPaymentCharge(
+              product: StripePostOrders
+            ): Observable<GetAllOrders> {
+              return of({
+                creationDate: 'string',
+                deliveryAddress: 'Sloboda',
+                deliveryName: 'Jack Dan',
+                deliveryTime: '10.10.10',
+                email: 'a@a.com',
+                id: 394,
+                orderStatus: 'PENDING_PAYMENT',
+                paymentType: 'CARD',
+                phone: '1111111111111',
+                productItems: [],
+                text: 'hello',
+                totalPrice: 222,
+              });
+            }
           },
         },
         { provide: KeycloakService, useValue: KeycloakService },
         {
           provide: AccountService,
           useClass: class MockAccountService {
-            getUserData(formValue: any): Observable<any> {
-              return of({ id: 1, homeAddress: '1' });
+            getUserData(): Observable<any> {
+              return of({});
             }
             patchData() {
               return of({});
@@ -116,7 +171,7 @@ describe('CartOrderComponent', () => {
             getItems(): Observable<any> {
               return of({ content: [{ id: 1 }] });
             }
-            getItem() {
+            getItem(id: number) {
               return of({});
             }
           },
@@ -397,15 +452,16 @@ describe('CartOrderComponent', () => {
     expect(cash.checked).toBeTruthy();
     expect(card.checked).toBeFalsy();
   });
-  it('should be created text', () => {
+  it('should be created paymentType', () => {
     const ctrl = component.formValue.get('paymentType');
     ctrl?.setValue('CASH');
     const result = component.paymentType.value;
     expect(result).toEqual('CASH');
   });
   it('should be created postDataDetails', () => {
-    const toggle = component.postDataDetails();
-    expect(toggle).toBeUndefined();
+    component.isDisabled = false;
+    component.postDataDetails();
+    expect(component.isDisabled).toBe(false);
   });
   it('should be created getItemImage', () => {
     let item = 'photo.jpg';
@@ -496,6 +552,24 @@ describe('CartOrderComponent', () => {
       NONE: 0,
     };
     const result = component.searchMapAdress(event);
+    expect(result).toBeUndefined();
+  });
+  it('should be created postDataDetails', () => {
+    const result = component.postDataDetails();
+    expect(result).toBeUndefined();
+  });
+  it('should be created postDataDetails', () => {
+    component['cartService'].postOrder = () => throwError({ error: true });
+    component.postDataDetails();
+    expect(component.clickedDivStateError).toEqual(ClickedDivState.hide);
+  });
+  it('should be created closePopup', () => {
+    component.clickedDivState = ClickedDivState.show;
+    component.closePopup();
+    expect(component.clickedDivState).toEqual(ClickedDivState.hide);
+  });
+  it('should be created stripePaymentGateway', () => {
+    const result = component.stripePaymentGateway();
     expect(result).toBeUndefined();
   });
 });

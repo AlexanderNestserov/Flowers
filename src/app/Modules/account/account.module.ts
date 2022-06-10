@@ -24,7 +24,6 @@ import { PopupErrorSuccessModule } from '../popup-success-error/popupErrorSucces
     MapModule,
     PopupErrorSuccessModule,
   ],
-  exports: [],
   providers: [AccountService],
 })
 export class AccountModule {}

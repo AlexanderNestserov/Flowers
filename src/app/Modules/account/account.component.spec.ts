@@ -37,7 +37,6 @@ describe('AccountComponent', () => {
         ReactiveFormsModule,
         FormsModule,
         HttpClientTestingModule,
-        ReactiveFormsModule,
         KeycloakAngularModule,
         BrowserAnimationsModule,
         ErrorDirectiveModule,
@@ -46,7 +45,7 @@ describe('AccountComponent', () => {
         {
           provide: AccountService,
           useClass: class MockAccountService {
-            getUserData(formValue: any): Observable<any> {
+            getUserData(): Observable<any> {
               return of({});
             }
             patchData() {

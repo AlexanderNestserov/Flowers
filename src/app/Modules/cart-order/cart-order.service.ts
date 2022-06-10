@@ -90,8 +90,4 @@ export class CartOrderService {
   postPaymentCharge(product: StripePostOrders): Observable<GetAllOrders> {
     return this.http.post<GetAllOrders>(this.orderStripeUrl, product);
   }
-
-  getPayments(): Observable<any> {
-    return this.http.get<any>(this.paymentsUrl);
-  }
 }

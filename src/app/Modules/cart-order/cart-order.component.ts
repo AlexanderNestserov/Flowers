@@ -160,10 +160,11 @@ export class CartOrderComponent implements OnInit {
   postDataDetails(): void {
     this.isDisabled = true;
     this.productOrder = {
-      deliveryAddress: this.user.homeAddress,
-      deliveryName: this.user.firstName + ' ' + this.user.lastName,
+      deliveryAddress: this.formValue.value.homeAddress,
+      deliveryName:
+        this.formValue.value.firstName + ' ' + this.formValue.value.lastName,
       deliveryTime: moment().format('YYYY-MM-DD HH:mm'),
-      email: this.user.email,
+      email: this.formValue.value.email,
       id: 0,
       orderStatus: 'PENDING_PAYMENT',
       paymentType: this.formValue.value.paymentType,
@@ -247,7 +248,6 @@ export class CartOrderComponent implements OnInit {
     let filteredX = this.cartItem.filter((itemX: AddItem) =>
       yFilter.includes(itemX.id)
     );
-
     filteredX.map((a: AddItem) => {
       this.cartService.deleteItem(a.id).subscribe({
         next: (res: CreateCart) => {
@@ -320,10 +320,7 @@ export class CartOrderComponent implements OnInit {
         this.strikeCheckout = (<any>window).StripeCheckout.configure({
           key: 'pk_test_51JCHjNDOmUi0GX61HsV9ISkpXLZ0F0iAf9KjJhyhf3RlsdCf062Vf5jpOD4bUwrbnV246xpekRjSScfe8lPNV7eF00YKMa72sG',
           locale: 'auto',
-          token: function (token: any) {
-            console.log(token);
-            alert('Payment via stripe successfull!');
-          },
+          token: () => {},
         });
       };
       window.document.body.appendChild(scr);

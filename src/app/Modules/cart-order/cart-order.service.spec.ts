@@ -8,7 +8,7 @@ import {
 } from '@angular/common/http/testing';
 
 import { CommonModule } from '@angular/common';
-import { AddItem, CreateCart } from './cart-order.config';
+import { AddItem, CreateCart, StripePostOrders } from './cart-order.config';
 
 describe('CartOrderService', () => {
   let service: CartOrderService;
@@ -133,5 +133,49 @@ describe('CartOrderService', () => {
     const req = httpMock.expectOne(service.addItemToCartUrl);
     expect(req.request.method).toEqual('POST');
     expect(req.request.url).toEqual('cart/item');
+  });
+  it('should add postOrder', () => {
+    let product = {
+      deliveryAddress: 'Sloboda',
+      deliveryName: 'Jack Dan',
+      deliveryTime: '10.10.10',
+      email: 'a@a.com',
+      id: 394,
+      orderStatus: 'PENDING_PAYMENT',
+      paymentType: 'CARD',
+      phone: '1111111111111',
+      productItems: [],
+      text: 'hello',
+    };
+    service.postOrder(product).subscribe((data) => {
+      expect(data).toBeTruthy();
+    });
+    const req = httpMock.expectOne(service.orderCheckoutUrl);
+    expect(req.request.method).toEqual('POST');
+    expect(req.request.url).toEqual('order/checkout');
+  });
+  it('should add postPaymentCharge', () => {
+    let product: StripePostOrders = {
+      amount: 135,
+      currency: 'EUR',
+      description: 'Hello world',
+      productOrderId: 394,
+      stripeEmail: 'a@a.com',
+      stripeToken: 'tok_lalala',
+    };
+    service.postPaymentCharge(product).subscribe((data) => {
+      expect(data).toBeTruthy();
+    });
+    const req = httpMock.expectOne(service.orderStripeUrl);
+    expect(req.request.method).toEqual('POST');
+    expect(req.request.url).toEqual('payments/charge');
+  });
+  it('should add getOrders', () => {
+    service.getOrders().subscribe((data) => {
+      expect(data).toBeTruthy();
+    });
+    const req = httpMock.expectOne(service.orderUrl);
+    expect(req.request.method).toEqual('GET');
+    expect(req.request.url).toEqual('order');
   });
 });
