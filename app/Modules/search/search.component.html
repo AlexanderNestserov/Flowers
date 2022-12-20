@@ -1,0 +1,30 @@
+<div class="wrapper-search">
+  <div class="container-search">
+    <div class="container-search__line"></div>
+    <div class="container-search__titles title">Site search</div>
+    <div class="container-search__search">
+      <div class="p-input-icon-right">
+        <input
+          type="text"
+          class="p-inputtext-lg"
+          pInputText
+          placeholder="Enter your search request"
+          [(ngModel)]="searchValue"
+          (keyup)="searchItem($event)"
+        />
+        <button class="button">
+          <img
+            id="imgSearch"
+            src="../../../assets/img-home/search.png"
+            alt="search"
+          />
+        </button>
+      </div>
+    </div>
+    <div class="container-search__titles">Search results</div>
+    <p class="container-search__paragraph" *ngIf="!searchValue">
+      The search results will appear here
+    </p>
+    <app-filter *ngIf="searchValue"></app-filter>
+  </div>
+</div>

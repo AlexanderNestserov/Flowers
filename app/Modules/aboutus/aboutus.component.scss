@@ -1,0 +1,228 @@
+@import "../../styles/_variables.scss";
+@import "../../styles/_mixins.scss";
+
+.wrapper-aboutus {
+    margin: 0 auto;
+    width: 144rem;
+}
+.container-aboutus {
+    max-width: 100%;
+    margin: 0 10.5% 3.5rem 11.5%;
+    &__line {
+        background: $color_darkgrey;
+        opacity: 0.2;
+        height: 1px;
+        margin-top: 1.6rem;
+    }
+    &__path {
+        margin: 2.9rem auto;
+    }
+    &__title {
+        background: $color_gradient;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-weight: 800;
+        font-size: 4.8rem;
+        line-height: 120%;
+        margin-top: 4.2rem;
+        margin-bottom: 4rem;
+    }
+    &__img1,
+    &__img2 {
+        .image-flowers {
+            width: 100%;
+            border-radius: 10px;
+        }
+    }
+    &__text-under-image {
+        @include font(Montserrat, normal, normal, 1.8rem, 150%, 0em, $color_darkgrey);
+        margin-top: 2rem;
+        margin-bottom: 5rem;
+        width: 75%;
+    }
+    &__text-description-first {
+        @include font(Montserrat, normal, normal, 1.6rem, 170%, 0em, $color_darkgrey);
+        margin-top: 3rem;
+        margin-bottom: 1.5rem;
+        width: 75%;
+    }
+
+    &__text-description-second {
+        @include font(Montserrat, normal, normal, 1.6rem, 170%, 0em, $color_darkgrey);
+        margin-bottom: 6.5rem;
+        width: 75%;
+    }
+    &__flowers {
+        display: flex;
+        justify-content: flex-start;
+        margin-bottom: 1.5rem;
+        background-color: $color_lightwhite;
+        @include wihi(100%, 38rem);
+        align-items: center;
+        .container__picture {
+            margin-left: 5rem;
+            padding-right: 1rem;
+            .image-flower {
+                @include wihi(30rem, 30rem);
+            }
+        }
+    }
+    &__figcapture {
+        @include font(Montserrat, normal, normal, 1.4rem, 150%, 0em, $color_grey);
+        margin: 3rem 0 3.5rem 0;
+    }
+    &__advantages {
+        margin-top: 8rem;
+        margin-bottom: 12rem;
+        width: 75%;
+    }
+}
+.container__home {
+    margin-right: 2.6rem;
+    .container__link {
+        @include font(Montserrat, normal, normal, 1.4rem, 150%, 0em, $color_darkgrey);
+    }
+}
+.container__angle {
+    margin-right: 2.6rem;
+    margin-top: 0.35rem;
+}
+.container__aboutus {
+    @include font(Montserrat, normal, normal, 1.4rem, 150%, 0em, $color_lightdarkgrey);
+}
+.container__title2 {
+    background: $color_gradient;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 700;
+    font-size: 2.8rem;
+    line-height: 120%;
+    margin-bottom: 2.5rem;
+}
+.container__list {
+    margin-top: 5rem;
+    margin-left: 0;
+    .container__li {
+        @include font(Montserrat, normal, normal, 1.6rem, 170%, 0em, $color_darkgrey);
+        padding-left: 9.5rem;
+        margin-bottom: 3.8rem;
+        background: url("../../../assets/img-aboutus/sabi\ 1.png") 0 0.8rem no-repeat;
+        background-size: 4.5rem 4.5rem;
+    }
+}
+@media (max-width: 1460px) {
+    .wrapper-aboutus {
+        width: 100%;
+    }
+}
+@media (max-width: 1410px) {
+    .container-aboutus {
+        &__flowers {
+            margin-bottom: 1.5rem;
+            background-color: $color_lightwhite;
+            border-radius: 10px;
+            @include wihi(100%, 38rem);
+            align-items: center;
+            .container__picture {
+                margin-left: 5rem;
+                padding-right: 1rem;
+                .image-flower {
+                    @include wihi(24rem, 24rem);
+                }
+            }
+        }
+    }
+}
+@media (max-width: 1190px) {
+    .container-aboutus {
+        &__flowers {
+            margin-bottom: 1.5rem;
+            background-color: $color_lightwhite;
+            border-radius: 10px;
+            @include wihi(100%, 25rem);
+            align-items: center;
+            .container__picture {
+                margin: 0 2rem;
+                .image-flower {
+                    @include wihi(19.2rem, 19.2rem);
+                }
+            }
+        }
+    }
+}
+@media (max-width: 1000px) {
+    .container-aboutus {
+        &__text-under-image,
+        &__text-description-first,
+        &__text-description-second {
+            width: 100%;
+        }
+        &__flowers {
+            display: block;
+            @include wihi(33.2rem, 76.6rem);
+            text-align: center;
+            .container__picture {
+                margin-bottom: 2rem;
+            }
+        }
+        &__advantages {
+            width: 100%;
+        }
+    }
+    .image-flower {
+        margin-top: 4rem;
+    }
+    .container__list {
+        .container__li {
+            padding-left: 6.9rem;
+        }
+    }
+}
+@media (max-width: 886px) {
+    .container-aboutus {
+        width: 90%;
+        margin: 0 0 3.5rem 8%;
+    }
+}
+@media (max-width: 500px) {
+    .container-aboutus {
+        margin: 0 0 3.5rem 2rem;
+    }
+}
+@media (max-width: 450px) {
+    .wrapper-aboutus {
+        margin-top: 6.4rem;
+    }
+    .container-aboutus {
+        &__path {
+            margin: 1.5rem auto;
+        }
+        &__title {
+            font-weight: 700;
+            line-height: 110%;
+            font-size: 3.6rem;
+            margin-top: 0.5rem;
+            margin-bottom: 2.8rem;
+        }
+        &__text-under-image {
+            margin-bottom: 3.4rem;
+        }
+        &__flowers {
+            width: 33.2rem;
+            height: 76.6rem;
+            .container__picture {
+                margin-bottom: 2rem;
+            }
+        }
+        &__advantages {
+            margin-top: 4rem;
+        }
+    }
+    .image-flower {
+        margin-top: 4rem;
+    }
+    .container__home,
+    .container__angle {
+        margin-right: $pw_1-5rem;
+    }
+}

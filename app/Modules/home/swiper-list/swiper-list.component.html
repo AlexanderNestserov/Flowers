@@ -1,0 +1,27 @@
+<div class="container__slider">
+  <ul class="container__list flex justify-content-between">
+    <swiper
+      [slidesPerView]="swiperConfig.slidesPerView"
+      [spaceBetween]="swiperConfig.spaceBetween"
+      [loop]="swiperConfig.loop"
+      [pagination]="swiperConfig.pagination"
+      [navigation]="swiperConfig.navigation"
+      [breakpoints]="adaptiveSwiper"
+      class="myswiper"
+    >
+      <ng-template swiperSlide *ngFor="let item of categoriesData | async">
+        <div class="container__block flex justify-content-center">
+          <a
+            class="container__link"
+            routerLink="/catalog"
+            [queryParams]="{ name: item.name, id: item.id }"
+          >
+            <img class="item-image" [src]="getImage(item.photo)" alt="logo1" />
+            <h6 class="h6">{{ item.name }}</h6>
+            <p class="container__paragraph">{{ item.description }}</p>
+          </a>
+        </div>
+      </ng-template>
+    </swiper>
+  </ul>
+</div>

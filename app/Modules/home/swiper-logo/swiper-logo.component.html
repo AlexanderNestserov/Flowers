@@ -1,0 +1,12 @@
+<div class="container__h">
+    <swiper [slidesPerView]="swiperConfig.slidesPerView" [spaceBetween]="swiperConfig.spaceBetween"
+        [loop]="swiperConfig.loop" [autoplay]="swiperConfig.autoplay" [pagination]="swiperConfig.pagination"
+        [navigation]="swiperConfig.navigation" class="myswiper">
+        <ng-template swiperSlide>
+            <app-home-slider-logo></app-home-slider-logo>
+        </ng-template>
+        <ng-template swiperSlide>
+            <app-home-slider-logo></app-home-slider-logo>
+        </ng-template>
+    </swiper>
+</div>

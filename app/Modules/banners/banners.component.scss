@@ -1,0 +1,114 @@
+@import "../../styles/_variables.scss";
+@import "../../styles/_mixins.scss";
+
+.container__banner {
+    margin: 2.5rem 0;
+    display: flex;
+    justify-content: flex-start;
+}
+.container__delivery {
+    background: $color_lightlightgrey;
+    border: 1px solid $color_lightgrey;
+    border-radius: 10px;
+    background-size: 100% 100%;
+    width: 54rem;
+    height: 24rem;
+    margin-right: 3rem;
+}
+.garden__logo,
+.delivery__logo {
+    position: relative;
+    top: 0;
+    left: 0;
+}
+#garden-image {
+    height: 90%;
+    position: absolute;
+    left: -22rem;
+    top: 0.5rem;
+    z-index: 0;
+    text-align: right;
+}
+#delivery-image {
+    position: absolute;
+    right: 0rem;
+    top: 0;
+    z-index: 0;
+    text-align: right;
+}
+
+.title {
+    @include font(Montserrat, normal, 700, 2.8rem, 120%, 0em, $color_darkgrey);
+    margin: 4.5rem 0 $pt_2rem 5rem;
+    width: 29.2rem;
+    position: relative;
+    z-index: 1;
+}
+.container__linking {
+    @include font(Montserrat, normal, normal, 1.8rem, 150%, 0em, $color_darkgrey);
+    margin-left: 5rem;
+    &:hover {
+        color: $color_pink;
+    }
+}
+.container__garden {
+    background: $color_gradientblue;
+    border: 1px solid $color_lightgrey;
+    border-radius: 10px;
+    background-size: 100% 100%;
+    width: 54rem;
+    height: 24rem;
+}
+@media (max-width: 1315px) {
+    .title {
+        @include font(Montserrat, normal, 700, 2.2rem, 120%, 0em, $color_darkgrey);
+        margin: 3.1rem 0 0 2.9rem;
+        width: 29.2rem;
+        position: relative;
+        z-index: 1;
+    }
+    .container__linking {
+        margin: 0.5rem 0 $pt_2rem 2.9rem;
+        position: relative;
+        z-index: 1;
+    }
+    .little {
+        top: 1.3rem;
+    }
+    .container__delivery,
+    .container__garden {
+        width: 40rem;
+        height: 24rem;
+    }
+    #garden-image {
+        left: -17.7rem;
+        top: 8rem;
+        z-index: 0;
+        height: 13.9rem;
+        width: 17.7rem;
+    }
+    #delivery-image {
+        right: 0rem;
+        top: 5rem;
+        z-index: 0;
+        height: 16.9rem;
+    }
+}
+@media (max-width: 970px) {
+    .container__banner {
+        display: block;
+        width: 35rem;
+    }
+    .container__delivery,
+    .container__garden {
+        width: 33.5rem;
+        height: 24rem;
+        margin-bottom: 2rem;
+    }
+}
+@media (max-width: 500px) {
+    .container__banner {
+        margin-left: 2rem;
+        margin-right: 2rem;
+    }
+}

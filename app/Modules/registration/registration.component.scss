@@ -1,0 +1,401 @@
+@import "../../styles/_variables.scss";
+@import "../../styles/_mixins.scss";
+
+.wrapper-registration {
+    margin: 0 5% 3.5rem 7.5%;
+}
+.container-registration {
+    width: 56rem;
+    margin: 0 auto;
+    &__logo {
+        display: flex;
+        justify-content: space-between;
+        padding-right: $pt_2rem;
+        margin-bottom: 5rem;
+    }
+    &__form {
+        width: 54rem;
+    }
+    &__line {
+        margin-bottom: 9rem;
+    }
+    &__quick {
+        margin-bottom: 4.1rem;
+        @include font(Montserrat, normal, 400, 1.8rem, 150%, 0em, $color_black);
+        padding-left: 6.4rem;
+    }
+    &__facebook {
+        @include wihi(54rem, 5.7rem);
+        background-color: $color_blue;
+        border-radius: $pb_1rem;
+        margin-bottom: 2.3rem;
+    }
+    &__google {
+        @include wihi(54rem, 5.7rem);
+        background-color: $color_white;
+        border-radius: $pb_1rem;
+        border: 1px solid $color_darkwhite;
+    }
+}
+.container__lineb {
+    background: $color_darkgrey;
+    opacity: 0.2;
+    height: 1px;
+    width: 111rem;
+    margin: 1.6rem 0 5.1rem 15.5%;
+}
+.container__title {
+    @include font(Montserrat, normal, 700, 3.6rem, 110%, 0em, $color_darkgrey);
+}
+.container__link {
+    padding-top: $pw_1-5rem;
+    @include font(Montserrat, normal, 400, 1.8rem, 150%, 0em, $color_pink);
+}
+.container__link:hover {
+    text-decoration: underline;
+}
+.container__link:active {
+    color: $color_red;
+    padding-top: 1.6rem;
+}
+#inputCheckbox {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+}
+#inputCheckbox + .container__input-checkbox {
+    display: inline-flex;
+    align-items: center;
+    user-select: none;
+}
+#inputCheckbox + .container__input-checkbox:before {
+    content: "";
+    display: inline-block;
+    @include wihi($pt_2rem, $pt_2rem);
+    flex-shrink: 0;
+    flex-grow: 0;
+    border: 1px solid $color_grey;
+    border-radius: 4px;
+    margin-right: 2.6rem;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 50% 50%;
+}
+#inputCheckbox:checked + .container__input-checkbox:before {
+    content: "";
+    background: url("../../../assets/img-registration/check.png") center center no-repeat;
+    @include wihi($pt_2rem, $pt_2rem);
+    display: inline-block;
+    flex-shrink: 0;
+    flex-grow: 0;
+    border: 1px solid $color_white;
+    border-radius: 4px;
+    margin-right: 2.6rem;
+    background-size: 100% 100%;
+}
+#inputCheckbox:not(:disabled):not(:checked) + .container__input-checkbox:hover::before {
+    border-color: $color_green;
+}
+.container__input-checkbox {
+    @include font(Montserrat, normal, 400, 1.8rem, 150%, 0em, $color_darkgrey);
+    position: relative;
+    top: 0.5rem;
+    margin-right: 0.4rem;
+}
+.container__linking {
+    @include font(Montserrat, normal, 400, 1.8rem, 150%, 0em, $color_pink);
+    text-decoration: underline;
+}
+.container__linking:hover {
+    @include font(Montserrat, normal, 400, 1.8rem, 150%, 0em, $color_pink);
+    text-decoration: none;
+}
+.container__button {
+    @include wihi(54rem, 5.7rem);
+    background-color: $color_green;
+    border-radius: $pb_1rem;
+    margin: 3rem 0 5.3rem 0;
+    @include font(Montserrat, normal, 600, $pw_1-5rem, 110%, 0.05em, $color_white);
+    text-transform: uppercase;
+}
+.container__button:hover {
+    background: $color_darkgreen;
+}
+.container__button:active {
+    padding-top: 0.2rem;
+}
+.disabled {
+    background: $color_grey;
+}
+.disabled:hover {
+    background: $color_grey;
+}
+.disabled:active {
+    padding-top: 0;
+}
+.container__lines {
+    display: inline-block;
+    height: 1px;
+    width: 42%;
+    background-color: $color_darkgrey;
+    opacity: 0.2;
+}
+.container__text1 {
+    @include font(Montserrat, normal, 600, $pw_1-5rem, 110%, 0.05em, $color_darkgrey);
+    text-transform: uppercase;
+    position: relative;
+    top: 0.5rem;
+    margin: 0 1.9rem 0 1.9rem;
+}
+.container__signin {
+    display: inline-block;
+    @include font(Montserrat, normal, 600, $pw_1-5rem, 110%, 0.05em, $color_white);
+    text-transform: uppercase;
+    margin-left: 2.3rem;
+    padding-top: 0.8rem;
+}
+.container__signin-google {
+    display: inline-block;
+    @include font(Montserrat, normal, 600, $pw_1-5rem, 110%, 0.05em, $color_black);
+    text-transform: uppercase;
+    margin-left: 2.3rem;
+    padding-top: 0.8rem;
+}
+.container__error {
+    display: inline-block;
+    @include font(Montserrat, normal, 400, 1.2rem, 150%, 0em, $color_black);
+    color: $color_red;
+    width: 30rem;
+}
+.alert-confirmpassword {
+    position: relative;
+    left: 18rem;
+    bottom: 5rem;
+}
+.container__modal {
+    @include wihi(61rem, 37rem);
+    position: fixed;
+    top: 25rem;
+    left: center;
+    background: $color_white;
+    box-shadow: 0px 1rem 2.5rem rgba(0, 0, 0, 0.1);
+    border-radius: 1.6rem;
+}
+.container__modal-container {
+    margin: 3.3rem 3rem 3rem 3.3rem;
+}
+.container__dialog {
+    display: flex;
+    justify-content: space-between;
+}
+.container__dialog-title {
+    text-transform: uppercase;
+    @include font(Montserrat, normal, 600, 1.5rem, 110%, 0.05em, $color_darkgrey);
+}
+.container__close {
+    background-color: $color_white;
+}
+.close-img {
+    @include wihi(2.4rem, 2.4rem);
+}
+.close-img:active {
+    position: relative;
+    top: 0.1rem;
+    left: 0.1rem;
+}
+.container__main-text {
+    margin-top: 3.5rem;
+    margin-bottom: 2.4rem;
+    @include font(Montserrat, normal, 700, 2.8rem, 120%, 0em, $color_darkgrey);
+}
+.container__paragraph {
+    @include font(Montserrat, normal, 400, 1.8rem, 150%, 0em, $color_darkgrey);
+    margin-bottom: 3rem;
+}
+.container__buttons {
+    text-align: right;
+}
+.container__cancel {
+    @include wihi(14.9rem, 5.7rem);
+    border: 1px solid $color_green;
+    border-radius: 10px;
+    background-color: $color_white;
+    text-transform: uppercase;
+    .button__paragraph-cancel {
+        @include font(Montserrat, normal, 600, $pw_1-5rem, 110%, 0.05em, $color_green);
+    }
+}
+.container__cancel:hover {
+    border: 1px solid $color_darklightgreen;
+    .button__paragraph-cancel {
+        color: $color_darklightgreen;
+    }
+}
+.container__cancel:active {
+    .button__paragraph-cancel {
+        padding-top: 0.2rem;
+    }
+}
+.container__action {
+    @include wihi(14.9rem, 5.7rem);
+    background-color: $color_green;
+    border-radius: $pb_1rem;
+    text-transform: uppercase;
+    margin-left: 2rem;
+    .button__paragraph-action {
+        @include font(Montserrat, normal, 600, $pw_1-5rem, 110%, 0.05em, $color_white);
+    }
+}
+.container__action:hover {
+    background: $color_darkgreen;
+}
+.container__action:active {
+    .button__paragraph-action {
+        padding-top: 0.2rem;
+    }
+}
+.googlemap {
+    @include wihi(54rem, 39.6rem);
+    margin-bottom: 0.8rem;
+}
+@media (max-width: 1800px) {
+    .container__lineb {
+        margin: 1.6rem 0 5.1rem 12%;
+    }
+}
+@media (max-width: 1640px) {
+    .container__lineb {
+        margin: 1.6rem 0 5.1rem 10%;
+    }
+}
+@media (max-width: 1550px) {
+    .container__lineb {
+        margin: 1.6rem 0 5.1rem 5.5%;
+    }
+}
+@media (max-width: 1286px) {
+    .container__lineb {
+        width: 90%;
+        margin: 1.6rem 3% 5.1rem 5%;
+    }
+}
+@media (max-width: 886px) {
+    .container__modal {
+        @include wihi(33.5rem, 40rem);
+        top: 20rem;
+    }
+    .container__main-text {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+    }
+    .container__paragraph {
+        margin-bottom: 1rem;
+    }
+    .container__cancel {
+        @include wihi(11.9rem, 5.7rem);
+    }
+    .container__action {
+        @include wihi(11.9rem, 5.7rem);
+    }
+    .container__buttons {
+        text-align: start;
+    }
+    .wrapper-registration {
+        margin: 0 0 3.5rem 2rem;
+    }
+    .container-registration {
+        width: 40rem;
+        margin: 0 0 0 2rem;
+        &__logo {
+            width: 54rem;
+        }
+        &__line {
+            width: 54rem;
+        }
+    }
+    .container__lineb {
+        margin: 0 12% 5.1rem 2rem;
+        width: 54rem;
+    }
+    .container__lines {
+        width: 23rem;
+    }
+    .container__text1 {
+        margin: 0 1.9rem 0 1.9rem;
+    }
+}
+@media (max-width: 640px) {
+    .wrapper-registration {
+        margin-bottom: 0;
+    }
+    .container-registration {
+        width: 33.5rem;
+        &__logo {
+            width: 33.5rem;
+            display: block;
+            margin-bottom: 3.4rem;
+        }
+        &__form {
+            width: 33.5rem;
+        }
+        &__line {
+            width: 33.5rem;
+            margin-bottom: 5rem;
+        }
+        &__quick {
+            margin-bottom: 2.3rem;
+            padding-left: 0;
+        }
+        &__facebook {
+            @include wihi(33.5rem, 5.7rem);
+        }
+        &__google {
+            @include wihi(33.5rem, 5.7rem);
+        }
+    }
+    .container__lineb {
+        margin: 0 0 4.3rem 2rem;
+        width: 47rem;
+    }
+    .container__title {
+        margin-bottom: 1.9rem;
+        @include font(Montserrat, normal, 700, 2.8rem, 120%, 0em, $color_darkgrey);
+    }
+    .container__button {
+        @include wihi(33.5rem, 5.7rem);
+        margin: 3rem 0 5rem 0;
+    }
+    .container__lines {
+        width: 13rem;
+    }
+    #facebook,
+    #google {
+        display: none;
+    }
+    .container__signin {
+        padding-top: 0;
+    }
+    .container__signin-google {
+        padding-top: 0;
+    }
+    .alert-confirmpassword {
+        left: -1.2rem;
+    }
+    .googlemap {
+        @include wihi(33.5rem, 39.6rem);
+    }
+}
+@media (max-width: 530px) {
+    .container-registration {
+        margin: 0;
+    }
+    .container__lineb {
+        margin: 0 0 4.3rem 0;
+        width: 35rem;
+    }
+}
+@media (max-width: 450px) {
+    .wrapper-registration {
+        margin-top: 6.4rem;
+    }
+}

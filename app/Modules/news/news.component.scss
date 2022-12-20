@@ -1,0 +1,203 @@
+@import "../../styles/_variables.scss";
+@import "../../styles/_mixins.scss";
+
+.wrapper-news {
+    width: 144rem;
+    margin: 1.5rem auto 0 auto;
+}
+.container-news {
+    max-width: 100%;
+    &__line {
+        width: 78%;
+        margin: 0 20% 2.8rem 12%;
+        background: $color_darkgrey;
+        opacity: 0.2;
+        height: 1px;
+    }
+    &__path {
+        margin: 1rem 0 3.5rem 12%;
+    }
+    &__title {
+        width: 78%;
+        margin: 4.5rem 0 2.3rem 12%;
+        background: $color_gradient;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-weight: 800;
+        font-size: 4.8rem;
+        line-height: 120%;
+    }
+    &__text {
+        margin: 1rem 0 7rem 12%;
+        width: 80rem;
+        @include font(Montserrat, normal, normal, 1.8rem, 150%, 0em, $color_black);
+    }
+    &__list {
+        width: 800px;
+        text-align: center;
+        margin: 6rem 0 3rem 12%;
+        .list__ul {
+            text-align: left;
+        }
+    }
+}
+.container-banners{
+    margin-left:12%;
+}
+.container__home {
+    margin-right: 2.8rem;
+}
+.container__link {
+    @include font(Montserrat, normal, normal, 1.4rem, 150%, 0em, $color_darkgrey);
+}
+.container__angle {
+    margin-right: 2.4rem;
+    margin-top: 0.35rem;
+}
+.container__news {
+    @include font(Montserrat, normal, normal, 1.4rem, 150%, 0em, $color_lightdarkgrey);
+}
+.container__text {
+    margin-top: 2rem;
+    margin-bottom: 6rem;
+    @include font(Montserrat, normal, normal, 1.8rem, 150%, 0em, $color_darkgrey);
+}
+.container__titles {
+    margin: 0.5rem auto 0.5rem;
+    @include font(Montserrat, normal, bold, 2.8rem, 120%, 0em, $color_darkgrey);
+}
+.container__date {
+    margin-bottom: 1.5rem;
+    width: 75%;
+    @include font(Montserrat, normal, normal, 1.8rem, 150%, 0em, $color_darkgrey);
+}
+.my-pag::ng-deep .ngx-pagination {
+    margin-top: 8.5rem;
+}
+.my-pag::ng-deep .ngx-pagination .current {
+    color: $color_darkgrey;
+    border: 1px solid $color_pink;
+    background: $color_white;
+    border-radius: 10px;
+}
+.my-pag::ng-deep .ngx-pagination li {
+    width: 5.7rem;
+    height: 5.7rem;
+    text-align: center;
+    margin-left: 0.5rem;
+}
+.my-pag::ng-deep .ngx-pagination li span {
+    display: inline-block;
+    padding-top: 2rem;
+    @include font(Montserrat, normal, 600, 1.5rem, 110%, 0.05em, $color_darkgrey);
+    text-align: center;
+    text-transform: uppercase;
+}
+.my-pag::ng-deep .ngx-pagination li {
+    a {
+        border-radius: 10px;
+        border: 1px solid $color_lightgrey;
+        width: 5.7rem;
+        height: 5.7rem;
+        background-color: $color_white;
+        box-sizing: border-box;
+    }
+    a:hover {
+        border: 1px solid $color_pink;
+        border-radius: 10px;
+    }
+}
+.my-pag::ng-deep .ngx-pagination li.ellipsis {
+    margin-left: 0;
+    margin-right: 0;
+    a {
+        border: 0px solid $color_lightgrey;
+    }
+}
+@media (max-width: 1460px) {
+    .wrapper-news {
+        width: 100%;
+    }
+}
+@media (max-width: 946px) {
+    .container-news {
+        &__text,
+        &__list {
+            width: 40rem;
+        }
+    }
+    .container__text {
+        width: 40rem;
+    }
+}
+@media (max-width: 886px) {
+    .container-news {
+        &__line {
+            margin: 0 20% 0 8%;
+        }
+        &__path {
+            margin: 1rem 0 1.6rem 8%;
+        }
+        &__title {
+            margin: 1.6rem 0 2.2rem 8%;
+        }
+        &__text {
+            margin: 2.2rem 0 4rem 8%;
+        }
+        &__list {
+            margin: 4rem 0 4rem 8%;
+        }
+    }
+    .my-pag::ng-deep .ngx-pagination {
+        margin-top: 4.6rem;
+    }
+    .container__text {
+        margin: 2rem 0 4.6rem 0;
+    }
+}
+@media (max-width: 500px) {
+    .container-banners {
+        margin-left: 0;
+    }
+    .container-news {
+        &__line {
+            width: 90%;
+            margin: 0 5% 0 $pt_2rem;
+        }
+        &__path {
+            margin: 1rem 0 1.6rem $pt_2rem;
+        }
+        &__title {
+            margin: 1.6rem 0 2.2rem $pt_2rem;
+            font-weight: 700;
+            font-size: 3.6rem;
+            line-height: 110%;
+        }
+        &__text {
+            margin: 2.2rem 0 4rem $pt_2rem;
+            width: 33.5rem;
+        }
+        &__list {
+            margin: 4rem 0 4rem $pt_2rem;
+            width: 33.5rem;
+        }
+    }
+    .my-pag::ng-deep .ngx-pagination {
+        margin-top: 4.6rem;
+    }
+    .container__text {
+        margin: 2rem 0 4.6rem 0;
+        width: 33.5rem;
+    }
+}
+@media (max-width: 450px) {
+    .wrapper-news {
+        margin-top: 6.4rem;
+    }
+    .container__home {
+        margin-right: $pw_1-5rem;
+    }
+    .container__angle {
+        margin-right: $pw_1-5rem;
+    }
+}

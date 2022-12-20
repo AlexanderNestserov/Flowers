@@ -1,0 +1,45 @@
+<agm-map
+  [latitude]="latMap"
+  [longitude]="lngMap"
+  [zoom]="zoom"
+  (mapClick)="mapReadyHandler()"
+  [styles]="styles"
+>
+  <agm-polygon
+    [paths]="paths"
+    [clickable]="true"
+    fillColor="rgb(255,190,200)"
+    strokeColor="#ff5d7d"
+    (polyClick)="getCoords($event)"
+  >
+  </agm-polygon>
+  <agm-marker
+    [latitude]="lat"
+    [longitude]="lng"
+    iconUrl="../../../assets/img-registration/arrow.png"
+    [zIndex]="99999999999999"
+    [markerDraggable]="true"
+    (dragEnd)="markerDragEnd($event)"
+  >
+  </agm-marker>
+</agm-map>
+<div class="container__area">
+  <img
+    id="image-square"
+    src="../../../assets/img-registration/square.png"
+    alt="square"
+  />
+  <span class="container__minsk">Delivery area - Minsk</span>
+</div>
+<div class="popup" *ngIf="alertShow">
+  <div class="container__popup-exit">
+    <img
+      src="../../../assets/img-registration/x.png"
+      alt="close"
+      (click)="closeAlert()"
+    />
+  </div>
+  <p class="container__popup-text11">
+    Sorry, we cannot deliver outside the delivery zone.
+  </p>
+</div>

@@ -1,0 +1,239 @@
+<div class="wrapper-registration">
+  <div class="container__lineb"></div>
+  <div class="container-registration">
+    <div class="container-registration__logo">
+      <p class="container__title">Registration</p>
+      <a class="container__link" (click)="signIn()">Sign in</a>
+    </div>
+    <div class="container-registration__form">
+      <form [formGroup]="formValue" (ngSubmit)="postDataDetails()">
+        <div
+          class="container__firstname"
+          errorDirective
+          [formControlItem]="firstName"
+        >
+          <input
+            type="text"
+            id="inputFirstName"
+            required
+            formControlName="firstName"
+          />
+          <label class="container__input-firstname" for="inputFirstName"
+            >First name<span class="container__star">*</span>
+          </label>
+          <app-field-error-registration
+            [formControlItem]="firstName"
+          ></app-field-error-registration>
+        </div>
+        <div
+          class="container__lastname"
+          errorDirective
+          [formControlItem]="lastName"
+        >
+          <input
+            type="text"
+            id="inputLastName"
+            required
+            formControlName="lastName"
+          />
+          <label class="container__input-lastname" for="inputLastName"
+            >Last name<span class="container__star">*</span>
+          </label>
+          <app-field-error-registration
+            [formControlItem]="lastName"
+          ></app-field-error-registration>
+        </div>
+        <div class="container__email" errorDirective [formControlItem]="email">
+          <input type="text" id="inputEmail" required formControlName="email" />
+          <label class="container__input-email" for="inputEmail"
+            >Email<span class="container__star">*</span></label
+          >
+          <app-field-error-registration
+            [formControlItem]="email"
+          ></app-field-error-registration>
+        </div>
+        <div
+          class="container__phone-number"
+          errorDirective
+          [formControlItem]="phone"
+        >
+          <input
+            type="number"
+            id="inputPhone"
+            required
+            formControlName="phone"
+          />
+          <label class="container__input-phone" for="inputPhone"
+            >Phone number<span class="container__star">*</span></label
+          >
+          <app-field-error-registration
+            [formControlItem]="phone"
+          ></app-field-error-registration>
+        </div>
+        <div class="googlemap">
+          <app-map></app-map>
+        </div>
+        <div class="container__address">
+          <input
+            #search
+            type="text"
+            id="inputAddress"
+            formControlName="homeAddress"
+            placeholder=" "
+            (keyup)="searchMapAdress($event)"
+          />
+          <label class="container__input-address" for="inputAddress"
+            >Address</label
+          >
+        </div>
+        <p class="container__point">
+          You can enter the address manually or specify a point on the map
+        </p>
+        <div class="container__info-registration">
+          <textarea
+            type="text"
+            id="inputInfo"
+            formControlName="additionalInformation"
+            placeholder=" "
+          ></textarea>
+          <label class="container__input-info" for="inputInfo"
+            >Additional information</label
+          >
+        </div>
+        <p class="container__point">
+          Intercom, GPS coordinates or other additional information
+        </p>
+        <div
+          class="container__password"
+          errorDirective
+          [formControlItem]="password"
+        >
+          <input
+            type="password"
+            id="inputPassword"
+            required
+            formControlName="password"
+          />
+          <label class="container__input-password" for="inputPassword"
+            >Password<span class="container__star">*</span></label
+          >
+          <app-field-error-registration
+            [formControlItem]="password"
+          ></app-field-error-registration>
+        </div>
+        <div
+          class="container__confirm-registration"
+          [class.has-error]="showError()"
+        >
+          <input
+            type="password"
+            id="inputConfirm"
+            required
+            formControlName="confirmPassword"
+          />
+          <label
+            class="container__input-confirm"
+            appConfirmPassword="password"
+            for="inputConfirm"
+            >Confirm password
+            <span class="container__star">*</span>
+          </label>
+          <app-field-error-registration
+            [formControlItem]="confirmPassword"
+          ></app-field-error-registration>
+          <span
+            class="container__error"
+            *ngIf="formValue.errors?.['noMatchingPassword'] && !confirmPassword.errors?.['required']"
+            >Passwords did not match</span
+          ><img
+            class="alert-confirmpassword"
+            *ngIf="formValue.errors?.['noMatchingPassword'] && !confirmPassword.errors?.['required']"
+            src="../../../assets/img-registration/alert-circle.png"
+          />
+        </div>
+        <div class="container__checkbox">
+          <input
+            type="checkbox"
+            id="inputCheckbox"
+            required
+            formControlName="myCheckbox"
+            [checked]="isChecked"
+          />
+          <label for="inputCheckbox" class="container__input-checkbox"
+            >I agree to the </label
+          ><a class="container__linking" (click)="dialogTitle()"
+            >processing of personal data</a
+          >
+        </div>
+        <button
+          type="submit"
+          class="container__button"
+          [ngClass]="{ disabled: formValue.invalid || isDisabled }"
+          [disabled]="formValue.invalid || isDisabled"
+        >
+          Register <app-spinner></app-spinner>
+        </button>
+      </form>
+    </div>
+    <div class="container-registration__line">
+      <span class="container__lines"> </span>
+      <span class="container__text1"> OR </span>
+      <span class="container__lines"> </span>
+    </div>
+    <p class="container-registration__quick">
+      Use accounts of other services for quick login
+    </p>
+    <button class="container-registration__facebook">
+      <img
+        id="facebook"
+        src="../../../assets/img-registration/facebook-rect.png"
+        alt="facebook-rect"
+      />
+      <span class="container__signin">sign in with Facebook</span>
+    </button>
+    <button class="container-registration__google">
+      <img
+        id="google"
+        src="../../../assets/img-registration/flat-color-icons_google.png"
+        alt="google"
+      />
+      <span class="container__signin-google">sign in with Google</span>
+    </button>
+    <app-popup
+      [@divTrigger]="clickedDivState"
+      (click)="closeMenu()"
+    ></app-popup>
+    <app-popup-error
+      [@divTriggerError]="clickedDivStateError"
+      (click)="closeMenu()"
+    ></app-popup-error>
+    <div class="container__modal" [hidden]="isDialog">
+      <div class="container__modal-container">
+        <div class="container__dialog">
+          <p class="container__dialog-title">Dialog title</p>
+          <button class="container__close" (click)="isDialog = true">
+            <img
+              src="../../../assets/img-registration/close.png"
+              alt="close"
+              class="close-img"
+            />
+          </button>
+        </div>
+        <div class="container__main-text">Main text heading</div>
+        <p class="container__paragraph">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egestas
+          tincidunt fames tempus, tristique pellentesque quam pulvinar. Egestas
+          ultrices mauris, sem sed velit nunc pellentesque.
+        </p>
+        <div class="container__buttons">
+          <button class="container__cancel" (click)="isDialog = true">
+            <p class="button__paragraph-cancel">Cancel</p>
+          </button>
+          <button class="container__action" (click)="isDialog = true">
+            <p class="button__paragraph-action">Action</p>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

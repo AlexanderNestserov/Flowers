@@ -1,0 +1,21 @@
+@mixin font(
+    $font-family: Montserrat,
+    $font-style: normal,
+    $font-weight: 600,
+    $font-size: 1.4rem,
+    $line-height: 150%,
+    $letter-spacing: 0.05em,
+    $color: black
+) {
+    font-family: $font-family;
+    font-style: $font-style;
+    font-weight: $font-weight;
+    font-size: $font-size;
+    line-height: $line-height;
+    letter-spacing: $letter-spacing;
+    color: $color;
+}
+@mixin wihi($width: 100%, $height: 100%) {
+    width: $width;
+    height: $height;
+}

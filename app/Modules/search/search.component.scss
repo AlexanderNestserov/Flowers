@@ -1,0 +1,101 @@
+@import "../../styles/_variables.scss";
+@import "../../styles/_mixins.scss";
+.wrapper-search {
+    margin: 0 auto;
+    width: 144rem;
+}
+.container-search {
+    max-width: 100%;
+    margin: 0 10.5% 3.5rem 11.5%;
+    &__line {
+        background: $color_darkgrey;
+        opacity: 0.2;
+        height: 1px;
+        margin-top: 1.6rem;
+    }
+    &__titles {
+        @include font(Montserrat, normal, bold, 2.8rem, 120%, 0em, $color_darkgrey);
+        margin: 6rem auto 2.6rem;
+    }
+    &__search {
+        margin-bottom: 5rem;
+    }
+    &__paragraph {
+        @include font(Montserrat, normal, normal, 1.8rem, 150%, 0em, $color_darkgrey);
+    }
+}
+.p-input-icon-right {
+    width: 100%;
+    position: relative;
+    .p-inputtext-lg {
+        display: inline-block;
+        text-align: left;
+        width: 100%;
+        border: 1px solid $color_lightgrey;
+        background: $color_white;
+        border-radius: 4px;
+        height: 7.6rem;
+        @include font(Montserrat, normal, normal, 1.8rem, 150%, 0em, $color_darkgrey);
+        padding-left: 2.9rem;
+        &:focus {
+            box-shadow: 2px 5px 1px $color_grey;
+            border: 2px solid $color_lightgrey;
+        }
+    }
+    input::placeholder {
+        color: $color_lightgrey;
+    }
+    .button {
+        position: absolute;
+        top: 2.4rem;
+        right: 3.6rem;
+        z-index: 2;
+        background: $color_white;
+        &:hover {
+            top: 2.5rem;
+            right: 3.7rem;
+            z-index: 3;
+        }
+        &:active {
+            top: 2.6rem;
+            right: 3.8rem;
+            z-index: 3;
+        }
+        #imgSearch {
+            @include wihi(2.5rem, 2.5rem);
+        }
+    }
+}
+@media (max-width: 1460px) {
+    .wrapper-search {
+        width: 100%;
+    }
+}
+@media (max-width: 886px) {
+    .container-search {
+        margin: 0 6% 0 4%;
+    }
+}
+@media (max-width: 500px) {
+    .wrapper-search {
+        width: 90%;
+        margin: 0 2rem 0 0;
+    }
+    .container-search {
+        width: 100%;
+    }
+}
+@media (max-width: 450px) {
+    .container-search {
+        margin: 8rem 2rem 0 2rem;
+        &__titles {
+            margin: 5rem 0 2.6rem 0;
+        }
+        &__search {
+            margin-top: 1.9rem;
+        }
+        .title {
+            display: none;
+        }
+    }
+}

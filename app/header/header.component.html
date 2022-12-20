@@ -1,0 +1,186 @@
+<header class="header">
+  <div class="header__popup">
+    <button class="burger" (click)="toggleDisplay()" [hidden]="isShown">
+      <img
+        class="header__burger"
+        src="../../assets/img-home/mobile_menu.png"
+        alt="menu"
+      />
+    </button>
+    <button class="close" [hidden]="isShow" (click)="toggleDisplay()">
+      <img
+        class="header__burger"
+        src="../../assets/img-home/x.png"
+        alt="close"
+      />
+    </button>
+  </div>
+  <div class="header__logo">
+    <a class="flex justify-content-center" href="/">
+      <img
+        src="../../assets/img-home/logo.jpg"
+        alt="logo"
+        class="first-image"
+      />
+      <img
+        src="../../assets/img-home/FlowerShop.jpg"
+        alt="shop"
+        class="align-items-center second-image"
+      />
+    </a>
+  </div>
+  <div class="header__menu">
+    <ul class="header__list flex justify-content-start">
+      <li class="menu menu1">
+        <a
+          class="menu-link"
+          routerLink="/home"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          >HOME</a
+        >
+      </li>
+      <li class="menu menu2">
+        <a
+          class="menu-link"
+          routerLink="/catalog"
+          routerLinkActive="active"
+          [ngClass]="{ active: urlCatalog }"
+          >CATALOG</a
+        >
+      </li>
+      <li class="menu menu3">
+        <a
+          class="menu-link"
+          routerLink="/about-us"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          >ABOUT US</a
+        >
+      </li>
+      <li class="menu menu4">
+        <a
+          class="menu-link"
+          routerLink="/news"
+          [ngClass]="{ active: urlNewsArticle }"
+          routerLinkActive="active"
+          >NEWS</a
+        >
+      </li>
+      <li class="menu menu5">
+        <a
+          class="menu-link"
+          routerLink="/contacts"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          >CONTACTS</a
+        >
+      </li>
+      <div class="header__icon flex justify-content-start">
+        <li class="menu-icon">
+          <a
+            class="header__search icon"
+            (click)="toggleDisplays()"
+            routerLink="/search"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+          ></a>
+        </li>
+        <li class="menu-icon">
+          <a
+            class="header__bag icon"
+            (click)="toggleDisplays()"
+            routerLink="/cartorder"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+          >
+            <span class="header__quantity">{{ this.quantityItems }}</span>
+          </a>
+        </li>
+        <li class="menu-icon icon-user">
+          <a
+            class="header__user icon"
+            (click)="toggleUser($event)"
+            [ngClass]="{
+              active: !isMenu || urlRegistration || urlAccount || urlMyorders
+            }"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+          ></a>
+          <ul class="user" [hidden]="isMenu">
+            <li
+              class="user__li user__sign"
+              *ngIf="!isLoggedIn"
+              routerLink="/registration"
+            >
+              <a
+                class="user__text"
+                routerLink="/registration"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }"
+                (click)="toggleDisplays()"
+                >SIGN IN</a
+              >
+            </li>
+            <li class="user__li user__li-1" *ngIf="isLoggedIn">
+              <a
+                routerLink="/myorders"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }"
+                (click)="toggleDisplays()"
+              >
+                <span class="user__text">MY ORDERS</span>
+                <p class="user__number">
+                  <span class="user__numb">{{ this.quantityOrders }}</span>
+                </p>
+              </a>
+            </li>
+            <li class="user__li user__li-2" *ngIf="isLoggedIn">
+              <a
+                routerLink="/account"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }"
+                class="user__text"
+                (click)="toggleDisplays()"
+                >MANAGE MY ACCOUNT</a
+              >
+            </li>
+            <div class="line"></div>
+            <li class="user__li user__li-3" *ngIf="isLoggedIn">
+              <a (click)="logout()" class="user__text">LOG OUT</a>
+            </li>
+          </ul>
+        </li>
+      </div>
+    </ul>
+  </div>
+  <div>
+    <ul class="mobile__menu" [hidden]="isShow">
+      <li class="mobile__li">
+        <a class="mobile__link" routerLink="/home" (click)="toggleDisplay()"
+          >HOME</a
+        >
+      </li>
+      <li class="mobile__li">
+        <a class="mobile__link" routerLink="/catalog" (click)="toggleDisplay()"
+          >CATALOG</a
+        >
+      </li>
+      <li class="mobile__li">
+        <a class="mobile__link" routerLink="/about-us" (click)="toggleDisplay()"
+          >ABOUT US</a
+        >
+      </li>
+      <li class="mobile__li">
+        <a class="mobile__link" routerLink="/news" (click)="toggleDisplay()"
+          >NEWS</a
+        >
+      </li>
+      <li class="mobile__li">
+        <a class="mobile__link" routerLink="/contacts" (click)="toggleDisplay()"
+          >CONTACTS</a
+        >
+      </li>
+    </ul>
+  </div>
+</header>

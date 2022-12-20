@@ -1,0 +1,463 @@
+@import "../styles/_variables.scss";
+@import "../styles/_mixins.scss";
+
+.header {
+    @extend %flex;
+    position: sticky;
+    top: 0;
+    z-index: 99;
+    background-color: $color_white;
+    padding: 3rem 0 3rem 21%;
+    width: 100%;
+    margin: 0 auto;
+    height: 8rem;
+}
+.header__popup {
+    display: none;
+    .header__burger {
+        width: 3rem;
+        height: 3rem;
+    }
+}
+.header__logo {
+    cursor: pointer;
+    height: 5rem;
+    margin-right: 24.2rem;
+}
+.first-image {
+    width: 3.2rem;
+    height: 3.6rem;
+    margin-right: 0.8rem;
+}
+.second-image {
+    height: 3.8rem;
+    padding-top: 0.7rem;
+}
+.header__menu {
+    width: 100%;
+    padding-top: 0.5rem;
+}
+.header__icon {
+    width: 100%;
+}
+.menu {
+    margin-right: 2rem;
+    padding-top: 0.5rem;
+}
+.menu2,
+.menu4,
+.menu3,
+.menu5 {
+    padding-left: 1.7rem;
+}
+.menu3 {
+    min-width: 11rem;
+}
+.menu-link {
+    @include font(Montserrat, normal, 600, 1.5rem, 110%, 0.05em, $color_darkgrey);
+    text-transform: uppercase;
+    &.active {
+        color: $color_pink;
+        background: url("../../assets/img-home/Rectangle2.png") center bottom no-repeat;
+        background-size: 3.2rem 0.4rem;
+        padding-bottom: 2rem;
+    }
+    &:hover {
+        color: $color_pink;
+        background: url("../../assets/img-home/Rectangle2.png") center bottom no-repeat;
+        background-size: 3.2rem 0.4rem;
+        padding-bottom: 2rem;
+    }
+}
+.icon {
+    margin-left: 2.3rem;
+}
+.header__search.active {
+    background: url("../../assets/img-home/search-red.png") 0.1rem 0 no-repeat,
+        url("../../assets/img-home/Rectangle2.png") 0 3.8rem no-repeat;
+    padding-bottom: $pt_2rem;
+}
+
+.header__search:hover {
+    background: url("../../assets/img-home/search-red.png") 0.1rem 0 no-repeat,
+        url("../../assets/img-home/Rectangle2.png") 0 3.8rem no-repeat;
+    padding-bottom: $pt_2rem;
+}
+.header__search {
+    background: url("../../assets/img-home/search.png") 0.1rem 0 no-repeat;
+    @extend %width;
+}
+.header__bag.active {
+    background: url("../../assets/img-home/shopping-bag-red.png") 0.1rem 0 no-repeat,
+        url("../../assets/img-home/Rectangle2.png") 0 3.8rem no-repeat;
+    padding-bottom: $pb_1rem;
+}
+.header__bag {
+    background: url("../../assets/img-home/shopping-bag.png") 0.1rem 0 no-repeat;
+    @extend %width;
+}
+.header__bag:hover {
+    background: url("../../assets/img-home/shopping-bag-red.png") 0.1rem 0 no-repeat,
+        url("../../assets/img-home/Rectangle2.png") 0 3.8rem no-repeat;
+    padding-bottom: $pb_1rem;
+}
+.header__quantity {
+    display: inline-block;
+    color: $color_white;
+    position: relative;
+    top: -1.2rem;
+    left: 1.5rem;
+    width: 2.8rem;
+    height: 2.1rem;
+    border-radius: 8px;
+    padding: 3px 0 0 6px;
+    @include font(Montserrat, normal, 600, 1.5rem, 110%, 0.05em, $color_white);
+    vertical-align: top;
+    background-color: $color_pink;
+}
+.header__user {
+    background: url("../../assets/img-home/user.png") 0.1rem 0 no-repeat;
+    @extend %width;
+}
+.header__user:hover {
+    background: url("../../assets/img-home/user-red.png") 0.1rem 0 no-repeat,
+        url("../../assets/img-home/Rectangle2.png") 0 3.8rem no-repeat;
+    padding-bottom: $pb_1rem;
+}
+.header__user.active {
+    background: url("../../assets/img-home/user-red.png") 0.1rem 0 no-repeat,
+        url("../../assets/img-home/Rectangle2.png") 0 3.8rem no-repeat;
+    padding-bottom: $pb_1rem;
+}
+.icon-user {
+    position: relative;
+    cursor: pointer;
+}
+.user {
+    position: absolute;
+    z-index: 10;
+    top: 1rem;
+    right: 0.5rem;
+    background-color: $color_white;
+    width: 27.3rem;
+    height: 18.1rem;
+    margin: 3.3rem 0 2rem 3rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    .user__li-1,
+    .user__li-2 {
+        margin: 2.4rem 2rem;
+    }
+    .user__li-3,
+    .user__sign {
+        margin: 2.4rem 2rem;
+    }
+    .user__text {
+        @include font(Montserrat, normal, 600, 1.5rem, 110%, 0.05em, $color_darkgrey);
+    }
+    .line {
+        width: 100%;
+        height: 1px;
+        background-color: $color_lightgrey;
+    }
+    .user__number {
+        display: inline-block;
+        margin-left: 2rem;
+        background-color: $color_pink;
+        width: 2.5rem;
+        height: 2.5rem;
+        border-radius: 30%;
+        text-align: center;
+        position: relative;
+        bottom: 0.1rem;
+        .user__numb {
+            @include font(Montserrat, normal, 600, 1.5rem, 110%, 0.05em, $color_white);
+            display: block;
+            padding-top: 0.4rem;
+        }
+    }
+}
+.scroll {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+@media (max-width: 1800px) {
+    .header {
+        padding-left: 18%;
+    }
+}
+@media (max-width: 1640px) {
+    .header {
+        padding-left: 16%;
+    }
+}
+@media (max-width: 1550px) {
+    .header {
+        padding-left: 12%;
+    }
+}
+@media (max-width: 1400px) {
+    .header {
+        padding-right: $pt_2rem;
+        justify-content: flex-start;
+        .header__logo {
+            margin-right: 5rem;
+        }
+        .header__menu {
+            width: 100%;
+        }
+    }
+}
+@media (max-width: 1284px) {
+    .header {
+        padding-right: 2rem;
+    }
+    .header__icon {
+        width: 20%;
+    }
+    .menu-link {
+        margin-left: 1.3rem;
+    }
+}
+@media (max-width: 1200px) {
+    .menu-link {
+        margin-left: 3rem;
+    }
+    .header__icon {
+        width: 50%;
+        margin-left: 20rem;
+    }
+    .header__logo {
+        width: 400px;
+        margin-left: 1rem;
+    }
+    .menu {
+        display: none;
+    }
+    .header__popup {
+        display: block;
+        position: fixed;
+        top: 3.5rem;
+        left: 13rem;
+        .burger {
+            background-color: $color_white;
+        }
+        .burger:active {
+            position: fixed;
+            top: 3.6rem;
+            left: 13.1rem;
+        }
+        .close {
+            background-color: $color_white;
+        }
+        .close:active {
+            position: fixed;
+            top: 3.6rem;
+            left: 13.1rem;
+        }
+    }
+    .mobile__menu {
+        position: fixed;
+        top: 8rem;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        text-align: center;
+        background: url("../../assets/img-home/Rectangle 13.png") 0 0 no-repeat;
+        background-size: 100% 100%;
+        padding-top: 4rem;
+        .mobile__li {
+            margin-bottom: 4rem;
+        }
+        .mobile__link {
+            @include font(Montserrat, normal, 600, 1.5rem, 110%, 0.05em, $color_darkgrey);
+            text-transform: uppercase;
+        }
+        .mobile__link:hover {
+            color: $color_pink;
+        }
+    }
+}
+@media (max-width: 1000px) {
+    .header__popup {
+        left: 12rem;
+        .burger:active {
+            left: 12.1rem;
+        }
+        .close:active {
+            left: 12.1rem;
+        }
+    }
+}
+@media (max-width: 886px) {
+    .header__list {
+        display: flex;
+    }
+    .header__icon {
+        width: 10rem;
+        margin-left: $pt_2rem;
+    }
+    .header {
+        width: 100%;
+        justify-content: space-between;
+        padding: $pt_2rem $pt_2rem;
+    }
+    .header__menu {
+        display: flex;
+        justify-content: flex-start;
+    }
+    .header__logo {
+        margin-left: 5rem;
+    }
+    .header__popup {
+        top: 2.5rem;
+        left: 7rem;
+        .burger:active {
+            top: 2.6rem;
+            left: 7.1rem;
+        }
+        .close:active {
+            top: 2.6rem;
+            left: 7.1rem;
+        }
+    }
+}
+@media (max-width: 740px) {
+    .header__popup {
+        top: 2.5rem;
+        left: 5rem;
+        .burger:active {
+            top: 2.6rem;
+            left: 5.1rem;
+        }
+        .close:active {
+            top: 2.6rem;
+            left: 5.1rem;
+        }
+    }
+}
+@media (max-width: 564px) {
+    .menu-link {
+        margin-left: 1.3rem;
+    }
+    .header__icon {
+        margin: 0;
+    }
+    .header {
+        width: 100%;
+        justify-content: space-between;
+        padding-top: $pt_2rem;
+        margin: 0 auto;
+    }
+    .header__logo {
+        margin-left: 4rem;
+    }
+    .header__popup {
+        top: 2.5rem;
+        left: 3rem;
+        .burger:active {
+            top: 2.6rem;
+            left: 3.1rem;
+        }
+        .close:active {
+            top: 2.6rem;
+            left: 3.1rem;
+        }
+    }
+    .first-image {
+        margin-left: 2.3rem;
+    }
+}
+@media (max-width: 500px) {
+    .user {
+        top: 1rem;
+        right: -1rem;
+    }
+    .header__popup {
+        top: 2.5rem;
+        left: 2rem;
+        .burger:active {
+            position: fixed;
+            top: 2.6rem;
+            left: 2.1rem;
+        }
+        .close:active {
+            position: fixed;
+            top: 2.6rem;
+            left: 2.1rem;
+        }
+    }
+    .header__logo {
+        margin-left: $pt_2rem;
+        margin-right: 0;
+    }
+    .header {
+        padding-right: 5rem;
+    }
+    .header__icon {
+        display: flex;
+        justify-content: center;
+        margin-left: 0;
+        padding: 0;
+        width: 18rem;
+        .menu-icon {
+            margin-right: 3rem;
+            width: $pw_1-5rem;
+            .icon {
+                margin-left: 0;
+                padding: 0;
+            }
+        }
+    }
+    .header__search,
+    .header__bag {
+        width: 3rem;
+        margin-right: $pt_2rem;
+    }
+    .header__user {
+        width: 3rem;
+    }
+}
+@media (max-width: 450px) {
+    .header__search,
+    .header__bag {
+        margin-right: $pt_2rem;
+    }
+    .header__popup {
+        top: 2rem;
+        .header__burger {
+            width: 2.4rem;
+            height: 2.4rem;
+        }
+        .burger:active {
+            position: fixed;
+            top: 2.1rem;
+            left: 2.1rem;
+        }
+        .close:active {
+            position: fixed;
+            top: 2.1rem;
+            left: 2.1rem;
+        }
+    }
+    .header {
+        position: fixed;
+        z-index: 99;
+        padding-top: $pw_1-5rem;
+        height: 6.4rem;
+        .header__logo {
+            margin-right: 3.5rem;
+        }
+    }
+    .first-image {
+        width: 3rem;
+        height: 3.1rem;
+        margin-top: 0.2rem;
+        margin-right: 0.6rem;
+    }
+    .second-image {
+        height: 3.3rem;
+        width: 9.9rem;
+    }
+    .header__icon {
+        margin-left: 0.6rem;
+    }
+}
