@@ -277,7 +277,7 @@ export class CartOrderComponent implements OnInit {
     this.http.address.next(this.addressValue);
   }
 
-  checkout(amount: number) {
+  checkout(amount: number): void {
     const strikeCheckout = (<any>window).StripeCheckout.configure({
       key: 'pk_test_51JCHjNDOmUi0GX61HsV9ISkpXLZ0F0iAf9KjJhyhf3RlsdCf062Vf5jpOD4bUwrbnV246xpekRjSScfe8lPNV7eF00YKMa72sG',
       locale: 'auto',
@@ -310,7 +310,7 @@ export class CartOrderComponent implements OnInit {
     });
   }
 
-  stripePaymentGateway() {
+  stripePaymentGateway(): void {
     if (!window.document.getElementById('stripe-script')) {
       const scr = window.document.createElement('script');
       scr.id = 'stripe-script';
