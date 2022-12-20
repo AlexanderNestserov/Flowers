@@ -41,7 +41,7 @@
               "node_modules/primeng/resources/primeng.min.css",
               "./src/styles.scss"
             ],
-            "scripts": [ 
+            "scripts": [
               "node_modules/chart.js/dist/Chart.js",
               "node_modules/chartjs-plugin-datalabels/dist/chartjs-plugin-datalabels.js",
               "node_modules/chartjs-plugin-gradient/dist/chartjs-plugin-gradient.js"]
@@ -52,12 +52,12 @@
                 {
                   "type": "initial",
                   "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumError": "2mb"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "2kb",
-                  "maximumError": "4kb"
+                  "maximumWarning": "12kb",
+                  "maximumError": "14kb"
                 }
               ],
               "fileReplacements": [

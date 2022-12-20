@@ -1,4 +1,4 @@
-import { KeycloakLoginOptions } from 'keycloak-js';
+import {KeycloakInitOptions, KeycloakLoginOptions} from 'keycloak-js';
 export interface Env {
   production?: boolean;
   serverUrl: string;
@@ -7,11 +7,7 @@ export interface Env {
     realm: string;
     clientId: string;
   };
-  initOptions: {
-    onLoad: any;
-    silentCheckSsoRedirectUri: any;
-    checkLoginIframe: boolean;
-  };
+  initOptions: KeycloakInitOptions;
   keycloakLoginOption: KeycloakLoginOptions;
   keycloakLogoutOption: string;
   enableBearerInterceptor: boolean;
